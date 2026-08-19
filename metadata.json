@@ -1,0 +1,6 @@
+{
+  "name": "Agência Mello",
+  "description": "Sites, identidade visual e conteúdo estratégico para pequenos negócios e empresas locais.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
