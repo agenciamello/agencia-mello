@@ -6,7 +6,7 @@ import { HOME_PROCESS_STEPS } from "../../data/siteData";
 
 export const ProcessSection: React.FC = () => {
   return (
-    <SectionContainer id="processo">
+    <SectionContainer id="processo" className="atmosphere-process">
       <SectionHeader
         eyebrow="Como trabalhamos"
         title="Um processo simples, do início à entrega"

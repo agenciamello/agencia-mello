@@ -7,7 +7,7 @@ import { COMPARISON_NO_NEED, COMPARISON_YOU_GET } from "../../data/siteData";
 
 export const ComparisonSection: React.FC = () => {
   return (
-    <SectionContainer surface>
+    <SectionContainer surface className="atmosphere-comparison">
       <SectionHeader
         eyebrow="Sem complicação"
         title="Design profissional sem processo burocrático"

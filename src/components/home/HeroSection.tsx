@@ -3,6 +3,7 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Button } from "../ui/Button";
 import { WHATSAPP_MESSAGES, getWhatsAppUrl } from "../../data/siteData";
+import { PrismatrixHero } from "./PrismatrixHero";
 
 const KICKER_MESSAGES = [
   "DESIGN E TECNOLOGIA PARA NEGÓCIOS REAIS",
@@ -30,22 +31,18 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-background"
+      className="relative isolate min-h-[100svh] scroll-mt-24 overflow-hidden bg-[#050505]"
     >
-      {/* Background Glow */}
+      <PrismatrixHero />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(60% 55% at 75% 25%, rgba(236,72,153,0.16), transparent 70%), radial-gradient(50% 45% at 10% 10%, rgba(124,58,237,0.12), transparent 70%)",
-        }}
+        className="atmosphere-hero pointer-events-none absolute inset-0 z-[1]"
       />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-28 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-14 lg:px-8 lg:pb-24 lg:pt-36">
-        <div>
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1440px] items-start px-5 pb-12 pt-28 sm:px-6 min-[769px]:px-[5vw] min-[769px]:pb-[3.75rem] min-[769px]:pt-[clamp(7rem,13vh,9.375rem)] xl:px-20">
+        <div className="w-full max-w-[760px] min-[769px]:w-[53%]" data-hero-copy>
           {/* Rotating Kicker Badge */}
-          <div className="inline-flex h-8 items-center overflow-hidden rounded-full border border-white/10 bg-white/[0.04] px-3.5 text-[10.5px] font-medium uppercase tracking-[0.11em] text-accent backdrop-blur-sm sm:h-8 sm:px-4 sm:text-xs sm:tracking-[0.14em]">
+          <div className="inline-flex h-8 items-center overflow-hidden text-[10px] font-semibold uppercase tracking-[0.15em] text-[#9d7aff] min-[769px]:text-[11px] min-[769px]:tracking-[0.18em]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
                 key={kickerIndex}
@@ -75,11 +72,16 @@ export const HeroSection: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          <h1 className="mt-5 text-[1.75rem] font-bold leading-[1.15] text-white [text-wrap:balance] sm:text-[2.75rem] sm:leading-[1.1] lg:text-[3.25rem]">
-            Seu negócio já é bom. A gente faz ele parecer tão{" "}
-            <span className="text-accent">profissional</span> quanto realmente é.
+          <h1 className="mt-5 max-w-[760px] text-[clamp(1.75rem,7.8vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.03em] text-white min-[769px]:text-[clamp(2.375rem,4.15vw,4.4375rem)] min-[769px]:leading-[1.08]">
+            Seu negócio já é bom.
+            <br />
+            A gente faz ele parecer
+            <br />
+            tão <span className="text-accent">profissional</span> quanto
+            <br />
+            realmente é.
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-[17px]">
+          <p className="mt-6 max-w-[430px] text-[13.5px] leading-[1.5] text-muted-foreground min-[769px]:text-[15px] min-[769px]:leading-[1.6]">
             Criamos sites, identidades visuais e conteúdos estratégicos para
             pequenos negócios, artistas e empresas locais que querem crescer com
             uma presença mais forte.
@@ -105,21 +107,6 @@ export const HeroSection: React.FC = () => {
           <p className="mt-6 text-sm text-muted-foreground">
             Atendimento no Rio de Janeiro e online para todo o Brasil.
           </p>
-        </div>
-
-        {/* Hero Image Showcase */}
-        <div className="relative">
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-surface shadow-2xl">
-            <img
-              src="/assets/hero-composition.webp"
-              alt="Composição com site em desktop, versão mobile, paleta de identidade visual e post para redes sociais criados pela Agência Mello"
-              width={1280}
-              height={1024}
-              loading="eager"
-              decoding="async"
-              className="h-auto w-full object-cover"
-            />
-          </div>
         </div>
       </div>
     </section>

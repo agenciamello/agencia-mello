@@ -7,7 +7,7 @@ import { SITE_INFO } from "../../data/siteData";
 
 export const AboutSection: React.FC = () => {
   return (
-    <SectionContainer id="sobre">
+    <SectionContainer id="sobre" className="atmosphere-section atmosphere-about">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
         <Reveal>
           <div>

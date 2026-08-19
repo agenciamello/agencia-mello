@@ -12,18 +12,14 @@ import {
 
 export const FeaturedOfferSection: React.FC = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-background py-16 sm:py-20 lg:py-24">
+    <section className="atmosphere-featured relative isolate overflow-hidden py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-accent/30 bg-surface p-7 sm:p-10 lg:p-14 shadow-2xl">
-            {/* Background Accent Glow */}
+            {/* Low-intensity color response inside the offer surface */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 -z-10"
-              style={{
-                background:
-                  "radial-gradient(55% 55% at 85% 15%, rgba(236,72,153,0.18), transparent 70%)",
-              }}
+              className="atmosphere-featured-card pointer-events-none absolute inset-0 -z-10"
             />
 
             <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-12">

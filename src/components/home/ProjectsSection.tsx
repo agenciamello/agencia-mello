@@ -7,7 +7,7 @@ import { PROJECTS_DATA, WHATSAPP_MESSAGES, getWhatsAppUrl } from "../../data/sit
 
 export const ProjectsSection: React.FC = () => {
   return (
-    <SectionContainer id="projetos" surface>
+    <SectionContainer id="projetos" surface className="atmosphere-projects">
       <SectionHeader
         eyebrow="Projetos"
         title="Design que transforma percepção"

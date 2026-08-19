@@ -12,6 +12,7 @@ import { ComparisonSection } from "../components/home/ComparisonSection";
 import { AboutSection } from "../components/home/AboutSection";
 import { FaqSection } from "../components/home/FaqSection";
 import { CtaSection } from "../components/home/CtaSection";
+import { FpsCounter } from "../components/debug/FpsCounter";
 
 export const HomePage: React.FC = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ export const HomePage: React.FC = () => {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <FpsCounter />
     </div>
   );
 };

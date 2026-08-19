@@ -6,14 +6,9 @@ import { WHATSAPP_MESSAGES, getWhatsAppUrl } from "../../data/siteData";
 export const CtaSection: React.FC = () => {
   return (
     <section className="relative isolate overflow-hidden bg-background">
-      {/* Background Radial Glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(50% 60% at 50% 0%, rgba(236,72,153,0.14), transparent 70%)",
-        }}
+        className="atmosphere-final-cta pointer-events-none absolute inset-0 -z-10"
       />
 
       <div className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-6 lg:py-28">

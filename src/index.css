@@ -24,6 +24,12 @@
   --muted: #1e1e24;
   --muted-foreground: #a1a1aa;
   --border: rgba(255, 255, 255, 0.08);
+  --bg-base: #050505;
+  --bg-deep: #080608;
+  --bg-plum: #120812;
+  --bg-wine: #1a0712;
+  --ambient-violet: rgba(93, 36, 150, 0.12);
+  --ambient-magenta: rgba(214, 28, 117, 0.07);
   color-scheme: dark;
 }
 
@@ -38,3 +44,93 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
 }
 
+.atmosphere-hero {
+  background: none;
+}
+
+.atmosphere-section {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.atmosphere-section::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.atmosphere-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.atmosphere-featured {
+  background-color: var(--bg-plum);
+  background-image:
+    radial-gradient(110% 130% at 92% 38%, rgba(93, 36, 150, 0.13) 0%, rgba(214, 28, 117, 0.075) 38%, transparent 72%),
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-wine) 44%, var(--bg-plum) 100%);
+}
+
+.atmosphere-featured-card {
+  background: radial-gradient(100% 110% at 100% 0%, rgba(93, 36, 150, 0.08) 0%, rgba(214, 28, 117, 0.045) 42%, transparent 70%);
+}
+
+.atmosphere-projects {
+  background-color: var(--bg-base);
+  background-image: linear-gradient(180deg, rgba(18, 8, 18, 0.16) 0%, transparent 18%, transparent 82%, rgba(8, 6, 8, 0.5) 100%);
+}
+
+.atmosphere-process {
+  background-color: var(--bg-deep);
+  background-image: linear-gradient(180deg, var(--bg-deep) 0%, #0d0b0d 50%, var(--bg-deep) 100%);
+}
+
+.atmosphere-comparison {
+  background-color: #0d090c;
+  background-image:
+    radial-gradient(105% 120% at -8% 52%, rgba(214, 28, 117, 0.07) 0%, rgba(26, 7, 18, 0.26) 38%, transparent 68%),
+    linear-gradient(115deg, rgba(26, 7, 18, 0.55) 0%, #100b10 46%, #0d0b0e 100%);
+}
+
+.atmosphere-about {
+  background-color: var(--bg-base);
+}
+
+.atmosphere-about::before {
+  background: radial-gradient(72% 105% at 84% 52%, rgba(93, 36, 150, 0.13) 0%, rgba(214, 28, 117, 0.055) 38%, rgba(18, 8, 18, 0.12) 56%, transparent 76%);
+}
+
+.atmosphere-final-cta {
+  background:
+    radial-gradient(105% 150% at 84% 68%, rgba(93, 36, 150, 0.17) 0%, rgba(93, 36, 150, 0.08) 34%, transparent 66%),
+    radial-gradient(100% 140% at 14% 100%, rgba(214, 28, 117, 0.1) 0%, rgba(26, 7, 18, 0.18) 42%, transparent 70%),
+    linear-gradient(180deg, rgba(18, 8, 18, 0.94) 0%, rgba(26, 7, 18, 0.86) 54%, rgba(8, 6, 8, 0.96) 100%);
+}
+
+@media (max-width: 768px) {
+  .atmosphere-hero {
+    background: radial-gradient(118% 92% at 100% 100%, rgba(93, 36, 150, 0.1) 0%, rgba(214, 28, 117, 0.045) 44%, rgba(18, 8, 18, 0.06) 60%, transparent 76%);
+  }
+
+  .atmosphere-featured {
+    background-image:
+      radial-gradient(130% 92% at 100% 28%, rgba(93, 36, 150, 0.1) 0%, rgba(214, 28, 117, 0.055) 40%, transparent 72%),
+      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-wine) 46%, var(--bg-plum) 100%);
+  }
+
+  .atmosphere-comparison {
+    background-image: linear-gradient(160deg, rgba(26, 7, 18, 0.5) 0%, #100b10 48%, #0d0b0e 100%);
+  }
+
+  .atmosphere-about::before {
+    background: radial-gradient(120% 62% at 50% 76%, rgba(93, 36, 150, 0.11) 0%, rgba(214, 28, 117, 0.045) 38%, transparent 72%);
+  }
+
+  .atmosphere-final-cta {
+    background:
+      radial-gradient(130% 100% at 92% 72%, rgba(93, 36, 150, 0.13) 0%, transparent 66%),
+      linear-gradient(180deg, rgba(18, 8, 18, 0.94) 0%, rgba(26, 7, 18, 0.8) 56%, rgba(8, 6, 8, 0.96) 100%);
+  }
+}
