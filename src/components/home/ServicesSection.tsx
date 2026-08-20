@@ -17,8 +17,8 @@ export const ServicesSection: React.FC = () => {
     <SectionContainer id="servicos">
       <SectionHeader
         eyebrow="O que fazemos"
-        title="Soluções visuais e digitais pensadas para o seu momento"
-        description="Não oferecemos pacotes genéricos. Criamos exatamente o que a sua empresa precisa para se posicionar com autoridade e atrair mais clientes."
+        title="Soluções visuais e digitais pensadas para o seu momento."
+        description="Tudo que seu negócio precisa para se apresentar melhor, transmitir mais valor e vender com mais confiança."
       />
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">

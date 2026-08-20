@@ -4,8 +4,9 @@ import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
 import { Reveal } from "../ui/Reveal";
 import {
+  HOME_SITE_ESSENCIAL_BENEFITS,
+  HOME_SITE_ESSENCIAL_INSTALLMENTS,
   SITE_ESSENCIAL_PRICE,
-  SITE_ESSENCIAL_INSTALLMENTS,
   WHATSAPP_MESSAGES,
   getWhatsAppUrl,
 } from "../../data/siteData";
@@ -26,12 +27,11 @@ export const FeaturedOfferSection: React.FC = () => {
               <div>
                 <Badge>Destaque</Badge>
                 <h2 className="mt-4 text-2xl font-bold leading-[1.2] text-white sm:text-3xl lg:text-4xl">
-                  Site Essencial — seu negócio no ar com presença profissional
+                  Veja o site da sua empresa antes de pagar por ele.
                 </h2>
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-[17px]">
-                  Desenvolvemos um site profissional de uma página para a sua
-                  empresa por um valor fechado e acessível. Você vê uma prévia
-                  antes de pagar.
+                  Uma presença profissional não precisa começar com um projeto
+                  caro ou complicado.
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-end gap-x-3 gap-y-1">
@@ -39,7 +39,7 @@ export const FeaturedOfferSection: React.FC = () => {
                     {SITE_ESSENCIAL_PRICE}
                   </span>
                   <span className="pb-1 text-[15px] text-muted-foreground">
-                    {SITE_ESSENCIAL_INSTALLMENTS}
+                    {HOME_SITE_ESSENCIAL_INSTALLMENTS}
                   </span>
                 </div>
 
@@ -56,10 +56,11 @@ export const FeaturedOfferSection: React.FC = () => {
                   </Button>
                 </div>
 
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-                  Produto com escopo definido. Sem pagamento antecipado e sem
-                  contrato longo.
-                </p>
+                <ul className="mt-5 space-y-1.5 text-sm leading-relaxed text-muted-foreground">
+                  {HOME_SITE_ESSENCIAL_BENEFITS.map((benefit) => (
+                    <li key={benefit}>{benefit}</li>
+                  ))}
+                </ul>
               </div>
 
               {/* Demo preview image */}

@@ -10,7 +10,7 @@ export const ProjectsSection: React.FC = () => {
     <SectionContainer id="projetos" surface className="atmosphere-projects">
       <SectionHeader
         eyebrow="Projetos"
-        title="Design que transforma percepção"
+        title="Design que transforma percepção."
         description="Projetos conceituais criados para mostrar como trabalhamos com diferentes segmentos, paletas e linguagens visuais."
       />
 
@@ -34,14 +34,11 @@ export const ProjectsSection: React.FC = () => {
                 )}
               </div>
               <div className="p-6">
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                  {project.category}
-                </span>
-                <h3 className="mt-2 text-lg font-semibold text-white">
+                <h3 className="text-lg font-semibold text-white">
                   {project.name}
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-                  {project.description}
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                  {project.category}
                 </p>
               </div>
             </article>

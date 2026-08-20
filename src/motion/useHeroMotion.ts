@@ -2,6 +2,7 @@ import { useLayoutEffect, type RefObject } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HERO_MOTION_CONFIG } from "../config/heroMotionConfig";
+import { isMotionDebugForced } from "../utils/motionDebug";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,7 +10,7 @@ interface UseHeroMotionOptions {
   sectionRef: RefObject<HTMLElement | null>;
   copyRef: RefObject<HTMLDivElement | null>;
   backgroundRef: RefObject<HTMLDivElement | null>;
-  prismatrixLayerRef: RefObject<HTMLDivElement | null>;
+  visualLayerRef: RefObject<HTMLDivElement | null>;
 }
 
 interface ParallaxMediaConditions {
@@ -25,13 +26,13 @@ export const useHeroMotion = ({
   sectionRef,
   copyRef,
   backgroundRef,
-  prismatrixLayerRef,
+  visualLayerRef,
 }: UseHeroMotionOptions): void => {
   useLayoutEffect(() => {
     const section = sectionRef.current;
     const copy = copyRef.current;
     const background = backgroundRef.current;
-    const prismatrixLayer = prismatrixLayerRef.current;
+    const visualLayer = visualLayerRef.current;
     const handoff = section?.closest<HTMLElement>("[data-hero-handoff]");
     const incoming = handoff?.querySelector<HTMLElement>(
       "[data-hero-incoming]",
@@ -43,14 +44,15 @@ export const useHeroMotion = ({
       !section ||
       !copy ||
       !background ||
-      !prismatrixLayer ||
+      !visualLayer ||
       !incoming ||
       !focusVeil
     ) {
       return;
     }
 
-    const layers = [background, copy, prismatrixLayer, incoming, focusVeil];
+    const layers = [background, copy, visualLayer, incoming, focusVeil];
+    const forceMotion = isMotionDebugForced();
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
       media.add(
@@ -69,13 +71,13 @@ export const useHeroMotion = ({
               "opacity,transform,transformOrigin,willChange",
           });
 
-          if (conditions.reducedMotion) return;
+          if (conditions.reducedMotion && !forceMotion) return;
 
           const values = conditions.mobile
             ? HERO_MOTION_CONFIG.mobile
             : HERO_MOTION_CONFIG.desktop;
 
-          gsap.set([background, prismatrixLayer], {
+          gsap.set([background, visualLayer], {
             transformOrigin: "center center",
             willChange: "transform",
           });
@@ -111,8 +113,8 @@ export const useHeroMotion = ({
             )
             .to(copy, { yPercent: values.copyYPercent, duration: 1 }, 0)
             .to(
-              prismatrixLayer,
-              { yPercent: values.prismatrixYPercent, duration: 1 },
+              visualLayer,
+              { yPercent: values.visualYPercent, duration: 1 },
               0,
             )
             .fromTo(
@@ -157,7 +159,7 @@ export const useHeroMotion = ({
   }, [
     backgroundRef,
     copyRef,
-    prismatrixLayerRef,
+    visualLayerRef,
     sectionRef,
   ]);
 };

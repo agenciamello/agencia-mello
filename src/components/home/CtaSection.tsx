@@ -2,6 +2,7 @@ import React from "react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "../ui/Button";
 import { WHATSAPP_MESSAGES, getWhatsAppUrl } from "../../data/siteData";
+import { ParticleBurstButton } from "./ParticleBurstButton";
 
 export const CtaSection: React.FC = () => {
   return (
@@ -16,15 +17,16 @@ export const CtaSection: React.FC = () => {
           Seu negócio já faz um bom trabalho. Vamos fazer mais pessoas perceberem isso.
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-[17px]">
-          Conte para a Agência Mello o que você precisa e descubra qual solução
-          faz mais sentido para o seu momento.
+          Conte o que seu negócio precisa.
+          <br />
+          A gente te mostra o caminho mais simples para melhorar sua presença.
         </p>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href={getWhatsAppUrl(WHATSAPP_MESSAGES.final)}>
+          <ParticleBurstButton href={getWhatsAppUrl(WHATSAPP_MESSAGES.final)}>
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
             <span>Falar sobre meu projeto</span>
-          </Button>
+          </ParticleBurstButton>
           <Button href="#servicos" variant="secondary">
             Conhecer nossos serviços
           </Button>

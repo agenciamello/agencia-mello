@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Monitor, Instagram } from "lucide-react";
+import { MapPin, Instagram } from "lucide-react";
 import { SectionContainer } from "../ui/SectionContainer";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Reveal } from "../ui/Reveal";
@@ -8,29 +8,25 @@ import { SITE_INFO } from "../../data/siteData";
 export const AboutSection: React.FC = () => {
   return (
     <SectionContainer id="sobre" className="atmosphere-section atmosphere-about">
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+      <div className="grid gap-14 lg:grid-cols-[minmax(0,1.7fr)_minmax(17rem,0.9fr)] lg:items-center lg:gap-16 xl:gap-24">
         <Reveal>
           <div>
             <SectionHeader
               eyebrow="Sobre a agência"
-              title="Criatividade, estratégia e tecnologia no mesmo lugar"
-              description="A Agência Mello é um estúdio criativo do Rio de Janeiro que ajuda pequenos negócios, artistas e empresas locais a construírem uma presença mais profissional."
+              title="Criatividade, estratégia e tecnologia no mesmo lugar."
+              description="A Agência Mello ajuda pequenos negócios, artistas e marcas a construírem uma presença à altura do trabalho que entregam."
+              className="about-section__header"
             />
 
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-[17px]">
-              Unimos design, desenvolvimento e visão de marketing para criar
-              soluções bonitas, funcionais e alinhadas aos objetivos de cada
-              cliente, sem o processo burocrático de grandes agências.
+            <p className="about-section__body mt-5 max-w-2xl text-base leading-relaxed sm:text-[17px]">
+              Design e desenvolvimento com atendimento direto, ágil e sem
+              burocracia.
             </p>
 
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[15px] text-muted-foreground">
+            <ul className="about-section__meta mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[15px]">
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-accent" aria-hidden="true" />
-                <span>{SITE_INFO.location}</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Monitor className="h-4 w-4 text-accent" aria-hidden="true" />
-                <span>Atendimento presencial e online</span>
+                <span>Rio de Janeiro • Atendimento presencial e online</span>
               </li>
             </ul>
 
@@ -39,7 +35,7 @@ export const AboutSection: React.FC = () => {
                 href={SITE_INFO.instagram.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 text-[15px] text-white underline-offset-4 transition-colors hover:text-accent hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="about-section__instagram inline-flex min-h-11 items-center gap-2 text-[15px] underline-offset-4 transition-colors hover:text-accent hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <Instagram className="h-4 w-4 text-accent" aria-hidden="true" />
                 <span>Instagram {SITE_INFO.instagram.handle}</span>
@@ -48,26 +44,30 @@ export const AboutSection: React.FC = () => {
           </div>
         </Reveal>
 
-        {/* Founder Portrait Card */}
         <Reveal delay={90}>
-          <div className="relative mx-auto max-w-md lg:max-w-none">
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-surface shadow-xl">
+          <div className="about-founder mx-auto w-[min(82vw,22rem)] lg:ml-auto lg:mr-0 lg:w-full lg:max-w-[22rem]">
+            <div className="about-founder__portrait relative aspect-[4/5] overflow-hidden">
               <img
                 src="/assets/matheus-mello.jpg"
                 alt="Matheus Mello — Fundador da Agência Mello"
                 width={800}
                 height={900}
                 loading="lazy"
-                className="h-auto w-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
+                className="about-founder__image h-full w-full object-cover"
               />
-              <div className="p-5 border-t border-white/[0.08]">
-                <p className="text-base font-semibold text-white">
-                  {SITE_INFO.founder}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Designer & Desenvolvedor
-                </p>
-              </div>
+            </div>
+
+            <div className="mt-5 text-center lg:text-left">
+              <p className="about-founder__name text-sm font-semibold">
+                {SITE_INFO.founder}
+              </p>
+              <p className="about-founder__copy mt-1 text-sm">
+                Designer, desenvolvedor e fundador da Agência Mello.
+              </p>
+              <p className="about-founder__copy mt-2 text-sm leading-relaxed">
+                Une design e tecnologia para criar marcas, sites e experiências
+                digitais.
+              </p>
             </div>
           </div>
         </Reveal>

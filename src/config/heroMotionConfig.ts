@@ -21,14 +21,14 @@ export const HERO_MOTION_CONFIG = {
     backgroundYPercent: 14,
     copyYPercent: -4,
     copyOpacityMin: 0.65,
-    prismatrixYPercent: 8,
+    visualYPercent: 8,
     incomingStartYPercent: 6,
   },
   mobile: {
     backgroundYPercent: 8,
     copyYPercent: -2,
     copyOpacityMin: 0.85,
-    prismatrixYPercent: 4,
+    visualYPercent: 4,
     incomingStartYPercent: 4,
   },
 } as const;

@@ -2,8 +2,10 @@ import React, { useRef } from "react";
 import { useProjectsHandoff } from "../../motion/useProjectsHandoff";
 import { FeaturedOfferSection } from "./FeaturedOfferSection";
 import { ProjectsSection } from "./ProjectsSection";
+import { isMotionDebugForced } from "../../utils/motionDebug";
 
 export const ProjectsHandoff: React.FC = () => {
+  const forceMotion = isMotionDebugForced();
   const rootRef = useRef<HTMLDivElement>(null);
   const outgoingRef = useRef<HTMLDivElement>(null);
   const incomingRef = useRef<HTMLDivElement>(null);
@@ -21,6 +23,7 @@ export const ProjectsHandoff: React.FC = () => {
       ref={rootRef}
       className="projects-focus-handoff"
       data-projects-handoff
+      data-force-motion={forceMotion ? "" : undefined}
     >
       <div className="projects-focus-handoff__pin">
         <div

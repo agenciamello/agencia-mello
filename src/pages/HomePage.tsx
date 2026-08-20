@@ -12,8 +12,11 @@ import { AboutSection } from "../components/home/AboutSection";
 import { FaqSection } from "../components/home/FaqSection";
 import { CtaSection } from "../components/home/CtaSection";
 import { FpsCounter } from "../components/debug/FpsCounter";
+import { isMotionDebugForced } from "../utils/motionDebug";
 
 export const HomePage: React.FC = () => {
+  const forceMotion = isMotionDebugForced();
+
   useEffect(() => {
     document.title = "Agência Mello | Sites, Identidade Visual e Conteúdo";
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -23,7 +26,11 @@ export const HomePage: React.FC = () => {
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-accent/30 selection:text-white">
       <Header />
       <main className="flex-1">
-        <div className="hero-focus-handoff" data-hero-handoff>
+        <div
+          className="hero-focus-handoff"
+          data-hero-handoff
+          data-force-motion={forceMotion ? "" : undefined}
+        >
           <HeroSection />
           <div
             className="hero-focus-handoff__incoming"

@@ -2,6 +2,7 @@ import { useLayoutEffect, type RefObject } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS_MOTION_CONFIG } from "../config/projectsMotionConfig";
+import { isMotionDebugForced } from "../utils/motionDebug";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,6 +36,7 @@ export const useProjectsHandoff = ({
     if (!root || !outgoing || !incoming || !veil) return;
 
     const layers = [outgoing, incoming, veil];
+    const forceMotion = isMotionDebugForced();
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
       media.add(
@@ -52,7 +54,12 @@ export const useProjectsHandoff = ({
             clearProps: "opacity,transform,transformOrigin,willChange",
           });
 
-          if (!conditions.desktop || conditions.reducedMotion) return;
+          if (
+            !conditions.desktop ||
+            (conditions.reducedMotion && !forceMotion)
+          ) {
+            return;
+          }
 
           gsap.set(outgoing, {
             transformOrigin: "center center",
@@ -66,9 +73,14 @@ export const useProjectsHandoff = ({
             scrollTrigger: {
               trigger: root,
               start: PROJECTS_MOTION_CONFIG.scroll.start,
-              end: PROJECTS_MOTION_CONFIG.scroll.end,
+              end: () =>
+                `+=${
+                  window.innerHeight *
+                  PROJECTS_MOTION_CONFIG.scroll.distanceViewportRatio
+                }`,
               scrub: PROJECTS_MOTION_CONFIG.scroll.scrub,
               pin: PROJECTS_MOTION_CONFIG.scroll.pin,
+              invalidateOnRefresh: true,
               markers:
                 isDevelopment && PROJECTS_MOTION_CONFIG.debug.markers,
             },

@@ -3,7 +3,7 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Button } from "../ui/Button";
 import { WHATSAPP_MESSAGES, getWhatsAppUrl } from "../../data/siteData";
-import { PrismatrixHero } from "./PrismatrixHero";
+import { MelloTubesHero } from "./MelloTubesHero";
 import { useHeroMotion } from "../../motion/useHeroMotion";
 
 const KICKER_MESSAGES = [
@@ -23,13 +23,13 @@ export const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
-  const prismatrixLayerRef = useRef<HTMLDivElement>(null);
+  const visualLayerRef = useRef<HTMLDivElement>(null);
 
   useHeroMotion({
     sectionRef,
     copyRef,
     backgroundRef,
-    prismatrixLayerRef,
+    visualLayerRef,
   });
 
   useEffect(() => {
@@ -49,11 +49,11 @@ export const HeroSection: React.FC = () => {
       data-hero-pin
     >
       <div
-        ref={prismatrixLayerRef}
-        className="pointer-events-none absolute inset-0 z-0"
-        data-hero-prismatrix-layer
+        ref={visualLayerRef}
+        className="pointer-events-auto absolute inset-0 z-0"
+        data-hero-visual-layer
       >
-        <PrismatrixHero />
+        <MelloTubesHero />
       </div>
       <div
         ref={backgroundRef}
@@ -62,14 +62,14 @@ export const HeroSection: React.FC = () => {
         data-hero-background-layer
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1440px] items-start px-5 pb-12 pt-28 sm:px-6 min-[769px]:px-[5vw] min-[769px]:pb-[3.75rem] min-[769px]:pt-[clamp(7rem,13vh,9.375rem)] xl:px-20">
+      <div className="pointer-events-none relative z-10 mx-auto flex min-h-[100svh] max-w-[1440px] items-start px-5 pb-10 pt-28 sm:px-6 min-[769px]:items-center min-[769px]:px-[5vw] min-[769px]:pb-[3.25rem] min-[769px]:pt-[clamp(6.5rem,11vh,8rem)] xl:px-20">
         <div
           ref={copyRef}
-          className="w-full max-w-[760px] min-[769px]:w-[53%]"
+          className="w-full max-w-[960px] min-[769px]:w-[76%]"
           data-hero-copy-layer
         >
           {/* Rotating Kicker Badge */}
-          <div className="inline-flex h-8 items-center overflow-hidden text-[10px] font-semibold uppercase tracking-[0.15em] text-[#9d7aff] min-[769px]:text-[11px] min-[769px]:tracking-[0.18em]">
+          <div className="hero-uau-badge inline-flex h-8 items-center overflow-hidden rounded-full border border-white/10 bg-white/[0.035] px-4 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#d7c8ff] backdrop-blur-xl min-[769px]:text-[10px] min-[769px]:tracking-[0.22em]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
                 key={kickerIndex}
@@ -99,23 +99,22 @@ export const HeroSection: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          <h1 className="mt-5 max-w-[760px] text-[clamp(1.75rem,7.8vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.03em] text-white min-[769px]:text-[clamp(2.375rem,4.15vw,4.4375rem)] min-[769px]:leading-[1.08]">
+          <h1 className="hero-uau-title mt-6 max-w-[960px] text-[clamp(2.15rem,9.6vw,3.25rem)] font-bold leading-[0.98] tracking-[-0.055em] text-white/95 min-[769px]:text-[clamp(3.75rem,5.4vw,5.65rem)] min-[769px]:leading-[0.92]">
             Seu negócio já é bom.
             <br />
             A gente faz ele parecer
             <br />
-            tão <span className="text-accent">profissional</span> quanto
+            tão <span className="hero-uau-accent">profissional</span> quanto
             <br />
             realmente é.
           </h1>
-          <p className="mt-6 max-w-[430px] text-[13.5px] leading-[1.5] text-muted-foreground min-[769px]:text-[15px] min-[769px]:leading-[1.6]">
-            Criamos sites, identidades visuais e conteúdos estratégicos para
-            pequenos negócios, artistas e empresas locais que querem crescer com
-            uma presença mais forte.
+          <p className="mt-6 max-w-[560px] text-[13.5px] leading-[1.55] text-white/55 min-[769px]:text-[17px] min-[769px]:leading-[1.6]">
+            Sites, identidades visuais e conteúdo para negócios que querem
+            transmitir mais valor.
           </p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <Button href="#servicos" className="group">
+          <div className="pointer-events-auto mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Button href="#servicos" className="hero-uau-primary group rounded-full">
               <span>Conhecer nossos serviços</span>
               <ArrowRight
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -125,13 +124,14 @@ export const HeroSection: React.FC = () => {
             <Button
               href={getWhatsAppUrl(WHATSAPP_MESSAGES.hero)}
               variant="secondary"
+              className="hero-uau-secondary rounded-full"
             >
               <MessageCircle className="h-4 w-4 text-accent" aria-hidden="true" />
               <span>Falar no WhatsApp</span>
             </Button>
           </div>
 
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-xs uppercase tracking-[0.08em] text-white/40 min-[769px]:text-[13px]">
             Atendimento no Rio de Janeiro e online para todo o Brasil.
           </p>
         </div>

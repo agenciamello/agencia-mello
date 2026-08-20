@@ -2,7 +2,7 @@ export const PROJECTS_MOTION_CONFIG = {
   breakpointPx: 1024,
   scroll: {
     start: "top top",
-    end: "+=100vh",
+    distanceViewportRatio: 1,
     scrub: 1,
     pin: false,
   },

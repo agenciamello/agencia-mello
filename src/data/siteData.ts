@@ -104,29 +104,25 @@ export const PROJECTS_DATA = [
   {
     image: "/assets/portfolio-restaurant.webp",
     name: "Site para restaurante italiano",
-    category: "Site",
-    description: "Direção clássica em tons de vinho e off-white, com cardápio, ambiente e reservas.",
+    category: "Site • Restaurante",
     conceptual: true,
   },
   {
     image: "/assets/project-identidade.webp",
     name: "Identidade para estúdio de bem-estar",
-    category: "Identidade visual",
-    description: "Paleta em verde sálvia e areia, com tipografia serifada e papelaria calma.",
+    category: "Identidade visual • Bem-estar",
     conceptual: true,
   },
   {
     image: "/assets/project-conteudo.webp",
     name: "Conteúdo para marca fitness",
-    category: "Conteúdo",
-    description: "Carrosséis de alto contraste em azul e laranja, feitos para leitura rápida.",
+    category: "Conteúdo • Fitness",
     conceptual: true,
   },
   {
     image: "/assets/artes-eventos.webp",
-    name: "campanha visual digital pra eventos",
-    category: "Artes para eventos",
-    description: "Pacote visual digital com flyer principal e peças de apoio para redes sociais e WhatsApp.",
+    name: "Campanha visual para eventos",
+    category: "Social media • Eventos",
     conceptual: true,
   },
 ];
@@ -154,41 +150,36 @@ export const HOME_PROCESS_STEPS = [
   },
 ];
 
-export const COMPARISON_NO_NEED = [
-  "Reuniões intermináveis",
-  "Termos técnicos",
-  "Processos confusos",
-  "Soluções maiores do que seu negócio precisa",
-  "Meses esperando por uma entrega",
-];
-
 export const COMPARISON_YOU_GET = [
   "Comunicação direta",
-  "Direção visual profissional",
   "Escopo claro",
-  "Processo ágil e transparente",
-  "Entrega pronta para gerar resultado",
+  "Processo organizado",
+  "Entrega ágil",
 ];
 
 export const HOME_FAQS = [
-  {
-    q: "Qual é o foco da Agência Mello?",
-    a: "Ajudamos pequenos negócios, artistas e empresas locais a construírem uma presença digital mais forte e profissional por meio de sites, identidades visuais e conteúdo estratégico.",
-  },
-  {
-    q: "Vocês atendem apenas no Rio de Janeiro?",
-    a: "Nosso estúdio fica no Rio de Janeiro, onde fazemos atendimentos presenciais e remotos, mas atendemos clientes de qualquer lugar do Brasil de forma 100% online.",
-  },
   {
     q: "O que é o Site Essencial?",
     a: "É o nosso produto de site profissional de uma página para negócios locais. Ele tem formato e escopo definidos, permitindo um valor acessível de R$ 500 em até 3x, com uma prévia demonstrativa antes da contratação.",
   },
   {
-    q: "Como funciona o pagamento de outros serviços?",
-    a: "Para projetos sob medida (identidade visual, sites multipáginas, sistemas ou pacotes de conteúdo), apresentamos uma proposta personalizada com escopo, prazos e condições de pagamento combinadas previamente.",
+    q: "Todos os sites custam R$500?",
+    a: "Não. O valor de R$ 500 é exclusivo do Site Essencial, que possui uma página e um escopo definido. Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.",
   },
   {
-    q: "Como começo um projeto?",
+    q: "Preciso pagar antes de ver?",
+    a: "Não. Quando a Agência Mello prepara uma prévia personalizada para sua empresa, você pode avaliar antes de decidir. O pagamento acontece somente depois que a proposta é aprovada.",
+  },
+  {
+    q: "Quanto tempo leva?",
+    a: "O prazo depende do envio das informações, da complexidade do conteúdo e da rapidez na aprovação. A estimativa é informada antes do início da etapa final.",
+  },
+  {
+    q: "Vocês atendem fora do Rio de Janeiro?",
+    a: "Sim. A Agência Mello está no Rio de Janeiro, mas atende clientes de outras cidades e estados de forma online.",
+  },
+  {
+    q: "Como começar?",
     a: "Basta clicar em qualquer botão de WhatsApp deste site para falar direto conosco. Entendemos seu momento e indicamos a melhor solução.",
   },
 ];
@@ -196,6 +187,16 @@ export const HOME_FAQS = [
 // SITE ESSENCIAL DATA
 export const SITE_ESSENCIAL_PRICE = "R$ 500";
 export const SITE_ESSENCIAL_INSTALLMENTS = "em até 3x de R$ 166,67";
+
+export const HOME_SITE_ESSENCIAL_INSTALLMENTS = "em até 3x";
+
+export const HOME_SITE_ESSENCIAL_BENEFITS = [
+  "Site profissional de uma página",
+  "Até 6 seções",
+  "Responsivo para celular e computador",
+  "WhatsApp integrado",
+  "Você aprova antes da publicação",
+];
 
 export const SITE_ESSENCIAL_TRUST_ITEMS = [
   { iconName: "Eye", label: "Você vê antes de pagar" },
