@@ -10,6 +10,20 @@ export interface PrismatrixMetrics {
   dpr: number;
 }
 
+export interface PrismatrixMotionState {
+  rotationY: number;
+  translateYPx: number;
+  scale: number;
+}
+
+export interface PrismatrixDebugSnapshot {
+  rootName: string;
+  rotationY: number;
+  positionY: number;
+  scale: number;
+  renderCount: number;
+}
+
 interface PrismatrixSceneOptions {
   onReady?: () => void;
   onMetrics?: (metrics: PrismatrixMetrics) => void;
@@ -27,11 +41,24 @@ export class PrismatrixScene {
   private readonly melloBodyMaterial: THREE.MeshPhysicalMaterial;
   private readonly melloLineMaterial: THREE.MeshPhysicalMaterial;
   private readonly originalMaterials = new Set<THREE.Material>();
+  private readonly basePosition = new THREE.Vector3();
+  private readonly cameraUp = new THREE.Vector3(0, 1, 0);
+  private readonly cameraTarget = new THREE.Vector3(
+    PRISMATRIX_HERO_CONFIG.camera.target.x,
+    PRISMATRIX_HERO_CONFIG.camera.target.y,
+    PRISMATRIX_HERO_CONFIG.camera.target.z,
+  );
+  private compositionScale = 1;
+  private motionState: PrismatrixMotionState = {
+    rotationY: 0,
+    translateYPx: 0,
+    scale: 1,
+  };
   private environmentTarget: THREE.WebGLRenderTarget | null = null;
   private loadedModel: THREE.Object3D | null = null;
-  private animationFrameId: number | null = null;
   private destroyed = false;
   private frameCount = 0;
+  private renderCount = 0;
   private lastMetricsAt = performance.now();
 
   constructor(container: HTMLElement, options: PrismatrixSceneOptions = {}) {
@@ -116,9 +143,9 @@ export class PrismatrixScene {
     });
 
     this.scene.add(this.modelContainer);
+    this.modelContainer.name = "PrismatrixMotionRoot";
     this.resizeObserver = new ResizeObserver(this.resize);
     this.resizeObserver.observe(this.container);
-    this.animate();
   }
 
   public loadModel(url: string): void {
@@ -159,7 +186,7 @@ export class PrismatrixScene {
 
         this.modelContainer.add(gltf.scene);
         this.applyComposition();
-        this.renderer.render(this.scene, this.camera);
+        this.renderFrame(true);
         this.options.onReady?.();
       },
       undefined,
@@ -169,14 +196,30 @@ export class PrismatrixScene {
     );
   }
 
+  public setMotionState(state: PrismatrixMotionState): void {
+    this.motionState = state;
+    if (!this.loadedModel) return;
+    this.applyMotionState();
+  }
+
+  public requestRender(): void {
+    if (!this.loadedModel) return;
+    this.renderFrame();
+  }
+
+  public getDebugSnapshot(): PrismatrixDebugSnapshot {
+    return {
+      rootName: this.modelContainer.name,
+      rotationY: this.modelContainer.rotation.y,
+      positionY: this.modelContainer.position.y,
+      scale: this.modelContainer.scale.x,
+      renderCount: this.renderCount,
+    };
+  }
+
   public destroy(): void {
     if (this.destroyed) return;
     this.destroyed = true;
-
-    if (this.animationFrameId !== null) {
-      cancelAnimationFrame(this.animationFrameId);
-      this.animationFrameId = null;
-    }
 
     this.resizeObserver.disconnect();
     if (this.loadedModel) this.disposeLoadedObject(this.loadedModel);
@@ -211,26 +254,43 @@ export class PrismatrixScene {
         ? PRISMATRIX_HERO_CONFIG.composition.mobile
         : PRISMATRIX_HERO_CONFIG.composition.desktop;
 
-    this.modelContainer.rotation.set(0, 0, 0);
-    this.modelContainer.scale.setScalar(composition.scale);
+    this.compositionScale = composition.scale;
 
-    const target = new THREE.Vector3(
-      PRISMATRIX_HERO_CONFIG.camera.target.x,
-      PRISMATRIX_HERO_CONFIG.camera.target.y,
-      PRISMATRIX_HERO_CONFIG.camera.target.z,
-    );
-    const viewDirection = target.clone().sub(this.camera.position).normalize();
+    const viewDirection = this.cameraTarget
+      .clone()
+      .sub(this.camera.position)
+      .normalize();
     const cameraRight = new THREE.Vector3()
       .crossVectors(viewDirection, this.camera.up)
       .normalize();
-    const cameraUp = new THREE.Vector3()
+    this.cameraUp
       .crossVectors(cameraRight, viewDirection)
       .normalize();
 
-    this.modelContainer.position
+    this.basePosition
       .set(0, 0, 0)
       .addScaledVector(cameraRight, composition.shiftRight)
-      .addScaledVector(cameraUp, composition.shiftUp);
+      .addScaledVector(this.cameraUp, composition.shiftUp);
+    this.applyMotionState();
+  }
+
+  private applyMotionState(): void {
+    const height = Math.max(this.container.clientHeight, 1);
+    const distance = this.camera.position.distanceTo(this.cameraTarget);
+    const visibleWorldHeight =
+      2 * Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2)) * distance;
+    const worldPerPixel = visibleWorldHeight / height;
+
+    this.modelContainer.rotation.set(0, this.motionState.rotationY, 0);
+    this.modelContainer.scale.setScalar(
+      this.compositionScale * this.motionState.scale,
+    );
+    this.modelContainer.position
+      .copy(this.basePosition)
+      .addScaledVector(
+        this.cameraUp,
+        -this.motionState.translateYPx * worldPerPixel,
+      );
   }
 
   private updatePixelRatio(width: number): void {
@@ -249,28 +309,30 @@ export class PrismatrixScene {
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height, false);
     this.updatePixelRatio(width);
-    if (this.loadedModel) this.applyComposition();
+    if (!this.loadedModel) return;
+    this.applyComposition();
+    this.renderFrame(true);
   };
 
-  private animate = (): void => {
+  private renderFrame(forceMetrics = false): void {
     if (this.destroyed) return;
-    this.animationFrameId = requestAnimationFrame(this.animate);
     this.renderer.render(this.scene, this.camera);
+    this.renderCount += 1;
 
     this.frameCount += 1;
     const now = performance.now();
     const elapsed = now - this.lastMetricsAt;
-    if (elapsed < 500) return;
+    if (!forceMetrics && elapsed < 500) return;
 
     this.options.onMetrics?.({
-      fps: Math.round((this.frameCount * 1000) / elapsed),
+      fps: forceMetrics ? 0 : Math.round((this.frameCount * 1000) / elapsed),
       drawCalls: this.renderer.info.render.calls,
       triangles: this.renderer.info.render.triangles,
       dpr: Number(this.renderer.getPixelRatio().toFixed(2)),
     });
     this.frameCount = 0;
     this.lastMetricsAt = now;
-  };
+  }
 
   private disposeLoadedObject(object: THREE.Object3D): void {
     object.traverse((child) => {

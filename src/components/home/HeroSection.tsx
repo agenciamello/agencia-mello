@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Button } from "../ui/Button";
 import { WHATSAPP_MESSAGES, getWhatsAppUrl } from "../../data/siteData";
 import { PrismatrixHero } from "./PrismatrixHero";
+import { useHeroMotion } from "../../motion/useHeroMotion";
 
 const KICKER_MESSAGES = [
   "DESIGN E TECNOLOGIA PARA NEGÓCIOS REAIS",
@@ -19,6 +20,17 @@ const EASING = [0.16, 1, 0.3, 1] as const;
 export const HeroSection: React.FC = () => {
   const [kickerIndex, setKickerIndex] = useState(0);
   const shouldReduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const copyRef = useRef<HTMLDivElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
+  const prismatrixLayerRef = useRef<HTMLDivElement>(null);
+
+  useHeroMotion({
+    sectionRef,
+    copyRef,
+    backgroundRef,
+    prismatrixLayerRef,
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,17 +42,32 @@ export const HeroSection: React.FC = () => {
 
   return (
     <section
+      ref={sectionRef}
       id="inicio"
-      className="relative isolate min-h-[100svh] scroll-mt-24 overflow-hidden bg-[#050505]"
+      className="sticky top-0 isolate h-[100svh] min-h-[100svh] scroll-mt-24 overflow-hidden bg-[#050505]"
+      data-hero-root
+      data-hero-pin
     >
-      <PrismatrixHero />
       <div
+        ref={prismatrixLayerRef}
+        className="pointer-events-none absolute inset-0 z-0"
+        data-hero-prismatrix-layer
+      >
+        <PrismatrixHero />
+      </div>
+      <div
+        ref={backgroundRef}
         aria-hidden="true"
         className="atmosphere-hero pointer-events-none absolute inset-0 z-[1]"
+        data-hero-background-layer
       />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1440px] items-start px-5 pb-12 pt-28 sm:px-6 min-[769px]:px-[5vw] min-[769px]:pb-[3.75rem] min-[769px]:pt-[clamp(7rem,13vh,9.375rem)] xl:px-20">
-        <div className="w-full max-w-[760px] min-[769px]:w-[53%]" data-hero-copy>
+        <div
+          ref={copyRef}
+          className="w-full max-w-[760px] min-[769px]:w-[53%]"
+          data-hero-copy-layer
+        >
           {/* Rotating Kicker Badge */}
           <div className="inline-flex h-8 items-center overflow-hidden text-[10px] font-semibold uppercase tracking-[0.15em] text-[#9d7aff] min-[769px]:text-[11px] min-[769px]:tracking-[0.18em]">
             <AnimatePresence mode="wait" initial={false}>
@@ -109,6 +136,12 @@ export const HeroSection: React.FC = () => {
           </p>
         </div>
       </div>
+
+      <div
+        aria-hidden="true"
+        className="hero-focus-veil pointer-events-none absolute inset-0 z-20"
+        data-hero-focus-veil
+      />
     </section>
   );
 };

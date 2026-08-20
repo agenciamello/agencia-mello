@@ -35,7 +35,9 @@ export const PrismatrixHero: React.FC = () => {
         scene.loadModel(PRISMATRIX_ASSET_PATH);
       },
       () => {
-        if (!cancelled) container.dataset.prismatrixState = "error";
+        if (!cancelled) {
+          container.dataset.prismatrixState = "error";
+        }
       },
     );
 

@@ -48,6 +48,82 @@ h1, h2, h3, h4 {
   background: none;
 }
 
+.hero-focus-handoff {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  background: var(--bg-base);
+}
+
+.hero-focus-handoff__incoming {
+  position: relative;
+  z-index: 30;
+  min-block-size: 100svh;
+  background: var(--background);
+}
+
+.hero-focus-veil {
+  opacity: 0;
+  background: rgba(5, 5, 5, 0.32);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.projects-focus-handoff {
+  position: relative;
+  isolation: isolate;
+  background: var(--bg-plum);
+}
+
+.projects-focus-handoff__pin,
+.projects-focus-handoff__plane {
+  position: relative;
+}
+
+.projects-focus-handoff__incoming {
+  position: relative;
+  z-index: 30;
+  background: var(--bg-base);
+}
+
+.projects-focus-handoff__veil {
+  display: none;
+  opacity: 0;
+  background: rgba(8, 6, 8, 0.3);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+@media (min-width: 1024px) {
+  .projects-focus-handoff__pin {
+    position: sticky;
+    z-index: 0;
+    top: 0;
+    block-size: 100svh;
+    overflow: clip;
+  }
+
+  .projects-focus-handoff__plane {
+    position: absolute;
+    inset: 0;
+  }
+
+  .projects-focus-handoff__plane > section {
+    display: flex;
+    min-block-size: 100svh;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .projects-focus-handoff__incoming {
+    min-block-size: 100svh;
+  }
+
+  .projects-focus-handoff__veil {
+    display: block;
+  }
+}
+
 .atmosphere-section {
   isolation: isolate;
   overflow: hidden;
@@ -110,6 +186,12 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 768px) {
+  .hero-focus-veil {
+    background: rgba(5, 5, 5, 0.22);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
   .atmosphere-hero {
     background: radial-gradient(118% 92% at 100% 100%, rgba(93, 36, 150, 0.1) 0%, rgba(214, 28, 117, 0.045) 44%, rgba(18, 8, 18, 0.06) 60%, transparent 76%);
   }
@@ -132,5 +214,49 @@ h1, h2, h3, h4 {
     background:
       radial-gradient(130% 100% at 92% 72%, rgba(93, 36, 150, 0.13) 0%, transparent 66%),
       linear-gradient(180deg, rgba(18, 8, 18, 0.94) 0%, rgba(26, 7, 18, 0.8) 56%, rgba(8, 6, 8, 0.96) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-focus-handoff__incoming {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  .hero-focus-veil {
+    opacity: 0 !important;
+    background: rgba(5, 5, 5, 0) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    will-change: auto !important;
+  }
+
+  .projects-focus-handoff__plane,
+  .projects-focus-handoff__incoming {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  .projects-focus-handoff__pin {
+    position: relative;
+    block-size: auto;
+    overflow: visible;
+  }
+
+  .projects-focus-handoff__plane {
+    position: relative;
+    inset: auto;
+  }
+
+  .projects-focus-handoff__plane > section {
+    min-block-size: 0;
+  }
+
+  .projects-focus-handoff__veil {
+    display: none !important;
+    opacity: 0 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    will-change: auto !important;
   }
 }
