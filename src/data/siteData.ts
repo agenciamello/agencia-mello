@@ -8,7 +8,7 @@ export const SITE_INFO = {
   whatsappPhone: "5521971859948",
   whatsappFormatted: "(21) 97185-9948",
   founder: "Matheus Mello",
-  canonicalUrl: "https://agenciamello.lovable.app",
+  canonicalUrl: "https://agenciamello.vercel.app",
 };
 
 export const WHATSAPP_MESSAGES = {
