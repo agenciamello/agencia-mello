@@ -2,6 +2,12 @@
 
 Site institucional da Agência Mello, construído com React, TypeScript, Vite e Tailwind CSS.
 
+## Trabalho com agentes, Issues e PRs
+
+Leia [AGENTS.md](AGENTS.md) antes de trabalhar no projeto. As regras se aplicam a qualquer modelo ou ferramenta: toda Correção, Melhoria ou Nova função precisa de uma Issue no GitHub e deve ser entregue por PR, mencionando obrigatoriamente a Issue na descrição. Deploys seguem o fluxo do PR e da branch de produção configurada.
+
+Os modelos estão em [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) e [.github/PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md). Enquanto o repositório não estiver conectado, acompanhe os rascunhos em [docs/GITHUB-PENDENCIAS.md](docs/GITHUB-PENDENCIAS.md); rascunhos não substituem Issues reais.
+
 ## Desenvolvimento local
 
 Requisitos: Node.js 20 ou superior.
