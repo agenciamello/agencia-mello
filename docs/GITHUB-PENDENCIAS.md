@@ -4,7 +4,7 @@ Repositório confirmado: https://github.com/agenciamello/agencia-mello. Branch p
 
 | Tarefa | Issue | Estado |
 | --- | --- | --- |
-| Padronizar Issues, PRs e deploys | [#1](https://github.com/agenciamello/agencia-mello/issues/1) | Documentação preparada na branch `docs/1-fluxo-issues-prs`; PR em preparação. |
+| Padronizar Issues, PRs e deploys | [#1](https://github.com/agenciamello/agencia-mello/issues/1) | [PR #4](https://github.com/agenciamello/agencia-mello/pull/4) aberto na branch `docs/1-fluxo-issues-prs`, com `Closes #1`. |
 | Integrar o redesign local ao histórico | [#2](https://github.com/agenciamello/agencia-mello/issues/2) | Reconciliação pendente. A main remota ainda contém a versão antiga. |
 | Ampliar animações e efeitos | [#3](https://github.com/agenciamello/agencia-mello/issues/3) | Implementação parcial local, dependente de #2; CSS e validações finais pendentes. |
 
@@ -16,3 +16,4 @@ Repositório confirmado: https://github.com/agenciamello/agencia-mello. Branch p
 - Não sobrescrever a cópia local para recuperar o Git. Comparar os arquivos com o checkout remoto e incorporar somente alterações pertinentes em branch vinculada à Issue.
 - O último build da prévia local pertence ao sprint anterior à ampliação de motion. Não publicar as alterações parciais.
 - Confirmar a configuração da integração de deploy, executar as validações e registrar preview antes do merge/publicação autorizado.
+
