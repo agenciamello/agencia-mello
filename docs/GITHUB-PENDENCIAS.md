@@ -1,19 +1,25 @@
 # Acompanhamento no GitHub
 
-Repositório confirmado: https://github.com/agenciamello/agencia-mello. Branch padrão observada em 21/09/2026: `main`. O histórico remoto foi clonado sem alterar os arquivos da cópia local de desenvolvimento.
+Repositório confirmado: https://github.com/agenciamello/agencia-mello. Branch padrão observada: `main`. O histórico remoto foi preservado durante a integração da cópia local.
 
-| Tarefa | Issue | Estado |
+| Tarefa | Issue | PR e estado em 24/09/2026 |
 | --- | --- | --- |
-| Padronizar Issues, PRs e deploys | [#1](https://github.com/agenciamello/agencia-mello/issues/1) | [PR #4](https://github.com/agenciamello/agencia-mello/pull/4) aberto na branch `docs/1-fluxo-issues-prs`, com `Closes #1`. |
-| Integrar o redesign local ao histórico | [#2](https://github.com/agenciamello/agencia-mello/issues/2) | Reconciliação pendente. A main remota ainda contém a versão antiga. |
-| Ampliar animações e efeitos | [#3](https://github.com/agenciamello/agencia-mello/issues/3) | Implementação parcial local, dependente de #2; CSS e validações finais pendentes. |
+| Padronizar Issues, PRs e deploys | [#1](https://github.com/agenciamello/agencia-mello/issues/1) | [PR #4](https://github.com/agenciamello/agencia-mello/pull/4), aberto, com `Closes #1`. |
+| Integrar o redesign local ao histórico | [#2](https://github.com/agenciamello/agencia-mello/issues/2) | [PR #5](https://github.com/agenciamello/agencia-mello/pull/5), aberto, com `Closes #2`. |
+| Ampliar animações e efeitos | [#3](https://github.com/agenciamello/agencia-mello/issues/3) | [PR #5](https://github.com/agenciamello/agencia-mello/pull/5), aberto, com `Closes #3`. |
 
-## Regras de continuidade
+## Validação e preview
 
-- Os detalhes e critérios de aceite estão nas Issues. Atualizar esta tabela com o PR ao criá-lo.
-- `PRODUCT.md` e `DESIGN.md` registram o contexto e a direção do trabalho local, cuja integração é acompanhada em #2; não são evidência de que a main ou produção já receberam o redesign.
+- Branch visual: `improvement/2-experiencia-mello`, commit `40b4df40ba892555946f251ab460313ee227722d`.
+- TypeScript e build aprovados. Sete rotas em quatro larguras sem overflow, imagens quebradas ou erros de página. Axe nas páginas inicial, Site Essencial e Bellavista sem violações detectadas.
+- Testes de contato, seleção por teclado, mensagens WhatsApp, mudança de breakpoint e reduced motion aprovados. Revisão visual desktop/mobile concluída localmente.
+- [Preview da Vercel](https://agenciamello-77qn9vfm7-matheus-projects-f7e9ddc4.vercel.app) gerado pela integração Git para o commit acima. O PR mostrou dois checks aprovados e nenhuma incompatibilidade com a base.
+- A abertura da prévia remota exigiu login Vercel. Não declarar inspeção visual remota concluída; a validação visual registrada é local.
+- PRs abertos; nenhum merge ou publicação manual em produção foi realizado. Priorizar a integração de #4 antes de #5 e confirmar a configuração de produção antes de publicar.
+
+## Continuidade local
+
 - O checkout conectado nesta máquina está em `.tools/github-work`, dentro da cópia local original. Esse diretório é operacional e não deve ser versionado.
-- Não sobrescrever a cópia local para recuperar o Git. Comparar os arquivos com o checkout remoto e incorporar somente alterações pertinentes em branch vinculada à Issue.
-- O último build da prévia local pertence ao sprint anterior à ampliação de motion. Não publicar as alterações parciais.
-- Confirmar a configuração da integração de deploy, executar as validações e registrar preview antes do merge/publicação autorizado.
-
+- A raiz original permanece como cópia de desenvolvimento; confira a branch no checkout antes de trabalhar. Não inicialize outro histórico sobre a cópia original.
+- `PRODUCT.md` e `DESIGN.md` registram a direção do redesign; não são evidência de publicação em produção. Issues e PRs são a fonte do estado de entrega.
+- Novas tarefas devem seguir `AGENTS.md`, começando por uma Issue real.
