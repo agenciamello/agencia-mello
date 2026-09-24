@@ -24,26 +24,8 @@ O projeto usa `BrowserRouter`. Em produção, o servidor ou a plataforma de hosp
 
 O fallback deve servir `index.html` sem redirecionar a URL do navegador. A sintaxe exata depende da plataforma de hospedagem.
 
-## Assets pendentes de substituição
+## Identidade e verificações
 
-Os 17 arquivos de imagem versionados em `public` estão binariamente corrompidos. Eles não foram recriados nem alterados nesta sprint. Substitua cada arquivo por sua cópia original, mantendo exatamente o mesmo caminho e nome:
+O redesign utiliza os arquivos oficiais `agencia-mello-logo.png` e `agencia-mello-icone.png`, retrato colorido de Matheus Mello e estudos conceituais identificados. A presença das imagens deve ser verificada no navegador; o aviso histórico de corrupção não substitui essa verificação.
 
-- `public/favicon.png`
-- `public/assets/artes-eventos.webp`
-- `public/assets/demo-barbearia.jpg`
-- `public/assets/demo-estetica.jpg`
-- `public/assets/demo-hero-local.jpg`
-- `public/assets/demo-restaurante.jpg`
-- `public/assets/hero-composition-480.webp`
-- `public/assets/hero-composition-768.webp`
-- `public/assets/hero-composition.webp`
-- `public/assets/logo.png`
-- `public/assets/matheus-mello.jpg`
-- `public/assets/matheus-mello.webp`
-- `public/assets/og-home.jpg`
-- `public/assets/portfolio-restaurant.webp`
-- `public/assets/project-conteudo.webp`
-- `public/assets/project-identidade.webp`
-- `public/assets/site-essencial-preview.jpg`
-
-Não converta os arquivos corrompidos nem use imagens geradas como substitutos. A restauração correta exige os binários originais.
+`npm run typecheck` valida TypeScript. `npm test` exige Chrome instalado e a aplicação disponível em `SITE_URL` (padrão `http://127.0.0.1:3000`). `node tests/sprint.cjs` verifica a seleção de serviço e a mensagem do WhatsApp; defina a mesma `SITE_URL`.

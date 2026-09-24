@@ -10,15 +10,18 @@ import { SiteEssencialPage } from "./pages/SiteEssencialPage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { TermsPage } from "./pages/TermsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { CaseStudyPage } from "./pages/CaseStudyPage";
 
 function ScrollHandler() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      const element = document.querySelector(hash);
+      let id = hash.slice(1);
+      try { id = decodeURIComponent(id); } catch { /* An invalid URL fragment must not break navigation. */ }
+      const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        element.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
         return;
       }
     }
@@ -35,6 +38,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/site-essencial" element={<SiteEssencialPage />} />
+        <Route path="/projetos/:slug" element={<CaseStudyPage />} />
         <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
         <Route path="/termos-de-uso" element={<TermsPage />} />
         <Route path="*" element={<NotFoundPage />} />
@@ -42,4 +46,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
