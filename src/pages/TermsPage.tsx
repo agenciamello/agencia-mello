@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
+import { StudioShell } from "../components/studio/Studio";
+
 import { SITE_INFO } from "../data/siteData";
 
 export const TermsPage: React.FC = () => {
@@ -12,9 +12,9 @@ export const TermsPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <Header />
-      <main className="flex-1 py-32 px-5 sm:px-6 lg:px-8">
+    <StudioShell contact={false}>
+
+      <section className="flex-1 py-32 px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <Link
             to="/"
@@ -75,8 +75,7 @@ export const TermsPage: React.FC = () => {
             </p>
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </section>
+      </StudioShell>
   );
 };

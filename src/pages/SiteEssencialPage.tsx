@@ -1,50 +1,13 @@
-import React, { useEffect } from "react";
-import { SiteEssencialHeader } from "../components/site-essencial/SiteEssencialHeader";
-import { SiteEssencialHero } from "../components/site-essencial/SiteEssencialHero";
-import { SiteEssencialTrustBar } from "../components/site-essencial/SiteEssencialTrustBar";
-import { SiteEssencialTargetSection } from "../components/site-essencial/SiteEssencialTargetSection";
-import { SiteEssencialComparisonIntro } from "../components/site-essencial/SiteEssencialComparisonIntro";
-import { SiteEssencialFeaturesSection } from "../components/site-essencial/SiteEssencialFeaturesSection";
-import { SiteEssencialPricingSection } from "../components/site-essencial/SiteEssencialPricingSection";
-import { SiteEssencialExamplesSection } from "../components/site-essencial/SiteEssencialExamplesSection";
-import { SiteEssencialProcessSection } from "../components/site-essencial/SiteEssencialProcessSection";
-import { SiteEssencialComparisonTable } from "../components/site-essencial/SiteEssencialComparisonTable";
-import { SiteEssencialPostApprovalSection } from "../components/site-essencial/SiteEssencialPostApprovalSection";
-import { SiteEssencialAuthoritySection } from "../components/site-essencial/SiteEssencialAuthoritySection";
-import { SiteEssencialFaqSection } from "../components/site-essencial/SiteEssencialFaqSection";
-import { SiteEssencialCtaSection } from "../components/site-essencial/SiteEssencialCtaSection";
-import { SiteEssencialMobileBar } from "../components/site-essencial/SiteEssencialMobileBar";
-import { SiteEssencialFooter } from "../components/site-essencial/SiteEssencialFooter";
-import { FloatingWhatsApp } from "../components/layout/FloatingWhatsApp";
-import { SITE_ESSENCIAL_MESSAGES } from "../data/siteData";
-
-export const SiteEssencialPage: React.FC = () => {
-  useEffect(() => {
-    document.title = "Site Essencial — R$ 500 | Agência Mello";
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-accent/30 selection:text-white">
-      <SiteEssencialHeader />
-      <main className="flex-1">
-        <SiteEssencialHero />
-        <SiteEssencialTrustBar />
-        <SiteEssencialTargetSection />
-        <SiteEssencialComparisonIntro />
-        <SiteEssencialFeaturesSection />
-        <SiteEssencialPricingSection />
-        <SiteEssencialExamplesSection />
-        <SiteEssencialProcessSection />
-        <SiteEssencialComparisonTable />
-        <SiteEssencialPostApprovalSection />
-        <SiteEssencialAuthoritySection />
-        <SiteEssencialFaqSection />
-        <SiteEssencialCtaSection />
-      </main>
-      <SiteEssencialFooter />
-      <SiteEssencialMobileBar />
-      <FloatingWhatsApp customMessage={SITE_ESSENCIAL_MESSAGES.flutuante} />
-    </div>
-  );
-};
+import React from 'react';
+import { StudioShell, SectionLabel, usePageTitle } from '../components/studio/Studio';
+import { SITE_ESSENCIAL_FAQS, SITE_ESSENCIAL_MESSAGES, SITE_ESSENCIAL_INCLUDED_LIST, SITE_ESSENCIAL_NOT_INCLUDED_LIST, SITE_ESSENCIAL_PROCESS_STEPS, getWhatsAppUrl } from '../data/siteData';
+export function SiteEssencialPage(){
+  usePageTitle('Site Essencial — R$ 500 | Agência Mello');
+  return <StudioShell contact={false}>
+    <section className="essential-hero wrap"><SectionLabel number="Mello / Essencial">Para negócios locais</SectionLabel><h1>Seu negócio.<br/>Seu lugar na internet.<br/><span>Comece pelo essencial.</span></h1><div className="essential-layout"><div><p>Um site de uma página para apresentar seus serviços, organizar as informações do negócio e facilitar o contato pelo WhatsApp.</p><p style={{marginTop:20}}>Você recebe uma prévia privada e gratuita. Só contrata depois de avaliar e aprovar a proposta.</p></div><div className="essential-buy"><strong>R$ 500</strong><small>em até 3x</small><br/><a className="solid-link" href={getWhatsAppUrl(SITE_ESSENCIAL_MESSAGES.hero)} target="_blank" rel="noreferrer">Quero ver uma prévia <span aria-hidden="true">↗</span></a><p>Escopo definido. Publicação após aprovação.<br/>Domínio, hospedagem e suporte são alinhados antes da contratação.</p></div></div></section>
+    <section id="incluso" className="essential-scope"><div className="wrap"><SectionLabel number="01">O que você está contratando</SectionLabel><div className="scope-grid"><div><h3>O essencial, bem resolvido.</h3><ul>{[...SITE_ESSENCIAL_INCLUDED_LIST,'Adaptado para celular e computador','Título, descrição e estrutura básica para busca'].map(item=><li key={item}>{item}</li>)}</ul></div><div><h3>Precisa de algo além?</h3><ul>{SITE_ESSENCIAL_NOT_INCLUDED_LIST.map(item=><li key={item}>{item} — orçamento à parte</li>)}</ul></div></div><p className="scope-note">O investimento de R$ 500 se aplica a este formato. Valores e condições de domínio, hospedagem, manutenção e suporte são informados antes da contratação. O prazo depende das informações e aprovações e é combinado antes da etapa final.</p></div></section>
+    <section id="como-funciona" className="essential-process wrap"><SectionLabel number="02">Da conversa à publicação</SectionLabel><h2>Você acompanha.<br/>Você aprova.</h2><div className="process-grid">{SITE_ESSENCIAL_PROCESS_STEPS.map(step=><div key={step.n}><span className="micro">{step.n}</span><h3>{step.title}</h3><p>{step.text}</p></div>)}</div></section>
+    <section id="duvidas" className="essential-faq wrap"><h2>Antes de começar.</h2>{SITE_ESSENCIAL_FAQS.map(faq=><details key={faq.q}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}</section>
+    <section className="studio-contact"><div className="wrap"><SectionLabel number="03">Vamos olhar para o seu negócio?</SectionLabel><a className="contact-title" href={getWhatsAppUrl(SITE_ESSENCIAL_MESSAGES.ctaFinal)} target="_blank" rel="noreferrer">Peça sua<br/>prévia.<span aria-hidden="true">↗</span></a><p>Converse com a Mello pelo WhatsApp. Sem pagamento antecipado.</p></div></section>
+  </StudioShell>;
+}

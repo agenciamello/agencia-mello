@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
+import { StudioShell } from "../components/studio/Studio";
+
 import { Button } from "../components/ui/Button";
 
 export const NotFoundPage: React.FC = () => {
@@ -11,9 +11,9 @@ export const NotFoundPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <Header />
-      <main className="flex-1 flex items-center justify-center py-32 px-5 sm:px-6">
+    <StudioShell contact={false}>
+
+      <section className="flex-1 flex items-center justify-center py-32 px-5 sm:px-6">
         <div className="mx-auto max-w-md text-center">
           <span className="text-6xl sm:text-7xl font-bold text-accent">404</span>
           <h1 className="mt-4 text-2xl sm:text-3xl font-bold text-white">
@@ -29,8 +29,7 @@ export const NotFoundPage: React.FC = () => {
             </Button>
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </section>
+      </StudioShell>
   );
 };
