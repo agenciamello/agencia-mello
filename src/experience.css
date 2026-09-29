@@ -141,3 +141,19 @@
 @keyframes mello-menu{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
 @media(max-width:900px){.process-grid:before{display:none}}
 @media(prefers-reduced-motion:reduce){.contact-line{overflow:visible}.project-heading h3 a,.contact-line>b{transform:none!important}.brand-framework path{stroke-dashoffset:0!important}.process-grid:before{transform:none}}
+
+/* Copy: keep the commercial details readable at every breakpoint. */
+.hero-description{max-width:58ch}
+.studio h2.contact-title{font-size:clamp(58px,8.5vw,122px);line-height:1.02;margin:48px 0 45px}
+.contact-intent fieldset>p{font-size:13px;margin:8px 0 20px;max-width:48ch}
+.contact-intent>p{max-width:60ch}
+.intent-options label>span{white-space:normal}
+.intent-options label>span svg{flex-shrink:0}
+.essential-teaser p+p{margin-top:12px}
+@media(max-width:900px){.studio h2.contact-title{font-size:10vw}}
+@media(max-width:700px){
+ .hero-baseline{flex-wrap:wrap}
+ .hero-location{display:block;text-align:left;width:100%}
+ .studio h2.contact-title{font-size:clamp(41px,11.8vw,76px);line-height:1.07;margin:35px 0}
+ .contact-intent fieldset>p{font-size:12px}
+}

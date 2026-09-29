@@ -16,7 +16,7 @@ const base=process.env.SITE_URL||'http://127.0.0.1:3000';
    assert.equal(state.overflow,false,`Overflow at ${width} ${route}`);assert.deepEqual(state.broken,[],`Images at ${route}`);assert.equal(state.headings,1,`Heading at ${route}`);results.push({width,route,...state});
   }
  }
- await page.goto(base+'/#%');await page.locator('h1').waitFor();assert.match(await page.locator('h1').innerText(),/Bom de verdade/);
+ await page.goto(base+'/#%');await page.locator('h1').waitFor();assert.match(await page.locator('h1').innerText(),/Seu negócio/);
  await page.goto(base+'/#projetos');await page.getByRole('button',{name:'Menu +'}).click();await page.getByRole('navigation',{name:'Navegação principal'}).getByRole('link',{name:'Projetos',exact:true}).click();assert.equal(await page.getByRole('button',{name:'Menu +'}).getAttribute('aria-expanded'),'false');
  await page.getByRole('link',{name:'Explorar estudo Bellavista',exact:true}).click();await page.waitForURL('**/projetos/bellavista');await page.getByRole('link',{name:'← Todos os projetos'}).click();await page.waitForURL('**/#projetos');
  await page.getByRole('link',{name:'Conheça o Site Essencial'}).click();await page.waitForURL('**/site-essencial');await page.locator('summary').first().click();assert.equal(await page.locator('details').first().getAttribute('open'),'');

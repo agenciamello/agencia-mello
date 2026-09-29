@@ -9,6 +9,8 @@ const fs=require('node:fs');
  await page.locator('.contact-intent').waitFor();
  assert.equal(await page.locator('.hero-project').count(),0);
  assert.equal(await page.locator('.contact-line').count(),3);
+ assert.equal(await page.locator('.contact-composition a').count(),0,'O título editorial não deve ignorar a intenção de contato.');
+ assert.ok(new URL(await page.locator('.intent-send').getAttribute('href')).searchParams.get('text').includes('meu negócio'),'Contato disponível sem escolher um serviço.');
  await page.locator('.primary-cta').hover({position:{x:20,y:15}});
  await expect.poll(()=>page.locator('.primary-cta').evaluate(e=>e.style.transform)).not.toBe('');
  await page.setViewportSize({width:390,height:844});
