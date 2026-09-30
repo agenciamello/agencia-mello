@@ -47,3 +47,16 @@ O motion passa a operar em quatro níveis: microinteração, reveal, profundidad
 - Micro: tilt máximo permanece em 1,5° por eixo; CTAs principais, navegação de contato e envio de intenção recebem magnetismo abaixo de 4 px.
 - Mobile: sem parallax ligado ao scroll e sem tilt; fluxo visual permanece nativo.
 - Reduced motion: desmonta timelines e estilos inline do Motion V2, interrompe marquee e mantém todo conteúdo visível.
+
+## Mobile Motion Pass V3 — 29/09/2026
+
+O mobile passa a ter coreografia própria em vez de apenas desativar os efeitos de desktop. A amplitude é menor e toda interação depende de scroll ou toque, nunca de hover.
+
+- Hero: linhas entram por máscara com blur curto; descrição, CTAs e arte entram em sequência; a arte recebe parallax vertical curto no scroll.
+- Projetos: cada estudo usa recorte progressivo, microparallax da imagem, linha lateral de progresso e CTA sincronizado.
+- Serviços: browser, amostras de marca e peças sociais ganham movimento interno leve ao entrar na viewport.
+- Sobre, processo e contato: retrato/marca usam profundidade curta; a linha do processo acompanha o scroll; a marca do contato se move independentemente.
+- Menu: abertura por máscara com links em cascata e blur curto.
+- Toque: CTAs e links importantes recebem feedback de pressão sem depender de hover.
+- Reduced motion: remove timelines, transforms, custom properties e animações do pass mobile mesmo quando a preferência muda durante a sessão.
+- Desktop mantém a coreografia do Motion System V2 sem alterações de amplitude.
