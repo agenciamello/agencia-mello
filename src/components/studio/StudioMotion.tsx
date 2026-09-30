@@ -39,7 +39,26 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
             gsap.fromTo('.plane-front',{rotation:-12,scale:.8},{rotation:12,scale:1.8,ease:'none',scrollTrigger:{trigger:'.experience-hero',start:'top top',end:'bottom 15%',scrub:.8}});
             gsap.fromTo('.plane-back',{rotation:10},{rotation:-16,scale:1.4,ease:'none',scrollTrigger:{trigger:'.experience-hero',start:'top top',end:'bottom 15%',scrub:1}});
             gsap.to('.hero-message',{y:-36,ease:'none',scrollTrigger:{trigger:'.experience-hero',start:'top top',end:'bottom top',scrub:.7}});
+            gsap.to('.hero-eyebrow',{y:-14,opacity:.55,ease:'none',scrollTrigger:{trigger:'.experience-hero',start:'top top',end:'65% top',scrub:.8}});
+            gsap.to('.hero-description',{y:-18,ease:'none',scrollTrigger:{trigger:'.experience-hero',start:'top top',end:'bottom top',scrub:.9}});
+            gsap.to('.hero-actions',{y:-24,ease:'none',scrollTrigger:{trigger:'.experience-hero',start:'top top',end:'bottom top',scrub:1}});
           }
+          scope.querySelectorAll<HTMLElement>('[data-scroll-text]').forEach(title=>{
+            const lines=title.querySelectorAll(':scope > span');
+            if(!lines.length)return;
+            gsap.timeline({scrollTrigger:{trigger:title,start:'top 88%',end:'bottom 42%',scrub:.65}})
+              .fromTo(lines,{x:-24,opacity:.18,color:'rgba(20,18,23,.24)'},{x:0,opacity:1,color:'#141217',stagger:.22,duration:1,ease:'none'});
+          });
+          scope.querySelectorAll<HTMLElement>('[data-project-story]').forEach(project=>{
+            const mask=project.querySelector('.project-image-mask') as HTMLElement | null;
+            const heading=project.querySelector('.project-heading') as HTMLElement | null;
+            const open=project.querySelector('.project-open') as HTMLElement | null;
+            const story=gsap.timeline({scrollTrigger:{trigger:project,start:'top 82%',end:'bottom 28%',scrub:.8}});
+            story.fromTo(project,{'--story-progress':0},{'--story-progress':1,duration:1,ease:'none'},0);
+            if(mask)story.fromTo(mask,{'--story-shift':'-12px'},{'--story-shift':'12px',duration:1,ease:'none'},0);
+            if(heading)story.fromTo(heading,{x:-24},{x:0,duration:.32,ease:'none'},0);
+            if(open)story.fromTo(open,{y:18,opacity:.55},{y:0,opacity:1,duration:.28,ease:MOTION.ease},.08);
+          });
           scope.querySelectorAll('.project-image-mask').forEach(element=>gsap.fromTo(element,{clipPath:'inset(6% 3% 6% 3%)',scale:.96},{clipPath:'inset(0% 0% 0% 0%)',scale:1,ease:'none',scrollTrigger:{trigger:element,start:'top 90%',end:'top 30%',scrub:.65}}));
           const work=scope.querySelector('.experience-work');
           if(work)gsap.fromTo(work,{borderRadius:'48px 48px 0 0'},{borderRadius:'0px 0px 0 0',scrollTrigger:{trigger:work,start:'top 92%',end:'top 25%',scrub:.6}});
@@ -47,7 +66,14 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
             gsap.fromTo(crop.querySelector('img'),{yPercent:-5},{yPercent:5,ease:'none',scrollTrigger:{trigger:crop,start:'top bottom',end:'bottom top',scrub:.8}});
           });
           const portrait=scope.querySelector('.about-image');
-          if(portrait)gsap.fromTo(portrait.querySelector('img'),{yPercent:-3,scale:1.08},{yPercent:3,scale:1.08,ease:'none',scrollTrigger:{trigger:portrait,start:'top bottom',end:'bottom top',scrub:.7}});
+          if(portrait){
+            const portraitImage=portrait.querySelector('img');
+            const portraitMark=portrait.querySelector('.portrait-mark');
+            const portraitCaption=portrait.querySelector('.portrait-caption');
+            if(portraitImage)gsap.fromTo(portraitImage,{yPercent:-3,scale:1.08},{yPercent:3,scale:1.08,ease:'none',scrollTrigger:{trigger:portrait,start:'top bottom',end:'bottom top',scrub:.7}});
+            if(portraitMark)gsap.fromTo(portraitMark,{y:34,rotation:-3},{y:-28,rotation:2,ease:'none',scrollTrigger:{trigger:portrait,start:'top bottom',end:'bottom top',scrub:.85}});
+            if(portraitCaption)gsap.fromTo(portraitCaption,{y:-10},{y:14,ease:'none',scrollTrigger:{trigger:portrait,start:'top bottom',end:'bottom top',scrub:1}});
+          }
           const contactMark=scope.querySelector('.contact-mark');
           if(contactMark)gsap.fromTo(contactMark,{rotation:-8,y:45},{rotation:14,y:-20,ease:'none',scrollTrigger:{trigger:'.studio-contact',start:'top bottom',end:'bottom bottom',scrub:1}});
           const process=scope.querySelector('.process-grid');
@@ -72,6 +98,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
             else if(element.classList.contains('footer-signature'))revealTweens.push(gsap.fromTo(element,{clipPath:'inset(0 0 85% 0)'},{clipPath:'inset(0 0 0% 0)',duration:.85,ease:MOTION.ease}));
             else if(kind==='image')revealTweens.push(gsap.fromTo(element,{clipPath:'inset(0 0 14% 0)'},{clipPath:'inset(0 0 0% 0)',duration:MOTION.section,ease:MOTION.ease}));
             else if(kind==='lines')revealTweens.push(gsap.fromTo(element,{opacity:.25,y:20},{opacity:1,y:0,duration:MOTION.reveal,ease:MOTION.ease}));
+            else if(kind==='stagger')revealTweens.push(gsap.fromTo(Array.from(element.children),{opacity:0,y:22},{opacity:1,y:0,duration:.72,stagger:.09,ease:MOTION.ease}));
             else if(element.classList.contains('service-visual'))revealTweens.push(gsap.fromTo(element,{opacity:.3,scale:.96},{opacity:1,scale:1,duration:MOTION.section,ease:MOTION.ease}));
             else revealTweens.push(gsap.fromTo(element,{opacity:0,y:kind==='step'?12:0},{opacity:1,y:0,duration:MOTION.reveal,ease:MOTION.ease}));
           });
@@ -92,7 +119,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
       const pointerMedia=gsap.matchMedia();
       pointerMedia.add('(hover: hover) and (pointer: fine) and (min-width: 901px)',()=>{
         const pointerDisposers:(()=>void)[]=[];
-        scope.querySelectorAll<HTMLElement>('[data-tilt], .primary-cta').forEach(element=>{
+        scope.querySelectorAll<HTMLElement>('[data-tilt], .primary-cta, .intent-send, .nav-contact').forEach(element=>{
           let pointerFrame=0;let x=0;let y=0;let rect:DOMRect;
           const enter=()=>{rect=element.getBoundingClientRect();};
           const move=(event:PointerEvent)=>{
@@ -108,7 +135,16 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
           pointerDisposers.push(()=>{leave();element.removeEventListener('pointerenter',enter);element.removeEventListener('pointermove',move);element.removeEventListener('pointerleave',leave);});
         });
         const art=scope.querySelector<HTMLElement>('.brand-orbit');const hero=scope.querySelector<HTMLElement>('.experience-hero');
-        if(art&&hero){let pointerFrame=0;let x=0;let y=0;const move=(event:PointerEvent)=>{x=(event.clientX/innerWidth-.5)*14;y=(event.clientY/innerHeight-.5)*10;if(!pointerFrame)pointerFrame=requestAnimationFrame(()=>{pointerFrame=0;art.style.transform=`translate(${x}px,${y}px)`;});};const leave=()=>{cancelAnimationFrame(pointerFrame);pointerFrame=0;art.style.removeProperty('transform');};hero.addEventListener('pointermove',move);hero.addEventListener('pointerleave',leave);pointerDisposers.push(()=>{leave();hero.removeEventListener('pointermove',move);hero.removeEventListener('pointerleave',leave);});}
+        if(art&&hero){
+          let pointerFrame=0;let x=0;let y=0;let px=72;let py=35;
+          const move=(event:PointerEvent)=>{
+            x=(event.clientX/innerWidth-.5)*14;y=(event.clientY/innerHeight-.5)*10;
+            px=Math.round((event.clientX/innerWidth)*100);py=Math.round((event.clientY/innerHeight)*100);
+            if(!pointerFrame)pointerFrame=requestAnimationFrame(()=>{pointerFrame=0;art.style.transform=`translate(${x}px,${y}px)`;hero.style.setProperty('--pointer-x',`${px}%`);hero.style.setProperty('--pointer-y',`${py}%`);});
+          };
+          const leave=()=>{cancelAnimationFrame(pointerFrame);pointerFrame=0;art.style.removeProperty('transform');hero.style.removeProperty('--pointer-x');hero.style.removeProperty('--pointer-y');};
+          hero.addEventListener('pointermove',move);hero.addEventListener('pointerleave',leave);pointerDisposers.push(()=>{leave();hero.removeEventListener('pointermove',move);hero.removeEventListener('pointerleave',leave);});
+        }
         return()=>pointerDisposers.forEach(dispose=>dispose());
       });
       disposers.push(()=>pointerMedia.revert());

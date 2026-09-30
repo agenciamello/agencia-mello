@@ -157,3 +157,21 @@
  .studio h2.contact-title{font-size:clamp(41px,11.8vw,76px);line-height:1.07;margin:35px 0}
  .contact-intent fieldset>p{font-size:12px}
 }
+
+/* Mello Motion System V2 — cinematic depth without blocking content. */
+.experience-hero:before{content:'';position:absolute;inset:-18%;z-index:0;pointer-events:none;background:radial-gradient(circle at var(--pointer-x,72%) var(--pointer-y,35%),#ec48991c 0,#ec48990b 19%,transparent 43%);opacity:.9;transition:opacity .35s var(--ease)}
+.scroll-story-title>span{display:block;will-change:transform,opacity,color}
+.showcase-project{position:relative;--story-progress:0}
+.showcase-project:after{content:'';position:absolute;top:0;right:0;width:2px;height:100%;background:linear-gradient(var(--pink),#14121718);transform:scaleY(var(--story-progress));transform-origin:top;pointer-events:none}
+.project-image-mask{--story-shift:0px}
+.project-image-mask>img{scale:1.05;translate:0 var(--story-shift);will-change:translate,transform}
+.project-editorial[data-reveal=stagger]>*{will-change:transform,opacity}
+.process-grid[data-reveal=stagger]>*{will-change:transform,opacity}
+.service-tags[data-reveal=stagger]>*{will-change:transform,opacity}
+.primary-cta,.nav-contact,.intent-send{will-change:transform}
+@media(min-width:901px){.showcase-project:after{right:-18px}.portrait-mark,.portrait-caption{will-change:transform}.hero-art,.hero-message,.hero-eyebrow,.hero-description,.hero-actions{will-change:transform}}
+@media(prefers-reduced-motion:no-preference){.hero-description{animation-delay:.28s}.hero-actions{animation-delay:.38s}.hero-baseline{animation-delay:.48s}}
+@keyframes mello-line{from{transform:translateY(112%);filter:blur(8px);opacity:.15}60%{filter:blur(1px)}to{transform:translateY(0);filter:blur(0);opacity:1}}
+@keyframes mello-art{from{opacity:.2;translate:0 24px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
+@media(max-width:900px){.showcase-project:after{display:none}.project-image-mask>img{scale:1;translate:0 0}.scroll-story-title>span{will-change:auto}}
+@media(prefers-reduced-motion:reduce){.experience-hero:before{opacity:.35}.showcase-project:after{display:none}.project-image-mask>img{scale:1!important;translate:0 0!important}.scroll-story-title>span{transform:none!important;opacity:1!important;color:inherit!important}.project-editorial[data-reveal=stagger]>* ,.process-grid[data-reveal=stagger]>* ,.service-tags[data-reveal=stagger]>*{transform:none!important;opacity:1!important}}
