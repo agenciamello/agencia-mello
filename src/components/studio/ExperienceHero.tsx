@@ -4,7 +4,7 @@ export function ExperienceHero() {
   return <section className="experience-hero" id="inicio" data-chapter="Início">
     <div className="hero-grid" aria-hidden="true" />
     <div className="wrap hero-scene">
-      <div className="hero-eyebrow"><span className="status-dot"/> Agência criativa · Rio de Janeiro <span className="hero-edition">Design + tecnologia</span></div>
+      <div className="hero-eyebrow"><span className="hero-edition">Design + tecnologia</span></div>
       <div className="hero-composition">
         <div className="hero-message">
           <h1 aria-label="Seu negócio já é bom. Faça isso aparecer."><span className="line-mask"><span>Seu negócio</span></span><span className="line-mask"><span>já é bom.</span></span><span className="line-mask hero-emphasis"><span>Faça isso aparecer<span className="headline-period">.</span></span></span></h1>
