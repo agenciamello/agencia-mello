@@ -19,7 +19,7 @@ export function ExperiencePortfolio() {
         </div>
       </article>)}</div>
       <p className="work-honesty">Projetos conceituais da Mello, feitos pra explorar soluções de design. Não são trabalhos de clientes.</p>
-      <div className="copy-bridge"><h2>Quer um assim pro seu negócio?</h2><p>Peça sua prévia do Site Essencial e veja como ficaria.</p><ContactLink messageKey="projetos" className="text-link">Quero ver meu site pronto <span aria-hidden="true">↗</span></ContactLink></div>
+      <div className="copy-bridge"><h2>Quer um assim pro seu negócio?</h2><p>Veja seu site pronto antes de pagar. Só contrata se gostar.</p><ContactLink messageKey="projetos" className="text-link">Quero ver meu site pronto <span aria-hidden="true">↗</span></ContactLink></div>
     </div>
   </section>;
 }
