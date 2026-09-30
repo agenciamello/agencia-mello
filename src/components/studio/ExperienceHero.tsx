@@ -9,7 +9,6 @@ export function ExperienceHero() {
         <div className="hero-message">
           <h1 aria-label="Seu negócio já é bom. Faça isso aparecer."><span className="line-mask"><span>Seu negócio</span></span><span className="line-mask"><span>já é bom.</span></span><span className="line-mask hero-emphasis"><span>Faça isso aparecer<span className="headline-period">.</span></span></span></h1>
           <p className="hero-description">Sua presença online deveria estar à altura do seu trabalho. É isso que fazemos.</p>
-          <p className="hero-offer" style={{color:"var(--pink)",marginTop:16,fontSize:16,maxWidth:510}}>Veja seu site pronto antes de pagar. Só contrata se gostar.<br/><small style={{fontSize:12}}>Na oferta Site Essencial.</small></p>
           <p className="hero-scope">Sites · Identidade visual · Conteúdo</p>
           <div className="hero-actions"><ContactLink className="primary-cta" messageKey="hero">Quero ver meu site pronto <span aria-hidden="true">↗</span></ContactLink><a href="#processo" className="quiet-link">Como funciona <span aria-hidden="true">↓</span></a></div>
         </div>
