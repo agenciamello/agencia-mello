@@ -26,7 +26,15 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
 
     const setup=async()=>{
       const ticket=++generation;disposeMotion();disposeMotion=()=>{};
-      if(reduced.matches)return;
+      if(reduced.matches){
+        scope.querySelectorAll<HTMLElement>('.hero-art,.hero-message,.hero-art-plane,.hero-eyebrow,.hero-description,.hero-actions,.project-image-mask,.project-image-mask>img,.project-heading,.project-open,.mini-browser,.brand-specimen,.brand-swatches i,.sheet-one,.sheet-two,.about-image img,.portrait-mark,.portrait-caption,.contact-mark,[data-scroll-text]>span').forEach(element=>{
+          element.style.removeProperty('transform');element.style.removeProperty('opacity');element.style.removeProperty('clip-path');element.style.removeProperty('color');element.style.removeProperty('translate');element.style.removeProperty('scale');
+        });
+        scope.querySelectorAll<HTMLElement>('[data-project-story]').forEach(element=>element.style.removeProperty('--story-progress'));
+        scope.querySelectorAll<HTMLElement>('.project-image-mask').forEach(element=>element.style.removeProperty('--story-shift'));
+        scope.querySelector<HTMLElement>('.process-grid')?.style.removeProperty('--process-progress');
+        return;
+      }
       const [{gsap},{ScrollTrigger}]=await Promise.all([import('gsap'),import('gsap/ScrollTrigger')]);
       if(destroyed||ticket!==generation)return;
       gsap.registerPlugin(ScrollTrigger);
@@ -84,6 +92,46 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
             if(visual.classList.contains('visual-brand'))sequence.fromTo(visual.querySelector('.brand-specimen'),{x:-35,opacity:.3},{x:0,opacity:1}).fromTo(visual.querySelectorAll('.brand-swatches i'),{scaleY:.08},{scaleY:1,stagger:.12},0).fromTo(visual.querySelector('img'),{rotation:-20,x:40},{rotation:10,x:0},0);
             if(visual.classList.contains('visual-content'))sequence.fromTo(visual.querySelector('.sheet-one'),{y:65,rotation:-20},{y:0,rotation:-8}).fromTo(visual.querySelector('.sheet-two'),{y:100,rotation:25},{y:0,rotation:12},0);
           });
+        });
+        media.add('(max-width: 900px)',()=>{
+          const hero=scope.querySelector<HTMLElement>('.experience-hero');
+          const heroArt=scope.querySelector<HTMLElement>('.hero-art');
+          const heroMessage=scope.querySelector<HTMLElement>('.hero-message');
+          if(hero&&heroArt)gsap.to(heroArt,{y:28,scale:1.025,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:.8}});
+          if(hero&&heroMessage)gsap.to(heroMessage,{y:-12,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1}});
+
+          scope.querySelectorAll<HTMLElement>('[data-project-story]').forEach(project=>{
+            const mask=project.querySelector('.project-image-mask') as HTMLElement | null;
+            const image=mask?.querySelector('img') as HTMLElement | null;
+            const heading=project.querySelector('.project-heading') as HTMLElement | null;
+            const open=project.querySelector('.project-open') as HTMLElement | null;
+            const story=gsap.timeline({scrollTrigger:{trigger:project,start:'top 92%',end:'bottom 38%',scrub:.55}});
+            story.fromTo(project,{'--story-progress':0},{'--story-progress':1,duration:1,ease:'none'},0);
+            if(mask)story.fromTo(mask,{clipPath:'inset(5% 0 8% 0)',scale:.985},{clipPath:'inset(0% 0 0% 0)',scale:1,duration:.5,ease:'none'},0);
+            if(image)story.fromTo(image,{yPercent:-2},{yPercent:2,duration:1,ease:'none'},0);
+            if(heading)story.fromTo(heading,{x:-10,opacity:.72},{x:0,opacity:1,duration:.28,ease:'none'},0);
+            if(open)story.fromTo(open,{y:10,opacity:.65},{y:0,opacity:1,duration:.24,ease:MOTION.ease},.1);
+          });
+
+          scope.querySelectorAll<HTMLElement>('.service-visual').forEach(visual=>{
+            const sequence=gsap.timeline({scrollTrigger:{trigger:visual,start:'top 94%',end:'center 55%',scrub:.5}});
+            if(visual.classList.contains('visual-web'))sequence.fromTo(visual.querySelector('.mini-browser'),{y:30,rotation:3,scale:.94},{y:0,rotation:-1,scale:1,ease:'power2.out'});
+            if(visual.classList.contains('visual-brand'))sequence.fromTo(visual.querySelector('.brand-specimen'),{x:-18,opacity:.55},{x:0,opacity:1}).fromTo(visual.querySelectorAll('.brand-swatches i'),{scaleY:.2},{scaleY:1,stagger:.08},0);
+            if(visual.classList.contains('visual-content'))sequence.fromTo(visual.querySelector('.sheet-one'),{y:38,rotation:-15},{y:0,rotation:-8}).fromTo(visual.querySelector('.sheet-two'),{y:55,rotation:18},{y:0,rotation:12},0);
+          });
+
+          const portrait=scope.querySelector<HTMLElement>('.about-image');
+          if(portrait){
+            const image=portrait.querySelector('img');
+            const mark=portrait.querySelector('.portrait-mark');
+            if(image)gsap.fromTo(image,{yPercent:-2,scale:1.04},{yPercent:2,scale:1.04,ease:'none',scrollTrigger:{trigger:portrait,start:'top bottom',end:'bottom top',scrub:.7}});
+            if(mark)gsap.fromTo(mark,{y:20,rotation:-2},{y:-14,rotation:1,ease:'none',scrollTrigger:{trigger:portrait,start:'top bottom',end:'bottom top',scrub:.85}});
+          }
+
+          const process=scope.querySelector<HTMLElement>('.process-grid');
+          if(process)gsap.fromTo(process,{'--process-progress':0},{'--process-progress':1,ease:'none',scrollTrigger:{trigger:process,start:'top 88%',end:'bottom 48%',scrub:.55}});
+          const contactMark=scope.querySelector<HTMLElement>('.contact-mark');
+          if(contactMark)gsap.fromTo(contactMark,{rotation:6,y:26},{rotation:14,y:-14,ease:'none',scrollTrigger:{trigger:'.studio-contact',start:'top bottom',end:'bottom bottom',scrub:.8}});
         });
         disposers.push(()=>media.revert());
         const revealTweens: ReturnType<typeof gsap.fromTo>[]=[];

@@ -175,3 +175,29 @@
 @keyframes mello-art{from{opacity:.2;translate:0 24px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
 @media(max-width:900px){.showcase-project:after{display:none}.project-image-mask>img{scale:1;translate:0 0}.scroll-story-title>span{will-change:auto}}
 @media(prefers-reduced-motion:reduce){.experience-hero:before{opacity:.35}.showcase-project:after{display:none}.project-image-mask>img{scale:1!important;translate:0 0!important}.scroll-story-title>span{transform:none!important;opacity:1!important;color:inherit!important}.project-editorial[data-reveal=stagger]>* ,.process-grid[data-reveal=stagger]>* ,.service-tags[data-reveal=stagger]>*{transform:none!important;opacity:1!important}}
+
+/* Mobile Motion Pass V3 — scroll/touch choreography, desktop preserved. */
+@media(max-width:900px){
+ .showcase-project:after{display:block;right:auto;left:-10px;width:1px;opacity:.5}
+ .project-image-mask,.project-image-mask>img,.service-visual>*{will-change:transform,clip-path}
+ .hero-art,.hero-message,.portrait-mark,.contact-mark{will-change:transform}
+ .process-grid:before{display:block}
+}
+@media(max-width:700px) and (prefers-reduced-motion:no-preference){
+ .line-mask>span{animation:mello-mobile-line .64s var(--ease) both!important}
+ .line-mask:nth-child(2)>span{animation-delay:.07s!important}.line-mask:nth-child(3)>span{animation-delay:.14s!important}
+ .hero-description{animation:mello-mobile-rise .52s var(--ease) .18s both!important}
+ .hero-actions{animation:mello-mobile-rise .52s var(--ease) .26s both!important}
+ .hero-art{animation:mello-mobile-art .72s var(--ease) .12s both!important}
+ .hero-baseline{animation:mello-mobile-rise .5s var(--ease) .36s both!important}
+ .studio-nav.is-open{animation:mello-mobile-menu .34s var(--ease) both!important}
+ .studio-nav.is-open>a{animation:mello-mobile-menu-link .38s var(--ease) both!important}
+ .studio-nav.is-open>a:nth-child(2){animation-delay:.05s!important}.studio-nav.is-open>a:nth-child(3){animation-delay:.1s!important}.studio-nav.is-open>a:nth-child(4){animation-delay:.15s!important}
+}
+@keyframes mello-mobile-line{from{transform:translateY(108%);filter:blur(5px);opacity:.25}70%{filter:blur(.5px)}to{transform:translateY(0);filter:blur(0);opacity:1}}
+@keyframes mello-mobile-rise{from{opacity:.25;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mello-mobile-art{from{opacity:.25;translate:0 20px;scale:.97}to{opacity:1;translate:0 0;scale:1}}
+@keyframes mello-mobile-menu{from{clip-path:inset(0 0 100% 0);opacity:.6}to{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes mello-mobile-menu-link{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@media(max-width:700px){.primary-cta,.quiet-link,.text-link,.showcase-image,.intent-send,.nav-contact,.menu-toggle{-webkit-tap-highlight-color:transparent}.primary-cta:active,.intent-send:active,.nav-contact:active,.menu-toggle:active{scale:.98}.quiet-link:active,.text-link:active{opacity:.7}.showcase-image:active .project-open{background:#141217;color:#eeeae4}.process-grid:before{display:block}}
+@media(prefers-reduced-motion:reduce){.showcase-project:after{display:none!important}.process-grid:before{transform:none!important}.hero-art,.hero-message,.portrait-mark,.contact-mark,.project-image-mask,.project-image-mask>img,.service-visual>*{will-change:auto!important}}
