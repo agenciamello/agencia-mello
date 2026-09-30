@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
+import { ContactLink } from './Studio';
 import { CASES } from '../../data/cases';
 
 export function ExperiencePortfolio() {
@@ -18,6 +19,7 @@ export function ExperiencePortfolio() {
         </div>
       </article>)}</div>
       <p className="work-honesty">Projetos conceituais da Mello, feitos pra explorar soluções de design. Não são trabalhos de clientes.</p>
+      <div className="copy-bridge"><h2>Quer um assim pro seu negócio?</h2><p>Peça sua prévia do Site Essencial e veja como ficaria.</p><ContactLink messageKey="projetos" className="text-link">Quero ver meu site pronto <span aria-hidden="true">↗</span></ContactLink></div>
     </div>
   </section>;
 }

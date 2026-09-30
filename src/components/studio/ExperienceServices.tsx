@@ -3,7 +3,7 @@ import { ContactLink, SectionLabel } from './Studio';
 const services = [
   { id:'web', name:'Sites e landing pages', line:'Seu cliente entende o que você faz.\nE chama no WhatsApp.', text:'Sites institucionais e landing pages que mostram seus serviços, passam confiança e levam direto pro seu WhatsApp.', tags:['Sites institucionais','Landing pages','WhatsApp integrado'], key:'sites' },
   { id:'marca', name:'Identidade visual', line:'Sua marca para de\nparecer improvisada.', text:'Criamos o sistema visual que faz tudo parecer parte da mesma marca.', tags:['Logo','Cores e tipografia','Direção visual'], key:'identidade' },
-  { id:'conteudo', name:'Design para redes sociais', line:'Chega de cada post\nnum estilo.', text:'Posts, carrosséis e peças de campanha no mesmo padrão da sua marca. Formatos e quantidade são definidos conforme a necessidade do projeto.', tags:['Posts e carrosséis','Peças de campanha','Materiais promocionais'], key:'conteudo' },
+  { id:'conteudo', name:'Design para redes sociais', line:'Chega de cada post\nnum estilo.', text:'Posts, carrosséis e peças de campanha no mesmo padrão da sua marca. Arte avulsa por R$ 35 ou pacote de 10 artes por R$ 250 (R$ 25 cada). Flyer para evento por R$ 50. Pacote básico de evento: flyer + motion flyer de 30 segundos por R$ 80.', tags:['Posts e carrosséis','Peças de campanha','Materiais promocionais'], key:'conteudo' },
 ];
 
 function ServiceVisual({ index }: {index: number}) {

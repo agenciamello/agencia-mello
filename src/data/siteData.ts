@@ -1,3 +1,9 @@
+export const SITE_ESSENCIAL_CONDITIONS = {
+  "domain": "Domínio .com.br à parte: cerca de R$ 40 por ano. O valor pode variar e é confirmado antes da contratação.",
+  "hosting": "Hospedagem sem mensalidade no plano gratuito da Netlify, dentro dos limites de uso do plano. Se o limite for atingido, o site pode ficar temporariamente indisponível; qualquer mudança de plano é combinada antes, sem cobrança automática.",
+  "timing": "Estimativa inicial: prévia em cerca de 2 horas após recebermos o material completo; entrega em cerca de 24 horas após a aprovação e o alinhamento dos ajustes. Confirmamos o prazo na conversa. Mudanças solicitadas, registro do domínio e propagação de DNS podem alterar esse tempo."
+};
+
 export const SITE_INFO = {
   name: "Agência Mello",
   location: "Rio de Janeiro, Brasil",
@@ -13,29 +19,29 @@ export const SITE_INFO = {
 
 export const WHATSAPP_MESSAGES = {
   header: "Oi, Matheus! Vim pelo site da Agência Mello e queria conversar sobre um projeto. Meu negócio é",
-  hero: "Olá! Gostaria de conversar com a Agência Mello sobre um projeto para minha empresa.",
+  hero: "Oi, Matheus! Vim pelo site e quero ver uma prévia do meu site. Meu negócio é",
   sites: "Oi, Matheus! Vim pelo site e preciso de um site pro meu negócio. Ele é",
   identidade: "Oi, Matheus! Vim pelo site e preciso de uma identidade visual pro meu negócio. Ele é",
   conteudo: "Oi, Matheus! Vim pelo site e preciso de peças pras redes sociais do meu negócio. Ele é",
-  destaque: "Olá! Gostaria de entender como funciona o Site Essencial de R$ 500 da Agência Mello.",
+  destaque: "Oi, Matheus! Vi o Site Essencial de R$ 500 e quero ver uma prévia. Meu negócio é",
   projetos: "Oi, Matheus! Vi os projetos no site e quero algo assim pro meu negócio. Ele é",
   final: "Oi, Matheus! Quero ver como meu site ficaria. Meu negócio é",
   flutuante: "Oi, Matheus! Vim pelo site e queria tirar uma dúvida.",
 };
 
 export const SITE_ESSENCIAL_MESSAGES = {
-  header: "Olá! Gostaria de ver uma prévia do Site Essencial para o meu negócio.",
-  hero: "Olá! Gostaria de ver uma prévia demonstrativa do Site Essencial para a minha empresa.",
+  header: "Oi, Matheus! Quero ver a prévia do Site Essencial pro meu negócio. Ele é",
+  hero: "Oi, Matheus! Quero ver uma prévia do meu site. Meu negócio é",
   recursos: "Oi, Matheus! Queria entender o que está incluso no Site Essencial.",
   preco: "Oi, Matheus! Queria entender como funciona o pagamento do Site Essencial (R$ 500).",
   exemplos: "Oi, Matheus! Queria ver um exemplo de Site Essencial pro meu tipo de negócio. Ele é",
-  processo: "Olá! Gostaria de solicitar uma prévia do Site Essencial para o meu negócio.",
+  processo: "Oi, Matheus! Quero pedir minha prévia do Site Essencial. Meu negócio é",
   comparativo: "Oi, Matheus! Queria entender a diferença entre o Site Essencial e um projeto sob medida.",
   autoridade: "Oi, Matheus! Queria conversar com você sobre o Site Essencial.",
   faq: "Oi, Matheus! Tenho uma dúvida sobre o Site Essencial.",
-  ctaFinal: "Olá! Gostaria de ver uma prévia demonstrativa do Site Essencial para a minha empresa.",
-  barraMobile: "Olá! Gostaria de ver uma prévia do Site Essencial para o meu negócio.",
-  flutuante: "Olá! Gostaria de tirar dúvidas sobre o Site Essencial.",
+  ctaFinal: "Oi, Matheus! Quero minha prévia do Site Essencial. Meu negócio é",
+  barraMobile: "Oi, Matheus! Quero ver minha prévia do Site Essencial. Meu negócio é",
+  flutuante: "Oi, Matheus! Tenho uma dúvida sobre o Site Essencial.",
 };
 
 export function getWhatsAppUrl(message: string): string {
@@ -295,25 +301,25 @@ export const SITE_ESSENCIAL_EXAMPLES = [
 
 export const SITE_ESSENCIAL_PROCESS_STEPS = [
   {
-    n: "01",
-    title: "Você envia as informações do negócio",
-    text: "Compartilha serviços, fotos, links das redes sociais e dados de contato.",
+    "n": "01",
+    "title": "Você manda as informações do negócio",
+    "text": "Serviços, fotos, link do Instagram e contato. Pode ser tudo pelo WhatsApp."
   },
   {
-    n: "02",
-    title: "Criamos uma prévia personalizada",
-    text: "Desenvolvemos uma demonstração privada para você ver como seu site ficaria.",
+    "n": "02",
+    "title": "A gente cria uma prévia só sua",
+    "text": "Uma demonstração privada pra você ver como seu site ficaria. Sem custo."
   },
   {
-    n: "03",
-    title: "Você avalia com calma",
-    text: "Analisa a proposta e decide se o Site Essencial faz sentido para seu momento.",
+    "n": "03",
+    "title": "Você avalia com calma",
+    "text": "Você vê com calma se faz sentido pro seu momento. Sem cobrança pela prévia."
   },
   {
-    n: "04",
-    title: "Você aprova, ajustamos e publicamos",
-    text: "Se a proposta fizer sentido, confirmamos a contratação e o pagamento, realizamos até duas rodadas de ajustes e organizamos a publicação.",
-  },
+    "n": "04",
+    "title": "Aprova, ajusta e publica",
+    "text": "Gostou? Confirmamos a contratação e o pagamento, fazemos até duas rodadas de ajuste e publicamos."
+  }
 ];
 
 export const SITE_ESSENCIAL_INCLUDED_LIST = [
@@ -322,7 +328,7 @@ export const SITE_ESSENCIAL_INCLUDED_LIST = [
   "Funciona no celular e no computador",
   "Configurado pra aparecer na busca (título e descrição)",
   "Até duas rodadas de ajuste",
-  "Sem pagamento antecipado"
+  "Nada pago antes de você ver o site pronto"
 ];
 
 export const SITE_ESSENCIAL_NOT_INCLUDED_LIST = [
@@ -351,55 +357,55 @@ export const SITE_ESSENCIAL_POST_APPROVAL = [
 
 export const SITE_ESSENCIAL_FAQS = [
   {
-    q: "O que está incluído nos R$ 500?",
-    a: "O valor inclui um site profissional de uma página, com até seis seções, versão responsiva, integração com WhatsApp, apresentação dos serviços, informações comerciais e até duas rodadas de ajustes dentro do que está incluso.",
+    "q": "O que está incluído nos R$ 500?",
+    "a": "Um site profissional de uma página, com até seis seções, versão pra celular e computador, botão de WhatsApp, seus serviços organizados, informações do negócio e até duas rodadas de ajuste."
   },
   {
-    q: "Quando faço o pagamento?",
-    a: "O pagamento acontece somente depois que você aprova a prévia e decide contratar o Site Essencial. Após a confirmação, realizamos os ajustes previstos e seguimos para a publicação.",
+    "q": "Quando eu pago?",
+    "a": "Só depois de ver a prévia e aprovar. Antes disso, você não paga nada."
   },
   {
-    q: "Preciso pagar para receber a prévia?",
-    a: "Não. Quando a Agência Mello prepara uma prévia personalizada para sua empresa, você pode avaliar antes de decidir. O pagamento acontece somente depois que a proposta é aprovada.",
+    "q": "Preciso pagar pra receber a prévia?",
+    "a": "Não. A prévia é por nossa conta."
   },
   {
-    q: "Vão publicar meu site sem eu autorizar?",
-    a: "Não. A prévia é privada. O site só vai ao ar depois da sua aprovação.",
+    "q": "Vão publicar meu site sem eu autorizar?",
+    "a": "Não. A prévia é privada. O site só vai ao ar depois da sua aprovação."
   },
   {
-    q: "Quantos ajustes eu posso pedir?",
-    a: "Até duas rodadas de ajuste, dentro do que está incluso. Mudança estrutural ou pedido extra a gente avalia à parte, combinando com você antes.",
+    "q": "Quantos ajustes eu posso pedir?",
+    "a": "Até duas rodadas de ajuste, dentro do que está incluso. Mudança estrutural ou pedido extra a gente avalia à parte, combinando com você antes."
   },
   {
-    q: "Quem fornece os textos e as imagens?",
-    a: "Utilizamos as informações fornecidas pela empresa e, quando aplicável, conteúdos já disponíveis nos canais oficiais do negócio. Necessidades de produção de texto, fotografia ou materiais adicionais são alinhadas antes da contratação.",
+    "q": "Quem fornece os textos e as imagens?",
+    "a": "Você manda o que tem: serviços, fotos, link do Instagram. A gente usa isso e o que já está nos canais oficiais do seu negócio. Se faltar foto ou texto, a gente avisa antes de você fechar."
   },
   {
-    q: "O domínio está incluído nos R$ 500?",
-    a: "As opções e os custos de domínio são informados antes da publicação. Caso a empresa já possua um domínio, também poderemos avaliar sua utilização.",
+    "q": "O domínio está incluso?",
+    "a": "Domínio .com.br à parte: cerca de R$ 40 por ano. O valor pode variar e é confirmado antes da contratação. Se você já tem domínio, dá pra usar o seu."
   },
   {
-    q: "Existe mensalidade?",
-    a: "As condições de hospedagem, manutenção e suporte são explicadas antes da contratação. Nenhuma cobrança recorrente é adicionada sem aprovação.",
+    "q": "Existe mensalidade?",
+    "a": "Hospedagem sem mensalidade no plano gratuito da Netlify, dentro dos limites de uso do plano. Se o limite for atingido, o site pode ficar temporariamente indisponível; qualquer mudança de plano é combinada antes, sem cobrança automática. Alterações e suporte após a entrega são combinados à parte."
   },
   {
-    q: "O site vai aparecer no Google?",
-    a: "Ele sai configurado com título, descrição e estrutura básica pra busca. A posição no Google depende de vários fatores e não pode ser garantida.",
+    "q": "O site vai aparecer no Google?",
+    "a": "Ele sai configurado com título, descrição e estrutura básica pra busca. A posição no Google depende de vários fatores e não pode ser garantida."
   },
   {
-    q: "Quanto tempo leva?",
-    a: "O prazo depende do envio das informações, da complexidade do conteúdo e da rapidez na aprovação. A estimativa é informada antes do início da etapa final.",
+    "q": "Quanto tempo leva?",
+    "a": "Estimativa inicial: prévia em cerca de 2 horas após recebermos o material completo; entrega em cerca de 24 horas após a aprovação e o alinhamento dos ajustes. Confirmamos o prazo na conversa. Mudanças solicitadas, registro do domínio e propagação de DNS podem alterar esse tempo."
   },
   {
-    q: "O que acontece se eu não gostar da prévia?",
-    a: "Você pode informar que a proposta não faz sentido para seu momento e não haverá cobrança pela prévia apresentada.",
+    "q": "E se eu não gostar da prévia?",
+    "a": "É só avisar que não fez sentido pro seu momento. Não há cobrança pela prévia."
   },
   {
-    q: "Todo site custa R$ 500?",
-    a: "Não. O valor de R$ 500 é exclusivo do Site Essencial, que possui uma página e o que está incluso definido. Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.",
+    "q": "Todo site custa R$ 500?",
+    "a": "Não. Os R$ 500 são do Site Essencial: uma página, com o que está incluso definido. Mais páginas, sistemas ou funcionalidades têm orçamento próprio."
   },
   {
-    q: "Vocês atendem fora do Rio de Janeiro?",
-    a: "Sim. A gente está no Rio, mas atende online em todo o Brasil.",
-  },
+    "q": "Vocês atendem fora do Rio de Janeiro?",
+    "a": "Sim. A gente está no Rio, mas atende online em todo o Brasil."
+  }
 ];
