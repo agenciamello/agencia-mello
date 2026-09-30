@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { StudioShell } from "../components/studio/Studio";
+import { StudioShell, usePageTitle } from "../components/studio/Studio";
 
 import { SITE_INFO } from "../data/siteData";
 
 export const TermsPage: React.FC = () => {
+  usePageTitle("Termos de Uso | Agência Mello");
   useEffect(() => {
-    document.title = "Termos de Uso | Agência Mello";
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 

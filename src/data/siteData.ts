@@ -8,31 +8,31 @@ export const SITE_INFO = {
   whatsappPhone: "5521971859948",
   whatsappFormatted: "(21) 97185-9948",
   founder: "Matheus Mello",
-  canonicalUrl: "https://agenciamello.vercel.app",
+  canonicalUrl: "https://www.agenciamello.site",
 };
 
 export const WHATSAPP_MESSAGES = {
-  header: "Olá! Gostaria de conversar com a Agência Mello sobre um projeto.",
+  header: "Oi, Matheus! Vim pelo site da Agência Mello e queria conversar sobre um projeto. Meu negócio é",
   hero: "Olá! Gostaria de conversar com a Agência Mello sobre um projeto para minha empresa.",
-  sites: "Olá! Gostaria de saber mais sobre a criação de sites e presença digital da Agência Mello.",
-  identidade: "Olá! Gostaria de saber mais sobre a criação de identidade visual da Agência Mello.",
-  conteudo: "Olá! Gostaria de saber mais sobre a produção de conteúdo visual da Agência Mello.",
+  sites: "Oi, Matheus! Vim pelo site e preciso de um site pro meu negócio. Ele é",
+  identidade: "Oi, Matheus! Vim pelo site e preciso de uma identidade visual pro meu negócio. Ele é",
+  conteudo: "Oi, Matheus! Vim pelo site e preciso de peças pras redes sociais do meu negócio. Ele é",
   destaque: "Olá! Gostaria de entender como funciona o Site Essencial de R$ 500 da Agência Mello.",
-  projetos: "Olá! Vi os projetos da Agência Mello e gostaria de conversar sobre algo assim para o meu negócio.",
-  final: "Olá! Gostaria de conversar com a Agência Mello sobre um projeto para meu negócio.",
-  flutuante: "Olá! Gostaria de falar com a Agência Mello sobre um projeto.",
+  projetos: "Oi, Matheus! Vi os projetos no site e quero algo assim pro meu negócio. Ele é",
+  final: "Oi, Matheus! Quero ver como meu site ficaria. Meu negócio é",
+  flutuante: "Oi, Matheus! Vim pelo site e queria tirar uma dúvida.",
 };
 
 export const SITE_ESSENCIAL_MESSAGES = {
   header: "Olá! Gostaria de ver uma prévia do Site Essencial para o meu negócio.",
   hero: "Olá! Gostaria de ver uma prévia demonstrativa do Site Essencial para a minha empresa.",
-  recursos: "Olá! Gostaria de entender mais sobre o que está incluso no Site Essencial.",
-  preco: "Olá! Gostaria de entender os detalhes do investimento de R$ 500 do Site Essencial.",
-  exemplos: "Olá! Gostaria de ver um exemplo do Site Essencial aplicado ao meu segmento.",
+  recursos: "Oi, Matheus! Queria entender o que está incluso no Site Essencial.",
+  preco: "Oi, Matheus! Queria entender como funciona o pagamento do Site Essencial (R$ 500).",
+  exemplos: "Oi, Matheus! Queria ver um exemplo de Site Essencial pro meu tipo de negócio. Ele é",
   processo: "Olá! Gostaria de solicitar uma prévia do Site Essencial para o meu negócio.",
-  comparativo: "Olá! Gostaria de entender a diferença entre o Site Essencial e um projeto sob medida.",
-  autoridade: "Olá! Gostaria de conversar com o Matheus Mello sobre o Site Essencial.",
-  faq: "Olá! Tenho uma dúvida sobre o funcionamento do Site Essencial.",
+  comparativo: "Oi, Matheus! Queria entender a diferença entre o Site Essencial e um projeto sob medida.",
+  autoridade: "Oi, Matheus! Queria conversar com você sobre o Site Essencial.",
+  faq: "Oi, Matheus! Tenho uma dúvida sobre o Site Essencial.",
   ctaFinal: "Olá! Gostaria de ver uma prévia demonstrativa do Site Essencial para a minha empresa.",
   barraMobile: "Olá! Gostaria de ver uma prévia do Site Essencial para o meu negócio.",
   flutuante: "Olá! Gostaria de tirar dúvidas sobre o Site Essencial.",
@@ -164,7 +164,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Todos os sites custam R$500?",
-    a: "Não. O valor de R$ 500 é exclusivo do Site Essencial, que possui uma página e um escopo definido. Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.",
+    a: "Não. O valor de R$ 500 é exclusivo do Site Essencial, que possui uma página e o que está incluso definido. Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.",
   },
   {
     q: "Preciso pagar antes de ver?",
@@ -176,7 +176,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Vocês atendem fora do Rio de Janeiro?",
-    a: "Sim. A Agência Mello está no Rio de Janeiro, mas atende clientes de outras cidades e estados de forma online.",
+    a: "Sim. A gente está no Rio, mas atende online em todo o Brasil.",
   },
   {
     q: "Como começar?",
@@ -317,12 +317,12 @@ export const SITE_ESSENCIAL_PROCESS_STEPS = [
 ];
 
 export const SITE_ESSENCIAL_INCLUDED_LIST = [
-  "Uma página",
-  "Até seis seções",
-  "Estrutura objetiva",
-  "Integração com WhatsApp",
-  "Até duas rodadas de ajustes",
-  "Sem pagamento antecipado",
+  "Uma página, até seis seções",
+  "Botão de WhatsApp em destaque",
+  "Funciona no celular e no computador",
+  "Configurado pra aparecer na busca (título e descrição)",
+  "Até duas rodadas de ajuste",
+  "Sem pagamento antecipado"
 ];
 
 export const SITE_ESSENCIAL_NOT_INCLUDED_LIST = [
@@ -351,8 +351,8 @@ export const SITE_ESSENCIAL_POST_APPROVAL = [
 
 export const SITE_ESSENCIAL_FAQS = [
   {
-    q: "O que exatamente está incluído nos R$ 500?",
-    a: "O valor inclui um site profissional de uma página, com até seis seções, versão responsiva, integração com WhatsApp, apresentação dos serviços, informações comerciais e até duas rodadas de ajustes dentro do escopo.",
+    q: "O que está incluído nos R$ 500?",
+    a: "O valor inclui um site profissional de uma página, com até seis seções, versão responsiva, integração com WhatsApp, apresentação dos serviços, informações comerciais e até duas rodadas de ajustes dentro do que está incluso.",
   },
   {
     q: "Quando faço o pagamento?",
@@ -363,15 +363,15 @@ export const SITE_ESSENCIAL_FAQS = [
     a: "Não. Quando a Agência Mello prepara uma prévia personalizada para sua empresa, você pode avaliar antes de decidir. O pagamento acontece somente depois que a proposta é aprovada.",
   },
   {
-    q: "O site será publicado sem minha autorização?",
-    a: "Não. A prévia é privada e demonstrativa. O site só será publicado oficialmente depois da sua aprovação.",
+    q: "Vão publicar meu site sem eu autorizar?",
+    a: "Não. A prévia é privada. O site só vai ao ar depois da sua aprovação.",
   },
   {
-    q: "Quantas alterações posso solicitar?",
-    a: "O Site Essencial inclui até duas rodadas de ajustes dentro do escopo contratado. Mudanças estruturais ou solicitações adicionais podem ser avaliadas separadamente.",
+    q: "Quantos ajustes eu posso pedir?",
+    a: "Até duas rodadas de ajuste, dentro do que está incluso. Mudança estrutural ou pedido extra a gente avalia à parte, combinando com você antes.",
   },
   {
-    q: "Quem fornece os textos e imagens?",
+    q: "Quem fornece os textos e as imagens?",
     a: "Utilizamos as informações fornecidas pela empresa e, quando aplicável, conteúdos já disponíveis nos canais oficiais do negócio. Necessidades de produção de texto, fotografia ou materiais adicionais são alinhadas antes da contratação.",
   },
   {
@@ -384,10 +384,10 @@ export const SITE_ESSENCIAL_FAQS = [
   },
   {
     q: "O site vai aparecer no Google?",
-    a: "O site recebe uma configuração básica de título, descrição e estrutura. O posicionamento nos resultados do Google depende de diversos fatores e não pode ser garantido.",
+    a: "Ele sai configurado com título, descrição e estrutura básica pra busca. A posição no Google depende de vários fatores e não pode ser garantida.",
   },
   {
-    q: "Quanto tempo leva para ficar pronto?",
+    q: "Quanto tempo leva?",
     a: "O prazo depende do envio das informações, da complexidade do conteúdo e da rapidez na aprovação. A estimativa é informada antes do início da etapa final.",
   },
   {
@@ -395,11 +395,11 @@ export const SITE_ESSENCIAL_FAQS = [
     a: "Você pode informar que a proposta não faz sentido para seu momento e não haverá cobrança pela prévia apresentada.",
   },
   {
-    q: "Todos os tipos de site custam R$ 500?",
-    a: "Não. O valor de R$ 500 é exclusivo do Site Essencial, que possui uma página e um escopo definido. Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.",
+    q: "Todo site custa R$ 500?",
+    a: "Não. O valor de R$ 500 é exclusivo do Site Essencial, que possui uma página e o que está incluso definido. Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.",
   },
   {
     q: "Vocês atendem fora do Rio de Janeiro?",
-    a: "Sim. A Agência Mello está no Rio de Janeiro, mas atende clientes de outras cidades e estados de forma online.",
+    a: "Sim. A gente está no Rio, mas atende online em todo o Brasil.",
   },
 ];

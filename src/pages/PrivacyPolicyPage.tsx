@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { StudioShell } from "../components/studio/Studio";
+import { StudioShell, usePageTitle } from "../components/studio/Studio";
 
 import { Button } from "../components/ui/Button";
 import { SITE_INFO } from "../data/siteData";
 
 export const PrivacyPolicyPage: React.FC = () => {
+  usePageTitle("Política de Privacidade | Agência Mello");
   useEffect(() => {
-    document.title = "Política de Privacidade | Agência Mello";
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 

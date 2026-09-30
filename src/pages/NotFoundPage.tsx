@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { StudioShell } from "../components/studio/Studio";
+import { StudioShell, usePageTitle } from "../components/studio/Studio";
 
 import { Button } from "../components/ui/Button";
 
 export const NotFoundPage: React.FC = () => {
-  useEffect(() => {
-    document.title = "Página não encontrada | Agência Mello";
-  }, []);
+  usePageTitle("Página não encontrada | Agência Mello");
 
   return (
     <StudioShell contact={false}>
@@ -20,12 +18,12 @@ export const NotFoundPage: React.FC = () => {
             Página não encontrada
           </h1>
           <p className="mt-3 text-muted-foreground text-[15px]">
-            O endereço que você tentou acessar não existe ou foi movido.
+            Esse endereço não apareceu. Que tal fazer o seu negócio aparecer?
           </p>
           <div className="mt-8 flex justify-center">
             <Button to="/">
               <ArrowLeft className="h-4 w-4" />
-              <span>Voltar para o início</span>
+              <span>Voltar pro início</span>
             </Button>
           </div>
         </div>
