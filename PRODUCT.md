@@ -57,3 +57,8 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 3. Manter escopo, investimento e etapas compreensíveis antes da contratação.
 4. Tratar proximidade, agilidade e ausência de burocracia como prática operacional, não como promessa vazia.
 5. Usar apenas provas reais e identificar explicitamente projetos conceituais.
+
+
+## Condições confirmadas em 30/09/2026
+
+Ver docs/copy-commercial-confirmed.md. Estas condições substituem as menções anteriores de custos ainda pendentes.

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { StudioShell } from "../components/studio/Studio";
+import { StudioShell, usePageTitle } from "../components/studio/Studio";
 
-import { SITE_INFO } from "../data/siteData";
+import { SITE_INFO, SITE_ESSENCIAL_CONDITIONS } from "../data/siteData";
 
 export const TermsPage: React.FC = () => {
+  usePageTitle("Termos de Uso | Agência Mello");
   useEffect(() => {
-    document.title = "Termos de Uso | Agência Mello";
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
@@ -44,10 +44,10 @@ export const TermsPage: React.FC = () => {
             </p>
             <ul className="list-disc pl-5 space-y-1.5">
               <li>Site institucional de uma página contendo até 6 seções;</li>
-              <li>Apresentação de prévia demonstrativa personalizada sem compromisso inicial;</li>
+              <li>Prévia personalizada, privada e gratuita. Não há cobrança pela prévia caso o cliente não aprove;</li>
               <li>Pagamento no valor anunciado (R$ 500 em até 3x) realizado apenas após a aprovação da prévia;</li>
               <li>Inclusão de até 2 (duas) rodadas de ajustes de textos e imagens após a aprovação;</li>
-              <li>Custos recorrentes de domínio próprio e plano de hospedagem são detalhados e acordados antes da publicação.</li>
+              <li>{SITE_ESSENCIAL_CONDITIONS.domain}</li><li>{SITE_ESSENCIAL_CONDITIONS.hosting}</li><li>{SITE_ESSENCIAL_CONDITIONS.timing}</li><li>Publicação somente após aprovação do cliente. Alterações e suporte após a entrega são combinados à parte.</li>
             </ul>
 
             <h2 className="text-xl font-semibold text-white mt-8 mb-3">3. Projetos Sob Medida</h2>

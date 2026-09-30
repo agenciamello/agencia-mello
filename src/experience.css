@@ -201,3 +201,22 @@
 @keyframes mello-mobile-menu-link{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @media(max-width:700px){.primary-cta,.quiet-link,.text-link,.showcase-image,.intent-send,.nav-contact,.menu-toggle{-webkit-tap-highlight-color:transparent}.primary-cta:active,.intent-send:active,.nav-contact:active,.menu-toggle:active{scale:.98}.quiet-link:active,.text-link:active{opacity:.7}.showcase-image:active .project-open{background:#141217;color:#eeeae4}.process-grid:before{display:block}}
 @media(prefers-reduced-motion:reduce){.showcase-project:after{display:none!important}.process-grid:before{transform:none!important}.hero-art,.hero-message,.portrait-mark,.contact-mark,.project-image-mask,.project-image-mask>img,.service-visual>*{will-change:auto!important}}
+
+/* Copy final: leitura e quebras sem alterar os hooks de motion. */
+.hero-scope{font-size:14px;color:#d4cbd7;margin:14px 0 0}
+.hero-baseline{gap:24px;font-size:13px}
+.hero-baseline>span:first-child{max-width:570px}
+.hero-baseline strong{font-weight:600}
+.service-directory h2{font-size:clamp(38px,4.5vw,64px)}
+.scroll-story-title{font-size:clamp(36px,5.8vw,84px)}
+.social-sheet.sheet-one strong{font-size:clamp(14px,2.6vw,36px)}
+.copy-bridge{padding-block:56px;border-top:1px solid #ffffff25}
+.copy-bridge h2{font-size:clamp(28px,4vw,48px)}
+.copy-bridge p{margin:18px 0;color:#bdb1c1}
+.studio .skip-link:not(:focus){transform:translateY(-200%);pointer-events:none}
+@media(min-width:701px) and (max-width:1100px){.studio-nav{gap:16px}.nav-contact{margin-left:0;padding-inline:10px!important}.nav-contact span{padding-left:5px}}
+@media(max-width:700px){.hero-baseline{align-items:flex-start;font-size:12px}.hero-baseline>span:first-child{flex-basis:100%}.service-directory h2{font-size:clamp(36px,10vw,58px)}.social-sheet.sheet-one strong{font-size:clamp(14px,5.5vw,30px)}}
+
+.experience-work .copy-bridge p{color:#625e5a}
+.process-studio .scope-note{color:#bdb1c1}
+.essential-buy>small{display:block;margin:8px 0 0}
