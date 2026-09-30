@@ -220,3 +220,23 @@
 .experience-work .copy-bridge p{color:#625e5a}
 .process-studio .scope-note{color:#bdb1c1}
 .essential-buy>small{display:block;margin:8px 0 0}
+
+/* Sprint 17: commercial work first, authored studies secondary. */
+.showcase-commercial-list{display:block}
+.showcase-commercial{max-width:none}
+.commercial-kicker{display:block;margin-bottom:14px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8e184e}
+.commercial-detail img{transform:scale(1.28);transform-origin:50% 35%}
+.study-introduction{display:grid;grid-template-columns:.72fr 1.28fr;gap:20px 60px;margin:100px 0 34px;padding-top:48px;border-top:1px solid #14121735}
+.study-introduction .micro{grid-column:1/-1;font-size:9px;color:#625660}
+.study-introduction h3{font:500 clamp(34px,4.8vw,62px)/1 'Space Grotesk',sans-serif;letter-spacing:-.045em}
+.study-introduction p{align-self:end;max-width:520px;font-size:13px;line-height:1.7;color:#625660}
+.study-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.study-card{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;padding:20px 0;border-top:1px solid #14121735;align-items:center}
+.study-image{display:block;overflow:hidden;background:#d9d0c4}
+.study-image img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .55s var(--ease)}
+.study-image:hover img{transform:scale(1.03)}
+.study-copy>span{font-size:8px;color:#625660;text-transform:uppercase;letter-spacing:.06em}
+.study-copy h4{font:500 clamp(25px,2.8vw,38px)/1.05 'Space Grotesk',sans-serif;letter-spacing:-.035em;margin:12px 0}
+.study-copy p{font-size:12px;line-height:1.65;color:#625660}
+@media(max-width:900px){.study-introduction{grid-template-columns:1fr;gap:18px}.study-introduction .micro{grid-column:auto}.study-grid{grid-template-columns:1fr}.study-card{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.study-introduction{margin-top:70px;padding-top:34px}.study-card{grid-template-columns:1fr;gap:16px}.commercial-detail img{transform:scale(1.12)}}
