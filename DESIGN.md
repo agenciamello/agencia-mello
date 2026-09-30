@@ -35,3 +35,15 @@ Capturas, relatório de rotas, axe e medições de laboratório estão em artifa
 
 ## Sprint de impacto — 18/09/2026
 Hero sem card sobreposto, com logo oficial preservada e planos vetoriais derivados de sua geometria. Planos respondem ao cursor e abrem com o scroll em desktop. Portfólio em dois capítulos de largura ampla, com direção criativa factual e recortes das imagens existentes. Serviços usam sequências próprias ligadas ao scroll no desktop; no celular preservam fluxo nativo. Contato oferece três intenções opcionais com mensagens específicas para WhatsApp; nenhuma mensagem é enviada automaticamente. Reduced motion mantém tudo disponível sem coreografia. Nenhuma dependência adicionada.
+
+## Mello Motion System V2 — 29/09/2026
+
+O motion passa a operar em quatro níveis: microinteração, reveal, profundidade e momento cinematográfico. A regra continua sendo contraste: nem todo elemento se move e os efeitos de maior amplitude ficam restritos a pontos de narrativa.
+
+- Hero: entrada por máscaras com blur curto, profundidade em planos, deslocamento progressivo no scroll e iluminação radial reativa ao ponteiro apenas em desktop com mouse.
+- Portfólio: título reage ao progresso do scroll; cada projeto recebe progresso narrativo, recorte progressivo, deslocamento interno da imagem e CTA sincronizado.
+- Reveals: blocos editoriais podem usar data-reveal="stagger" para entradas sequenciais curtas; processo, tags, editoriais de projeto e Site Essencial usam esse ritmo.
+- Profundidade: retrato, marca tipográfica e legenda usam velocidades diferentes; o símbolo de contato mantém parallax próprio.
+- Micro: tilt máximo permanece em 1,5° por eixo; CTAs principais, navegação de contato e envio de intenção recebem magnetismo abaixo de 4 px.
+- Mobile: sem parallax ligado ao scroll e sem tilt; fluxo visual permanece nativo.
+- Reduced motion: desmonta timelines e estilos inline do Motion V2, interrompe marquee e mantém todo conteúdo visível.
