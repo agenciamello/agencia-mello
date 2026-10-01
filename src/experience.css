@@ -25,7 +25,7 @@
 .chapter-nav [aria-current]{color:#ff82be}.chapter-nav [aria-current] i{width:20px}.chapter-nav a:hover b,.chapter-nav a:focus-visible b{opacity:1}
 
 /* Hero: the sentence leads; the official mark signs the composition. */
-.experience-hero{position:relative;isolation:isolate;overflow:clip}.hero-scene{padding-top:30px}
+.experience-hero{position:relative;isolation:isolate;overflow:clip;background:#000}.hero-scene{padding-top:30px}
 .hero-eyebrow{display:flex;justify-content:space-between;gap:20px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.hero-edition{text-align:right}
 .hero-composition{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.65fr);align-items:center;gap:48px;padding:60px 0 64px}
 .hero-message{min-width:0}.hero-message h1{font-size:clamp(72px,7.5vw,112px);line-height:.99;letter-spacing:-.065em;text-wrap:initial}
@@ -35,7 +35,7 @@
 .primary-cta{display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-height:56px;padding:16px 22px;background:var(--pink);color:var(--ink);font-size:14px;font-weight:600;transition:background var(--micro),transform var(--micro)}
 .primary-cta span{font-size:24px;line-height:1;transition:transform var(--micro)}.primary-cta:hover{background:#ff83bf}.primary-cta:hover span{transform:translate(3px,-3px)}.primary-cta:active{transform:translateY(2px)}
 .quiet-link{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;min-height:48px;border-bottom:1px solid #ffffff50;font-size:13px}.quiet-link:hover{color:var(--pink)}
-.hero-art{position:relative;height:340px;align-self:center}.hero-art-plane{position:absolute;inset:0;display:grid;place-items:center}.brand-sculpture{width:min(100%,292px)}.brand-sculpture img{width:100%;height:auto}
+.hero-art{position:relative;height:340px;align-self:center}.hero-art-plane{position:absolute;inset:0;display:grid;place-items:center}.brand-sculpture{display:grid;place-items:center;transform-origin:center;will-change:transform}.brand-sculpture-video{width:min(135%,560px);aspect-ratio:848/478;overflow:hidden}.brand-sculpture-video video{display:block;width:100%;height:100%;object-fit:contain;background:transparent;mix-blend-mode:screen}.brand-sculpture-static{width:min(72%,292px)}.brand-sculpture-static img{display:block;width:100%;height:auto}
 .art-coordinate{position:absolute;bottom:-22px;left:0;right:0;border-top:1px solid #ffffff35;padding-top:18px;font-size:11px;letter-spacing:.06em;color:var(--muted)}
 .hero-baseline{display:grid;grid-template-columns:minmax(0,1.3fr) auto minmax(0,.8fr);align-items:center;gap:36px;padding:25px 0 30px;border-top:1px solid #ffffff30;font-size:12px;color:var(--muted)}
 .hero-baseline>span:first-child{max-width:530px}.hero-baseline strong{font-weight:500;color:var(--paper)}.hero-location{text-align:right}
@@ -165,7 +165,7 @@
   .hero-scene{padding-top:26px}.hero-eyebrow{font-size:10px;letter-spacing:.045em;gap:14px}.hero-eyebrow>span{max-width:50%}
   .hero-composition{display:block;padding:42px 0 38px}.hero-message h1{font-size:clamp(44px,12.9vw,78px);line-height:1.02;letter-spacing:-.062em}
   .hero-description{font-size:15px;margin-top:28px!important;max-width:40ch}.hero-scope{font-size:12px;margin-top:14px!important}
-  .hero-actions{gap:18px;margin-top:26px;align-items:stretch}.primary-cta{width:100%;font-size:14px;min-height:56px}.quiet-link{font-size:13px;min-height:44px}.hero-art{display:none}
+  .hero-actions{gap:18px;margin-top:26px;align-items:stretch}.primary-cta{width:100%;font-size:14px;min-height:56px}.quiet-link{font-size:13px;min-height:44px}.hero-art{display:block;width:100%;height:auto;aspect-ratio:848/478;margin-top:28px}.brand-sculpture-video{width:100%}.brand-sculpture-static{width:min(54%,220px)}.art-coordinate{display:none}
   .hero-baseline{grid-template-columns:1fr auto;gap:20px;font-size:12px;padding-block:24px}.hero-baseline>span:first-child{grid-column:1/-1}
   .hero-location{grid-column:1;grid-row:2;font-size:11px}.scroll-cue{grid-column:2;grid-row:2;font-size:11px;gap:8px}.scroll-cue>span{width:30px;height:30px}
   .experience-work{padding-top:64px}.section-label{font-size:11px;gap:16px}.work-introduction{margin:26px 0 44px;gap:24px}
