@@ -8,6 +8,7 @@ const VIANA_URL = 'https://vianaplanejados.vercel.app/';
 export function ExperiencePortfolio() {
   return <section className="experience-work" id="projetos" data-chapter="Projetos">
     <div className="wrap">
+      <p className="section-label"><span>01 /</span> Projetos selecionados</p>
       <div className="work-introduction">
         <h2 className="scroll-story-title" data-scroll-text><span>Presença digital que</span><span>existe fora do feed.</span></h2>
         <div>
@@ -20,23 +21,24 @@ export function ExperiencePortfolio() {
         <article className="showcase-project showcase-commercial" data-project-story="0">
           <div className="project-heading">
             <h3><a href={VIANA_URL} target="_blank" rel="noreferrer">Viana Planejados</a></h3>
-            <span>Site · Prévia comercial<br/>Em negociação</span>
+            <span className="project-status">Projeto comercial · Site<br/><strong>Prévia em negociação</strong></span>
           </div>
-          <a className="showcase-image" data-tilt href={VIANA_URL} target="_blank" rel="noreferrer" aria-label="Ver site Viana Planejados">
+          <a className="showcase-image" href={VIANA_URL} target="_blank" rel="noreferrer" aria-label="Ver site Viana Planejados">
             <div className="project-image-mask"><img src="/assets/viana-planejados-site.webp" alt="Prévia do site Viana Planejados, com projeto de móveis planejados em destaque." width="1440" height="1100" loading="lazy"/></div>
             <span className="project-open">Ver site <ArrowUpRight size={20} aria-hidden="true"/></span>
           </a>
-          <div className="project-editorial" data-reveal="stagger">
+          <div className="project-editorial">
             <div className="project-argument">
               <span className="commercial-kicker">Projeto comercial</span>
               <h4>Um endereço próprio para o negócio não depender só do feed.</h4>
               <p>A proposta para a Viana Planejados organiza serviços, portfólio, localização e contato em uma experiência própria — preparada para representar a empresa também nas buscas.</p>
               <a href={VIANA_URL} target="_blank" rel="noreferrer" className="project-detail-link">Visitar a prévia <ArrowUpRight size={18} aria-hidden="true"/></a>
             </div>
-            <figure className="project-detail-crop commercial-detail">
-              <img src="/assets/viana-planejados-site.webp" alt="Detalhe da prévia comercial criada para a Viana Planejados." width="1440" height="1100" loading="lazy"/>
-              <figcaption>Prévia comercial / versão atual em negociação</figcaption>
-            </figure>
+            <dl className="project-context">
+              <div><dt>01 / Antes</dt><dd>Presença concentrada no Instagram e na indicação.</dd></div>
+              <div><dt>02 / Intervenção</dt><dd>Um endereço próprio para apresentar a empresa, os serviços, o portfólio, a localização e o contato.</dd></div>
+              <div><dt>03 / Status</dt><dd>Projeto comercial. Prévia em negociação.</dd></div>
+            </dl>
           </div>
         </article>
       </div>
@@ -62,6 +64,7 @@ export function ExperiencePortfolio() {
 
       <p className="work-honesty">Viana Planejados é uma prévia comercial em negociação. Bellavista e Solace são estudos autorais. Resultados de busca ou performance só entram aqui quando houver dados reais.</p>
       <div className="copy-bridge">
+        <span className="micro">Site Essencial</span>
         <h2>Quer um assim pro seu negócio?</h2>
         <p>Veja seu site pronto antes de pagar. Só contrata se gostar.</p>
         <ContactLink messageKey="projetos" className="text-link">Quero ver meu site pronto <span aria-hidden="true">↗</span></ContactLink>
