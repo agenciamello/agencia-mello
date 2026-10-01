@@ -58,9 +58,24 @@ async function expectTransformMotion(page, selector, description) {
     await page.locator('.showcase-image').scrollIntoViewIfNeeded();
     await page.waitForTimeout(350);
     assert.notEqual(await page.locator('.showcase-image img').evaluate(element => element.style.transform), '', 'Mobile project parallax');
-    await page.locator('#servico-web .service-visual').scrollIntoViewIfNeeded();
+    const serviceIntro = page.locator('[data-service-intro]');
+    const introY = (await documentPosition(serviceIntro)).y;
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - innerHeight * .88), behavior: 'instant' }), introY);
     await page.waitForTimeout(350);
+    const introStart = await page.locator('.service-title-line').first().evaluate(element => getComputedStyle(element).transform);
+    await page.evaluate(y => window.scrollTo({ top: y + 360, behavior: 'instant' }), Math.max(0, introY - 844 * .88));
+    await page.waitForTimeout(550);
+    const introAfter = await page.locator('.service-title-line').first().evaluate(element => getComputedStyle(element).transform);
+    assert.notEqual(introStart, introAfter, 'Mobile services title reacts to scroll');
+    assert.ok(Number(await serviceIntro.evaluate(element => getComputedStyle(element).getPropertyValue('--service-accent'))) > .15, 'Mobile services accent line progresses with scroll');
+
+    const serviceVisual = page.locator('#servico-web .service-visual');
+    const visualY = (await documentPosition(serviceVisual)).y;
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - innerHeight * .68), behavior: 'instant' }), visualY);
+    await page.waitForTimeout(550);
     assert.notEqual(await page.locator('#servico-web .mini-browser').evaluate(element => element.style.transform), '', 'Mobile service motion');
+    assert.notEqual(await serviceVisual.evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service frame motion');
+    assert.notEqual(await serviceVisual.locator('.service-scan-line').evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service scan follows scroll');
 
     const results = [];
     await page.emulateMedia({ reducedMotion: 'reduce' });
