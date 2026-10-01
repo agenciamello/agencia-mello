@@ -132,8 +132,8 @@
 .intent-send{display:inline-flex;align-items:center;justify-content:space-between;gap:40px;min-height:54px;margin-top:26px;border-bottom:1px solid currentColor;font-size:18px;font-weight:500;padding-block:14px}.intent-send:hover svg{transform:translate(3px,-3px)}
 .contact-intent>p{font-size:12px;margin-top:16px;max-width:65ch}.contact-bottom{border-top:1px solid #28101e50;padding-top:24px;align-items:center}.studio-contact .text-link:hover{color:var(--ink)}
 .studio-footer{padding-block:48px 28px;gap:30px}.studio-footer .footer-signature{grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:50px;padding:24px 0 44px;border-bottom:1px solid #ffffff30}
-.footer-signature>img{width:min(45%,450px);height:auto}.footer-signature>span{font-size:16px;text-align:right}.studio-footer>div:nth-child(2){display:flex;align-items:center;gap:30px;color:var(--muted)}
-.studio-footer .footer-brand{width:108px}.footer-links{font-size:12px}.studio-footer>p{font-size:11px}
+.footer-signature>img{width:min(45%,450px);height:auto}.footer-signature>span{font-size:16px;text-align:right}.studio-footer .footer-summary{display:flex;align-items:flex-start;gap:34px}.footer-summary>strong{font:500 14px/1.45 'Space Grotesk',Arial;color:var(--paper);letter-spacing:-.02em}.footer-summary>span{font-size:12px;line-height:1.55;color:var(--muted)}
+.footer-links{font-size:12px}.studio-footer>p{font-size:11px}
 
 /* Shared case and offer routes. */
 .case-head{padding-top:55px}.case-head h1{letter-spacing:-.065em}.case-figure{overflow:hidden}.case-figure img{border-radius:0}.case-story h2{font-size:clamp(40px,4.5vw,60px)}
@@ -209,7 +209,7 @@
   .studio-contact{padding:46px 0 38px}.studio h2.contact-title,.contact-title{font-size:clamp(43px,12.2vw,74px);margin:32px 0 36px}.contact-mark{width:28%;right:-8px;top:34%}
   .contact-intent legend{font-size:22px}.contact-intent fieldset>p{font-size:13px}.intent-options{display:grid;gap:10px}.intent-options label>span{font-size:14px}.intent-send{display:flex;font-size:16px;gap:20px}.contact-intent>p{font-size:12px}.contact-bottom{align-items:start;gap:12px}
   .studio-footer{padding-block:30px 24px;gap:24px}.studio-footer .footer-signature{display:block;padding:12px 0 30px}.footer-signature>img{width:72%;max-width:300px}.footer-signature>span{display:block;font-size:14px;text-align:left;margin-top:24px}
-  .studio-footer>div:nth-child(2){font-size:11px;gap:20px}.studio-footer .footer-brand{width:88px}.footer-links{font-size:12px;gap:8px 20px}.case-story h2{font-size:42px}.case-details h3{font-size:28px}.essential-process .process-grid h3{font-size:23px}
+  .studio-footer .footer-summary{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px}.footer-summary>strong{font-size:13px}.footer-summary>span{font-size:11px}.footer-links{font-size:12px;gap:8px 20px}.case-story h2{font-size:42px}.case-details h3{font-size:28px}.essential-process .process-grid h3{font-size:23px}
 }
 @media(max-width:360px){
   .studio{--gutter:20px}.whatsapp-float{width:52px;height:52px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}.hero-eyebrow{font-size:9px}.hero-message h1{font-size:clamp(42px,12.9vw,46px)}.hero-scope{font-size:11px}
