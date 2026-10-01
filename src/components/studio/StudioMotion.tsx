@@ -96,6 +96,23 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
           }
         }
 
+        const bridgeReveal = scope.querySelector<HTMLElement>('.copy-bridge-reveal');
+        if (bridgeReveal) {
+          const words = bridgeReveal.querySelectorAll<HTMLElement>('.copy-bridge-word');
+          if (words.length) {
+            gsap.fromTo(words,
+              { y: isMobile ? 14 : 16, opacity: .14, filter: 'blur(10px)' },
+              { y: 0, opacity: 1, filter: 'blur(0px)', duration: isMobile ? .5 : .54,
+                stagger: isMobile ? .055 : .06, ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: bridgeReveal,
+                  start: isMobile ? 'top 88%' : 'top 86%',
+                  once: true,
+                },
+              });
+          }
+        }
+
         scope.querySelectorAll<HTMLElement>('.showcase-image, .study-image').forEach(frameEl => {
           const image = frameEl.querySelector('img');
           if (!image) return;

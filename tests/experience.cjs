@@ -78,6 +78,24 @@ async function expectTransformMotion(page, selector, description) {
     assert.ok(thesisAfter.opacity > .99 && thesisAfter.filter === 'blur(0px)', 'Portfolio thesis finishes fully sharp');
     assert.ok(thesisLineAfter > .95, 'Portfolio thesis accent completes after the reveal');
 
+    const bridgeReveal = page.locator('.copy-bridge-reveal');
+    const bridgeY = (await documentPosition(bridgeReveal)).y;
+    const bridgeTrigger = Math.max(0, bridgeY - 844 * .88);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 110), behavior: 'instant' }), bridgeTrigger);
+    await page.waitForTimeout(160);
+    const bridgeBefore = await page.locator('.copy-bridge-word').first().evaluate(element => ({
+      opacity: Number(getComputedStyle(element).opacity),
+      filter: getComputedStyle(element).filter,
+    }));
+    assert.ok(bridgeBefore.opacity < .3 && bridgeBefore.filter.includes('blur'), 'Copy bridge starts blurred before reveal');
+    await page.evaluate(y => window.scrollTo({ top: y + 70, behavior: 'instant' }), bridgeTrigger);
+    await page.waitForTimeout(1450);
+    const bridgeAfter = await page.locator('.copy-bridge-word').last().evaluate(element => ({
+      opacity: Number(getComputedStyle(element).opacity),
+      filter: getComputedStyle(element).filter,
+    }));
+    assert.ok(bridgeAfter.opacity > .99 && bridgeAfter.filter === 'blur(0px)', 'Copy bridge finishes fully sharp');
+
     await page.locator('.showcase-image').scrollIntoViewIfNeeded();
     await page.waitForTimeout(350);
     assert.notEqual(await page.locator('.showcase-image img').evaluate(element => element.style.transform), '', 'Mobile project parallax');
@@ -105,6 +123,7 @@ async function expectTransformMotion(page, selector, description) {
     await page.waitForTimeout(180);
     assert.equal(await page.locator('.project-thesis-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes thesis transforms');
     assert.equal(Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line'))), 1, 'Reduced motion keeps thesis accent visible');
+    assert.equal(await page.locator('.copy-bridge-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes copy bridge transforms');
     for (const width of viewports) {
       await page.setViewportSize({ width, height: 900 });
       for (const route of routes) {

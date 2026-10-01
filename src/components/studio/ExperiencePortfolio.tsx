@@ -65,7 +65,7 @@ export function ExperiencePortfolio() {
       <p className="work-honesty">Viana Planejados é uma prévia comercial em negociação. Bellavista e Solace são estudos autorais. Resultados de busca ou performance só entram aqui quando houver dados reais.</p>
       <div className="copy-bridge">
         <span className="micro">Site Essencial</span>
-        <h2>Quer um assim pro seu negócio?</h2>
+        <h2 className="copy-bridge-reveal" aria-label="Quer um assim pro seu negócio?"><span aria-hidden="true"><span className="copy-bridge-word">Quer</span><span className="copy-bridge-word">um</span><span className="copy-bridge-word">assim</span><span className="copy-bridge-word">pro</span><span className="copy-bridge-word">seu</span><span className="copy-bridge-word">negócio?</span></span></h2>
         <p>Veja seu site pronto antes de pagar. Só contrata se gostar.</p>
         <ContactLink messageKey="projetos" className="text-link">Quero ver meu site pronto <span aria-hidden="true">↗</span></ContactLink>
       </div>
