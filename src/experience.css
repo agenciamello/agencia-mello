@@ -148,7 +148,7 @@
 @media(min-width:901px){
   .hero-composition{grid-template-columns:minmax(0,1.35fr) minmax(360px,.9fr);gap:clamp(20px,2.5vw,42px)}
   .hero-message{position:relative;z-index:2}.hero-art{height:clamp(300px,30vw,430px);z-index:1;overflow:visible}
-  .brand-sculpture-video{width:clamp(600px,52vw,760px);max-width:none;position:relative;left:clamp(20px,4vw,70px)}
+  .brand-sculpture-video{width:clamp(600px,52vw,760px);max-width:none;position:relative;left:clamp(-120px,-8vw,-72px)}
   .brand-sculpture-static{position:relative;left:clamp(12px,2vw,34px)}
   .service-directory{--service-accent:0}.service-title-line{will-change:transform,opacity}
   .service-chapter{position:relative;--chapter-progress:0}.service-chapter-top{position:relative;overflow:hidden}
