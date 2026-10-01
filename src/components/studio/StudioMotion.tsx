@@ -9,6 +9,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
 
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const desktop = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)');
+    const mobile = matchMedia('(max-width: 700px)');
     let disposeMotion = () => {};
     let generation = 0;
     let destroyed = false;
@@ -48,6 +49,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
 
       const cleanups: Array<() => void> = [];
       const isDesktop = desktop.matches;
+      const isMobile = mobile.matches;
       const context = gsap.context(() => {
         const hero = scope.querySelector<HTMLElement>('.experience-hero');
         const symbol = scope.querySelector<HTMLElement>('.hero-art-plane');
@@ -86,24 +88,98 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
               scrollTrigger: { trigger: frameEl, start: 'top bottom', end: 'bottom top', scrub: .8 } });
         });
 
+        if (isMobile) {
+          const serviceIntro = scope.querySelector<HTMLElement>('[data-service-intro]');
+          if (serviceIntro) {
+            const introLines = serviceIntro.querySelectorAll<HTMLElement>('.service-title-line');
+            const introLabel = serviceIntro.querySelector<HTMLElement>('.section-label');
+            const introParagraph = serviceIntro.querySelector<HTMLElement>(':scope > p');
+            const introLinks = serviceIntro.querySelectorAll<HTMLElement>('[data-service-nav]');
+            const introTimeline = gsap.timeline({ scrollTrigger: {
+              trigger: serviceIntro, start: 'top 92%', end: 'bottom 42%', scrub: .62,
+            }});
+            if (introLabel) introTimeline.fromTo(introLabel,
+              { x: -16, opacity: .45 }, { x: 0, opacity: 1, duration: .3, ease: 'none' }, 0);
+            if (introLines.length) introTimeline.fromTo(introLines,
+              { x: (index: number) => index === 1 ? 24 : -24, opacity: .28, scale: .965 },
+              { x: 0, opacity: 1, scale: 1, stagger: .12, duration: .72, ease: 'none' }, .04);
+            introTimeline.to(serviceIntro, { '--service-accent': 1, duration: .4, ease: 'none' }, .34);
+            if (introParagraph) introTimeline.fromTo(introParagraph,
+              { y: 22, opacity: .35 }, { y: 0, opacity: 1, duration: .5, ease: 'none' }, .42);
+            if (introLinks.length) introTimeline.fromTo(introLinks,
+              { x: 18, opacity: .38 }, { x: 0, opacity: 1, stagger: .07, duration: .52, ease: 'none' }, .5);
+          }
+
+          scope.querySelectorAll('[data-service-chapter]').forEach((chapterNode, index) => {
+            const chapter = chapterNode as HTMLElement;
+            const top = chapter.querySelector('.service-chapter-top') as HTMLElement | null;
+            const visual = chapter.querySelector('.service-visual') as HTMLElement | null;
+            const copies = chapter.querySelectorAll('[data-service-copy]');
+            const action = chapter.querySelector('.text-link') as HTMLElement | null;
+
+            gsap.to(chapter, { '--chapter-progress': 1, ease: 'none',
+              scrollTrigger: { trigger: chapter, start: 'top 88%', end: 'bottom 48%', scrub: .55 } });
+
+            if (top) gsap.fromTo(top,
+              { x: -16, opacity: .45 }, { x: 0, opacity: 1, ease: 'none',
+                scrollTrigger: { trigger: top, start: 'top 94%', end: 'top 70%', scrub: .45 } });
+
+            if (visual) {
+              gsap.fromTo(visual,
+                { y: 46, scale: .925, rotation: index === 1 ? 2.4 : index === 2 ? -2.8 : 1.8,
+                  clipPath: 'inset(7% 4% 7% 4%)', opacity: .64 },
+                { y: 0, scale: 1, rotation: 0, clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, ease: 'none',
+                  scrollTrigger: { trigger: visual, start: 'top 94%', end: 'center 52%', scrub: .52 } });
+
+              const scan = visual.querySelector<HTMLElement>('.service-scan-line');
+              if (scan) gsap.fromTo(scan,
+                { y: -2, opacity: 0 },
+                { y: () => Math.max(120, visual.clientHeight + 4), opacity: .78, ease: 'none',
+                  scrollTrigger: { trigger: visual, start: 'top 91%', end: 'bottom 44%', scrub: .5 } });
+            }
+
+            copies.forEach((copy, copyIndex) => {
+              gsap.fromTo(copy,
+                { y: 24, x: copyIndex === 0 ? -12 : 10, opacity: .36 },
+                { y: 0, x: 0, opacity: 1, ease: 'none',
+                  scrollTrigger: { trigger: copy, start: 'top 93%', end: 'top 66%', scrub: .45 } });
+            });
+
+            if (action) gsap.fromTo(action,
+              { y: 16, opacity: .45 }, { y: 0, opacity: 1, ease: 'none',
+                scrollTrigger: { trigger: action, start: 'top 94%', end: 'top 76%', scrub: .4 } });
+          });
+        }
+
         scope.querySelectorAll<HTMLElement>('.service-visual').forEach(visual => {
           const sequence = gsap.timeline({ scrollTrigger: {
-            trigger: visual, start: 'top 92%', end: 'center 52%', scrub: isDesktop ? .55 : .4,
+            trigger: visual, start: 'top 92%', end: 'center 52%', scrub: isDesktop ? .55 : isMobile ? .5 : .4,
           }});
           if (visual.classList.contains('visual-web')) {
             sequence.fromTo(visual.querySelector('.mini-browser'),
-              { y: isDesktop ? 32 : 18, rotation: 2.5, scale: .96 },
-              { y: 0, rotation: -2, scale: 1, ease: 'power2.out' });
-          }          if (visual.classList.contains('visual-brand')) {
+              { y: isDesktop ? 32 : isMobile ? 46 : 18, rotation: isMobile ? 6 : 2.5, scale: isMobile ? .9 : .96 },
+              { y: 0, rotation: -2, scale: 1, ease: isMobile ? 'none' : 'power2.out' });
+          }
+          if (visual.classList.contains('visual-brand')) {
             sequence
-              .fromTo(visual.querySelector('.brand-specimen'), { x: -18, opacity: .62 }, { x: 0, opacity: 1 }, 0)
-              .fromTo(visual.querySelectorAll('.brand-swatches i'), { scaleY: .3 }, { scaleY: 1, stagger: .08 }, 0)
-              .fromTo(visual.querySelector('img'), { rotation: -3, x: 16 }, { rotation: 0, x: 0 }, 0);
+              .fromTo(visual.querySelector('.brand-specimen'),
+                { x: isMobile ? -44 : -18, opacity: isMobile ? .28 : .62 },
+                { x: 0, opacity: 1, ease: isMobile ? 'none' : 'power2.out' }, 0)
+              .fromTo(visual.querySelectorAll('.brand-swatches i'),
+                { scaleY: isMobile ? .05 : .3, transformOrigin: 'bottom' },
+                { scaleY: 1, stagger: .08, ease: isMobile ? 'none' : 'power2.out' }, 0)
+              .fromTo(visual.querySelector('img'),
+                { rotation: isMobile ? -14 : -3, x: isMobile ? 38 : 16, scale: isMobile ? .84 : 1 },
+                { rotation: 8, x: 0, scale: 1, ease: isMobile ? 'none' : 'power2.out' }, 0);
           }
           if (visual.classList.contains('visual-content')) {
             sequence
-              .fromTo(visual.querySelector('.sheet-one'), { y: 28, rotation: -12 }, { y: 0, rotation: -8 }, 0)
-              .fromTo(visual.querySelector('.sheet-two'), { y: 42, rotation: 17 }, { y: 0, rotation: 12 }, 0);
+              .fromTo(visual.querySelector('.sheet-one'),
+                { y: isMobile ? 62 : 28, x: isMobile ? -20 : 0, rotation: isMobile ? -22 : -12 },
+                { y: 0, x: 0, rotation: -5, ease: isMobile ? 'none' : 'power2.out' }, 0)
+              .fromTo(visual.querySelector('.sheet-two'),
+                { y: isMobile ? 76 : 42, x: isMobile ? 20 : 0, rotation: isMobile ? 26 : 17 },
+                { y: 0, x: 0, rotation: 8, ease: isMobile ? 'none' : 'power2.out' }, 0);
           }
         });
 
@@ -213,6 +289,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
     const preferenceChange = () => { void setup(); };
     reduced.addEventListener('change', preferenceChange);
     desktop.addEventListener('change', preferenceChange);
+    mobile.addEventListener('change', preferenceChange);
     return () => {
       destroyed = true;
       generation++;
@@ -222,6 +299,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
       window.removeEventListener('resize', schedule);
       reduced.removeEventListener('change', preferenceChange);
       desktop.removeEventListener('change', preferenceChange);
+      mobile.removeEventListener('change', preferenceChange);
       scope.style.removeProperty('--reading-progress');
     };
   }, [root, route]);
