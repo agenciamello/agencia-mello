@@ -2,8 +2,66 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/site-essencial",
+      "destination": "/site-essencial/index.html"
+    },
+    {
+      "source": "/projetos/bellavista",
+      "destination": "/projetos/bellavista/index.html"
+    },
+    {
+      "source": "/projetos/solace",
+      "destination": "/projetos/solace/index.html"
+    },
+    {
+      "source": "/politica-de-privacidade",
+      "destination": "/politica-de-privacidade/index.html"
+    },
+    {
+      "source": "/termos-de-uso",
+      "destination": "/termos-de-uso/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/politica-de-privacidade",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/termos-de-uso",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
     }
   ]
 }

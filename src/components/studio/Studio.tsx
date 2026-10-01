@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { SITE_INFO, SITE_ESSENCIAL_MESSAGES, WHATSAPP_MESSAGES, getWhatsAppUrl } from '../../data/siteData';
+import { SEO_SITE, buildStructuredData, getSeoForPath } from '../../data/seoRoutes.js';
 import '../../studio.css';
 import '../../experience.css';
 import { ContactIntent } from './ContactIntent';
@@ -9,16 +10,63 @@ import { useStudioMotion } from './StudioMotion';
 export function usePageTitle(title: string) {
   const { pathname } = useLocation();
   useEffect(() => {
-    document.title = title;
-    const description = pathname === '/site-essencial' ? 'Uma página com WhatsApp integrado. Prévia grátis e privada, você só paga se aprovar. R$ 500 em até 3x.' : pathname.startsWith('/projetos/') ? 'Estudo conceitual da Agência Mello. Conheça as escolhas de design do projeto, sem atribuição de resultados comerciais.' : pathname === '/' ? 'Veja seu site pronto antes de pagar no Site Essencial. Sites, identidade visual e conteúdo pra pequenos negócios, direto com quem cria. Rio de Janeiro e todo o Brasil.' : title;
-    document.querySelector('meta[name="description"]')?.setAttribute('content', description);
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
-    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', description);
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title);
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
-    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (canonical) canonical.href = `${SITE_INFO.canonicalUrl}${pathname === '/' ? '/' : pathname}`;
-    document.querySelector('meta[property="og:url"]')?.setAttribute('content', `${SITE_INFO.canonicalUrl}${pathname}`);
+    const seo = getSeoForPath(pathname, title);
+
+    const upsertMeta = (selector: string, attribute: 'name' | 'property', key: string, content: string) => {
+      let element = document.head.querySelector<HTMLMetaElement>(selector);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
+    };
+
+    const upsertLink = (selector: string, rel: string, href: string, extras: Record<string,string> = {}) => {
+      let element = document.head.querySelector<HTMLLinkElement>(selector);
+      if (!element) {
+        element = document.createElement('link');
+        element.rel = rel;
+        document.head.appendChild(element);
+      }
+      element.href = href;
+      Object.entries(extras).forEach(([key,value]) => element?.setAttribute(key,value));
+    };
+
+    document.title = seo.title;
+    document.documentElement.lang = SEO_SITE.language;
+
+    upsertMeta('meta[name="description"]','name','description',seo.description);
+    upsertMeta('meta[name="robots"]','name','robots',seo.robots);
+    upsertMeta('meta[name="googlebot"]','name','googlebot',seo.robots);
+    upsertMeta('meta[property="og:title"]','property','og:title',seo.title);
+    upsertMeta('meta[property="og:description"]','property','og:description',seo.description);
+    upsertMeta('meta[property="og:type"]','property','og:type',seo.type);
+    upsertMeta('meta[property="og:url"]','property','og:url',seo.canonical);
+    upsertMeta('meta[property="og:image"]','property','og:image',seo.image);
+    upsertMeta('meta[property="og:image:alt"]','property','og:image:alt',seo.imageAlt);
+    upsertMeta('meta[name="twitter:title"]','name','twitter:title',seo.title);
+    upsertMeta('meta[name="twitter:description"]','name','twitter:description',seo.description);
+    upsertMeta('meta[name="twitter:image"]','name','twitter:image',seo.image);
+    upsertMeta('meta[name="twitter:image:alt"]','name','twitter:image:alt',seo.imageAlt);
+
+    upsertLink('link[rel="canonical"]','canonical',seo.canonical);
+    upsertLink('link[rel="alternate"][hreflang="pt-BR"]','alternate',seo.canonical,{hreflang:'pt-BR'});
+    upsertLink('link[rel="alternate"][hreflang="x-default"]','alternate',seo.canonical,{hreflang:'x-default'});
+
+    let jsonLd = document.head.querySelector<HTMLScriptElement>('script[data-seo-jsonld]');
+    const structuredData = buildStructuredData(pathname,title);
+    if (structuredData && !Array.isArray(structuredData)) {
+      if (!jsonLd) {
+        jsonLd = document.createElement('script');
+        jsonLd.type = 'application/ld+json';
+        jsonLd.dataset.seoJsonld = 'true';
+        document.head.appendChild(jsonLd);
+      }
+      jsonLd.textContent = JSON.stringify(structuredData);
+    } else {
+      jsonLd?.remove();
+    }
   }, [title, pathname]);
 }
 export function SectionLabel({ number, children }: {number: string; children: React.ReactNode}) { return <p className="section-label"><span>{number} /</span>{children}</p>; }
