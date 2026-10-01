@@ -384,11 +384,113 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
           }
         });
 
+        const aboutSection = scope.querySelector<HTMLElement>('[data-about-cinematic]');
+        if (aboutSection) {
+          const portraitWindow = aboutSection.querySelector<HTMLElement>('.portrait-window');
+          const portraitCaption = aboutSection.querySelector<HTMLElement>('.portrait-caption');
+          const portraitMark = aboutSection.querySelector<HTMLElement>('.portrait-mark');
+          const sectionLabel = aboutSection.querySelector<HTMLElement>('.section-label');
+          const titleLines = aboutSection.querySelectorAll<HTMLElement>('.about-title-line');
+          const titleAccent = aboutSection.querySelector<HTMLElement>('.about-title-accent');
+          const titleDot = aboutSection.querySelector<HTMLElement>('.about-title-dot');
+          const copyBlocks = aboutSection.querySelectorAll<HTMLElement>('[data-about-copy]');
+          const cta = aboutSection.querySelector<HTMLElement>('.about-cta');
+
+          if (portraitWindow) {
+            gsap.set(portraitWindow, { clipPath: 'inset(0 0 100% 0)', opacity: .45 });
+            ScrollTrigger.create({
+              trigger: aboutSection,
+              start: isMobile ? 'top 90%' : 'top 82%',
+              once: true,
+              onEnter: () => gsap.to(portraitWindow, {
+                clipPath: 'inset(0 0 0% 0)', opacity: 1,
+                duration: isMobile ? .82 : 1.02, ease: 'power3.inOut',
+              }),
+            });
+          }
+
+          if (portraitCaption) {
+            gsap.set(portraitCaption, { y: 12, opacity: 0 });
+            ScrollTrigger.create({
+              trigger: aboutSection,
+              start: isMobile ? 'top 86%' : 'top 78%',
+              once: true,
+              onEnter: () => gsap.to(portraitCaption, {
+                y: 0, opacity: 1, duration: .48, delay: .12, ease: MOTION.ease,
+              }),
+            });
+          }
+
+          if (portraitMark) {
+            gsap.set(portraitMark, { scale: .72, opacity: 0 });
+            ScrollTrigger.create({
+              trigger: aboutSection,
+              start: isMobile ? 'top 84%' : 'top 76%',
+              once: true,
+              onEnter: () => gsap.to(portraitMark, {
+                scale: 1, opacity: 1, duration: .68, ease: 'back.out(1.35)',
+              }),
+            });
+          }
+
+          const titleTrigger = aboutSection.querySelector<HTMLElement>('.about-title');
+          if (titleTrigger && titleLines.length) {
+            if (sectionLabel) gsap.set(sectionLabel, { x: -18, opacity: .35 });
+            gsap.set(titleLines, { y: isMobile ? 28 : 40, opacity: .12, filter: 'blur(7px)' });
+            if (titleAccent) gsap.set(titleAccent, { x: isMobile ? -10 : -16 });
+            if (titleDot) gsap.set(titleDot, { scale: 0, opacity: 0, rotation: -14 });
+
+            const aboutTitleTl = gsap.timeline({ paused: true });
+            if (sectionLabel) aboutTitleTl.to(sectionLabel,
+              { x: 0, opacity: 1, duration: .34, ease: MOTION.ease }, 0);
+            aboutTitleTl.to(titleLines,
+              { y: 0, opacity: 1, filter: 'blur(0px)', duration: isMobile ? .58 : .68,
+                stagger: isMobile ? .10 : .12, ease: MOTION.ease }, .08);
+            if (titleAccent) aboutTitleTl.to(titleAccent,
+              { x: 0, duration: .42, ease: MOTION.ease }, .28);
+            if (titleDot) aboutTitleTl.to(titleDot,
+              { scale: 1, opacity: 1, rotation: 0, duration: .44, ease: 'back.out(1.7)' }, .62);
+
+            ScrollTrigger.create({
+              trigger: titleTrigger,
+              start: isMobile ? 'top 88%' : 'top 82%',
+              once: true,
+              onEnter: () => aboutTitleTl.play(0),
+            });
+          }
+
+          if (copyBlocks.length) {
+            gsap.set(copyBlocks, { y: isMobile ? 20 : 26, opacity: .18 });
+            ScrollTrigger.create({
+              trigger: copyBlocks[0],
+              start: isMobile ? 'top 90%' : 'top 84%',
+              once: true,
+              onEnter: () => gsap.to(copyBlocks, {
+                y: 0, opacity: 1, duration: isMobile ? .58 : .66,
+                stagger: isMobile ? .12 : .15, ease: MOTION.ease,
+              }),
+            });
+          }
+
+          if (cta) {
+            gsap.set(cta, { y: 16, opacity: .2, '--about-cta-line': 0 });
+            ScrollTrigger.create({
+              trigger: cta,
+              start: isMobile ? 'top 92%' : 'top 88%',
+              once: true,
+              onEnter: () => gsap.to(cta, {
+                y: 0, opacity: 1, '--about-cta-line': 1,
+                duration: .68, ease: MOTION.ease,
+              }),
+            });
+          }
+        }
+
         const portrait = scope.querySelector<HTMLElement>('.about-image');
         if (portrait) {
           const image = portrait.querySelector('img');
           const mark = portrait.querySelector('.portrait-mark');
-          if (image) gsap.fromTo(image, { yPercent: -2, scale: 1.025 }, { yPercent: 2, scale: 1.025, ease: 'none',
+          if (image) gsap.fromTo(image, { yPercent: -2, scale: 1.06 }, { yPercent: 2, scale: 1.025, ease: 'none',
             scrollTrigger: { trigger: portrait, start: 'top bottom', end: 'bottom top', scrub: .8 } });
           if (mark) gsap.fromTo(mark, { y: 15, rotation: -1.5 }, { y: -12, rotation: 1, ease: 'none',
             scrollTrigger: { trigger: portrait, start: 'top bottom', end: 'bottom top', scrub: .9 } });

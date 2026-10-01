@@ -141,6 +141,48 @@ async function expectTransformMotion(page, selector, description) {
     assert.notEqual(await serviceVisual.evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service frame motion');
     assert.notEqual(await serviceVisual.locator('.service-scan-line').evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service scan follows scroll');
 
+    const aboutSection = page.locator('[data-about-cinematic]');
+    const aboutPosition = await documentPosition(aboutSection);
+    const aboutStart = Math.max(0, aboutPosition.y - 844 * .90);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 100), behavior: 'instant' }), aboutStart);
+    await page.waitForTimeout(180);
+    assert.ok((await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath)).includes('100%'), 'Mobile portrait waits before cinematic reveal');
+    await page.evaluate(y => window.scrollTo({ top: y + 70, behavior: 'instant' }), aboutStart);
+    await page.waitForTimeout(1050);
+    assert.ok(!(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath)).includes('100%'), 'Mobile portrait opens as section enters');
+    assert.ok(Number(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).opacity)) > .99, 'Mobile portrait finishes visible');
+
+    const aboutTitle = page.locator('.about-title');
+    const aboutTitleY = (await documentPosition(aboutTitle)).y;
+    const aboutTitleTrigger = Math.max(0, aboutTitleY - 844 * .88);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 90), behavior: 'instant' }), aboutTitleTrigger);
+    await page.waitForTimeout(160);
+    const aboutTitleBefore = await page.locator('.about-title-line').first().evaluate(element => ({
+      opacity: Number(getComputedStyle(element).opacity),
+      filter: getComputedStyle(element).filter,
+    }));
+    assert.ok(aboutTitleBefore.opacity < .2 && aboutTitleBefore.filter.includes('blur'), 'Mobile about title starts soft');
+    await page.evaluate(y => window.scrollTo({ top: y + 70, behavior: 'instant' }), aboutTitleTrigger);
+    await page.waitForTimeout(1250);
+    assert.ok(await page.locator('.about-title-line').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) > .99 && getComputedStyle(element).filter === 'blur(0px)')), 'Mobile about title resolves in three beats');
+    assert.ok(Number(await page.locator('.about-title-dot').evaluate(element => getComputedStyle(element).opacity)) > .99, 'Mobile Mello dot pops in');
+
+    const firstAboutCopy = page.locator('[data-about-copy]').first();
+    const aboutCopyY = (await documentPosition(firstAboutCopy)).y;
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 844 * .86), behavior: 'instant' }), aboutCopyY);
+    await page.waitForTimeout(1150);
+    assert.ok(await page.locator('[data-about-copy]').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) > .99)), 'Mobile about copy cascades into view');
+
+    const aboutCta = page.locator('.about-cta');
+    const aboutCtaY = (await documentPosition(aboutCta)).y;
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 844 * .86), behavior: 'instant' }), aboutCtaY);
+    await page.waitForTimeout(850);
+    assert.ok(Number(await aboutCta.evaluate(element => getComputedStyle(element).getPropertyValue('--about-cta-line'))) > .95, 'Mobile about CTA finishes with pink accent');
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 844 * .72), behavior: 'instant' }), aboutPosition.y);
+    await page.waitForTimeout(260);
+    assert.ok(Number(await page.locator('.about-title-line').last().evaluate(element => getComputedStyle(element).opacity)) > .99, 'Mobile about reveal stays settled when scrolling back');
+    assert.ok(!(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath)).includes('100%'), 'Mobile portrait stays revealed when scrolling back');
+
     const processHeading = page.locator('.process-typewriter');
     const processHeadingY = (await documentPosition(processHeading)).y;
     const processTriggerY = Math.max(0, processHeadingY - 844 * .90);
@@ -182,6 +224,9 @@ async function expectTransformMotion(page, selector, description) {
     assert.equal(await page.locator('.project-thesis-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes thesis transforms');
     assert.equal(Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line'))), 1, 'Reduced motion keeps thesis accent visible');
     assert.equal(await page.locator('.copy-bridge-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes copy bridge transforms');
+    assert.equal(await page.locator('.about-title-line').first().evaluate(element => element.style.transform), '', 'Reduced motion removes about title transforms');
+    assert.equal(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath), 'none', 'Reduced motion keeps portrait fully revealed');
+    assert.equal(Number(await page.locator('.about-cta').evaluate(element => getComputedStyle(element).getPropertyValue('--about-cta-line'))), 1, 'Reduced motion keeps about CTA accent visible');
     assert.ok(await page.locator('.process-typewriter-char').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) === 1)), 'Reduced motion keeps process headline visible');
     assert.equal(Number(await page.locator('[data-process-timeline]').evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress'))), 1, 'Reduced motion keeps process timeline complete');
     for (const width of viewports) {
@@ -303,6 +348,48 @@ async function expectTransformMotion(page, selector, description) {
 
     await page.locator('#servico-marca').evaluate(element => element.scrollIntoView({ block: 'start', behavior: 'instant' }));
     await expect(page.locator('[data-service-nav="1"]')).toHaveAttribute('aria-current', 'true');
+
+    const desktopAbout = page.locator('[data-about-cinematic]');
+    const desktopAboutPosition = await documentPosition(desktopAbout);
+    const desktopAboutStart = Math.max(0, desktopAboutPosition.y - 900 * .82);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 100), behavior: 'instant' }), desktopAboutStart);
+    await page.waitForTimeout(180);
+    assert.ok((await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath)).includes('100%'), 'Desktop portrait waits before reveal');
+    await page.evaluate(y => window.scrollTo({ top: y + 80, behavior: 'instant' }), desktopAboutStart);
+    await page.waitForTimeout(1200);
+    assert.ok(!(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath)).includes('100%'), 'Desktop portrait opens cinematically');
+    assert.ok(Number(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).opacity)) > .99, 'Desktop portrait finishes visible');
+
+    const desktopAboutTitle = page.locator('.about-title');
+    const desktopAboutTitleY = (await documentPosition(desktopAboutTitle)).y;
+    const desktopAboutTitleTrigger = Math.max(0, desktopAboutTitleY - 900 * .82);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 90), behavior: 'instant' }), desktopAboutTitleTrigger);
+    await page.waitForTimeout(160);
+    const desktopAboutBefore = await page.locator('.about-title-line').first().evaluate(element => ({
+      opacity: Number(getComputedStyle(element).opacity),
+      filter: getComputedStyle(element).filter,
+    }));
+    assert.ok(desktopAboutBefore.opacity < .2 && desktopAboutBefore.filter.includes('blur'), 'Desktop about title starts soft');
+    await page.evaluate(y => window.scrollTo({ top: y + 70, behavior: 'instant' }), desktopAboutTitleTrigger);
+    await page.waitForTimeout(1350);
+    assert.ok(await page.locator('.about-title-line').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) > .99 && getComputedStyle(element).filter === 'blur(0px)')), 'Desktop about title resolves in three beats');
+    assert.ok(Number(await page.locator('.about-title-dot').evaluate(element => getComputedStyle(element).opacity)) > .99, 'Desktop Mello dot pops in');
+
+    const desktopAboutCopy = page.locator('[data-about-copy]').first();
+    const desktopAboutCopyY = (await documentPosition(desktopAboutCopy)).y;
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 900 * .82), behavior: 'instant' }), desktopAboutCopyY);
+    await page.waitForTimeout(1200);
+    assert.ok(await page.locator('[data-about-copy]').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) > .99)), 'Desktop about copy cascades into view');
+
+    const desktopAboutCta = page.locator('.about-cta');
+    const desktopAboutCtaY = (await documentPosition(desktopAboutCta)).y;
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 900 * .84), behavior: 'instant' }), desktopAboutCtaY);
+    await page.waitForTimeout(850);
+    assert.ok(Number(await desktopAboutCta.evaluate(element => getComputedStyle(element).getPropertyValue('--about-cta-line'))) > .95, 'Desktop about CTA finishes with pink accent');
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 900 * .70), behavior: 'instant' }), desktopAboutPosition.y);
+    await page.waitForTimeout(260);
+    assert.ok(Number(await page.locator('.about-title-line').last().evaluate(element => getComputedStyle(element).opacity)) > .99, 'Desktop about reveal stays settled when scrolling back');
+    assert.ok(!(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath)).includes('100%'), 'Desktop portrait stays revealed when scrolling back');
 
     const desktopProcessHeading = page.locator('.process-typewriter');
     const desktopProcessY = (await documentPosition(desktopProcessHeading)).y;
