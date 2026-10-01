@@ -79,6 +79,23 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
               { x: 0, opacity: 1, stagger: .15, duration: 1, ease: 'none' });
         });
 
+        const thesis = scope.querySelector<HTMLElement>('.project-thesis');
+        if (thesis) {
+          const words = thesis.querySelectorAll<HTMLElement>('.project-thesis-word');
+          const ending = thesis.querySelector<HTMLElement>('.project-thesis-end');
+          if (words.length) {
+            const thesisTimeline = gsap.timeline({ scrollTrigger: {
+              trigger: thesis, start: isMobile ? 'top 86%' : 'top 84%', once: true,
+            }});
+            thesisTimeline.fromTo(words,
+              { y: isMobile ? 14 : 18, opacity: .14, filter: 'blur(10px)' },
+              { y: 0, opacity: 1, filter: 'blur(0px)', duration: isMobile ? .48 : .54,
+                stagger: isMobile ? .045 : .05, ease: 'power3.out' });
+            if (ending) thesisTimeline.to(ending,
+              { '--thesis-line': 1, duration: .38, ease: 'power2.out' });
+          }
+        }
+
         scope.querySelectorAll<HTMLElement>('.showcase-image, .study-image').forEach(frameEl => {
           const image = frameEl.querySelector('img');
           if (!image) return;
