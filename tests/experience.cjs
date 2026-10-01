@@ -56,6 +56,29 @@ async function expectTransformMotion(page, selector, description) {
     await page.waitForTimeout(1100);
     await expectStableWhileScrolling(page, ['.hero-message', '.hero-actions'], 'Mobile hero');
 
+    const whatsappFloat = page.locator('.whatsapp-float');
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await page.waitForTimeout(180);
+    const floatAtTop = await whatsappFloat.evaluate(element => ({
+      opacity: Number(getComputedStyle(element).opacity),
+      visibility: getComputedStyle(element).visibility,
+      pointerEvents: getComputedStyle(element).pointerEvents,
+    }));
+    assert.equal(floatAtTop.opacity, 0, 'Floating WhatsApp stays hidden in the hero');
+    assert.equal(floatAtTop.visibility, 'hidden', 'Floating WhatsApp is not focusable while hidden');
+    const heroPosition = await documentPosition(page.locator('.experience-hero'));
+    await page.evaluate(y => window.scrollTo({ top: y, behavior: 'instant' }), heroPosition.y + heroPosition.height + 60);
+    await page.waitForTimeout(480);
+    const floatAfterHero = await whatsappFloat.evaluate(element => ({
+      opacity: Number(getComputedStyle(element).opacity),
+      visibility: getComputedStyle(element).visibility,
+      pointerEvents: getComputedStyle(element).pointerEvents,
+      href: element.getAttribute('href'),
+    }));
+    assert.ok(floatAfterHero.opacity > .95, 'Floating WhatsApp appears after the hero');
+    assert.equal(floatAfterHero.visibility, 'visible', 'Floating WhatsApp becomes visible after the hero');
+    assert.equal(floatAfterHero.pointerEvents, 'auto', 'Floating WhatsApp becomes interactive');
+    assert.match(floatAfterHero.href || '', /^https:\/\/wa\.me\//, 'Floating WhatsApp points to WhatsApp');
     const thesis = page.locator('.project-thesis');
     const thesisY = (await documentPosition(thesis)).y;
     const thesisTrigger = Math.max(0, thesisY - 844 * .86);
@@ -117,6 +140,11 @@ async function expectTransformMotion(page, selector, description) {
     assert.notEqual(await page.locator('#servico-web .mini-browser').evaluate(element => element.style.transform), '', 'Mobile service motion');
     assert.notEqual(await serviceVisual.evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service frame motion');
     assert.notEqual(await serviceVisual.locator('.service-scan-line').evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service scan follows scroll');
+
+    const contactPosition = await documentPosition(page.locator('.studio-contact'));
+    await page.evaluate(y => window.scrollTo({ top: y + 80, behavior: 'instant' }), contactPosition.y);
+    await page.waitForTimeout(420);
+    assert.equal(await whatsappFloat.evaluate(element => getComputedStyle(element).visibility), 'hidden', 'Floating WhatsApp hides over the contact section');
 
     const results = [];
     await page.emulateMedia({ reducedMotion: 'reduce' });
