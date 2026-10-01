@@ -229,6 +229,7 @@ async function expectTransformMotion(page, selector, description) {
     await page.waitForTimeout(1000);
     const desktopHeroVideo = await page.locator('.brand-sculpture-video').boundingBox();
     assert.ok(desktopHeroVideo && desktopHeroVideo.width >= 680, 'Desktop hero video has cinematic scale');
+    assert.ok(desktopHeroVideo && desktopHeroVideo.x < 1440 * .55, 'Desktop hero video stays inside the right composition instead of drifting to the edge');
     await expectTransformMotion(page, '.hero-art-plane', 'Desktop hero symbol');
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     await expectTransformMotion(page, '.hero-message', 'Desktop hero copy');
