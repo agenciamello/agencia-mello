@@ -55,6 +55,29 @@ async function expectTransformMotion(page, selector, description) {
     await loadPage(page);
     await page.waitForTimeout(1100);
     await expectStableWhileScrolling(page, ['.hero-message', '.hero-actions'], 'Mobile hero');
+
+    const thesis = page.locator('.project-thesis');
+    const thesisY = (await documentPosition(thesis)).y;
+    const thesisTrigger = Math.max(0, thesisY - 844 * .86);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 120), behavior: 'instant' }), thesisTrigger);
+    await page.waitForTimeout(180);
+    const thesisBefore = await page.locator('.project-thesis-word').first().evaluate(element => ({
+      opacity: Number(getComputedStyle(element).opacity),
+      filter: getComputedStyle(element).filter,
+    }));
+    const thesisLineBefore = Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line')));
+    assert.ok(thesisBefore.opacity < .3 && thesisBefore.filter.includes('blur'), 'Portfolio thesis starts blurred before reveal');
+    assert.ok(thesisLineBefore < .05, 'Portfolio thesis accent starts hidden');
+    await page.evaluate(y => window.scrollTo({ top: y + 80, behavior: 'instant' }), thesisTrigger);
+    await page.waitForTimeout(1450);
+    const thesisAfter = await page.locator('.project-thesis-word').last().evaluate(element => ({
+      opacity: Number(getComputedStyle(element).opacity),
+      filter: getComputedStyle(element).filter,
+    }));
+    const thesisLineAfter = Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line')));
+    assert.ok(thesisAfter.opacity > .99 && thesisAfter.filter === 'blur(0px)', 'Portfolio thesis finishes fully sharp');
+    assert.ok(thesisLineAfter > .95, 'Portfolio thesis accent completes after the reveal');
+
     await page.locator('.showcase-image').scrollIntoViewIfNeeded();
     await page.waitForTimeout(350);
     assert.notEqual(await page.locator('.showcase-image img').evaluate(element => element.style.transform), '', 'Mobile project parallax');
@@ -79,6 +102,9 @@ async function expectTransformMotion(page, selector, description) {
 
     const results = [];
     await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.waitForTimeout(180);
+    assert.equal(await page.locator('.project-thesis-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes thesis transforms');
+    assert.equal(Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line'))), 1, 'Reduced motion keeps thesis accent visible');
     for (const width of viewports) {
       await page.setViewportSize({ width, height: 900 });
       for (const route of routes) {

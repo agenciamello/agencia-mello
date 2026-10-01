@@ -30,7 +30,7 @@ export function ExperiencePortfolio() {
           <div className="project-editorial">
             <div className="project-argument">
               <span className="commercial-kicker">Projeto comercial</span>
-              <h4>Um endereço próprio para o negócio não depender só do feed.</h4>
+              <h4 className="project-thesis" aria-label="Um endereço próprio para o negócio não depender só do feed."><span className="project-thesis-visual" aria-hidden="true"><span className="project-thesis-word">Um</span><span className="project-thesis-word">endereço</span><span className="project-thesis-word">próprio</span><span className="project-thesis-word">para</span><span className="project-thesis-word">o</span><span className="project-thesis-word">negócio</span><span className="project-thesis-word">não</span><span className="project-thesis-word">depender</span><span className="project-thesis-end"><span className="project-thesis-word">só</span><span className="project-thesis-word">do</span><span className="project-thesis-word">feed.</span></span></span></h4>
               <p>A proposta para a Viana Planejados organiza serviços, portfólio, localização e contato em uma experiência própria — preparada para representar a empresa também nas buscas.</p>
               <a href={VIANA_URL} target="_blank" rel="noreferrer" className="project-detail-link">Visitar a prévia <ArrowUpRight size={18} aria-hidden="true"/></a>
             </div>
