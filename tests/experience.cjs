@@ -141,6 +141,36 @@ async function expectTransformMotion(page, selector, description) {
     assert.notEqual(await serviceVisual.evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service frame motion');
     assert.notEqual(await serviceVisual.locator('.service-scan-line').evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service scan follows scroll');
 
+    const processHeading = page.locator('.process-typewriter');
+    const processHeadingY = (await documentPosition(processHeading)).y;
+    const processTriggerY = Math.max(0, processHeadingY - 844 * .90);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 120), behavior: 'instant' }), processTriggerY);
+    await page.waitForTimeout(180);
+    const mobileTypeBefore = await page.locator('.process-typewriter-char').evaluateAll(elements => elements.filter(element => Number(getComputedStyle(element).opacity) > .5).length);
+    assert.equal(mobileTypeBefore, 0, 'Mobile process headline waits before typing');
+    await page.evaluate(y => window.scrollTo({ top: y + 70, behavior: 'instant' }), processTriggerY);
+    await page.waitForTimeout(520);
+    const mobileTypeMid = await page.locator('.process-typewriter-char').evaluateAll(elements => ({
+      visible: elements.filter(element => Number(getComputedStyle(element).opacity) > .5).length,
+      total: elements.length,
+    }));
+    assert.ok(mobileTypeMid.visible > 0 && mobileTypeMid.visible < mobileTypeMid.total, 'Mobile process headline types progressively');
+    await page.waitForTimeout(1500);
+    assert.ok(await processHeading.evaluate(element => element.classList.contains('is-typed')), 'Mobile process headline completes typing');
+    assert.ok(await page.locator('.process-typewriter-char').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) > .99)), 'Mobile process headline finishes visible');
+
+    const processTimeline = page.locator('[data-process-timeline]');
+    const processTimelinePosition = await documentPosition(processTimeline);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 844 * .82), behavior: 'instant' }), processTimelinePosition.y);
+    await page.waitForTimeout(250);
+    const mobileTimelineBefore = Number(await processTimeline.evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress')));
+    await page.evaluate(({ y, height }) => window.scrollTo({ top: Math.max(0, y + height * .55 - innerHeight * .5), behavior: 'instant' }), processTimelinePosition);
+    await page.waitForTimeout(620);
+    const mobileTimelineAfter = Number(await processTimeline.evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress')));
+    const mobileNodeOpacity = await page.locator('.process-step-node').evaluateAll(elements => elements.map(element => Number(getComputedStyle(element).opacity)));
+    assert.ok(mobileTimelineBefore < .08 && mobileTimelineAfter > .25, 'Mobile timeline draws with scroll');
+    assert.ok(mobileNodeOpacity[0] - mobileNodeOpacity.at(-1) > .1, 'Mobile timeline reveals milestones progressively');
+
     const contactPosition = await documentPosition(page.locator('.studio-contact'));
     await page.evaluate(y => window.scrollTo({ top: y + 80, behavior: 'instant' }), contactPosition.y);
     await page.waitForTimeout(420);
@@ -152,6 +182,8 @@ async function expectTransformMotion(page, selector, description) {
     assert.equal(await page.locator('.project-thesis-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes thesis transforms');
     assert.equal(Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line'))), 1, 'Reduced motion keeps thesis accent visible');
     assert.equal(await page.locator('.copy-bridge-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes copy bridge transforms');
+    assert.ok(await page.locator('.process-typewriter-char').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) === 1)), 'Reduced motion keeps process headline visible');
+    assert.equal(Number(await page.locator('[data-process-timeline]').evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress'))), 1, 'Reduced motion keeps process timeline complete');
     for (const width of viewports) {
       await page.setViewportSize({ width, height: 900 });
       for (const route of routes) {
@@ -271,6 +303,34 @@ async function expectTransformMotion(page, selector, description) {
 
     await page.locator('#servico-marca').evaluate(element => element.scrollIntoView({ block: 'start', behavior: 'instant' }));
     await expect(page.locator('[data-service-nav="1"]')).toHaveAttribute('aria-current', 'true');
+
+    const desktopProcessHeading = page.locator('.process-typewriter');
+    const desktopProcessY = (await documentPosition(desktopProcessHeading)).y;
+    const desktopProcessTrigger = Math.max(0, desktopProcessY - 900 * .84);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 120), behavior: 'instant' }), desktopProcessTrigger);
+    await page.waitForTimeout(180);
+    assert.equal(await page.locator('.process-typewriter-char').evaluateAll(elements => elements.filter(element => Number(getComputedStyle(element).opacity) > .5).length), 0, 'Desktop process headline waits before typing');
+    await page.evaluate(y => window.scrollTo({ top: y + 70, behavior: 'instant' }), desktopProcessTrigger);
+    await page.waitForTimeout(620);
+    const desktopTypeMid = await page.locator('.process-typewriter-char').evaluateAll(elements => ({
+      visible: elements.filter(element => Number(getComputedStyle(element).opacity) > .5).length,
+      total: elements.length,
+    }));
+    assert.ok(desktopTypeMid.visible > 0 && desktopTypeMid.visible < desktopTypeMid.total, 'Desktop process headline types progressively');
+    await page.waitForTimeout(1500);
+    assert.ok(await desktopProcessHeading.evaluate(element => element.classList.contains('is-typed')), 'Desktop process headline completes typing');
+
+    const desktopProcessTimeline = page.locator('[data-process-timeline]');
+    const desktopProcessTimelinePosition = await documentPosition(desktopProcessTimeline);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 900 * .86), behavior: 'instant' }), desktopProcessTimelinePosition.y);
+    await page.waitForTimeout(220);
+    const desktopTimelineBefore = Number(await desktopProcessTimeline.evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress')));
+    await page.evaluate(({ y, height }) => window.scrollTo({ top: Math.max(0, y + height * .55 - innerHeight * .5), behavior: 'instant' }), desktopProcessTimelinePosition);
+    await page.waitForTimeout(650);
+    const desktopTimelineAfter = Number(await desktopProcessTimeline.evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress')));
+    const desktopNodes = await page.locator('.process-step-node').evaluateAll(elements => elements.map(element => Number(getComputedStyle(element).opacity)));
+    assert.ok(desktopTimelineBefore < .08 && desktopTimelineAfter > .25, 'Desktop timeline draws with scroll');
+    assert.ok(desktopNodes[0] - desktopNodes.at(-1) > .1, 'Desktop timeline reveals milestones progressively');
 
     // Preference changes clean up running motion without a reload.
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));

@@ -113,6 +113,110 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
           }
         }
 
+        const processTypewriter = scope.querySelector<HTMLElement>('.process-typewriter');
+        if (processTypewriter) {
+          const chars = processTypewriter.querySelectorAll<HTMLElement>('.process-typewriter-char');
+          const caret = processTypewriter.querySelector<HTMLElement>('.process-typewriter-caret');
+          if (chars.length) {
+            gsap.set(chars, { opacity: 0 });
+            if (caret) gsap.set(caret, { opacity: 0 });
+            processTypewriter.classList.remove('is-typed');
+            const typingTimeline = gsap.timeline({
+              scrollTrigger: {
+                trigger: processTypewriter,
+                start: isMobile ? 'top 90%' : 'top 84%',
+                once: true,
+              },
+              onComplete: () => processTypewriter.classList.add('is-typed'),
+            });
+            typingTimeline.to(chars, {
+              opacity: 1,
+              duration: .01,
+              stagger: isMobile ? .028 : .034,
+              ease: 'none',
+            });
+            if (caret) typingTimeline.set(caret, { opacity: 1 });
+            cleanups.push(() => processTypewriter.classList.remove('is-typed'));
+          }
+        }
+
+        const processTimeline = scope.querySelector<HTMLElement>('[data-process-timeline]');
+        if (processTimeline) {
+          const steps = Array.from(processTimeline.querySelectorAll('[data-process-step]')) as HTMLElement[];
+          const nodes = Array.from(processTimeline.querySelectorAll('.process-step-node')) as HTMLElement[];
+          const compactTimeline = window.innerWidth <= 900;
+          gsap.set(processTimeline, { '--timeline-progress': 0 });
+
+          if (compactTimeline) {
+            gsap.to(processTimeline, {
+              '--timeline-progress': 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: processTimeline,
+                start: 'top 78%',
+                end: 'bottom 34%',
+                scrub: .62,
+              },
+            });
+
+            steps.forEach((step, index) => {
+              const node = step.querySelector<HTMLElement>('.process-step-node');
+              const copy = step.querySelectorAll<HTMLElement>('.micro, h3, p');
+              if (node) {
+                gsap.fromTo(node,
+                  { scale: .2, opacity: .25, backgroundColor: '#0b0b0d' },
+                  { scale: 1, opacity: 1, backgroundColor: '#ec4899', ease: 'none',
+                    scrollTrigger: {
+                      trigger: step,
+                      start: 'top 83%',
+                      end: 'top 58%',
+                      scrub: .45,
+                    },
+                  });
+              }
+              if (copy.length) {
+                gsap.fromTo(copy,
+                  { x: index % 2 === 0 ? 14 : 20, y: 14, opacity: .3 },
+                  { x: 0, y: 0, opacity: 1, stagger: .07, ease: 'none',
+                    scrollTrigger: {
+                      trigger: step,
+                      start: 'top 86%',
+                      end: 'center 62%',
+                      scrub: .5,
+                    },
+                  });
+              }
+            });
+          } else {
+            gsap.set(nodes, { scale: .2, opacity: .25, backgroundColor: '#0b0b0d' });
+            gsap.set(steps, { y: 34, opacity: .28 });
+            const journey = gsap.timeline({
+              scrollTrigger: {
+                trigger: processTimeline,
+                start: 'top 84%',
+                end: 'bottom 44%',
+                scrub: .72,
+              },
+              defaults: { ease: 'none' },
+            });
+            journey
+              .to(processTimeline, { '--timeline-progress': 1, duration: 1 }, 0)
+              .to(nodes, {
+                scale: 1,
+                opacity: 1,
+                backgroundColor: '#ec4899',
+                stagger: .2,
+                duration: .22,
+              }, .04)
+              .to(steps, {
+                y: 0,
+                opacity: 1,
+                stagger: .18,
+                duration: .32,
+              }, .08);
+          }
+        }
+
         scope.querySelectorAll<HTMLElement>('.showcase-image, .study-image').forEach(frameEl => {
           const image = frameEl.querySelector('img');
           if (!image) return;
