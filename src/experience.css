@@ -106,11 +106,11 @@
 .sheet-two{right:9%;top:4%;background:#e4ddd3;color:#2e2531;transform:rotate(8deg)}.sheet-two>span{font:500 clamp(18px,2.2vw,30px)/1.05 'Space Grotesk',Arial;letter-spacing:-.05em}.sheet-two img{width:55%;align-self:center;filter:brightness(.35)}
 
 /* People, process and offer use one spacing rhythm. */
-.about-studio{padding-block:112px;gap:110px}.about-image{max-width:480px;width:100%;position:relative}.portrait-window{overflow:hidden}
-.about-image img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;filter:none}.portrait-caption{font-size:12px;color:var(--muted);margin-top:18px}
-.portrait-mark{position:absolute;right:-30px;bottom:42px;font:500 94px/.9 'Space Grotesk',Arial;color:var(--pink);letter-spacing:-.08em}
-.about-copy h2{font-size:clamp(56px,6vw,84px);line-height:1.02;margin:28px 0}.about-copy h2>span{color:var(--pink)}.about-copy .lead{font-size:21px;line-height:1.5}
-.about-copy>p:not(.lead):not(.section-label){font-size:15px;line-height:1.8;color:var(--muted)}
+.about-studio{padding-block:112px;gap:110px}.about-image{max-width:480px;width:100%;position:relative}.portrait-window{overflow:hidden;will-change:clip-path,opacity}
+.about-image img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;filter:none}.portrait-caption{font-size:12px;color:var(--muted);margin-top:18px;will-change:transform,opacity}
+.portrait-mark{position:absolute;right:-30px;bottom:42px;font:500 94px/.9 'Space Grotesk',Arial;color:var(--pink);letter-spacing:-.08em;will-change:transform,opacity}
+.about-copy h2{font-size:clamp(56px,6vw,84px);line-height:1.02;margin:28px 0}.about-title-line{display:block;will-change:transform,opacity,filter}.about-title-accent{color:var(--pink)}.about-title-dot{display:inline-block;transform-origin:45% 70%;will-change:transform,opacity}.about-copy .lead{font-size:21px;line-height:1.5}
+.about-copy>p:not(.lead):not(.section-label){font-size:15px;line-height:1.8;color:var(--muted)}.about-copy [data-about-copy]{will-change:transform,opacity}.about-cta{position:relative;display:inline-flex;--about-cta-line:0}.about-cta:after{content:'';position:absolute;left:0;bottom:-7px;width:52%;height:2px;background:var(--pink);transform:scaleX(var(--about-cta-line));transform-origin:left;border-radius:999px}
 .process-studio{padding-block:24px 90px}.process-studio h2{font-size:clamp(38px,4.5vw,64px);margin:30px 0 46px;max-width:1050px}
 .process-typewriter-line{display:block;min-height:1.08em}.process-typewriter-word{display:inline-block;white-space:nowrap;margin-right:.24em}.process-typewriter-word:last-of-type{margin-right:0}.process-typewriter-char{display:inline}.process-typewriter-caret{display:inline-block;width:2px;height:.82em;margin-left:.08em;vertical-align:-.04em;background:var(--pink);opacity:0}.process-typewriter.is-typed .process-typewriter-caret{animation:process-caret .72s steps(1,end) infinite}
 @keyframes process-caret{0%,48%{opacity:1}49%,100%{opacity:.12}}
@@ -216,4 +216,4 @@
   .study-card{gap:14px;grid-template-columns:minmax(0,.72fr) minmax(0,1fr)}.study-copy h4{font-size:24px}.project-argument h4{font-size:29px}.brand-specimen{font-size:95px}.browser-chrome span{font-size:7px}
 }
 @media(max-width:700px) and (prefers-reduced-motion:no-preference){.studio-nav.is-open{animation:mello-mobile-menu 200ms var(--ease) both}.line-mask>span{animation-duration:500ms}}
-@media(prefers-reduced-motion:reduce){.studio *{animation:none!important;transition:none!important;scroll-behavior:auto!important}.ribbon-track{animation:none!important}.hero-art-plane,.project-image-mask{transform:none!important;clip-path:none!important}.line-mask,.contact-line{overflow:visible}.project-thesis-end{--thesis-line:1!important}}
+@media(prefers-reduced-motion:reduce){.studio *{animation:none!important;transition:none!important;scroll-behavior:auto!important}.ribbon-track{animation:none!important}.hero-art-plane,.project-image-mask{transform:none!important;clip-path:none!important}.line-mask,.contact-line{overflow:visible}.project-thesis-end{--thesis-line:1!important}.about-cta{--about-cta-line:1!important}}
