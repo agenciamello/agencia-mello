@@ -57,12 +57,12 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
         const eyebrow = scope.querySelector<HTMLElement>('.hero-eyebrow');
 
         if (hero && symbol && isDesktop) {
-          gsap.to(symbol, { y: 30, rotation: 1.5, ease: 'none',
-            scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: .75 } });
+          gsap.to(symbol, { y: 44, rotation: 1.35, scale: .975, ease: 'none',
+            scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: .78 } });
         }
         if (hero && message && isDesktop) {
-          gsap.to(message, { y: -14, ease: 'none',
-            scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: .9 } });
+          gsap.to(message, { y: -18, ease: 'none',
+            scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: .92 } });
         }        if (hero && eyebrow && isDesktop) {
           gsap.to(eyebrow, { y: -7, opacity: .72, ease: 'none',
             scrollTrigger: { trigger: hero, start: 'top top', end: '65% top', scrub: .9 } });
@@ -121,6 +121,69 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
             { yPercent: isDesktop ? 2.5 : 1.2, scale: isDesktop ? 1.025 : 1.012, ease: 'none',
               scrollTrigger: { trigger: frameEl, start: 'top bottom', end: 'bottom top', scrub: .8 } });
         });
+
+        if (isDesktop) {
+          const serviceIntro = scope.querySelector<HTMLElement>('[data-service-intro]');
+          if (serviceIntro) {
+            const introLines = serviceIntro.querySelectorAll<HTMLElement>('.service-title-line');
+            const introLabel = serviceIntro.querySelector<HTMLElement>('.section-label');
+            const introParagraph = serviceIntro.querySelector<HTMLElement>(':scope > p');
+            const introLinks = serviceIntro.querySelectorAll<HTMLElement>('[data-service-nav]');
+            const introTimeline = gsap.timeline({ scrollTrigger: {
+              trigger: serviceIntro, start: 'top 82%', end: 'bottom 38%', scrub: .78,
+            }});
+            if (introLabel) introTimeline.fromTo(introLabel,
+              { x: -24, opacity: .42 }, { x: 0, opacity: 1, duration: .3, ease: 'none' }, 0);
+            if (introLines.length) introTimeline.fromTo(introLines,
+              { x: (index: number) => index === 1 ? 34 : -34, opacity: .3, scale: .975 },
+              { x: 0, opacity: 1, scale: 1, stagger: .13, duration: .76, ease: 'none' }, .02);
+            introTimeline.to(serviceIntro, { '--service-accent': 1, duration: .38, ease: 'none' }, .34);
+            if (introParagraph) introTimeline.fromTo(introParagraph,
+              { y: 24, opacity: .4 }, { y: 0, opacity: 1, duration: .48, ease: 'none' }, .42);
+            if (introLinks.length) introTimeline.fromTo(introLinks,
+              { x: 20, opacity: .42 }, { x: 0, opacity: 1, stagger: .06, duration: .5, ease: 'none' }, .5);
+          }
+
+          scope.querySelectorAll('[data-service-chapter]').forEach((chapterNode, index) => {
+            const chapter = chapterNode as HTMLElement;
+            const top = chapter.querySelector('.service-chapter-top') as HTMLElement | null;
+            const visual = chapter.querySelector('.service-visual') as HTMLElement | null;
+            const copies = chapter.querySelectorAll('[data-service-copy]');
+            const action = chapter.querySelector('.text-link') as HTMLElement | null;
+
+            gsap.to(chapter, { '--chapter-progress': 1, ease: 'none',
+              scrollTrigger: { trigger: chapter, start: 'top 80%', end: 'bottom 46%', scrub: .65 } });
+
+            if (top) gsap.fromTo(top,
+              { x: -20, opacity: .46 }, { x: 0, opacity: 1, ease: 'none',
+                scrollTrigger: { trigger: top, start: 'top 88%', end: 'top 64%', scrub: .52 } });
+
+            if (visual) {
+              gsap.fromTo(visual,
+                { y: 72, scale: .9, rotation: index === 1 ? -2.8 : index === 2 ? 3.2 : 2.4,
+                  clipPath: 'inset(6% 5% 6% 5%)', opacity: .58 },
+                { y: 0, scale: 1, rotation: 0, clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, ease: 'none',
+                  scrollTrigger: { trigger: visual, start: 'top 88%', end: 'center 48%', scrub: .68 } });
+
+              const scan = visual.querySelector<HTMLElement>('.service-scan-line');
+              if (scan) gsap.fromTo(scan,
+                { y: -2, opacity: 0 },
+                { y: () => Math.max(160, visual.clientHeight + 4), opacity: .72, ease: 'none',
+                  scrollTrigger: { trigger: visual, start: 'top 84%', end: 'bottom 38%', scrub: .62 } });
+            }
+
+            copies.forEach((copy, copyIndex) => {
+              gsap.fromTo(copy,
+                { y: 26, x: copyIndex === 0 ? -12 : 12, opacity: .4 },
+                { y: 0, x: 0, opacity: 1, ease: 'none',
+                  scrollTrigger: { trigger: copy, start: 'top 88%', end: 'top 62%', scrub: .5 } });
+            });
+
+            if (action) gsap.fromTo(action,
+              { y: 18, opacity: .45 }, { y: 0, opacity: 1, ease: 'none',
+                scrollTrigger: { trigger: action, start: 'top 90%', end: 'top 70%', scrub: .44 } });
+          });
+        }
 
         if (isMobile) {
           const serviceIntro = scope.querySelector<HTMLElement>('[data-service-intro]');
@@ -191,29 +254,29 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
           }});
           if (visual.classList.contains('visual-web')) {
             sequence.fromTo(visual.querySelector('.mini-browser'),
-              { y: isDesktop ? 32 : isMobile ? 46 : 18, rotation: isMobile ? 6 : 2.5, scale: isMobile ? .9 : .96 },
-              { y: 0, rotation: -2, scale: 1, ease: isMobile ? 'none' : 'power2.out' });
+              { y: isDesktop ? 76 : isMobile ? 46 : 18, rotation: isDesktop ? 6 : isMobile ? 6 : 2.5, scale: isDesktop ? .88 : isMobile ? .9 : .96 },
+              { y: 0, rotation: -2, scale: 1, ease: isDesktop || isMobile ? 'none' : 'power2.out' });
           }
           if (visual.classList.contains('visual-brand')) {
             sequence
               .fromTo(visual.querySelector('.brand-specimen'),
-                { x: isMobile ? -44 : -18, opacity: isMobile ? .28 : .62 },
-                { x: 0, opacity: 1, ease: isMobile ? 'none' : 'power2.out' }, 0)
+                { x: isDesktop ? -70 : isMobile ? -44 : -18, opacity: isDesktop ? .22 : isMobile ? .28 : .62 },
+                { x: 0, opacity: 1, ease: isDesktop || isMobile ? 'none' : 'power2.out' }, 0)
               .fromTo(visual.querySelectorAll('.brand-swatches i'),
-                { scaleY: isMobile ? .05 : .3, transformOrigin: 'bottom' },
-                { scaleY: 1, stagger: .08, ease: isMobile ? 'none' : 'power2.out' }, 0)
+                { scaleY: isDesktop || isMobile ? .05 : .3, transformOrigin: 'bottom' },
+                { scaleY: 1, stagger: .08, ease: isDesktop || isMobile ? 'none' : 'power2.out' }, 0)
               .fromTo(visual.querySelector('img'),
-                { rotation: isMobile ? -14 : -3, x: isMobile ? 38 : 16, scale: isMobile ? .84 : 1 },
-                { rotation: 8, x: 0, scale: 1, ease: isMobile ? 'none' : 'power2.out' }, 0);
+                { rotation: isDesktop ? -16 : isMobile ? -14 : -3, x: isDesktop ? 54 : isMobile ? 38 : 16, scale: isDesktop ? .8 : isMobile ? .84 : 1 },
+                { rotation: 8, x: 0, scale: 1, ease: isDesktop || isMobile ? 'none' : 'power2.out' }, 0);
           }
           if (visual.classList.contains('visual-content')) {
             sequence
               .fromTo(visual.querySelector('.sheet-one'),
-                { y: isMobile ? 62 : 28, x: isMobile ? -20 : 0, rotation: isMobile ? -22 : -12 },
-                { y: 0, x: 0, rotation: -5, ease: isMobile ? 'none' : 'power2.out' }, 0)
+                { y: isDesktop ? 88 : isMobile ? 62 : 28, x: isDesktop ? -34 : isMobile ? -20 : 0, rotation: isDesktop ? -25 : isMobile ? -22 : -12 },
+                { y: 0, x: 0, rotation: -5, ease: isDesktop || isMobile ? 'none' : 'power2.out' }, 0)
               .fromTo(visual.querySelector('.sheet-two'),
-                { y: isMobile ? 76 : 42, x: isMobile ? 20 : 0, rotation: isMobile ? 26 : 17 },
-                { y: 0, x: 0, rotation: 8, ease: isMobile ? 'none' : 'power2.out' }, 0);
+                { y: isDesktop ? 104 : isMobile ? 76 : 42, x: isDesktop ? 36 : isMobile ? 20 : 0, rotation: isDesktop ? 29 : isMobile ? 26 : 17 },
+                { y: 0, x: 0, rotation: 8, ease: isDesktop || isMobile ? 'none' : 'power2.out' }, 0);
           }
         });
 
