@@ -1,7 +1,7 @@
 export const SITE_ESSENCIAL_CONDITIONS = {
-  "domain": "Domínio .com.br à parte: cerca de R$ 40 por ano. O valor pode variar e é confirmado antes da contratação.",
-  "hosting": "Hospedagem sem mensalidade no plano gratuito da Netlify, dentro dos limites de uso do plano. Se o limite for atingido, o site pode ficar temporariamente indisponível; qualquer mudança de plano é combinada antes, sem cobrança automática.",
-  "timing": "Estimativa inicial: prévia em cerca de 2 horas após recebermos o material completo; entrega em cerca de 24 horas após a aprovação e o alinhamento dos ajustes. Confirmamos o prazo na conversa. Mudanças solicitadas, registro do domínio e propagação de DNS podem alterar esse tempo."
+  "domain": "Domínio .com.br à parte: cerca de R$ 40/ano, confirmado antes.",
+  "hosting": "Hospedagem sem mensalidade no plano gratuito da Netlify. Se precisar mudar de plano, combinamos antes.",
+  "timing": "Estimativa: prévia em cerca de 2h após receber o material; entrega em cerca de 24h após aprovação e ajustes. Domínio, DNS ou mudanças podem alterar o prazo."
 };
 
 export const SITE_INFO = {
@@ -302,33 +302,33 @@ export const SITE_ESSENCIAL_EXAMPLES = [
 export const SITE_ESSENCIAL_PROCESS_STEPS = [
   {
     "n": "01",
-    "title": "Você manda as informações do negócio",
-    "text": "Serviços, fotos, link do Instagram e contato. Pode ser tudo pelo WhatsApp."
+    "title": "Você manda o básico",
+    "text": "Serviços, fotos, Instagram e contato. Tudo pelo WhatsApp."
   },
   {
     "n": "02",
-    "title": "A gente cria uma prévia só sua",
-    "text": "Uma demonstração privada pra você ver como seu site ficaria. Sem custo."
+    "title": "A gente cria a prévia",
+    "text": "Uma prévia privada do seu site, sem custo."
   },
   {
     "n": "03",
     "title": "Você avalia com calma",
-    "text": "Você vê com calma se faz sentido pro seu momento. Sem cobrança pela prévia."
+    "text": "Gostou? Seguimos. Não gostou? Você não paga."
   },
   {
     "n": "04",
     "title": "Aprova, ajusta e publica",
-    "text": "Gostou? Confirmamos a contratação e o pagamento, fazemos até duas rodadas de ajuste e publicamos."
+    "text": "Até duas rodadas de ajustes e publicação."
   }
 ];
 
 export const SITE_ESSENCIAL_INCLUDED_LIST = [
   "Uma página, até seis seções",
-  "Botão de WhatsApp em destaque",
-  "Funciona no celular e no computador",
-  "Configurado pra aparecer na busca (título e descrição)",
-  "Até duas rodadas de ajuste",
-  "Nada pago antes de você ver o site pronto"
+  "WhatsApp em destaque",
+  "Celular e computador",
+  "SEO básico (título e descrição)",
+  "Até duas rodadas de ajustes",
+  "Pagamento só após aprovação"
 ];
 
 export const SITE_ESSENCIAL_NOT_INCLUDED_LIST = [
@@ -358,54 +358,38 @@ export const SITE_ESSENCIAL_POST_APPROVAL = [
 export const SITE_ESSENCIAL_FAQS = [
   {
     "q": "O que está incluído nos R$ 500?",
-    "a": "Um site profissional de uma página, com até seis seções, versão pra celular e computador, botão de WhatsApp, seus serviços organizados, informações do negócio e até duas rodadas de ajuste."
+    "a": "Uma página com até seis seções, versão mobile e desktop, WhatsApp e até duas rodadas de ajustes."
   },
   {
     "q": "Quando eu pago?",
-    "a": "Só depois de ver a prévia e aprovar. Antes disso, você não paga nada."
-  },
-  {
-    "q": "Preciso pagar pra receber a prévia?",
-    "a": "Não. A prévia é por nossa conta."
-  },
-  {
-    "q": "Vão publicar meu site sem eu autorizar?",
-    "a": "Não. A prévia é privada. O site só vai ao ar depois da sua aprovação."
+    "a": "Só depois de ver a prévia e aprovar."
   },
   {
     "q": "Quantos ajustes eu posso pedir?",
-    "a": "Até duas rodadas de ajuste, dentro do que está incluso. Mudança estrutural ou pedido extra a gente avalia à parte, combinando com você antes."
+    "a": "Até duas rodadas. Mudanças estruturais ou extras são orçados à parte."
   },
   {
-    "q": "Quem fornece os textos e as imagens?",
-    "a": "Você manda o que tem: serviços, fotos, link do Instagram. A gente usa isso e o que já está nos canais oficiais do seu negócio. Se faltar foto ou texto, a gente avisa antes de você fechar."
+    "q": "Quem fornece textos e imagens?",
+    "a": "Você manda serviços, fotos e Instagram. Se faltar algo, avisamos antes de fechar."
   },
   {
-    "q": "O domínio está incluso?",
-    "a": "Domínio .com.br à parte: cerca de R$ 40 por ano. O valor pode variar e é confirmado antes da contratação. Se você já tem domínio, dá pra usar o seu."
-  },
-  {
-    "q": "Existe mensalidade?",
-    "a": "Hospedagem sem mensalidade no plano gratuito da Netlify, dentro dos limites de uso do plano. Se o limite for atingido, o site pode ficar temporariamente indisponível; qualquer mudança de plano é combinada antes, sem cobrança automática. Alterações e suporte após a entrega são combinados à parte."
+    "q": "Domínio e hospedagem estão inclusos?",
+    "a": "Domínio .com.br é à parte, cerca de R$ 40/ano. Hospedagem sem mensalidade no plano gratuito da Netlify, dentro dos limites do plano."
   },
   {
     "q": "O site vai aparecer no Google?",
-    "a": "Ele sai configurado com título, descrição e estrutura básica pra busca. A posição no Google depende de vários fatores e não pode ser garantida."
+    "a": "Ele sai com configuração básica de SEO. Posição no Google não pode ser garantida."
   },
   {
     "q": "Quanto tempo leva?",
-    "a": "Estimativa inicial: prévia em cerca de 2 horas após recebermos o material completo; entrega em cerca de 24 horas após a aprovação e o alinhamento dos ajustes. Confirmamos o prazo na conversa. Mudanças solicitadas, registro do domínio e propagação de DNS podem alterar esse tempo."
-  },
-  {
-    "q": "E se eu não gostar da prévia?",
-    "a": "É só avisar que não fez sentido pro seu momento. Não há cobrança pela prévia."
+    "a": "Estimativa: prévia em cerca de 2h e entrega em cerca de 24h após aprovação e ajustes."
   },
   {
     "q": "Todo site custa R$ 500?",
-    "a": "Não. Os R$ 500 são do Site Essencial: uma página, com o que está incluso definido. Mais páginas, sistemas ou funcionalidades têm orçamento próprio."
+    "a": "Não. R$ 500 é o Site Essencial. Mais páginas ou funcionalidades têm orçamento próprio."
   },
   {
-    "q": "Vocês atendem fora do Rio de Janeiro?",
-    "a": "Sim. A gente está no Rio, mas atende online em todo o Brasil."
+    "q": "Vocês atendem fora do Rio?",
+    "a": "Sim. Atendemos online em todo o Brasil."
   }
 ];

@@ -12,7 +12,7 @@ export function ExperiencePortfolio() {
       <div className="work-introduction">
         <h2 className="scroll-story-title" data-scroll-text><span>Presença digital que</span><span>existe fora do feed.</span></h2>
         <div>
-          <p>Um site próprio tira o negócio da dependência exclusiva do Instagram e da indicação. Ele organiza o que você faz, facilita o contato e cria uma base para ser encontrado no Google.</p>
+          <p>Seu site organiza o negócio, facilita o contato e cria uma base fora do Instagram.</p>
           <span className="micro">Trabalhos comerciais · Sites para negócios locais</span>
         </div>
       </div>
@@ -31,12 +31,12 @@ export function ExperiencePortfolio() {
             <div className="project-argument">
               <span className="commercial-kicker">Projeto comercial</span>
               <h4 className="project-thesis" aria-label="Um endereço próprio para o negócio não depender só do feed."><span className="project-thesis-visual" aria-hidden="true"><span className="project-thesis-word">Um</span><span className="project-thesis-word">endereço</span><span className="project-thesis-word">próprio</span><span className="project-thesis-word">para</span><span className="project-thesis-word">o</span><span className="project-thesis-word">negócio</span><span className="project-thesis-word">não</span><span className="project-thesis-word">depender</span><span className="project-thesis-end"><span className="project-thesis-word">só</span><span className="project-thesis-word">do</span><span className="project-thesis-word">feed.</span></span></span></h4>
-              <p>A proposta para a Viana Planejados organiza serviços, portfólio, localização e contato em uma experiência própria — preparada para representar a empresa também nas buscas.</p>
+              <p>A proposta reúne serviços, portfólio, localização e contato em um endereço próprio, preparado para buscas.</p>
               <a href={VIANA_URL} target="_blank" rel="noreferrer" className="project-detail-link">Visitar a prévia <ArrowUpRight size={18} aria-hidden="true"/></a>
             </div>
             <dl className="project-context">
-              <div><dt>01 / Antes</dt><dd>Presença concentrada no Instagram e na indicação.</dd></div>
-              <div><dt>02 / Intervenção</dt><dd>Um endereço próprio para apresentar a empresa, os serviços, o portfólio, a localização e o contato.</dd></div>
+              <div><dt>01 / Antes</dt><dd>Presença concentrada no Instagram e indicação.</dd></div>
+              <div><dt>02 / Intervenção</dt><dd>Site próprio com serviços, portfólio, localização e contato.</dd></div>
               <div><dt>03 / Status</dt><dd>Projeto comercial. Prévia em negociação.</dd></div>
             </dl>
           </div>
@@ -46,7 +46,7 @@ export function ExperiencePortfolio() {
       <div className="study-introduction">
         <span className="micro">Estudos autorais</span>
         <h3>Ideias que mostram nosso repertório.</h3>
-        <p>Enquanto o portfólio comercial cresce, estes estudos continuam aqui como apoio — sem se passar por trabalho de cliente.</p>
+        <p>Estudos autorais identificados como conceito — sem se passar por trabalho de cliente.</p>
       </div>
       <div className="study-grid">
         {CASES.map(project => <article className="study-card" key={project.slug}>
@@ -56,13 +56,12 @@ export function ExperiencePortfolio() {
           <div className="study-copy">
             <span>{project.discipline} · Estudo conceitual</span>
             <h4>{project.name}</h4>
-            <p>{project.short}</p>
             <Link to={`/projetos/${project.slug}`} className="project-detail-link">Ver estudo <ArrowUpRight size={18} aria-hidden="true"/></Link>
           </div>
         </article>)}
       </div>
 
-      <p className="work-honesty">Viana Planejados é uma prévia comercial em negociação. Bellavista e Solace são estudos autorais. Resultados de busca ou performance só entram aqui quando houver dados reais.</p>
+      <p className="work-honesty">Viana: prévia comercial em negociação. Bellavista e Solace: estudos autorais. Resultados só entram com dados reais.</p>
       <div className="copy-bridge">
         <span className="micro">Site Essencial</span>
         <h2 className="copy-bridge-reveal" aria-label="Quer um assim pro seu negócio?"><span aria-hidden="true"><span className="copy-bridge-word">Quer</span><span className="copy-bridge-word">um</span><span className="copy-bridge-word">assim</span><span className="copy-bridge-word">pro</span><span className="copy-bridge-word">seu</span><span className="copy-bridge-word">negócio?</span></span></h2>
