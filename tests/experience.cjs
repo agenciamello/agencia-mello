@@ -227,6 +227,8 @@ async function expectTransformMotion(page, selector, description) {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await loadPage(page);
     await page.waitForTimeout(1000);
+    const desktopHeroVideo = await page.locator('.brand-sculpture-video').boundingBox();
+    assert.ok(desktopHeroVideo && desktopHeroVideo.width >= 680, 'Desktop hero video has cinematic scale');
     await expectTransformMotion(page, '.hero-art-plane', 'Desktop hero symbol');
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     await expectTransformMotion(page, '.hero-message', 'Desktop hero copy');
@@ -245,6 +247,27 @@ async function expectTransformMotion(page, selector, description) {
     await page.locator('.capability-ribbon').scrollIntoViewIfNeeded();
     await page.waitForTimeout(250);
     assert.equal(await page.locator('.capability-ribbon').getAttribute('data-playing'), 'true', 'Ribbon plays only while visible');
+
+    const desktopServiceIntro = page.locator('[data-service-intro]');
+    const desktopIntroY = (await documentPosition(desktopServiceIntro)).y;
+    const desktopIntroStartY = Math.max(0, desktopIntroY - 900 * .82);
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 100), behavior: 'instant' }), desktopIntroStartY);
+    await page.waitForTimeout(260);
+    const desktopIntroBefore = await page.locator('.service-title-line').first().evaluate(element => getComputedStyle(element).transform);
+    await page.evaluate(y => window.scrollTo({ top: y + 430, behavior: 'instant' }), desktopIntroStartY);
+    await page.waitForTimeout(620);
+    const desktopIntroAfter = await page.locator('.service-title-line').first().evaluate(element => getComputedStyle(element).transform);
+    assert.notEqual(desktopIntroBefore, desktopIntroAfter, 'Desktop services title reacts to scroll');
+    assert.ok(Number(await desktopServiceIntro.evaluate(element => getComputedStyle(element).getPropertyValue('--service-accent'))) > .25, 'Desktop service accent progresses with scroll');
+
+    const desktopServiceVisual = page.locator('#servico-web .service-visual');
+    const desktopVisualY = (await documentPosition(desktopServiceVisual)).y;
+    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 900 * .66), behavior: 'instant' }), desktopVisualY);
+    await page.waitForTimeout(620);
+    assert.notEqual(await desktopServiceVisual.evaluate(element => getComputedStyle(element).transform), 'none', 'Desktop service frame has scroll choreography');
+    assert.notEqual(await page.locator('#servico-web .mini-browser').evaluate(element => element.style.transform), '', 'Desktop service visual internals animate');
+    assert.notEqual(await desktopServiceVisual.locator('.service-scan-line').evaluate(element => getComputedStyle(element).transform), 'none', 'Desktop service scan follows scroll');
+
     await page.locator('#servico-marca').evaluate(element => element.scrollIntoView({ block: 'start', behavior: 'instant' }));
     await expect(page.locator('[data-service-nav="1"]')).toHaveAttribute('aria-current', 'true');
 
