@@ -10,6 +10,18 @@
       "destination": "/criacao-de-sites-nova-iguacu/index.html"
     },
     {
+      "source": "/projetos/animalis-pet",
+      "destination": "/projetos/animalis-pet/index.html"
+    },
+    {
+      "source": "/projetos/viana-planejados",
+      "destination": "/projetos/viana-planejados/index.html"
+    },
+    {
+      "source": "/projetos/durio-planejados",
+      "destination": "/projetos/durio-planejados/index.html"
+    },
+    {
       "source": "/projetos/bellavista",
       "destination": "/projetos/bellavista/index.html"
     },

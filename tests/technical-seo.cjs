@@ -10,6 +10,9 @@ const indexableRoutes = [
   '/',
   '/site-essencial',
   '/criacao-de-sites-nova-iguacu',
+  '/projetos/animalis-pet',
+  '/projetos/viana-planejados',
+  '/projetos/durio-planejados',
   '/projetos/bellavista',
   '/projetos/solace',
 ];
@@ -18,6 +21,9 @@ const staticFiles = {
   '/': 'dist/index.html',
   '/site-essencial': 'dist/site-essencial/index.html',
   '/criacao-de-sites-nova-iguacu': 'dist/criacao-de-sites-nova-iguacu/index.html',
+  '/projetos/animalis-pet': 'dist/projetos/animalis-pet/index.html',
+  '/projetos/viana-planejados': 'dist/projetos/viana-planejados/index.html',
+  '/projetos/durio-planejados': 'dist/projetos/durio-planejados/index.html',
   '/projetos/bellavista': 'dist/projetos/bellavista/index.html',
   '/projetos/solace': 'dist/projetos/solace/index.html',
   '/politica-de-privacidade': 'dist/politica-de-privacidade/index.html',
@@ -76,11 +82,15 @@ function readStaticMeta(file) {
   assert.ok(graphTypes(localStatic.jsonLd).has('FAQPage'), 'Nova Iguaçu page schema includes FAQ');
   assert.ok(graphTypes(localStatic.jsonLd).has('BreadcrumbList'), 'Nova Iguaçu page schema includes breadcrumbs');
 
-  for (const route of ['/projetos/bellavista','/projetos/solace']) {
+  for (const route of ['/projetos/animalis-pet','/projetos/viana-planejados','/projetos/durio-planejados','/projetos/bellavista','/projetos/solace']) {
     const data = readStaticMeta(staticFiles[route]);
-    assert.ok(graphTypes(data.jsonLd).has('CreativeWork'), `${route} schema identifies the conceptual project`);
+    assert.ok(graphTypes(data.jsonLd).has('CreativeWork'), `${route} schema identifies the project`);
     assert.ok(data.robots.startsWith('index,follow'), `${route} is indexable`);
   }
+
+  const animalisStatic = readStaticMeta(staticFiles['/projetos/animalis-pet']);
+  assert.equal(animalisStatic.canonical, 'https://www.agenciamello.site/projetos/animalis-pet');
+  assert.match(animalisStatic.html, /animalis-pet-site\.jpg/);
 
   for (const route of ['/politica-de-privacidade','/termos-de-uso']) {
     const data = readStaticMeta(staticFiles[route]);
