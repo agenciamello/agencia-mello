@@ -498,7 +498,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
 
         // Subpages share the same motion grammar as the Home: restrained reveals,
         // image depth and staggered information hierarchy.
-        if (route === '/criacao-de-sites-nova-iguacu') {
+        if (['/criacao-de-sites-nova-iguacu','/criacao-de-sites-belford-roxo','/criacao-de-sites-duque-de-caxias'].includes(route)) {
           const hero = scope.querySelector<HTMLElement>('.local-hero');
           if (hero) {
             const label = hero.querySelector<HTMLElement>('.section-label');

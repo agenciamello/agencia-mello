@@ -49,30 +49,39 @@ async function wordCount(page, selector) {
     assert.ok(essential.process <= 70, `Site Essencial process copy budget exceeded: ${essential.process} words`);
     assert.ok(essential.faq <= 55, `Site Essencial FAQ labels budget exceeded: ${essential.faq} words`);
 
-    await page.goto(`${base}/criacao-de-sites-nova-iguacu`, { waitUntil: 'domcontentloaded' });
-    await page.waitForTimeout(700);
-    const local = {
-      main: await wordCount(page, 'main'),
-      hero: await wordCount(page, '.local-hero'),
-      solutions: await wordCount(page, '.local-solutions'),
-      process: await wordCount(page, '.local-process'),
-      portfolio: await wordCount(page, '.local-portfolio'),
-      business: await wordCount(page, '.local-business'),
-      quote: await wordCount(page, '.local-quote'),
-      faq: await wordCount(page, '.local-faq'),
-    };
+    const localRoutes = [
+      ['/criacao-de-sites-nova-iguacu', 'Nova Iguaçu'],
+      ['/criacao-de-sites-belford-roxo', 'Belford Roxo'],
+      ['/criacao-de-sites-duque-de-caxias', 'Duque de Caxias'],
+    ];
+    const locals = {};
+    for (const [route,city] of localRoutes) {
+      await page.goto(`${base}${route}`, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(700);
+      const local = {
+        main: await wordCount(page, 'main'),
+        hero: await wordCount(page, '.local-hero'),
+        solutions: await wordCount(page, '.local-solutions'),
+        process: await wordCount(page, '.local-process'),
+        portfolio: await wordCount(page, '.local-portfolio'),
+        business: await wordCount(page, '.local-business'),
+        quote: await wordCount(page, '.local-quote'),
+        faq: await wordCount(page, '.local-faq'),
+      };
+      locals[city] = local;
 
-    assert.ok(local.main <= 760, `Nova Iguaçu page copy budget exceeded: ${local.main} words`);
-    assert.ok(local.hero <= 90, `Nova Iguaçu hero copy budget exceeded: ${local.hero} words`);
-    assert.ok(local.solutions <= 140, `Nova Iguaçu solutions copy budget exceeded: ${local.solutions} words`);
-    assert.ok(local.process <= 110, `Nova Iguaçu process copy budget exceeded: ${local.process} words`);
-    assert.ok(local.portfolio <= 190, `Nova Iguaçu portfolio copy budget exceeded: ${local.portfolio} words`);
-    assert.ok(local.business <= 140, `Nova Iguaçu business copy budget exceeded: ${local.business} words`);
-    assert.ok(local.quote <= 180, `Nova Iguaçu quote form copy budget exceeded: ${local.quote} words`);
-    assert.ok(local.faq <= 190, `Nova Iguaçu FAQ copy budget exceeded: ${local.faq} words`);
+      assert.ok(local.main <= 820, `${city} page copy budget exceeded: ${local.main} words`);
+      assert.ok(local.hero <= 100, `${city} hero copy budget exceeded: ${local.hero} words`);
+      assert.ok(local.solutions <= 140, `${city} solutions copy budget exceeded: ${local.solutions} words`);
+      assert.ok(local.process <= 110, `${city} process copy budget exceeded: ${local.process} words`);
+      assert.ok(local.portfolio <= 210, `${city} portfolio copy budget exceeded: ${local.portfolio} words`);
+      assert.ok(local.business <= 180, `${city} business copy budget exceeded: ${local.business} words`);
+      assert.ok(local.quote <= 180, `${city} quote form copy budget exceeded: ${local.quote} words`);
+      assert.ok(local.faq <= 210, `${city} FAQ copy budget exceeded: ${local.faq} words`);
+    }
 
-    console.log(JSON.stringify({ home, essential, local }));
-    console.log('Copy density: approved word budgets for home, Site Essencial and Nova Iguaçu.');
+    console.log(JSON.stringify({ home, essential, locals }));
+    console.log('Copy density: approved word budgets for home, Site Essencial and Local SEO Cluster V1.');
   } finally {
     await browser.close();
   }

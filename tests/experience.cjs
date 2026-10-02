@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const base = process.env.SITE_URL || 'http://127.0.0.1:3000';
 const viewports = [1440, 1024, 768, 390, 360, 320];
-const routes = ['/', '/projetos/animalis-pet', '/projetos/viana-planejados', '/projetos/durio-planejados', '/projetos/bellavista', '/projetos/solace', '/site-essencial', '/criacao-de-sites-nova-iguacu', '/politica-de-privacidade', '/termos-de-uso', '/pagina-inexistente'];
+const routes = ['/', '/projetos/animalis-pet', '/projetos/viana-planejados', '/projetos/durio-planejados', '/projetos/bellavista', '/projetos/solace', '/site-essencial', '/criacao-de-sites-nova-iguacu', '/criacao-de-sites-belford-roxo', '/criacao-de-sites-duque-de-caxias', '/politica-de-privacidade', '/termos-de-uso', '/pagina-inexistente'];
 
 async function loadPage(page, route = '/') {
   await page.goto(base + route, { waitUntil: 'domcontentloaded' });
@@ -289,7 +289,7 @@ async function expectTransformMotion(page, selector, description) {
     const accessibility = [];
     for (const width of [1440, 390]) {
       await page.setViewportSize({ width, height: 900 });
-      for (const route of ['/', '/site-essencial', '/criacao-de-sites-nova-iguacu', '/projetos/animalis-pet', '/projetos/bellavista']) {
+      for (const route of ['/', '/site-essencial', '/criacao-de-sites-nova-iguacu', '/criacao-de-sites-belford-roxo', '/criacao-de-sites-duque-de-caxias', '/projetos/animalis-pet', '/projetos/bellavista']) {
         await loadPage(page, route);
         const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
         accessibility.push({ width, route, violations: scan.violations.map(violation => ({
