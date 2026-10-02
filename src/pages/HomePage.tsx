@@ -12,6 +12,23 @@ const processSteps = [
   ['04','Aprova, ajusta e publica','Até duas rodadas de ajustes e publicação.'],
 ];
 
+const serviceOrientation = [
+  ['01','Sites e landing pages','web'],
+  ['02','Identidade visual','marca'],
+  ['03','Design para redes sociais','conteudo'],
+];
+
+function ServiceOrientation() {
+  return <section className="home-service-orientation" aria-label="Serviços da Agência Mello">
+    <div className="wrap">
+      <span className="micro">O que fazemos</span>
+      <nav className="home-service-links" aria-label="Ir para serviços">
+        {serviceOrientation.map(([number,label,id])=><a href={`#servico-${id}`} key={id}><span>{number}</span>{label}</a>)}
+      </nav>
+    </div>
+  </section>;
+}
+
 function ProcessHeadline() {
   return <h2 className="process-typewriter" aria-label="Do primeiro papo à entrega, você acompanha cada etapa.">{processHeadline.map((line,lineIndex)=><span className="process-typewriter-line" key={line}>{line.split(' ').map((word,wordIndex)=><span className="process-typewriter-word" aria-hidden="true" key={`${lineIndex}-${wordIndex}`}>{Array.from(word).map((char,charIndex)=><span className="process-typewriter-char" key={`${lineIndex}-${wordIndex}-${charIndex}`}>{char}</span>)}</span>)}{lineIndex===processHeadline.length-1&&<span className="process-typewriter-caret" aria-hidden="true"/>}</span>)}</h2>;
 }
@@ -20,6 +37,7 @@ export function HomePage() {
   usePageTitle('Agência Mello | Sites, marca e conteúdo pra pequenos negócios');
   return <StudioShell>
     <ExperienceHero/>
+    <ServiceOrientation/>
     <ExperiencePortfolio/>
     <div className="capability-ribbon" role="img" aria-label="Site no ar, marca coerente, post com cara de marca e atendimento direto"><div className="ribbon-track" aria-hidden="true">{[0,1].map(i=><span key={i}>SITE NO AR <i>·</i> MARCA COERENTE <i>·</i> POST COM CARA DE MARCA <i>·</i> ATENDIMENTO DIRETO <i>·</i> </span>)}</div></div>
     <ExperienceServices/>
