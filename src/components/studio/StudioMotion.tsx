@@ -647,6 +647,27 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
               { y: 14, opacity: .2 }, { y: 0, opacity: 1, duration: .46, stagger: .055, ease: MOTION.ease,
                 scrollTrigger: { trigger: items[0], start: 'top 92%', once: true } });
           }
+
+          const finalContact = scope.querySelector<HTMLElement>('.studio-contact');
+          if (finalContact) {
+            const label = finalContact.querySelector<HTMLElement>('.section-label');
+            const title = finalContact.querySelector<HTMLElement>('.contact-title');
+            const copy = finalContact.querySelector<HTMLElement>(':scope .wrap > p');
+            const contactTl = gsap.timeline({ paused: true });
+            if (label) contactTl.fromTo(label,
+              { x: -18, opacity: .18 }, { x: 0, opacity: 1, duration: .4, ease: MOTION.ease }, 0);
+            if (title) contactTl.fromTo(title,
+              { y: isMobile ? 26 : 38, opacity: .08, filter: 'blur(8px)' },
+              { y: 0, opacity: 1, filter: 'blur(0px)', duration: .68, ease: MOTION.ease }, .06);
+            if (copy) contactTl.fromTo(copy,
+              { y: 16, opacity: .2 }, { y: 0, opacity: 1, duration: .48, ease: MOTION.ease }, .28);
+            ScrollTrigger.create({
+              trigger: finalContact,
+              start: isMobile ? 'top 90%' : 'top 84%',
+              once: true,
+              onEnter: () => contactTl.play(0),
+            });
+          }
         }
 
         if (route.startsWith('/projetos/')) {
