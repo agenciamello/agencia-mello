@@ -27,6 +27,24 @@ export const SEO_ROUTES = {
     type: 'website',
     schema: 'service',
   },
+  '/criacao-de-sites-nova-iguacu': {
+    title: 'Criação de Sites em Nova Iguaçu | Agência Mello',
+    description: 'Criação de sites profissionais em Nova Iguaçu para pequenos negócios, com WhatsApp integrado, atendimento direto e orçamento personalizado.',
+    robots: INDEX_ROBOTS,
+    type: 'website',
+    schema: 'local-service',
+    serviceName: 'Criação de Sites em Nova Iguaçu',
+    serviceType: 'Criação de sites profissionais',
+    areaName: 'Nova Iguaçu',
+    faq: [
+      ['Quanto custa criar um site em Nova Iguaçu?', 'Depende do escopo. O Site Essencial custa R$ 500. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.'],
+      ['Quanto tempo leva para o site ficar pronto?', 'No Site Essencial, a estimativa inicial é uma prévia em cerca de 2 horas após receber o material e entrega em cerca de 24 horas após aprovação e ajustes. Projetos sob medida têm prazo definido no orçamento.'],
+      ['Preciso ir presencialmente até a agência?', 'Não. Briefing, envio de material, ajustes e aprovação podem ser feitos online pelo WhatsApp.'],
+      ['O site funciona bem no celular?', 'Sim. O layout é pensado para celular e computador, com atenção ao caminho até o WhatsApp e outras ações importantes.'],
+      ['O site já sai preparado para o Google?', 'Configuramos título, descrição, estrutura semântica e SEO técnico básico. A posição nas buscas depende de concorrência, conteúdo, autoridade e outros fatores e não pode ser garantida.'],
+      ['Domínio e hospedagem entram no orçamento?', 'O domínio é combinado à parte. A hospedagem pode usar plano gratuito quando o projeto se encaixa nos limites do provedor; qualquer custo adicional é informado antes.'],
+    ],
+  },
   '/projetos/bellavista': {
     title: 'Bellavista | Estudo de site para restaurante | Agência Mello',
     description: 'Estudo conceitual de site para restaurante criado pela Agência Mello, com foco em apresentação clara, experiência visual e contato pelo WhatsApp.',
@@ -214,6 +232,51 @@ export function buildStructuredData(pathname, fallbackTitle) {
           { '@type': 'ListItem', position: 1, name: 'Agência Mello', item: `${SEO_SITE.url}/` },
           { '@type': 'ListItem', position: 2, name: 'Site Essencial', item: meta.canonical },
         ],
+      },
+    );
+    webpage.mainEntity = { '@id': serviceId };
+  }
+
+  if (meta.schema === 'local-service') {
+    const serviceId = `${meta.canonical}#service`;
+    const breadcrumbId = `${meta.canonical}#breadcrumb`;
+    const faqId = `${meta.canonical}#faq`;
+
+    graph.push(
+      {
+        '@type': 'Service',
+        '@id': serviceId,
+        name: meta.serviceName,
+        description: meta.description,
+        serviceType: meta.serviceType,
+        provider: { '@id': organizationId },
+        areaServed: { '@type': 'City', name: meta.areaName },
+        url: meta.canonical,
+        availableChannel: {
+          '@type': 'ServiceChannel',
+          serviceUrl: meta.canonical,
+          servicePhone: SEO_SITE.phone,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': breadcrumbId,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Agência Mello', item: `${SEO_SITE.url}/` },
+          { '@type': 'ListItem', position: 2, name: meta.serviceName, item: meta.canonical },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': faqId,
+        mainEntity: (meta.faq || []).map(([question,answer]) => ({
+          '@type': 'Question',
+          name: question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: answer,
+          },
+        })),
       },
     );
     webpage.mainEntity = { '@id': serviceId };

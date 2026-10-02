@@ -6,6 +6,10 @@
       "destination": "/site-essencial/index.html"
     },
     {
+      "source": "/criacao-de-sites-nova-iguacu",
+      "destination": "/criacao-de-sites-nova-iguacu/index.html"
+    },
+    {
       "source": "/projetos/bellavista",
       "destination": "/projetos/bellavista/index.html"
     },
