@@ -23,8 +23,8 @@ const commercialRoutes = [
     await expect(page.locator('.home-service-orientation')).toContainText('Design para redes sociais');
     await expect(page.locator('.showcase-commercial')).toContainText('proposta desenvolvida');
     await expect(page.locator('.showcase-commercial')).not.toContainText('não contratado');
-    await expect(page.locator('.copy-bridge')).toContainText('Gostou de algum desses projetos?');
-    await expect(page.locator('.copy-bridge')).toContainText('Quero uma prévia');
+    await expect(page.getByRole('heading', { name: 'Gostou de algum desses projetos?' })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Quero uma prévia/i })).toBeVisible();
     assert.equal(await page.locator('.conceptual-project-grid').count(), 1, 'Authored studies remain secondary but accessible');
 
     for (const [route,name,statusText] of commercialRoutes) {

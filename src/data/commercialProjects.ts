@@ -57,6 +57,6 @@ export const COMMERCIAL_PROJECTS = [
       ['Experiência', 'Coleções, processo e orçamento aparecem como capítulos de uma mesma narrativa.'],
       ['Direção', 'Tons escuros, tipografia editorial e acentos dourados reforçam a percepção premium.'],
     ],
-    note: 'Prévia comercial desenvolvida para um negócio real. O projeto não foi contratado e não representa vínculo comercial, publicação oficial ou resultado medido.',
+    note: 'Prévia comercial desenvolvida pela Agência Mello para um negócio real. Apresenta uma proposta de presença digital e não representa publicação oficial nem resultado medido.',
   },
 ] as const;
