@@ -496,6 +496,214 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
             scrollTrigger: { trigger: portrait, start: 'top bottom', end: 'bottom top', scrub: .9 } });
         }
 
+        // Subpages share the same motion grammar as the Home: restrained reveals,
+        // image depth and staggered information hierarchy.
+        if (route === '/criacao-de-sites-nova-iguacu') {
+          const hero = scope.querySelector<HTMLElement>('.local-hero');
+          if (hero) {
+            const label = hero.querySelector<HTMLElement>('.section-label');
+            const title = hero.querySelector<HTMLElement>('h1');
+            const copy = hero.querySelector<HTMLElement>('h1 + p');
+            const actions = hero.querySelector<HTMLElement>('.local-hero-actions');
+            const aside = hero.querySelector<HTMLElement>('.local-hero-aside');
+            const heroTl = gsap.timeline({ defaults: { ease: MOTION.ease } });
+            if (label) heroTl.fromTo(label, { x: -18, opacity: .2 }, { x: 0, opacity: 1, duration: .42 }, 0);
+            if (title) heroTl.fromTo(title,
+              { y: isMobile ? 28 : 42, opacity: .08, filter: 'blur(10px)' },
+              { y: 0, opacity: 1, filter: 'blur(0px)', duration: isMobile ? .66 : .78 }, .06);
+            if (copy) heroTl.fromTo(copy,
+              { y: 22, opacity: .2 }, { y: 0, opacity: 1, duration: .58 }, .28);
+            if (actions) heroTl.fromTo(actions,
+              { y: 18, opacity: .18 }, { y: 0, opacity: 1, duration: .54 }, .38);
+            if (aside) heroTl.fromTo(aside,
+              { x: isMobile ? 0 : 34, y: isMobile ? 20 : 0, opacity: .14 },
+              { x: 0, y: 0, opacity: 1, duration: .66 }, .24);
+          }
+
+          scope.querySelectorAll<HTMLElement>('.local-solutions, .local-process, .local-portfolio, .local-business, .local-quote, .local-faq').forEach(section => {
+            const label = section.querySelector<HTMLElement>('.section-label');
+            const heading = section.querySelector<HTMLElement>('.local-section-heading');
+            if (label) gsap.fromTo(label,
+              { x: -18, opacity: .3 }, { x: 0, opacity: 1, duration: .5, ease: MOTION.ease,
+                scrollTrigger: { trigger: label, start: 'top 90%', once: true } });
+            if (heading) {
+              const title = heading.querySelector<HTMLElement>('h2');
+              const paragraph = heading.querySelector<HTMLElement>('p');
+              const tl = gsap.timeline({ scrollTrigger: {
+                trigger: heading, start: isMobile ? 'top 92%' : 'top 86%', once: true,
+              }});
+              if (title) tl.fromTo(title,
+                { y: isMobile ? 24 : 34, opacity: .18, filter: 'blur(7px)' },
+                { y: 0, opacity: 1, filter: 'blur(0px)', duration: .66, ease: MOTION.ease }, 0);
+              if (paragraph) tl.fromTo(paragraph,
+                { y: 18, opacity: .22 }, { y: 0, opacity: 1, duration: .54, ease: MOTION.ease }, .16);
+            }
+          });
+
+          const localGroups = [
+            '.local-solution-grid article',
+            '.local-process-grid article',
+            '.local-study-grid article',
+            '.local-business-grid article',
+          ];
+          localGroups.forEach(selector => {
+            const items = scope.querySelectorAll<HTMLElement>(selector);
+            if (!items.length) return;
+            gsap.fromTo(items,
+              { y: isMobile ? 22 : 30, opacity: .16 },
+              { y: 0, opacity: 1, duration: .58, stagger: isMobile ? .08 : .1, ease: MOTION.ease,
+                scrollTrigger: { trigger: items[0], start: 'top 90%', once: true } });
+          });
+
+          const featured = scope.querySelector<HTMLElement>('.local-featured-project');
+          if (featured) {
+            const imageFrame = featured.querySelector<HTMLElement>('.local-featured-image');
+            const copy = featured.querySelector<HTMLElement>(':scope > div');
+            if (imageFrame) gsap.fromTo(imageFrame,
+              { clipPath: 'inset(0 0 14% 0)', y: 28, opacity: .58 },
+              { clipPath: 'inset(0 0 0% 0)', y: 0, opacity: 1, duration: .82, ease: MOTION.ease,
+                scrollTrigger: { trigger: featured, start: 'top 88%', once: true } });
+            if (copy) gsap.fromTo(copy,
+              { x: isMobile ? 0 : 26, y: isMobile ? 18 : 0, opacity: .18 },
+              { x: 0, y: 0, opacity: 1, duration: .64, ease: MOTION.ease,
+                scrollTrigger: { trigger: featured, start: 'top 84%', once: true } });
+          }
+
+          scope.querySelectorAll<HTMLElement>('.local-featured-image, .local-study-image').forEach(frameEl => {
+            const image = frameEl.querySelector<HTMLElement>('img');
+            if (!image) return;
+            gsap.fromTo(image,
+              { yPercent: isDesktop ? -2.2 : -1, scale: isDesktop ? 1.035 : 1.018 },
+              { yPercent: isDesktop ? 2.2 : 1, scale: isDesktop ? 1.035 : 1.018, ease: 'none',
+                scrollTrigger: { trigger: frameEl, start: 'top bottom', end: 'bottom top', scrub: .75 } });
+          });
+
+          const form = scope.querySelector<HTMLElement>('.local-quote-form');
+          if (form) gsap.fromTo(form,
+            { y: isMobile ? 24 : 38, clipPath: 'inset(5% 0 8% 0)', opacity: .42 },
+            { y: 0, clipPath: 'inset(0% 0 0% 0)', opacity: 1, duration: .76, ease: MOTION.ease,
+              scrollTrigger: { trigger: form, start: 'top 90%', once: true } });
+
+          const faqItems = scope.querySelectorAll<HTMLElement>('.local-faq details');
+          if (faqItems.length) gsap.fromTo(faqItems,
+            { x: isMobile ? 0 : 18, y: 14, opacity: .22 },
+            { x: 0, y: 0, opacity: 1, duration: .5, stagger: .07, ease: MOTION.ease,
+              scrollTrigger: { trigger: faqItems[0], start: 'top 90%', once: true } });
+        }
+
+        if (route === '/site-essencial') {
+          const hero = scope.querySelector<HTMLElement>('.essential-hero');
+          if (hero) {
+            const label = hero.querySelector<HTMLElement>('.section-label');
+            const title = hero.querySelector<HTMLElement>('h1');
+            const layout = hero.querySelector<HTMLElement>('.essential-layout');
+            const tl = gsap.timeline({ defaults: { ease: MOTION.ease } });
+            if (label) tl.fromTo(label, { x: -18, opacity: .2 }, { x: 0, opacity: 1, duration: .42 }, 0);
+            if (title) tl.fromTo(title,
+              { y: isMobile ? 30 : 44, opacity: .08, filter: 'blur(10px)' },
+              { y: 0, opacity: 1, filter: 'blur(0px)', duration: isMobile ? .66 : .8 }, .06);
+            if (layout) tl.fromTo(Array.from(layout.children),
+              { y: 24, opacity: .16 }, { y: 0, opacity: 1, duration: .56, stagger: .12 }, .28);
+          }
+
+          const scopeSection = scope.querySelector<HTMLElement>('.essential-scope');
+          if (scopeSection) {
+            const label = scopeSection.querySelector<HTMLElement>('.section-label');
+            const columns = scopeSection.querySelectorAll<HTMLElement>('.scope-grid > div');
+            const items = scopeSection.querySelectorAll<HTMLElement>('li');
+            if (label) gsap.fromTo(label,
+              { x: -18, opacity: .25 }, { x: 0, opacity: 1, duration: .48, ease: MOTION.ease,
+                scrollTrigger: { trigger: scopeSection, start: 'top 88%', once: true } });
+            if (columns.length) gsap.fromTo(columns,
+              { y: 28, opacity: .18 }, { y: 0, opacity: 1, duration: .62, stagger: .12, ease: MOTION.ease,
+                scrollTrigger: { trigger: columns[0], start: 'top 90%', once: true } });
+            if (items.length) gsap.fromTo(items,
+              { x: -12, opacity: .24 }, { x: 0, opacity: 1, duration: .38, stagger: .055, ease: MOTION.ease,
+                scrollTrigger: { trigger: items[0], start: 'top 92%', once: true } });
+          }
+
+          const process = scope.querySelector<HTMLElement>('.essential-process');
+          if (process) {
+            const heading = process.querySelector<HTMLElement>('h2');
+            const steps = process.querySelectorAll<HTMLElement>('.process-grid > div');
+            if (heading) gsap.fromTo(heading,
+              { y: 28, opacity: .15, filter: 'blur(7px)' },
+              { y: 0, opacity: 1, filter: 'blur(0px)', duration: .64, ease: MOTION.ease,
+                scrollTrigger: { trigger: heading, start: 'top 90%', once: true } });
+            if (steps.length) gsap.fromTo(steps,
+              { y: isMobile ? 22 : 34, opacity: .14 },
+              { y: 0, opacity: 1, duration: .58, stagger: .1, ease: MOTION.ease,
+                scrollTrigger: { trigger: steps[0], start: 'top 90%', once: true } });
+          }
+
+          const faq = scope.querySelector<HTMLElement>('.essential-faq');
+          if (faq) {
+            const heading = faq.querySelector<HTMLElement>('h2');
+            const items = faq.querySelectorAll<HTMLElement>('details');
+            if (heading) gsap.fromTo(heading,
+              { x: -20, opacity: .18 }, { x: 0, opacity: 1, duration: .56, ease: MOTION.ease,
+                scrollTrigger: { trigger: heading, start: 'top 92%', once: true } });
+            if (items.length) gsap.fromTo(items,
+              { y: 14, opacity: .2 }, { y: 0, opacity: 1, duration: .46, stagger: .055, ease: MOTION.ease,
+                scrollTrigger: { trigger: items[0], start: 'top 92%', once: true } });
+          }
+        }
+
+        if (route.startsWith('/projetos/')) {
+          const head = scope.querySelector<HTMLElement>('.case-head');
+          if (head) {
+            const back = head.querySelector<HTMLElement>(':scope > .text-link');
+            const meta = head.querySelector<HTMLElement>('.section-top');
+            const title = head.querySelector<HTMLElement>('h1');
+            const intro = head.querySelector<HTMLElement>('.case-intro');
+            const tl = gsap.timeline({ defaults: { ease: MOTION.ease } });
+            if (back) tl.fromTo(back, { x: -16, opacity: .2 }, { x: 0, opacity: 1, duration: .4 }, 0);
+            if (meta) tl.fromTo(meta, { y: 14, opacity: .18 }, { y: 0, opacity: 1, duration: .44 }, .06);
+            if (title) tl.fromTo(title,
+              { y: isMobile ? 30 : 46, opacity: .08, filter: 'blur(10px)' },
+              { y: 0, opacity: 1, filter: 'blur(0px)', duration: isMobile ? .68 : .82 }, .12);
+            if (intro) tl.fromTo(intro,
+              { y: 22, opacity: .18 }, { y: 0, opacity: 1, duration: .58 }, .32);
+          }
+
+          const figure = scope.querySelector<HTMLElement>('.case-figure');
+          if (figure) {
+            const image = figure.querySelector<HTMLElement>('img');
+            gsap.fromTo(figure,
+              { clipPath: 'inset(0 0 12% 0)', y: 26, opacity: .56 },
+              { clipPath: 'inset(0 0 0% 0)', y: 0, opacity: 1, duration: .86, ease: MOTION.ease,
+                scrollTrigger: { trigger: figure, start: 'top 90%', once: true } });
+            if (image) gsap.fromTo(image,
+              { yPercent: -2, scale: 1.035 },
+              { yPercent: 2, scale: 1.035, ease: 'none',
+                scrollTrigger: { trigger: figure, start: 'top bottom', end: 'bottom top', scrub: .8 } });
+          }
+
+          const story = scope.querySelector<HTMLElement>('.case-story');
+          if (story) {
+            const label = story.querySelector<HTMLElement>('.section-label');
+            const copy = story.querySelector<HTMLElement>(':scope > div');
+            if (label) gsap.fromTo(label,
+              { x: -18, opacity: .24 }, { x: 0, opacity: 1, duration: .48, ease: MOTION.ease,
+                scrollTrigger: { trigger: story, start: 'top 88%', once: true } });
+            if (copy) gsap.fromTo(copy,
+              { y: 28, opacity: .16 }, { y: 0, opacity: 1, duration: .64, ease: MOTION.ease,
+                scrollTrigger: { trigger: copy, start: 'top 90%', once: true } });
+          }
+
+          const details = scope.querySelectorAll<HTMLElement>('.case-details > div');
+          if (details.length) gsap.fromTo(details,
+            { y: 26, opacity: .16 },
+            { y: 0, opacity: 1, duration: .56, stagger: .09, ease: MOTION.ease,
+              scrollTrigger: { trigger: details[0], start: 'top 90%', once: true } });
+
+          const note = scope.querySelector<HTMLElement>('.case-note');
+          if (note) gsap.fromTo(Array.from(note.children),
+            { y: 18, opacity: .2 },
+            { y: 0, opacity: 1, duration: .5, stagger: .08, ease: MOTION.ease,
+              scrollTrigger: { trigger: note, start: 'top 92%', once: true } });
+        }
+
         const contactMark = scope.querySelector<HTMLElement>('.contact-mark');
         if (contactMark) gsap.fromTo(contactMark, { y: 22, rotation: -3 }, { y: -12, rotation: 3, ease: 'none',
           scrollTrigger: { trigger: '.studio-contact', start: 'top bottom', end: 'bottom bottom', scrub: .9 } });        scope.querySelectorAll<HTMLElement>('[data-reveal="lines"]').forEach(element => {
