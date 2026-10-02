@@ -179,7 +179,7 @@ export function CriacaoSitesNovaIguacuPage() {
             <span className="micro">{animalisLocal.category} / {animalisLocal.location}</span>
             <h3>{animalisLocal.name}</h3>
             <p>Uma prévia comercial pensada para organizar serviços, localização e contato de uma clínica veterinária em Nova Iguaçu.</p>
-            <Link to={`/projetos/${animalisLocal.slug}`} className="text-link">Ver case <ArrowUpRight size={18} aria-hidden="true"/></Link>
+            <Link to={`/projetos/${animalisLocal.slug}`} className="text-link">Ver projeto <ArrowUpRight size={18} aria-hidden="true"/></Link>
           </div>
         </article>
         <div className="local-study-grid local-commercial-grid">
@@ -190,10 +190,10 @@ export function CriacaoSitesNovaIguacuPage() {
             <span className="micro">{project.category} / {project.location}</span>
             <h3>{project.name}</h3>
             <p>{project.intro}</p>
-            <Link to={`/projetos/${project.slug}`} className="text-link">Ver case <ArrowUpRight size={17} aria-hidden="true"/></Link>
+            <Link to={`/projetos/${project.slug}`} className="text-link">Ver projeto <ArrowUpRight size={17} aria-hidden="true"/></Link>
           </article>)}
         </div>
-        <p className="local-portfolio-note">Animalis Pet e Du-Rio são prévias comerciais desenvolvidas para negócios reais, sem contratação concluída. Viana Planejados é uma prévia comercial em negociação. Resultados só são publicados quando houver dados reais.</p>
+        <p className="local-portfolio-note">Animalis Pet e Du-Rio são prévias comerciais desenvolvidas para negócios reais. Viana Planejados é uma prévia comercial em negociação. Resultados só são publicados quando houver dados reais.</p>
       </div>
     </section>
 
