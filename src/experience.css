@@ -227,9 +227,9 @@
 .home-service-links a{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:12px;color:#e1d8e3;transition:color var(--micro)}
 .home-service-links a span{font-size:10px;color:var(--pink);font-variant-numeric:tabular-nums}
 .home-service-links a:hover{color:var(--pink)}
-.conceptual-introduction{margin-top:72px;opacity:.78}
+.conceptual-introduction{margin-top:72px}
 .conceptual-project-grid{gap:32px}
-.conceptual-project-grid .study-card{opacity:.78}
+.conceptual-project-grid .study-card{opacity:1}
 .conceptual-project-grid .study-image img{filter:saturate(.78)}
 @media(max-width:700px){
   .home-service-orientation{padding:12px 0 14px}
