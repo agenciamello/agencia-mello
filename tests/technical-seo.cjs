@@ -10,6 +10,8 @@ const indexableRoutes = [
   '/',
   '/site-essencial',
   '/criacao-de-sites-nova-iguacu',
+  '/criacao-de-sites-belford-roxo',
+  '/criacao-de-sites-duque-de-caxias',
   '/projetos/animalis-pet',
   '/projetos/viana-planejados',
   '/projetos/durio-planejados',
@@ -21,6 +23,8 @@ const staticFiles = {
   '/': 'dist/index.html',
   '/site-essencial': 'dist/site-essencial/index.html',
   '/criacao-de-sites-nova-iguacu': 'dist/criacao-de-sites-nova-iguacu/index.html',
+  '/criacao-de-sites-belford-roxo': 'dist/criacao-de-sites-belford-roxo/index.html',
+  '/criacao-de-sites-duque-de-caxias': 'dist/criacao-de-sites-duque-de-caxias/index.html',
   '/projetos/animalis-pet': 'dist/projetos/animalis-pet/index.html',
   '/projetos/viana-planejados': 'dist/projetos/viana-planejados/index.html',
   '/projetos/durio-planejados': 'dist/projetos/durio-planejados/index.html',
@@ -74,13 +78,21 @@ function readStaticMeta(file) {
   assert.equal(service.offers?.priceCurrency, 'BRL', 'Site Essencial structured currency is BRL');
   assert.ok(graphTypes(serviceStatic.jsonLd).has('BreadcrumbList'), 'Site Essencial schema includes breadcrumbs');
 
-  const localStatic = readStaticMeta(staticFiles['/criacao-de-sites-nova-iguacu']);
-  const localGraph = localStatic.jsonLd['@graph'];
-  const localService = localGraph.find(item => item['@type'] === 'Service' && item.name === 'Criação de Sites em Nova Iguaçu');
-  assert.ok(localService, 'Nova Iguaçu page schema includes local site creation Service');
-  assert.equal(localService.areaServed?.name, 'Nova Iguaçu', 'Local service area is Nova Iguaçu');
-  assert.ok(graphTypes(localStatic.jsonLd).has('FAQPage'), 'Nova Iguaçu page schema includes FAQ');
-  assert.ok(graphTypes(localStatic.jsonLd).has('BreadcrumbList'), 'Nova Iguaçu page schema includes breadcrumbs');
+  const localRoutes = [
+    ['/criacao-de-sites-nova-iguacu', 'Nova Iguaçu'],
+    ['/criacao-de-sites-belford-roxo', 'Belford Roxo'],
+    ['/criacao-de-sites-duque-de-caxias', 'Duque de Caxias'],
+  ];
+  for (const [route,city] of localRoutes) {
+    const localStatic = readStaticMeta(staticFiles[route]);
+    const localGraph = localStatic.jsonLd['@graph'];
+    const localService = localGraph.find(item => item['@type'] === 'Service' && item.name === `Criação de Sites em ${city}`);
+    assert.ok(localService, `${city} page schema includes local site creation Service`);
+    assert.equal(localService.areaServed?.name, city, `Local service area is ${city}`);
+    assert.ok(graphTypes(localStatic.jsonLd).has('FAQPage'), `${city} page schema includes FAQ`);
+    assert.ok(graphTypes(localStatic.jsonLd).has('BreadcrumbList'), `${city} page schema includes breadcrumbs`);
+    assert.ok(localStatic.robots.startsWith('index,follow'), `${city} page is indexable`);
+  }
 
   for (const route of ['/projetos/animalis-pet','/projetos/viana-planejados','/projetos/durio-planejados','/projetos/bellavista','/projetos/solace']) {
     const data = readStaticMeta(staticFiles[route]);
