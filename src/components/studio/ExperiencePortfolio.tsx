@@ -44,9 +44,8 @@ export function ExperiencePortfolio() {
       </div>
 
       <div className="study-introduction">
-        <span className="micro">Estudos autorais</span>
-        <h3>Ideias que mostram nosso repertório.</h3>
-        <p>Estudos autorais identificados como conceito — sem se passar por trabalho de cliente.</p>
+        <span className="micro">Portfólio de Projetos</span>
+        <h3>Conheça o nosso portfólio juntamente com as soluções que entregamos para sua empresa.</h3>
       </div>
       <div className="study-grid">
         {CASES.map(project => <article className="study-card" key={project.slug}>

@@ -9,6 +9,7 @@ const canonicalBase = 'https://www.agenciamello.site';
 const indexableRoutes = [
   '/',
   '/site-essencial',
+  '/criacao-de-sites-nova-iguacu',
   '/projetos/bellavista',
   '/projetos/solace',
 ];
@@ -16,6 +17,7 @@ const indexableRoutes = [
 const staticFiles = {
   '/': 'dist/index.html',
   '/site-essencial': 'dist/site-essencial/index.html',
+  '/criacao-de-sites-nova-iguacu': 'dist/criacao-de-sites-nova-iguacu/index.html',
   '/projetos/bellavista': 'dist/projetos/bellavista/index.html',
   '/projetos/solace': 'dist/projetos/solace/index.html',
   '/politica-de-privacidade': 'dist/politica-de-privacidade/index.html',
@@ -65,6 +67,14 @@ function readStaticMeta(file) {
   assert.equal(service.offers?.price, '500', 'Site Essencial structured price is R$ 500');
   assert.equal(service.offers?.priceCurrency, 'BRL', 'Site Essencial structured currency is BRL');
   assert.ok(graphTypes(serviceStatic.jsonLd).has('BreadcrumbList'), 'Site Essencial schema includes breadcrumbs');
+
+  const localStatic = readStaticMeta(staticFiles['/criacao-de-sites-nova-iguacu']);
+  const localGraph = localStatic.jsonLd['@graph'];
+  const localService = localGraph.find(item => item['@type'] === 'Service' && item.name === 'Criação de Sites em Nova Iguaçu');
+  assert.ok(localService, 'Nova Iguaçu page schema includes local site creation Service');
+  assert.equal(localService.areaServed?.name, 'Nova Iguaçu', 'Local service area is Nova Iguaçu');
+  assert.ok(graphTypes(localStatic.jsonLd).has('FAQPage'), 'Nova Iguaçu page schema includes FAQ');
+  assert.ok(graphTypes(localStatic.jsonLd).has('BreadcrumbList'), 'Nova Iguaçu page schema includes breadcrumbs');
 
   for (const route of ['/projetos/bellavista','/projetos/solace']) {
     const data = readStaticMeta(staticFiles[route]);

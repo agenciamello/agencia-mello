@@ -1,0 +1,237 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
+import { SectionLabel, StudioShell, usePageTitle } from '../components/studio/Studio';
+import { CASES } from '../data/cases';
+import { getWhatsAppUrl } from '../data/siteData';
+import '../local-seo.css';
+
+const VIANA_URL = 'https://vianaplanejados.vercel.app/';
+
+const processSteps = [
+  ['01', 'Você manda o básico', 'Serviços, fotos, Instagram e o que precisa destacar.'],
+  ['02', 'A gente organiza', 'Definimos estrutura, conteúdo e caminho até o contato.'],
+  ['03', 'Você acompanha', 'Recebe a prévia, avalia e pede os ajustes combinados.'],
+  ['04', 'Publicamos', 'Com sua aprovação, colocamos o site no ar.'],
+];
+
+const faqs = [
+  {
+    q: 'Quanto custa criar um site em Nova Iguaçu?',
+    a: 'Depende do escopo. O Site Essencial custa R$ 500. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.',
+  },
+  {
+    q: 'Quanto tempo leva para o site ficar pronto?',
+    a: 'No Site Essencial, a estimativa inicial é uma prévia em cerca de 2 horas após receber o material e entrega em cerca de 24 horas após aprovação e ajustes. Projetos sob medida têm prazo definido no orçamento.',
+  },
+  {
+    q: 'Preciso ir presencialmente até a agência?',
+    a: 'Não. Briefing, envio de material, ajustes e aprovação podem ser feitos online pelo WhatsApp.',
+  },
+  {
+    q: 'O site funciona bem no celular?',
+    a: 'Sim. O layout é pensado para celular e computador, com atenção ao caminho até o WhatsApp e outras ações importantes.',
+  },
+  {
+    q: 'O site já sai preparado para o Google?',
+    a: 'Configuramos título, descrição, estrutura semântica e SEO técnico básico. A posição nas buscas depende de concorrência, conteúdo, autoridade e outros fatores e não pode ser garantida.',
+  },
+  {
+    q: 'Domínio e hospedagem entram no orçamento?',
+    a: 'O domínio é combinado à parte. A hospedagem pode usar plano gratuito quando o projeto se encaixa nos limites do provedor; qualquer custo adicional é informado antes.',
+  },
+];
+
+function LocalQuoteForm() {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const nome = String(data.get('nome') || '').trim();
+    const negocio = String(data.get('negocio') || '').trim();
+    const tipo = String(data.get('tipo') || '').trim();
+    const projeto = String(data.get('projeto') || '').trim();
+
+    const message = [
+      'Oi, Matheus! Vim pela página de criação de sites em Nova Iguaçu e quero um orçamento personalizado.',
+      '',
+      `Nome: ${nome}`,
+      `Negócio: ${negocio}`,
+      `Tipo de site: ${tipo}`,
+      `Projeto: ${projeto}`,
+    ].join('\n');
+
+    window.open(getWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
+  }
+
+  return <form className="local-quote-form" onSubmit={handleSubmit}>
+    <div className="local-form-grid">
+      <label>
+        <span>Seu nome</span>
+        <input name="nome" autoComplete="name" required placeholder="Como podemos te chamar?" />
+      </label>
+      <label>
+        <span>Nome do negócio</span>
+        <input name="negocio" autoComplete="organization" required placeholder="Ex.: Studio, loja, clínica..." />
+      </label>
+    </div>
+    <label>
+      <span>O que você precisa?</span>
+      <select name="tipo" required defaultValue="">
+        <option value="" disabled>Selecione uma opção</option>
+        <option>Site institucional</option>
+        <option>Landing page</option>
+        <option>Site Essencial</option>
+        <option>Ainda não sei qual formato</option>
+      </select>
+    </label>
+    <label>
+      <span>Conte um pouco sobre o projeto</span>
+      <textarea name="projeto" required rows={5} placeholder="Serviços, objetivo do site, referências ou o que você gostaria de melhorar na presença online." />
+    </label>
+    <button className="local-form-submit" type="submit">Pedir orçamento no WhatsApp <span aria-hidden="true">↗</span></button>
+    <p className="local-form-note">Ao enviar, abrimos o WhatsApp com seu briefing preenchido. Nenhum dado é enviado antes disso.</p>
+  </form>;
+}
+
+export function CriacaoSitesNovaIguacuPage() {
+  usePageTitle('Criação de Sites em Nova Iguaçu | Agência Mello');
+
+  return <StudioShell contact={false}>
+    <section className="local-hero wrap">
+      <SectionLabel number="Nova Iguaçu / RJ">Criação de sites</SectionLabel>
+      <div className="local-hero-grid">
+        <div>
+          <h1>Criação de sites em<br/><span>Nova Iguaçu</span> para<br/>negócios que querem aparecer.</h1>
+          <p>Sites profissionais para apresentar seus serviços, gerar confiança e levar o cliente direto ao contato.</p>
+          <div className="local-hero-actions">
+            <a href="#orcamento" className="solid-link">Quero um orçamento <span aria-hidden="true">↗</span></a>
+            <a href="#portfolio-local" className="text-link">Ver projetos <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div className="local-hero-aside">
+          <span className="micro">Para negócios locais</span>
+          <ul>
+            <li>Sites institucionais</li>
+            <li>Landing pages</li>
+            <li>WhatsApp integrado</li>
+            <li>SEO técnico básico</li>
+          </ul>
+          <p>Atendimento direto com quem cria o projeto.</p>
+        </div>
+      </div>
+    </section>
+
+    <section className="local-solutions">
+      <div className="wrap">
+        <SectionLabel number="01">Site profissional</SectionLabel>
+        <div className="local-section-heading">
+          <h2>Seu negócio precisa de<br/>um endereço próprio.</h2>
+          <p>Um bom site organiza o que você faz, facilita o contato e cria uma presença que não depende só do feed.</p>
+        </div>
+        <div className="local-solution-grid">
+          <article>
+            <span>01</span>
+            <h3>Site institucional</h3>
+            <p>Empresa, serviços, localização, portfólio e contato em uma estrutura clara.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Landing page</h3>
+            <p>Uma página focada em um serviço, campanha ou objetivo comercial específico.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Site Essencial</h3>
+            <p>Uma página, até seis seções e prévia antes do pagamento.</p>
+            <Link to="/site-essencial">Conhecer o Site Essencial <ArrowUpRight size={17} aria-hidden="true"/></Link>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section className="local-process wrap">
+      <SectionLabel number="02">Como funciona</SectionLabel>
+      <div className="local-section-heading local-section-heading-dark">
+        <h2>Do briefing ao<br/>site publicado.</h2>
+        <p>Processo direto, com o projeto acompanhado pelo WhatsApp e escopo definido antes de começar.</p>
+      </div>
+      <div className="local-process-grid">
+        {processSteps.map(([number,title,text]) => <article key={number}>
+          <span className="micro">{number}</span>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </article>)}
+      </div>
+    </section>
+
+    <section id="portfolio-local" className="local-portfolio">
+      <div className="wrap">
+        <SectionLabel number="03">Portfólio</SectionLabel>
+        <div className="local-section-heading">
+          <h2>Projetos que mostram<br/>como pensamos.</h2>
+          <p>Estrutura, identidade e contato trabalhando juntos para apresentar melhor cada negócio.</p>
+        </div>
+        <article className="local-featured-project">
+          <a href={VIANA_URL} target="_blank" rel="noreferrer" className="local-featured-image">
+            <img src="/assets/viana-planejados-site.webp" alt="Prévia comercial do site Viana Planejados" width="1440" height="1100" loading="lazy"/>
+          </a>
+          <div>
+            <span className="micro">Projeto comercial / Prévia em negociação</span>
+            <h3>Viana Planejados</h3>
+            <p>Uma presença própria para organizar serviços, portfólio, localização e contato.</p>
+            <a href={VIANA_URL} target="_blank" rel="noreferrer" className="text-link">Visitar prévia <ArrowUpRight size={18} aria-hidden="true"/></a>
+          </div>
+        </article>
+        <div className="local-study-grid">
+          {CASES.map(project => <article key={project.slug}>
+            <Link to={`/projetos/${project.slug}`} className="local-study-image">
+              <img src={project.image} alt={project.alt} width="1024" height="768" loading="lazy"/>
+            </Link>
+            <span className="micro">{project.discipline} / Estudo conceitual</span>
+            <h3>{project.name}</h3>
+            <Link to={`/projetos/${project.slug}`} className="text-link">Ver estudo <ArrowUpRight size={17} aria-hidden="true"/></Link>
+          </article>)}
+        </div>
+        <p className="local-portfolio-note">Viana Planejados é uma prévia comercial em negociação. Bellavista e Solace são estudos autorais. Resultados só são publicados quando houver dados reais.</p>
+      </div>
+    </section>
+
+    <section className="local-business wrap">
+      <SectionLabel number="04">Nova Iguaçu</SectionLabel>
+      <div className="local-section-heading local-section-heading-dark">
+        <h2>Para negócios locais<br/>que precisam ser encontrados.</h2>
+        <p>Atendemos negócios de Nova Iguaçu e região com processo online. O site pode reunir serviços, endereço, horários, portfólio, mapa e contato em um só lugar.</p>
+      </div>
+      <div className="local-business-grid">
+        <article><strong>Comércio & alimentação</strong><span>Lojas, restaurantes, bares e negócios de bairro.</span></article>
+        <article><strong>Beleza & serviços</strong><span>Salões, barbearias, estética e prestadores locais.</span></article>
+        <article><strong>Profissionais & empresas</strong><span>Autônomos, escritórios, eventos e serviços especializados.</span></article>
+      </div>
+      <div className="local-internal-links">
+        <Link to="/#servicos">Conhecer todos os serviços <ArrowUpRight size={17} aria-hidden="true"/></Link>
+        <Link to="/#servico-marca">Identidade visual <ArrowUpRight size={17} aria-hidden="true"/></Link>
+        <Link to="/#servico-conteudo">Design para redes sociais <ArrowUpRight size={17} aria-hidden="true"/></Link>
+      </div>
+    </section>
+
+    <section id="orcamento" className="local-quote">
+      <div className="wrap local-quote-layout">
+        <div>
+          <SectionLabel number="05">Orçamento personalizado</SectionLabel>
+          <h2>Deseja um orçamento personalizado para ter um site em Nova Iguaçu – RJ?</h2>
+          <p>Precisando de um site profissional em Nova Iguaçu? Conte o básico do projeto e já começamos a conversa com o contexto certo.</p>
+        </div>
+        <LocalQuoteForm/>
+      </div>
+    </section>
+
+    <section className="local-faq wrap">
+      <SectionLabel number="06">Dúvidas frequentes</SectionLabel>
+      <h2>Antes de começar.</h2>
+      {faqs.map(faq => <details key={faq.q}>
+        <summary>{faq.q}</summary>
+        <p>{faq.a}</p>
+      </details>)}
+    </section>
+  </StudioShell>;
+}

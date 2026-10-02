@@ -49,8 +49,30 @@ async function wordCount(page, selector) {
     assert.ok(essential.process <= 70, `Site Essencial process copy budget exceeded: ${essential.process} words`);
     assert.ok(essential.faq <= 55, `Site Essencial FAQ labels budget exceeded: ${essential.faq} words`);
 
-    console.log(JSON.stringify({ home, essential }));
-    console.log('Copy density: approved word budgets for home and Site Essencial.');
+    await page.goto(`${base}/criacao-de-sites-nova-iguacu`, { waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(700);
+    const local = {
+      main: await wordCount(page, 'main'),
+      hero: await wordCount(page, '.local-hero'),
+      solutions: await wordCount(page, '.local-solutions'),
+      process: await wordCount(page, '.local-process'),
+      portfolio: await wordCount(page, '.local-portfolio'),
+      business: await wordCount(page, '.local-business'),
+      quote: await wordCount(page, '.local-quote'),
+      faq: await wordCount(page, '.local-faq'),
+    };
+
+    assert.ok(local.main <= 760, `Nova Iguaçu page copy budget exceeded: ${local.main} words`);
+    assert.ok(local.hero <= 90, `Nova Iguaçu hero copy budget exceeded: ${local.hero} words`);
+    assert.ok(local.solutions <= 140, `Nova Iguaçu solutions copy budget exceeded: ${local.solutions} words`);
+    assert.ok(local.process <= 110, `Nova Iguaçu process copy budget exceeded: ${local.process} words`);
+    assert.ok(local.portfolio <= 190, `Nova Iguaçu portfolio copy budget exceeded: ${local.portfolio} words`);
+    assert.ok(local.business <= 140, `Nova Iguaçu business copy budget exceeded: ${local.business} words`);
+    assert.ok(local.quote <= 180, `Nova Iguaçu quote form copy budget exceeded: ${local.quote} words`);
+    assert.ok(local.faq <= 190, `Nova Iguaçu FAQ copy budget exceeded: ${local.faq} words`);
+
+    console.log(JSON.stringify({ home, essential, local }));
+    console.log('Copy density: approved word budgets for home, Site Essencial and Nova Iguaçu.');
   } finally {
     await browser.close();
   }
