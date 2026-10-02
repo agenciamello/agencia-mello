@@ -11,7 +11,7 @@ import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { TermsPage } from "./pages/TermsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { CaseStudyPage } from "./pages/CaseStudyPage";
-import { CriacaoSitesNovaIguacuPage } from "./pages/CriacaoSitesNovaIguacuPage";
+import { CriacaoSitesBelfordRoxoPage, CriacaoSitesDuqueDeCaxiasPage, CriacaoSitesNovaIguacuPage } from "./pages/CriacaoSitesNovaIguacuPage";
 
 function ScrollHandler() {
   const { pathname, hash } = useLocation();
@@ -40,6 +40,8 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/site-essencial" element={<SiteEssencialPage />} />
         <Route path="/criacao-de-sites-nova-iguacu" element={<CriacaoSitesNovaIguacuPage />} />
+        <Route path="/criacao-de-sites-belford-roxo" element={<CriacaoSitesBelfordRoxoPage />} />
+        <Route path="/criacao-de-sites-duque-de-caxias" element={<CriacaoSitesDuqueDeCaxiasPage />} />
         <Route path="/projetos/:slug" element={<CaseStudyPage />} />
         <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
         <Route path="/termos-de-uso" element={<TermsPage />} />
