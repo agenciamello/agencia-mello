@@ -46,8 +46,8 @@ export const SEO_ROUTES = {
     ],
   },
   '/projetos/animalis-pet': {
-    title: 'Animalis Pet | Projeto comercial de site | Agência Mello',
-    description: 'Conheça a prévia comercial criada pela Agência Mello para a Animalis Pet, clínica veterinária em Nova Iguaçu. Projeto não contratado, apresentado com transparência.',
+    title: 'Animalis Pet | Prévia comercial de site | Agência Mello',
+    description: 'Conheça a prévia comercial desenvolvida pela Agência Mello para a Animalis Pet, clínica veterinária em Nova Iguaçu, com proposta de presença digital apresentada com transparência.',
     robots: INDEX_ROBOTS,
     type: 'article',
     schema: 'project',
@@ -57,7 +57,7 @@ export const SEO_ROUTES = {
     projectImageAlt: 'Prévia comercial do site Animalis Pet em Nova Iguaçu',
   },
   '/projetos/viana-planejados': {
-    title: 'Viana Planejados | Projeto comercial de site | Agência Mello',
+    title: 'Viana Planejados | Prévia comercial de site | Agência Mello',
     description: 'Conheça a prévia comercial criada pela Agência Mello para a Viana Planejados, marcenaria em Belford Roxo. Projeto em negociação.',
     robots: INDEX_ROBOTS,
     type: 'article',
@@ -68,8 +68,8 @@ export const SEO_ROUTES = {
     projectImageAlt: 'Prévia comercial do site Viana Planejados em Belford Roxo',
   },
   '/projetos/durio-planejados': {
-    title: 'Du-Rio Planejados | Projeto comercial de site | Agência Mello',
-    description: 'Conheça a prévia comercial criada pela Agência Mello para a Du-Rio Planejados, marcenaria fina em Duque de Caxias. Projeto não contratado.',
+    title: 'Du-Rio Planejados | Prévia comercial de site | Agência Mello',
+    description: 'Conheça a prévia comercial desenvolvida pela Agência Mello para a Du-Rio Planejados, marcenaria fina em Duque de Caxias, com direção editorial e proposta de presença digital.',
     robots: INDEX_ROBOTS,
     type: 'article',
     schema: 'project',
