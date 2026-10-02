@@ -36,12 +36,19 @@ const base = (process.env.SITE_URL || 'http://127.0.0.1:4209').replace(/\/$/, ''
     assert.match(url.searchParams.get('text') || '', /Nova Iguaçu/);
     assert.match(url.searchParams.get('text') || '', /Studio Ana/);
 
+    await expect(page.locator('.local-featured-project')).toContainText('Animalis Pet');
+    await expect(page.locator('.local-featured-project')).toContainText('Nova Iguaçu');
+    await expect(page.locator('.local-commercial-grid')).toContainText('Viana Planejados');
+    await expect(page.locator('.local-commercial-grid')).toContainText('Du-Rio Planejados');
+
     await page.goto(`${base}/`, { waitUntil: 'networkidle' });
-    await expect(page.locator('.study-introduction')).toContainText('Portfólio de Projetos');
-    await expect(page.locator('.study-introduction')).toContainText('Conheça o nosso portfólio juntamente com as soluções que entregamos para sua empresa.');
+    await expect(page.locator('.experience-work .section-label')).toContainText('Portfólio de Projetos');
+    await expect(page.locator('.experience-work')).toContainText('Animalis Pet');
+    await expect(page.locator('.experience-work')).toContainText('Viana Planejados');
+    await expect(page.locator('.experience-work')).toContainText('Du-Rio Planejados');
     await expect(page.locator('.service-local-link')).toHaveAttribute('href', '/criacao-de-sites-nova-iguacu');
 
-    console.log('Local SEO: landing page, quote form, home copy and internal link passed.');
+    console.log('Local SEO: landing page, quote form, local portfolio and internal links passed.');
   } finally {
     await browser.close();
   }

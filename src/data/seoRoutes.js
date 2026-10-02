@@ -45,6 +45,39 @@ export const SEO_ROUTES = {
       ['Domínio e hospedagem entram no orçamento?', 'O domínio é combinado à parte. A hospedagem pode usar plano gratuito quando o projeto se encaixa nos limites do provedor; qualquer custo adicional é informado antes.'],
     ],
   },
+  '/projetos/animalis-pet': {
+    title: 'Animalis Pet | Projeto comercial de site | Agência Mello',
+    description: 'Conheça a prévia comercial criada pela Agência Mello para a Animalis Pet, clínica veterinária em Nova Iguaçu. Projeto não contratado, apresentado com transparência.',
+    robots: INDEX_ROBOTS,
+    type: 'article',
+    schema: 'project',
+    projectName: 'Animalis Pet',
+    projectType: 'Prévia comercial de site para clínica veterinária em Nova Iguaçu',
+    projectImage: 'https://www.agenciamello.site/assets/animalis-pet-site.jpg',
+    projectImageAlt: 'Prévia comercial do site Animalis Pet em Nova Iguaçu',
+  },
+  '/projetos/viana-planejados': {
+    title: 'Viana Planejados | Projeto comercial de site | Agência Mello',
+    description: 'Conheça a prévia comercial criada pela Agência Mello para a Viana Planejados, marcenaria em Belford Roxo. Projeto em negociação.',
+    robots: INDEX_ROBOTS,
+    type: 'article',
+    schema: 'project',
+    projectName: 'Viana Planejados',
+    projectType: 'Prévia comercial de site para marcenaria em Belford Roxo',
+    projectImage: 'https://www.agenciamello.site/assets/viana-planejados-site.webp',
+    projectImageAlt: 'Prévia comercial do site Viana Planejados em Belford Roxo',
+  },
+  '/projetos/durio-planejados': {
+    title: 'Du-Rio Planejados | Projeto comercial de site | Agência Mello',
+    description: 'Conheça a prévia comercial criada pela Agência Mello para a Du-Rio Planejados, marcenaria fina em Duque de Caxias. Projeto não contratado.',
+    robots: INDEX_ROBOTS,
+    type: 'article',
+    schema: 'project',
+    projectName: 'Du-Rio Planejados',
+    projectType: 'Prévia comercial de site para marcenaria fina em Duque de Caxias',
+    projectImage: 'https://www.agenciamello.site/assets/durio-planejados-site.jpg',
+    projectImageAlt: 'Prévia comercial do site Du-Rio Planejados em Duque de Caxias',
+  },
   '/projetos/bellavista': {
     title: 'Bellavista | Estudo de site para restaurante | Agência Mello',
     description: 'Estudo conceitual de site para restaurante criado pela Agência Mello, com foco em apresentação clara, experiência visual e contato pelo WhatsApp.',
@@ -87,7 +120,7 @@ export function canonicalFor(pathname) {
 
 export function getSeoForPath(pathname, fallbackTitle = 'Agência Mello') {
   const route = SEO_ROUTES[pathname];
-  if (route) return { ...route, canonical: canonicalFor(pathname), image: SEO_SITE.defaultImage, imageAlt: SEO_SITE.defaultImageAlt };
+  if (route) return { ...route, canonical: canonicalFor(pathname), image: route.projectImage || SEO_SITE.defaultImage, imageAlt: route.projectImageAlt || SEO_SITE.defaultImageAlt };
 
   return {
     title: fallbackTitle,

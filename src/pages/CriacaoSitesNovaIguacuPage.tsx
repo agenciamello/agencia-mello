@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { SectionLabel, StudioShell, usePageTitle } from '../components/studio/Studio';
-import { CASES } from '../data/cases';
+import { COMMERCIAL_PROJECTS } from '../data/commercialProjects';
 import { getWhatsAppUrl } from '../data/siteData';
 import '../local-seo.css';
 
-const VIANA_URL = 'https://vianaplanejados.vercel.app/';
+const [animalisLocal, ...regionalProjects] = COMMERCIAL_PROJECTS;
 
 const processSteps = [
   ['01', 'Você manda o básico', 'Serviços, fotos, Instagram e o que precisa destacar.'],
@@ -166,33 +166,34 @@ export function CriacaoSitesNovaIguacuPage() {
 
     <section id="portfolio-local" className="local-portfolio">
       <div className="wrap">
-        <SectionLabel number="03">Portfólio</SectionLabel>
+        <SectionLabel number="03">Portfólio local</SectionLabel>
         <div className="local-section-heading">
-          <h2>Projetos que mostram<br/>como pensamos.</h2>
-          <p>Estrutura, identidade e contato trabalhando juntos para apresentar melhor cada negócio.</p>
+          <h2>Projetos para negócios<br/>da Baixada.</h2>
+          <p>Propostas comerciais criadas para negócios reais da região, com estrutura e direção ajustadas a cada contexto.</p>
         </div>
         <article className="local-featured-project">
-          <a href={VIANA_URL} target="_blank" rel="noreferrer" className="local-featured-image">
-            <img src="/assets/viana-planejados-site.webp" alt="Prévia comercial do site Viana Planejados" width="1440" height="1100" loading="lazy"/>
-          </a>
+          <Link to={`/projetos/${animalisLocal.slug}`} className="local-featured-image">
+            <img src={animalisLocal.image} alt={animalisLocal.alt} width="1440" height="1000" loading="lazy"/>
+          </Link>
           <div>
-            <span className="micro">Projeto comercial / Prévia em negociação</span>
-            <h3>Viana Planejados</h3>
-            <p>Uma presença própria para organizar serviços, portfólio, localização e contato.</p>
-            <a href={VIANA_URL} target="_blank" rel="noreferrer" className="text-link">Visitar prévia <ArrowUpRight size={18} aria-hidden="true"/></a>
+            <span className="micro">{animalisLocal.category} / {animalisLocal.location}</span>
+            <h3>{animalisLocal.name}</h3>
+            <p>Uma prévia comercial pensada para organizar serviços, localização e contato de uma clínica veterinária em Nova Iguaçu.</p>
+            <Link to={`/projetos/${animalisLocal.slug}`} className="text-link">Ver case <ArrowUpRight size={18} aria-hidden="true"/></Link>
           </div>
         </article>
-        <div className="local-study-grid">
-          {CASES.map(project => <article key={project.slug}>
+        <div className="local-study-grid local-commercial-grid">
+          {regionalProjects.map(project => <article key={project.slug}>
             <Link to={`/projetos/${project.slug}`} className="local-study-image">
-              <img src={project.image} alt={project.alt} width="1024" height="768" loading="lazy"/>
+              <img src={project.image} alt={project.alt} width="1440" height="1000" loading="lazy"/>
             </Link>
-            <span className="micro">{project.discipline} / Estudo conceitual</span>
+            <span className="micro">{project.category} / {project.location}</span>
             <h3>{project.name}</h3>
-            <Link to={`/projetos/${project.slug}`} className="text-link">Ver estudo <ArrowUpRight size={17} aria-hidden="true"/></Link>
+            <p>{project.intro}</p>
+            <Link to={`/projetos/${project.slug}`} className="text-link">Ver case <ArrowUpRight size={17} aria-hidden="true"/></Link>
           </article>)}
         </div>
-        <p className="local-portfolio-note">Viana Planejados é uma prévia comercial em negociação. Bellavista e Solace são estudos autorais. Resultados só são publicados quando houver dados reais.</p>
+        <p className="local-portfolio-note">Animalis Pet e Du-Rio são prévias comerciais desenvolvidas para negócios reais, sem contratação concluída. Viana Planejados é uma prévia comercial em negociação. Resultados só são publicados quando houver dados reais.</p>
       </div>
     </section>
 

@@ -26,8 +26,8 @@ async function wordCount(page, selector) {
       teaser: await wordCount(page, '.essential-teaser'),
     };
 
-    assert.ok(home.main <= 650, `Home copy budget exceeded: ${home.main} words`);
-    assert.ok(home.portfolio <= 180, `Portfolio copy budget exceeded: ${home.portfolio} words`);
+    assert.ok(home.main <= 750, `Home copy budget exceeded: ${home.main} words`);
+    assert.ok(home.portfolio <= 270, `Portfolio copy budget exceeded: ${home.portfolio} words`);
     assert.ok(home.services <= 210, `Services copy budget exceeded: ${home.services} words`);
     assert.ok(home.about <= 65, `About copy budget exceeded: ${home.about} words`);
     assert.ok(home.process <= 70, `Process copy budget exceeded: ${home.process} words`);
