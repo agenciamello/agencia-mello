@@ -3,9 +3,9 @@ const assert = require('node:assert/strict');
 
 const base = (process.env.SITE_URL || 'http://127.0.0.1:4210').replace(/\/$/, '');
 const commercialRoutes = [
-  ['/projetos/animalis-pet', 'Animalis Pet', 'não foi contratado'],
+  ['/projetos/animalis-pet', 'Animalis Pet', 'proposta de presença digital'],
   ['/projetos/viana-planejados', 'Viana Planejados', 'em negociação'],
-  ['/projetos/durio-planejados', 'Du-Rio Planejados', 'não foi contratado'],
+  ['/projetos/durio-planejados', 'Du-Rio Planejados', 'proposta de presença digital'],
 ];
 
 (async () => {
@@ -18,7 +18,14 @@ const commercialRoutes = [
     await expect(page.locator('.commercial-project-grid')).toContainText('Viana Planejados');
     await expect(page.locator('.commercial-project-grid')).toContainText('Du-Rio Planejados');
     await expect(page.locator('.conceptual-introduction')).toContainText('Estudos autorais');
-    await expect(page.locator('.work-honesty')).toContainText('sem contratação concluída');
+    await expect(page.locator('.home-service-orientation')).toContainText('Sites e landing pages');
+    await expect(page.locator('.home-service-orientation')).toContainText('Identidade visual');
+    await expect(page.locator('.home-service-orientation')).toContainText('Design para redes sociais');
+    await expect(page.locator('.showcase-commercial')).toContainText('proposta desenvolvida');
+    await expect(page.locator('.showcase-commercial')).not.toContainText('não contratado');
+    await expect(page.locator('.copy-bridge')).toContainText('Gostou de algum desses projetos?');
+    await expect(page.locator('.copy-bridge')).toContainText('Quero uma prévia');
+    assert.equal(await page.locator('.conceptual-project-grid').count(), 1, 'Authored studies remain secondary but accessible');
 
     for (const [route,name,statusText] of commercialRoutes) {
       await page.goto(`${base}${route}`, { waitUntil: 'networkidle' });
@@ -36,7 +43,7 @@ const commercialRoutes = [
     await expect(page.locator('.local-commercial-grid')).toContainText('Viana Planejados');
     await expect(page.locator('.local-commercial-grid')).toContainText('Du-Rio Planejados');
 
-    console.log('Portfolio Real V2: commercial projects, transparency and internal case routes passed.');
+    console.log('Clarity V3: offer orientation, commercial previews, transparency and mobile hierarchy passed.');
   } finally {
     await browser.close();
   }

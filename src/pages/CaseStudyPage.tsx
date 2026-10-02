@@ -13,7 +13,7 @@ export function CaseStudyPage(){
   const isCommercial=Boolean(commercial);
 
   const fallbackTitle = commercial
-    ? `${commercial.name} | Projeto comercial de site | Agência Mello`
+    ? `${commercial.name} | Prévia comercial de site | Agência Mello`
     : concept
       ? `${concept.name} | Estudo conceitual | Agência Mello`
       : 'Projeto não encontrado | Agência Mello';
@@ -30,8 +30,8 @@ export function CaseStudyPage(){
       <section className="case-head wrap commercial-case-head">
         <Link to="/#projetos" className="text-link">← Todos os projetos</Link>
         <div className="section-top">
-          <SectionLabel number="Projeto comercial">{commercial.category}</SectionLabel>
-          <span className="micro">{commercial.location} · Prévia comercial</span>
+          <SectionLabel number="Prévia comercial">{commercial.category}</SectionLabel>
+          <span className="micro">{commercial.location} · {commercial.status}</span>
         </div>
         <h1>{commercial.name}</h1>
         <p className="case-intro">{commercial.intro}</p>
