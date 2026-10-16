@@ -18,6 +18,7 @@ Achados finais e correções:
 - Vídeo em loop sem pausa: controle acessível por teclado, pausa fora da viewport/aba e preservação da pausa escolhida pelo visitante. Movimento reduzido mantém imagem estática.
 - URLs válidas com barra final recebiam `noindex` após hidratação: pathname normalizado para lookup e canonical.
 - Navegação SPA deixava `og:image:secure_url` da página anterior: sincronização com `og:image`.
+- A verificação ampla do axe na prévia encontrou a seção de contato fora de landmarks nomeados. A seção recebeu nome acessível, sem mudança visual ou de copy.
 - PRODUCT/DESIGN descreviam uma versão anterior: documentação alinhada à hierarquia confirmada e ao vídeo atual.
 - O teste de densidade esperava 210 palavras nos serviços, mas a produção aprovada com navegação de três cidades tem 212. Limite ajustado para 212 após reprodução na produção; texto público preservado.
 
