@@ -150,12 +150,16 @@ export const SEO_ROUTES = {
   },
 };
 
+function normalizePathname(pathname) {
+  return pathname.replace(/\/+$/, '') || '/';
+}
+
 export function canonicalFor(pathname) {
-  return `${SEO_SITE.url}${pathname === '/' ? '/' : pathname}`;
+  return `${SEO_SITE.url}${normalizePathname(pathname)}`;
 }
 
 export function getSeoForPath(pathname, fallbackTitle = 'Agência Mello') {
-  const route = SEO_ROUTES[pathname];
+  const route = SEO_ROUTES[normalizePathname(pathname)];
   if (route) return { ...route, canonical: canonicalFor(pathname), image: route.projectImage || SEO_SITE.defaultImage, imageAlt: route.projectImageAlt || SEO_SITE.defaultImageAlt };
 
   return {
