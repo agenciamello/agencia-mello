@@ -1,62 +1,54 @@
 # Agência Mello — sistema da experiência
 
-## Direção
-Presença em construção. Composição editorial, clareza comercial e profundidade derivada do símbolo oficial. React/Vite preservados. Nenhum case, cliente, prêmio ou resultado inventado.
+## Direção atual — 16/10/2026
+
+Composição editorial, clareza comercial e movimento derivado da identidade oficial. Refinar a experiência existente em React/Vite, preservando os avanços posteriores ao sprint editorial original. Nenhum cliente, prêmio ou resultado inventado. O estado de publicação está nas Issues e PRs, não neste documento.
 
 ## Identidade
-- Base: #0c0b0e / #101014.
-- Papel: #eeeae4.
-- Magenta: #ec4899, herdado da identidade existente.
-- Texto escuro: #141217.
-- Fontes: Space Grotesk em títulos, Inter em texto; serifada pontual na conclusão.
-- Usar os arquivos oficiais agencia-mello-logo.png e agencia-mello-icone.png; não substituir por um wordmark improvisado.
+
+- Base: #0c0b0e / #101014; hero preto.
+- Papel: #eeeae4. Magenta: #ec4899. Texto escuro: #141217.
+- Space Grotesk em títulos, Inter em texto; serifada pontual na conclusão.
+- Arquivos oficiais `agencia-mello-logo.png` e `agencia-mello-icone.png`; não substituir por wordmark improvisado.
 - Retrato colorido e nome completo: Matheus Mello.
 
 ## Composição
-Hero quase uma viewport com headline dominante, WhatsApp e caminho para projetos. Símbolo oficial em camadas com estudo em perspectiva. Portfólio em superfície clara com imagens grandes e assimetria. Serviços com índice sticky em desktop e capítulos independentes. Mobile usa fluxo contínuo, sem pinning ou interações que dependam de mouse. Conclusão em magenta e footer com assinatura oficial.
+
+O título em quatro linhas conduz o hero, acompanhado de CTA para WhatsApp e link para o processo. O símbolo oficial aparece em vídeo silencioso WebM/MP4, com imagem estática para movimento reduzido ou erro de mídia. Um controle discreto permite pausar e reproduzir a animação por clique ou teclado.
+
+O portfólio usa superfície clara, imagens amplas e assimetria. Animalis Pet lidera; Viana Planejados e Du-Rio são outras prévias comerciais. Bellavista e Solace ficam na camada secundária de estudos autorais. Preservar a explicação factual do status de cada projeto.
+
+Serviços usam índice sticky em desktop e capítulos próprios. Sobre preserva o retrato colorido; processo apresenta etapas e contato oferece três intenções opcionais para WhatsApp. A conclusão é magenta e o footer usa a assinatura oficial. O botão flutuante de WhatsApp aparece após a introdução.
+
+Mobile tem composição e movimento próprios, com leitura em fluxo nativo, sem pinning ou dependência de hover. Validar 390, 360 e 320px, além de 768, 1024 e 1440px.
 
 ## Motion
-Tokens em StudioMotion.tsx e experience.css:
-- Micro: 220 ms.
-- Reveal: 800 ms.
-- Transição: 1150 ms.
-- Stagger: 110 ms.
-- Ease: power3.out / cubic-bezier(.22,1,.36,1).
 
-Entrada do hero por linhas e planos. GSAP/ScrollTrigger importados dinamicamente para máscaras e profundidade ligadas à rolagem. Sticky nativo no índice de serviços. Tilt máximo de 1,5 grau por eixo e efeito magnético abaixo de 4 px, somente mouse/desktop. Marquee único pausado fora da viewport e em aba inativa. Sem canvas, vídeo ou WebGL na experiência ativa. Sem rolagem artificial ou cursor substituto.
+Tokens atuais em `StudioMotion.tsx`: micro 220ms, reveal 620ms, seção 900ms, stagger 80ms; ease `power3.out`. CSS usa `cubic-bezier(.22,1,.36,1)`. Timelines específicas variam conforme o elemento.
+
+- Hero: entrada tipográfica por máscaras, vídeo da marca e profundidade discreta em desktop.
+- Portfólio: tese por palavras, recortes de imagens e profundidade ligada à rolagem.
+- Serviços: entradas sequenciais e movimento interno das peças; amplitudes próprias no mobile.
+- Sobre: entrada de texto e retrato; processo: título e progressão das etapas; contato: revelação tipográfica.
+- Subpáginas: mesma linguagem de entradas, imagens e grupos de informações.
+- Magnetismo sutil nos CTAs principais apenas com mouse em desktop. Sem scroll hijacking ou cursor substituto.
+- Vídeo pausa fora da viewport e em aba oculta; voltar ao hero não desfaz uma pausa escolhida pelo visitante.
+- Marquee pausa fora da viewport e em aba oculta. Não usar canvas ou WebGL na experiência ativa.
+
+GSAP/ScrollTrigger são importados dinamicamente. Manter cleanup de timelines, observers, listeners e RAF nas trocas de rota, breakpoint e preferência. Não adicionar animação a cada elemento por padrão.
 
 ## Acessibilidade e comportamento
-Conteúdo disponível sem depender de animação. Reduced motion desliga os efeitos, marquee e rolagem animada. Foco visível, skip link, Escape no menu, fechamento ao selecionar a mesma âncora. Cleanup dos observers, listeners e tweens na troca de rota/preferência.
+
+Conteúdo disponível sem depender de animação. `prefers-reduced-motion` troca o vídeo pela imagem, desliga timelines, marquee, transições e rolagem animada, inclusive quando muda durante a sessão. Foco visível, skip link, Escape no menu, fechamento ao selecionar a mesma âncora e alvos de toque confortáveis. O controle do vídeo deve permanecer acessível, fora de qualquer ancestral `aria-hidden`.
 
 ## Verificação
-Testes reproduzíveis em tests/experience.cjs. A aplicação deve estar disponível em SITE_URL (padrão http://127.0.0.1:3000). Execute npm test em um ambiente Node funcional com Chrome instalado. npm run lint e npm run typecheck executam TypeScript; o repositório não contém um linter separado. npm run build gera dist.
 
-Capturas, relatório de rotas, axe e medições de laboratório estão em artifacts. O diretório é local e ignorado pelo versionamento.
+`npm run lint` e `npm run typecheck` executam TypeScript; não há linter separado. `npm run build` gera o bundle e HTML estático com metadata por rota.
 
-## Sprint de impacto — 18/09/2026
-Hero sem card sobreposto, com logo oficial preservada e planos vetoriais derivados de sua geometria. Planos respondem ao cursor e abrem com o scroll em desktop. Portfólio em dois capítulos de largura ampla, com direção criativa factual e recortes das imagens existentes. Serviços usam sequências próprias ligadas ao scroll no desktop; no celular preservam fluxo nativo. Contato oferece três intenções opcionais com mensagens específicas para WhatsApp; nenhuma mensagem é enviada automaticamente. Reduced motion mantém tudo disponível sem coreografia. Nenhuma dependência adicionada.
+`npm test` cobre responsividade, rotas, navegação, motion e axe. `tests/sprint.cjs` cobre CTA, mensagens, teclado, pausa do vídeo e movimento reduzido. As suítes de copy, portfólio e SEO complementam esses fluxos; `tests/seo-navigation.cjs` cobre barras finais e metadata durante navegação interna. Sempre definir `SITE_URL` para a instância verificada, com Chrome instalado.
 
-## Mello Motion System V2 — 29/09/2026
+Capturas e resultados em `artifacts` são locais e ignorados pelo Git. Inspecionar screenshots reais; aprovação de build não equivale a aprovação visual ou conformidade WCAG completa.
 
-O motion passa a operar em quatro níveis: microinteração, reveal, profundidade e momento cinematográfico. A regra continua sendo contraste: nem todo elemento se move e os efeitos de maior amplitude ficam restritos a pontos de narrativa.
+## Histórico
 
-- Hero: entrada por máscaras com blur curto, profundidade em planos, deslocamento progressivo no scroll e iluminação radial reativa ao ponteiro apenas em desktop com mouse.
-- Portfólio: título reage ao progresso do scroll; cada projeto recebe progresso narrativo, recorte progressivo, deslocamento interno da imagem e CTA sincronizado.
-- Reveals: blocos editoriais podem usar data-reveal="stagger" para entradas sequenciais curtas; processo, tags, editoriais de projeto e Site Essencial usam esse ritmo.
-- Profundidade: retrato, marca tipográfica e legenda usam velocidades diferentes; o símbolo de contato mantém parallax próprio.
-- Micro: tilt máximo permanece em 1,5° por eixo; CTAs principais, navegação de contato e envio de intenção recebem magnetismo abaixo de 4 px.
-- Mobile: sem parallax ligado ao scroll e sem tilt; fluxo visual permanece nativo.
-- Reduced motion: desmonta timelines e estilos inline do Motion V2, interrompe marquee e mantém todo conteúdo visível.
-
-## Mobile Motion Pass V3 — 29/09/2026
-
-O mobile passa a ter coreografia própria em vez de apenas desativar os efeitos de desktop. A amplitude é menor e toda interação depende de scroll ou toque, nunca de hover.
-
-- Hero: linhas entram por máscara com blur curto; descrição, CTAs e arte entram em sequência; a arte recebe parallax vertical curto no scroll.
-- Projetos: cada estudo usa recorte progressivo, microparallax da imagem, linha lateral de progresso e CTA sincronizado.
-- Serviços: browser, amostras de marca e peças sociais ganham movimento interno leve ao entrar na viewport.
-- Sobre, processo e contato: retrato/marca usam profundidade curta; a linha do processo acompanha o scroll; a marca do contato se move independentemente.
-- Menu: abertura por máscara com links em cascata e blur curto.
-- Toque: CTAs e links importantes recebem feedback de pressão sem depender de hover.
-- Reduced motion: remove timelines, transforms, custom properties e animações do pass mobile mesmo quando a preferência muda durante a sessão.
-- Desktop mantém a coreografia do Motion System V2 sem alterações de amplitude.
+Os passes de setembro (impacto, Motion V2 e Mobile V3) evoluíram com vídeo no hero, novas prévias comerciais, revisão de copy e motion das subpáginas. Esta especificação substitui as descrições antigas de hero em planos sem vídeo e de mobile sem parallax.

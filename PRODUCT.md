@@ -45,9 +45,9 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 
 ## Evidence on Hand
 
-- O site possui demonstrações e projetos conceituais para diferentes segmentos.
-- O portfólio atual não deve ser apresentado como trabalho contratado por clientes reais.
-- Não há depoimentos, estudos de caso ou métricas de resultado confirmados; trabalhos futuros não devem inventá-los.
+- Animalis Pet ocupa o destaque principal. Viana Planejados e Du-Rio aparecem como outras prévias comerciais; Bellavista e Solace são estudos autorais secundários. Hierarquia confirmada pelo usuário em 16/10/2026, substituindo o pedido original de destaque principal para Viana.
+- Animalis Pet e Du-Rio são prévias comerciais desenvolvidas para negócios reais; Viana Planejados é uma prévia comercial em negociação. Isso não comprova contratação, entrega definitiva ou resultados.
+- As páginas de projeto descrevem contexto e proposta. Não há depoimentos ou métricas de resultado confirmados; trabalhos futuros não devem inventá-los.
 - Os ativos institucionais disponíveis incluem o logo da Agência Mello, a fotografia de Matheus Mello e demonstrações visuais mantidas em `public/assets`.
 
 ## Product Principles

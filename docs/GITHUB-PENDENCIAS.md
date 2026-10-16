@@ -8,7 +8,7 @@ Repositório confirmado: https://github.com/agenciamello/agencia-mello. Branch p
 | Integrar o redesign local ao histórico | [#2](https://github.com/agenciamello/agencia-mello/issues/2) | [PR #5](https://github.com/agenciamello/agencia-mello/pull/5), aberto, com `Closes #2`. |
 | Ampliar animações e efeitos | [#3](https://github.com/agenciamello/agencia-mello/issues/3) | [PR #5](https://github.com/agenciamello/agencia-mello/pull/5), aberto, com `Closes #3`. |
 
-## Validação e preview
+## Validação e preview — registro histórico de 24/09/2026
 
 - Branch visual: `improvement/2-experiencia-mello`, commit `40b4df40ba892555946f251ab460313ee227722d`.
 - TypeScript e build aprovados. Sete rotas em quatro larguras sem overflow, imagens quebradas ou erros de página. Axe nas páginas inicial, Site Essencial e Bellavista sem violações detectadas.
@@ -32,3 +32,11 @@ Repositório confirmado: https://github.com/agenciamello/agencia-mello. Branch p
 - A raiz original permanece como cópia de desenvolvimento; confira a branch no checkout antes de trabalhar. Não inicialize outro histórico sobre a cópia original.
 - `PRODUCT.md` e `DESIGN.md` registram a direção do redesign; não são evidência de publicação em produção. Issues e PRs são a fonte do estado de entrega.
 - Novas tarefas devem seguir `AGENTS.md`, começando por uma Issue real.
+
+## Conclusão do sprint editorial — 16/10/2026
+
+- Entrega: [Issue #17](https://github.com/agenciamello/agencia-mello/issues/17). O refinamento original foi integrado em `6e5ce0f` / merge `6258778`; trabalhos posteriores chegaram à produção `63eddc9`.
+- O usuário confirmou preservar a hierarquia atual: Animalis em destaque, Viana e Du-Rio como outras prévias comerciais e estudos autorais secundários. Essa decisão substitui o destaque principal de Viana no pedido original.
+- A branch `improvement/17-validacao-final`, baseada em `63eddc9`, conclui QA, controle do vídeo, correções de TypeScript/metadata e documentação atualizada. Evidências em [validacao-editorial-17.md](validacao-editorial-17.md).
+- O PR e seus comentários concentram o link da prévia, commit de merge e verificação da produção. Não usar os estados históricos de setembro acima como status atual.
+- Limitação anterior à entrega: URLs inexistentes recebem HTTP 200 antes da hidratação. Correção de roteamento registrada separadamente na [Issue #21](https://github.com/agenciamello/agencia-mello/issues/21).

@@ -44,6 +44,7 @@ export function usePageTitle(title: string) {
     upsertMeta('meta[property="og:type"]','property','og:type',seo.type);
     upsertMeta('meta[property="og:url"]','property','og:url',seo.canonical);
     upsertMeta('meta[property="og:image"]','property','og:image',seo.image);
+    upsertMeta('meta[property="og:image:secure_url"]','property','og:image:secure_url',seo.image);
     upsertMeta('meta[property="og:image:alt"]','property','og:image:alt',seo.imageAlt);
     upsertMeta('meta[name="twitter:title"]','name','twitter:title',seo.title);
     upsertMeta('meta[name="twitter:description"]','name','twitter:description',seo.description);

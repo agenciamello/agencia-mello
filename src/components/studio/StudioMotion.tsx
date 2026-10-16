@@ -520,7 +520,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
               { x: 0, y: 0, opacity: 1, duration: .66 }, .24);
           }
 
-          scope.querySelectorAll<HTMLElement>('.local-solutions, .local-process, .local-portfolio, .local-business, .local-quote, .local-faq').forEach(section => {
+          scope.querySelectorAll<HTMLElement>('.local-solutions, .local-process, .local-portfolio, .local-business, .local-quote, .local-faq').forEach((section: HTMLElement) => {
             const label = section.querySelector<HTMLElement>('.section-label');
             const heading = section.querySelector<HTMLElement>('.local-section-heading');
             if (label) gsap.fromTo(label,
@@ -569,7 +569,7 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
                 scrollTrigger: { trigger: featured, start: 'top 84%', once: true } });
           }
 
-          scope.querySelectorAll<HTMLElement>('.local-featured-image, .local-study-image').forEach(frameEl => {
+          scope.querySelectorAll<HTMLElement>('.local-featured-image, .local-study-image').forEach((frameEl: HTMLElement) => {
             const image = frameEl.querySelector<HTMLElement>('img');
             if (!image) return;
             gsap.fromTo(image,
