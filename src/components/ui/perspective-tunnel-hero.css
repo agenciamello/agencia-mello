@@ -16,4 +16,4 @@
 .tunnel-prompt>span{color:#ff8bc5;font-size:20px}
 .tunnel-skip{position:absolute;right:28px;bottom:22px;z-index:20;display:flex;align-items:center;gap:24px;padding:12px 15px;min-height:48px;background:#101014e8;color:#eeeae4;border:1px solid #ffffff40;font-size:12px}
 .tunnel-skip:hover{border-color:#ff8bc5;color:#ff8bc5}
-@media(max-width:900px),(prefers-reduced-motion:reduce){.perspective-tunnel{display:none}}
+@media(max-width:700px),(prefers-reduced-motion:reduce){.perspective-tunnel{display:none}}

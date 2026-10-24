@@ -63,6 +63,12 @@ async function travel(page,progress){
     await expect(page.locator('.event-open')).toHaveCount(4);
     await page.emulateMedia({reducedMotion:'no-preference'});
     await expect(page.locator('.perspective-tunnel')).toHaveCount(1);
+    await page.setViewportSize({width:768,height:900});
+    await expect(page.locator('.perspective-tunnel')).toHaveCount(1);
+    await travel(page,.5);
+    await expect(page.locator('.tunnel-viewport')).toBeInViewport();
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Narrow desktop preview keeps the tunnel without horizontal overflow');
+    await page.screenshot({path:`${output}/narrow-desktop-middle.png`});
     await page.setViewportSize({width:390,height:844});
     await expect(page.locator('.perspective-tunnel')).toHaveCount(0);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);

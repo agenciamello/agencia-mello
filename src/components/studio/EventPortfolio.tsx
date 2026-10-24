@@ -40,7 +40,7 @@ export function EventPortfolio() {
   const [tunnelEnabled, setTunnelEnabled] = useState(false);
 
   useEffect(() => {
-    const media = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+    const media = matchMedia('(min-width: 701px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
     const update = () => setTunnelEnabled(media.matches);
     update();
     media.addEventListener('change', update);

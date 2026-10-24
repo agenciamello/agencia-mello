@@ -10,6 +10,8 @@ Na revisão solicitada em 24/10/2026, a grade inclinada da primeira prévia foi 
 
 O quadro sticky usa a rolagem nativa, sem capturar a roda. A galeria integral permanece abaixo, com atalho para pular a passagem e ampliar cada peça. No mobile e em movimento reduzido o túnel não é montado. Motion/React reutiliza o pacote `motion` já existente, sem instalação de dependência, e carrega em um bloco separado apenas quando habilitado. A entrada principal ficou em 384,44kB, e o bloco do túnel em 137,05kB (45,34kB gzip).
 
+O efeito também está disponível em janelas de computador mais estreitas, a partir de 701px com mouse/ponteiro fino; telas de toque e movimento reduzido mantêm a galeria. O quadro foi conferido especificamente em 768px, sem overflow.
+
 Ampliação em diálogo com foco contido, Escape, botão de fechar e retorno ao botão de origem. O WhatsApp usa intenção própria de orçamento para evento, sem enviar mensagem automaticamente. A mudança de altura ao ativar/desativar o túnel atualiza as posições das animações dos capítulos seguintes.
 
 ## Verificações executadas
