@@ -16,4 +16,14 @@
 .tunnel-prompt>span{color:#ff8bc5;font-size:20px}
 .tunnel-skip{position:absolute;right:28px;bottom:22px;z-index:20;display:flex;align-items:center;gap:24px;padding:12px 15px;min-height:48px;background:#101014e8;color:#eeeae4;border:1px solid #ffffff40;font-size:12px}
 .tunnel-skip:hover{border-color:#ff8bc5;color:#ff8bc5}
-@media(max-width:700px),(prefers-reduced-motion:reduce){.perspective-tunnel{display:none}}
+.perspective-tunnel[data-compact=true]{height:220svh}
+.perspective-tunnel[data-compact=true] .tunnel-viewport{min-height:0;touch-action:pan-y pinch-zoom}
+.perspective-tunnel[data-compact=true] .tunnel-scene{perspective:1000px}
+.perspective-tunnel[data-compact=true] .tunnel-title>div{font-size:clamp(44px,13vw,72px)}
+.perspective-tunnel[data-compact=true] .tunnel-title>p{font-size:9px;letter-spacing:.15em;margin-bottom:16px}
+.perspective-tunnel[data-compact=true] .tunnel-card{box-shadow:0 12px 24px #00000045}
+.perspective-tunnel[data-compact=true] .tunnel-card>span{font-size:9px;padding:4px 6px;left:6px;bottom:6px;max-width:calc(100% - 12px)}
+.perspective-tunnel[data-compact=true] .tunnel-skip{left:12px;right:auto;bottom:16px;max-width:calc(100% - 92px);gap:14px;font-size:11px}
+.perspective-tunnel[data-compact=true] .tunnel-prompt{bottom:84px;font-size:9px;letter-spacing:.1em}
+@media(max-width:700px){.perspective-tunnel{margin-inline:calc(var(--gutter)*-1)}.tunnel-viewport{top:76px;height:calc(100svh - 76px)}}
+@media(prefers-reduced-motion:reduce){.perspective-tunnel{display:none}}

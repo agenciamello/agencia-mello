@@ -78,3 +78,7 @@ Ver docs/copy-commercial-confirmed.md. Estas condições substituem as menções
 ### Revisão aprovada: exemplos antes do preço
 
 O usuário substituiu explicitamente a oferta antes do portfólio por capítulos integrados. Ordem: hero e resumo → apresentação das soluções → 01 sites (Animalis, Viana/Du-Rio, preço e CTA) → 02 artes para redes/eventos → 03 logo/identidade → Matheus e contato. O preço não precisa mais estar nas primeiras duas telas. Bellavista fica secundário em sites; Solace é identificado como estudo de identidade. Processo fica em detalhes acessíveis no capítulo de sites. Não duplicar uma seção extensa de serviços depois dos trabalhos.
+
+### Animação de eventos no celular
+
+Após aprovar os capítulos, o usuário pediu explicitamente o efeito de eventos também no mobile. O túnel passa a usar uma única passagem das quatro artes no toque/telas pequenas, sem paralaxe de mouse, mantendo galeria completa, ampliação e Behance. Respeitar movimento reduzido com galeria estática, rolagem nativa e pinch-zoom; não alterar oferta ou estrutura comercial.

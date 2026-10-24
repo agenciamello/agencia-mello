@@ -39,13 +39,22 @@ export function EventPortfolio() {
   const opener = useRef<HTMLButtonElement | null>(null);
   const [selected, setSelected] = useState<EventArtwork | null>(null);
   const [tunnelEnabled, setTunnelEnabled] = useState(false);
+  const [compactTunnel, setCompactTunnel] = useState(false);
 
   useEffect(() => {
-    const media = matchMedia('(min-width: 701px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-    const update = () => setTunnelEnabled(media.matches);
+    const media = matchMedia('(prefers-reduced-motion: no-preference)');
+    const compact = matchMedia('(max-width: 700px), (hover: none), (pointer: coarse)');
+    const update = () => {
+      setTunnelEnabled(media.matches);
+      setCompactTunnel(compact.matches);
+    };
     update();
     media.addEventListener('change', update);
-    return () => media.removeEventListener('change', update);
+    compact.addEventListener('change', update);
+    return () => {
+      media.removeEventListener('change', update);
+      compact.removeEventListener('change', update);
+    };
   }, []);
 
   useEffect(() => {
@@ -55,7 +64,7 @@ export function EventPortfolio() {
       if (active) ScrollTrigger.refresh();
     }).catch(() => {});
     return () => { active = false; };
-  }, [tunnelEnabled]);
+  }, [tunnelEnabled, compactTunnel]);
 
   useEffect(() => {
     if (!selected || !dialog.current) return;
@@ -79,7 +88,7 @@ export function EventPortfolio() {
       <p>Flyers, agendas e peças de divulgação criadas pela Mello. Uma seleção do que já saiu da nossa mesa para anunciar eventos e lançamentos.</p>
     </div>
 
-    {tunnelEnabled && <Suspense fallback={<div className="event-tunnel-loading" aria-hidden="true"/>}><PerspectiveTunnelHero images={EVENT_ARTWORKS.map(artwork => ({
+    {tunnelEnabled && <Suspense fallback={<div className={`event-tunnel-loading${compactTunnel ? ' event-tunnel-loading-compact' : ''}`} aria-hidden="true"/>}><PerspectiveTunnelHero compact={compactTunnel} images={EVENT_ARTWORKS.map(artwork => ({
       src: `/assets/eventos/${artwork.slug}.webp`, title: artwork.name, width: artwork.width, height: artwork.height,
     }))}/></Suspense>}
 

@@ -1,6 +1,7 @@
 .event-portfolio{position:relative;isolation:isolate;margin:88px 0 0;padding:48px clamp(24px,3.8vw,54px) 34px;background:#101014;color:#eeeae4;scroll-margin-top:110px}
 .event-portfolio :focus-visible{outline:2px solid #ff8bc5!important;outline-offset:5px}
 .event-tunnel-loading{height:260svh;margin-top:32px}
+.event-tunnel-loading-compact{height:220svh}
 .event-intro{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:end}
 .event-eyebrow{display:flex;align-items:center;gap:28px;font-size:12px;letter-spacing:.06em;color:#ff8bc5}
 .studio .event-intro h4{font-size:clamp(34px,4.1vw,57px);line-height:1.08;letter-spacing:-.05em;margin-top:22px}

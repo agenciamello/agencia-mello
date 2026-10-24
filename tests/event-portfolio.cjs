@@ -93,7 +93,7 @@ async function showEvents(page) {
       await page.mouse.move(0,0);
       await page.waitForTimeout(850);
       await page.screenshot({path:`${output}/${artifact}`});
-      renders.push({viewport:`${width}x${height}`,artifact,observation:'Section entrance below the fixed header, complete uncropped artworks verified through scrolling, no overflow; static gallery below 901px.'});
+      renders.push({viewport:`${width}x${height}`,artifact,observation:'Section entrance below the fixed header, complete uncropped artworks verified through scrolling, no overflow; complete static gallery follows the responsive tunnel.'});
     }
 
     await page.setViewportSize({width:1440,height:900});
@@ -141,7 +141,7 @@ async function showEvents(page) {
       contract:'contract.json: four supplied artworks between commercial previews and studies; native scroll, accessible enlargement, WhatsApp event intent.',
       targetViewports:renders.map(item=>item.viewport),renderedEvidence:renders,
       accessibility:{status:'pass',evidence:'Axe on gallery at six widths and on desktop modal; keyboard open, focus containment, Escape, focus return and mobile tap verified.'},
-      responsive:{status:'pass',evidence:'Six widths without horizontal overflow; object-fit contain and preserved proportions; static mobile gallery.'},
+      responsive:{status:'pass',evidence:'Six widths without horizontal overflow; object-fit contain and preserved proportions; static complete gallery below the animated mobile tunnel.'},
       contentStates:{
         loading:{status:'pass',evidence:'Reserved aspect ratio and lazy-loaded images; images decode before evidence capture.'},
         empty:{status:'not-applicable',reason:'Curated static collection of four versioned artworks; no optional remote collection.'},
@@ -149,7 +149,7 @@ async function showEvents(page) {
         partial:{status:'pass',evidence:'One aborted artwork leaves three images available and the failed piece can be retried.'},
         success:{status:'pass',evidence:'Four artworks load, expand and close; event-specific WhatsApp link verified without sending.'},
         permission:{status:'not-applicable',reason:'Public static portfolio, with no authenticated or permission-restricted operation.'},
-      },motion:'Desktop scroll and live reduced-motion/viewport cleanup verified; native wheel continues the page.',errors,
+      },motion:'Responsive tunnel and live reduced-motion/viewport cleanup verified; native wheel continues the page; dedicated mobile suite covers touch gestures.',errors,
     },null,2));
     console.log('Events: six viewports, static complete gallery, keyboard/touch enlargement, focus, motion preference cleanup, image retry, WhatsApp and axe passed.');
   } finally { await browser.close(); }
