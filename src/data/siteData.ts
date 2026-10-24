@@ -11,6 +11,9 @@ export const SITE_INFO = {
     handle: "@agenciamello.co",
     url: "https://instagram.com/agenciamello.co",
   },
+  behance: {
+    url: "https://www.behance.net/agenciamello",
+  },
   whatsappPhone: "5521971859948",
   whatsappFormatted: "(21) 97185-9948",
   founder: "Matheus Mello",

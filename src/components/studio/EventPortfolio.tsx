@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Maximize2, X } from 'lucide-react';
 import { ContactLink } from './Studio';
+import { SITE_INFO } from '../../data/siteData';
 import './event-portfolio.css';
 
 const PerspectiveTunnelHero = lazy(() => import('../ui/perspective-tunnel-hero'));
@@ -91,6 +92,12 @@ export function EventPortfolio() {
         </button>
         <figcaption><span className="event-piece-number">0{index + 1}</span><div><h4>{artwork.name}</h4><p>{artwork.type}</p></div></figcaption>
       </figure>)}
+    </div>
+
+    <div className="event-more-work">
+      <a href={SITE_INFO.behance.url} target="_blank" rel="noopener noreferrer" aria-label="Ver mais trabalhos no Behance (abre em nova aba)">
+        Ver mais trabalhos no Behance <ArrowUpRight size={15} aria-hidden="true"/>
+      </a>
     </div>
 
     <div className="event-outro">
