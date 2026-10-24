@@ -18,6 +18,8 @@ O título em quatro linhas conduz o hero, acompanhado de CTA para WhatsApp e lin
 
 O portfólio usa superfície clara, imagens amplas e assimetria. Animalis Pet lidera; Viana Planejados e Du-Rio são outras prévias comerciais. Bellavista e Solace ficam na camada secundária de estudos autorais. Preservar a explicação factual do status de cada projeto.
 
+Entre as prévias comerciais e os estudos autorais, Design para eventos apresenta quatro artes em um bloco escuro com acentos magenta. A perspectiva no desktop adapta a referência de túnel à rolagem nativa, sem pinning, captura da roda ou imagens ocultas. No mobile e em movimento reduzido, usar galeria estática. As peças preservam imagem integral e proporção, com ampliação em diálogo nativo, fechamento por Escape e retorno de foco. Originais são preservados e copiados para `public/assets/eventos`.
+
 Serviços usam índice sticky em desktop e capítulos próprios. Sobre preserva o retrato colorido; processo apresenta etapas e contato oferece três intenções opcionais para WhatsApp. A conclusão é magenta e o footer usa a assinatura oficial. O botão flutuante de WhatsApp aparece após a introdução.
 
 Mobile tem composição e movimento próprios, com leitura em fluxo nativo, sem pinning ou dependência de hover. Validar 390, 360 e 320px, além de 768, 1024 e 1440px.

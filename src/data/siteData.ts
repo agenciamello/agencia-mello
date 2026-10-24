@@ -23,6 +23,7 @@ export const WHATSAPP_MESSAGES = {
   sites: "Oi, Matheus! Vim pelo site e preciso de um site pro meu negócio. Ele é",
   identidade: "Oi, Matheus! Vim pelo site e preciso de uma identidade visual pro meu negócio. Ele é",
   conteudo: "Oi, Matheus! Vim pelo site e preciso de peças pras redes sociais do meu negócio. Ele é",
+  eventos: "Oi, Matheus! Vi as artes no site da Agência Mello e quero um orçamento de arte para meu evento. O evento é",
   destaque: "Oi, Matheus! Vi o Site Essencial de R$ 500 e quero ver uma prévia. Meu negócio é",
   projetos: "Oi, Matheus! Vi os projetos no site e quero algo assim pro meu negócio. Ele é",
   final: "Oi, Matheus! Quero ver como meu site ficaria. Meu negócio é",
