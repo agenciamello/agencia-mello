@@ -49,6 +49,8 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 - Animalis Pet e Du-Rio são prévias comerciais desenvolvidas para negócios reais; Viana Planejados é uma prévia comercial em negociação. Isso não comprova contratação, entrega definitiva ou resultados.
 - As páginas de projeto descrevem contexto e proposta. Não há depoimentos ou métricas de resultado confirmados; trabalhos futuros não devem inventá-los.
 - Os ativos institucionais disponíveis incluem o logo da Agência Mello, a fotografia de Matheus Mello e demonstrações visuais mantidas em `public/assets`.
+- Design para eventos apresenta quatro peças realizadas pela Mello, fornecidas e selecionadas com o usuário em 24/10/2026: São Simão Folia, Pagô Pra Ver (agenda), Bloco do Mello e Conexão dos Crias. O trabalho nas artes não implica contratação direta pelos artistas retratados nem comprova resultados comerciais. O CTA tem intenção própria de orçamento para evento; a prévia gratuita do Site Essencial não se estende automaticamente a flyers.
+- Behance oficial fornecido pelo usuário: `https://www.behance.net/agenciamello`. Link secundário abaixo da galeria de eventos e no rodapé, apresentado como mais trabalhos, sem prometer acervo completo, atualização em 2026 ou resultados. O usuário informou que o perfil reúne flyers de 2024/2025; o WhatsApp permanece a ação principal de orçamento.
 
 ## Product Principles
 

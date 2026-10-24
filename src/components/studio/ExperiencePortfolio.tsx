@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { ContactLink } from './Studio';
 import { CASES } from '../../data/cases';
 import { COMMERCIAL_PROJECTS } from '../../data/commercialProjects';
+import { EventPortfolio } from './EventPortfolio';
 
 const [animalis, ...regionalProjects] = COMMERCIAL_PROJECTS;
 
@@ -65,6 +66,8 @@ export function ExperiencePortfolio() {
           </div>
         </article>)}
       </div>
+
+      <EventPortfolio/>
 
       <div className="study-introduction conceptual-introduction">
         <span className="micro">Estudos autorais</span>
