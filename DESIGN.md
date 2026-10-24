@@ -28,7 +28,7 @@ Mobile tem composição e movimento próprios, com leitura em fluxo nativo e sem
 
 O resumo concreto de serviços aparece após o hero. Por pedido explícito do usuário, a oferta única do Site Essencial vem depois de Animalis/Viana/Du-Rio e antes do capítulo de artes; substitui a oferta antes dos projetos da primeira prévia. Preservar leitura imediata sem reveal na oferta, preço anterior riscado e identificado, preço vigente em magenta e parcelamento legível. O link secundário do hero aponta ao resumo; o contato geral usa “Vamos criar seu próximo projeto?”.
 
-Tokens atuais em `StudioMotion.tsx`: micro 220ms, reveal 620ms, seção 900ms, stagger 80ms; ease `power3.out`. CSS usa `cubic-bezier(.22,1,.36,1)`. Timelines específicas variam conforme o elemento.
+Tokens compartilhados em `src/lib/motion-tokens.ts`, consumidos por `StudioMotion.tsx` e pelo text reveal: micro 220ms, reveal 620ms, seção 900ms, stagger 80ms; ease `power3.out`. CSS usa `cubic-bezier(.22,1,.36,1)`. Timelines específicas variam conforme o elemento.
 
 - Hero: entrada tipográfica por máscaras, vídeo da marca e profundidade discreta em desktop.
 - Portfólio: tese por palavras, recortes de imagens e profundidade ligada à rolagem.
@@ -56,3 +56,7 @@ Capturas e resultados em `artifacts` são locais e ignorados pelo Git. Inspecion
 ## Histórico
 
 Os passes de setembro (impacto, Motion V2 e Mobile V3) evoluíram com vídeo no hero, novas prévias comerciais, revisão de copy e motion das subpáginas. Esta especificação substitui as descrições antigas de hero em planos sem vídeo e de mobile sem parallax.
+
+## Revelação editorial — revisão do usuário
+
+O componente enviado pelo usuário foi adaptado em `src/components/ui/text-reveal.tsx`, com demo, estilos próprios e tokens compartilhados. Abertura das soluções, título do capítulo de sites e tese do Animalis revelam palavras com blur leve e deslocamento ao entrar na viewport, uma vez por visita à página. Remover a timeline antiga da tese; os mesmos elementos não podem receber GSAP e Motion simultaneamente. Textos de apoio, linhas de contexto e cards comerciais entram com deslocamento discreto em GSAP, iniciando cedo o suficiente para completar antes da leitura principal. Movimento reduzido entrega os títulos estáticos imediatamente, inclusive quando a preferência muda durante a sessão; segmentos visuais não duplicam a leitura assistiva. Não animar preço, trocar imagens/copy ou modificar o túnel nesta revisão.

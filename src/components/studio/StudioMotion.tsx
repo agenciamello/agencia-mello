@@ -1,6 +1,7 @@
 import { RefObject, useEffect } from 'react';
 
-export const MOTION = { micro: .22, reveal: .62, section: .9, stagger: .08, ease: 'power3.out' } as const;
+import { MOTION, TEXT_MOTION } from '../../lib/motion-tokens';
+export { MOTION } from '../../lib/motion-tokens';
 
 export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: string) {
   useEffect(() => {
@@ -79,22 +80,12 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
               { x: 0, opacity: 1, stagger: .15, duration: 1, ease: 'none' });
         });
 
-        const thesis = scope.querySelector<HTMLElement>('.project-thesis');
-        if (thesis) {
-          const words = thesis.querySelectorAll<HTMLElement>('.project-thesis-word');
-          const ending = thesis.querySelector<HTMLElement>('.project-thesis-end');
-          if (words.length) {
-            const thesisTimeline = gsap.timeline({ scrollTrigger: {
-              trigger: thesis, start: isMobile ? 'top 86%' : 'top 84%', once: true,
-            }});
-            thesisTimeline.fromTo(words,
-              { y: isMobile ? 14 : 18, opacity: .14, filter: 'blur(10px)' },
-              { y: 0, opacity: 1, filter: 'blur(0px)', duration: isMobile ? .48 : .54,
-                stagger: isMobile ? .045 : .05, ease: 'power3.out' });
-            if (ending) thesisTimeline.to(ending,
-              { '--thesis-line': 1, duration: .38, ease: 'power2.out' });
-          }
-        }
+        scope.querySelectorAll<HTMLElement>('[data-editorial-reveal]').forEach(element => {
+          gsap.fromTo(element,
+            { y: TEXT_MOTION.editorialDistance, opacity: TEXT_MOTION.editorialOpacity },
+            { y: 0, opacity: 1, duration: MOTION.reveal, ease: MOTION.ease,
+              scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
+        });
 
         const bridgeReveal = scope.querySelector<HTMLElement>('.copy-bridge-reveal');
         if (bridgeReveal) {

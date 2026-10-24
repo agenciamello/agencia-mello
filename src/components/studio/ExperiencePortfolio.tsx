@@ -7,6 +7,7 @@ import { EventPortfolio } from './EventPortfolio';
 import { SiteEssentialOffer } from './SiteEssentialOffer';
 import { SocialServiceDetails, BrandServiceChapter } from './ServiceChapters';
 import './service-chapters.css';
+import { TextReveal } from '../ui/text-reveal';
 
 const [animalis, ...regionalProjects] = COMMERCIAL_PROJECTS;
 const bellavista=CASES.find(project=>project.slug==='bellavista')!;
@@ -16,17 +17,17 @@ export function ExperiencePortfolio() {
     <div className="wrap">
       <p className="section-label"><span>Mello /</span> Conheça as soluções</p>
       <div className="work-introduction">
-        <h2 className="scroll-story-title" data-scroll-text><span>Negócios diferentes.</span><span>Soluções diferentes.</span></h2>
+        <TextReveal as="h2" className="scroll-story-title" per="word" preset="fade-in-blur" speedReveal={1.2} speedSegment={.6}>{'Negócios diferentes.\nSoluções diferentes.'}</TextReveal>
         <div>
-          <p>Sites para apresentar seu negócio. Artes para divulgar. Identidade visual para dar unidade à sua marca.</p>
+          <p data-editorial-reveal="copy">Sites para apresentar seu negócio. Artes para divulgar. Identidade visual para dar unidade à sua marca.</p>
         </div>
       </div>
 
       <section id="servico-web" className="solution-chapter site-service-chapter" aria-labelledby="site-chapter-heading" data-service-index="0">
         <div className="solution-chapter-heading">
           <span className="micro">01 / Sites para negócios</span>
-          <h3 id="site-chapter-heading">Seu site pronto<br/>antes de você pagar.</h3>
-          <p>Sites institucionais e landing pages para apresentar seus serviços e facilitar o contato pelo WhatsApp. Conheça algumas propostas que desenvolvemos.</p>
+          <TextReveal as="h3" id="site-chapter-heading" per="word" preset="fade-in-blur" speedReveal={1.2} speedSegment={.6}>{'Seu site pronto\nantes de você pagar.'}</TextReveal>
+          <p data-editorial-reveal="copy">Sites institucionais e landing pages para apresentar seus serviços e facilitar o contato pelo WhatsApp. Conheça algumas propostas que desenvolvemos.</p>
         </div>
         <p className="commercial-preview-label micro">Prévias comerciais · Negócios da Baixada Fluminense</p>
       <div className="showcase-list showcase-commercial-list">
@@ -42,29 +43,25 @@ export function ExperiencePortfolio() {
           <div className="project-editorial">
             <div className="project-argument">
               <span className="commercial-kicker">Prévia comercial · Nova Iguaçu</span>
-              <h5 className="project-thesis" aria-label="Do Google ao WhatsApp, o caminho precisa ser curto.">
-                <span className="project-thesis-visual" aria-hidden="true">
-                  <span className="project-thesis-word">Do</span><span className="project-thesis-word">Google</span><span className="project-thesis-word">ao</span><span className="project-thesis-word">WhatsApp,</span><span className="project-thesis-word">o</span><span className="project-thesis-word">caminho</span><span className="project-thesis-word">precisa</span><span className="project-thesis-end"><span className="project-thesis-word">ser</span><span className="project-thesis-word">curto.</span></span>
-                </span>
-              </h5>
-              <p>{animalis.context}</p>
-              <Link to={`/projetos/${animalis.slug}`} className="project-detail-link">Conhecer o projeto <ArrowUpRight size={18} aria-hidden="true"/></Link>
+              <TextReveal as="h5" className="project-thesis" per="word" preset="fade-in-blur" speedReveal={1.2} speedSegment={.6}>Do Google ao WhatsApp, o caminho precisa ser curto.</TextReveal>
+              <p data-editorial-reveal="copy">{animalis.context}</p>
+              <Link to={`/projetos/${animalis.slug}`} className="project-detail-link" data-editorial-reveal="copy">Conhecer o projeto <ArrowUpRight size={18} aria-hidden="true"/></Link>
             </div>
             <dl className="project-context">
-              <div><dt>01 / Objetivo</dt><dd>Apresentar serviços e facilitar o caminho até o atendimento.</dd></div>
-              <div><dt>02 / Estrutura</dt><dd>Serviços, planos, localização e WhatsApp em uma experiência própria.</dd></div>
-              <div><dt>03 / Status</dt><dd>Prévia comercial · proposta desenvolvida.</dd></div>
+              <div data-editorial-reveal="row"><dt>01 / Objetivo</dt><dd>Apresentar serviços e facilitar o caminho até o atendimento.</dd></div>
+              <div data-editorial-reveal="row"><dt>02 / Estrutura</dt><dd>Serviços, planos, localização e WhatsApp em uma experiência própria.</dd></div>
+              <div data-editorial-reveal="row"><dt>03 / Status</dt><dd>Prévia comercial · proposta desenvolvida.</dd></div>
             </dl>
           </div>
         </article>
       </div>
       <div className="study-introduction commercial-introduction">
         <span className="micro">Outras prévias comerciais</span>
-        <h4>Da marcenaria de bairro a uma presença mais editorial.</h4>
-        <p>Propostas desenvolvidas para negócios reais da Baixada, cada uma com direção própria.</p>
+        <h4 data-editorial-reveal="copy">Da marcenaria de bairro a uma presença mais editorial.</h4>
+        <p data-editorial-reveal="copy">Propostas desenvolvidas para negócios reais da Baixada, cada uma com direção própria.</p>
       </div>
       <div className="study-grid commercial-project-grid">
-        {regionalProjects.map(project => <article className="study-card commercial-card" key={project.slug}>
+        {regionalProjects.map(project => <article className="study-card commercial-card" data-editorial-reveal="card" key={project.slug}>
           <Link className="study-image" to={`/projetos/${project.slug}`} aria-label={`Ver projeto ${project.name}`}>
             <img src={project.image} alt={project.alt} width="1440" height="1000" loading="lazy"/>
           </Link>

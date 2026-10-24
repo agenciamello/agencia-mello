@@ -80,26 +80,11 @@ async function expectTransformMotion(page, selector, description) {
     assert.equal(floatAfterHero.pointerEvents, 'auto', 'Floating WhatsApp becomes interactive');
     assert.match(floatAfterHero.href || '', /^https:\/\/wa\.me\//, 'Floating WhatsApp points to WhatsApp');
     const thesis = page.locator('.project-thesis');
-    const thesisY = (await documentPosition(thesis)).y;
-    const thesisTrigger = Math.max(0, thesisY - 844 * .86);
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 120), behavior: 'instant' }), thesisTrigger);
-    await page.waitForTimeout(180);
-    const thesisBefore = await page.locator('.project-thesis-word').first().evaluate(element => ({
-      opacity: Number(getComputedStyle(element).opacity),
-      filter: getComputedStyle(element).filter,
-    }));
-    const thesisLineBefore = Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line')));
-    assert.ok(thesisBefore.opacity < .3 && thesisBefore.filter.includes('blur'), 'Portfolio thesis starts blurred before reveal');
-    assert.ok(thesisLineBefore < .05, 'Portfolio thesis accent starts hidden');
-    await page.evaluate(y => window.scrollTo({ top: y + 80, behavior: 'instant' }), thesisTrigger);
-    await page.waitForTimeout(1450);
-    const thesisAfter = await page.locator('.project-thesis-word').last().evaluate(element => ({
-      opacity: Number(getComputedStyle(element).opacity),
-      filter: getComputedStyle(element).filter,
-    }));
-    const thesisLineAfter = Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line')));
-    assert.ok(thesisAfter.opacity > .99 && thesisAfter.filter === 'blur(0px)', 'Portfolio thesis finishes fully sharp');
-    assert.ok(thesisLineAfter > .95, 'Portfolio thesis accent completes after the reveal');
+    await thesis.scrollIntoViewIfNeeded();
+    await expect(thesis).toHaveAttribute('data-reveal-state','complete');
+    await expect(thesis).toHaveAccessibleName('Do Google ao WhatsApp, o caminho precisa ser curto.');
+    assert.ok(await thesis.locator('[data-text-segment]').evaluateAll(elements=>elements.every(el=>Number(getComputedStyle(el).opacity)>.99)), 'Portfolio thesis finishes fully readable');
+    assert.equal(Number(await thesis.evaluate(el=>getComputedStyle(el).getPropertyValue('--thesis-line'))),1,'Portfolio thesis accent completes');
 
     const bridgeReveal = page.locator('.copy-bridge-reveal');
     const bridgeY = (await documentPosition(bridgeReveal)).y;
@@ -188,8 +173,9 @@ async function expectTransformMotion(page, selector, description) {
     const results = [];
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.waitForTimeout(180);
-    assert.equal(await page.locator('.project-thesis-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes thesis transforms');
-    assert.equal(Number(await page.locator('.project-thesis-end').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line'))), 1, 'Reduced motion keeps thesis accent visible');
+    await expect(page.locator('.project-thesis')).toHaveAttribute('data-reveal-state','static');
+    await expect(page.locator('.project-thesis [data-text-segment]')).toHaveCount(0);
+    assert.equal(Number(await page.locator('.project-thesis').evaluate(element => getComputedStyle(element).getPropertyValue('--thesis-line'))), 1, 'Reduced motion keeps thesis accent visible');
     assert.equal(await page.locator('.copy-bridge-word').first().evaluate(element => element.style.transform), '', 'Reduced motion removes copy bridge transforms');
     assert.equal(await page.locator('.about-title-line').first().evaluate(element => element.style.transform), '', 'Reduced motion removes about title transforms');
     assert.equal(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath), 'none', 'Reduced motion keeps portrait fully revealed');
@@ -277,17 +263,9 @@ async function expectTransformMotion(page, selector, description) {
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     await expectTransformMotion(page, '.hero-message', 'Desktop hero copy');
     await page.locator('.scroll-story-title').scrollIntoViewIfNeeded();
-    await page.waitForTimeout(350);
-    const lines = await page.locator('.scroll-story-title > span').evaluateAll(elements => elements.map(element => {
-      const style = getComputedStyle(element);
-      return { opacity: Number(style.opacity), filter: style.filter, visibility: style.visibility };
-    }));
-    assert.ok(lines.length > 0);
-    lines.forEach(line => {
-      assert.ok(line.opacity >= .55, 'Portfolio title remains legible during motion');
-      assert.equal(line.filter, 'none', 'Portfolio title is never blurred');
-      assert.equal(line.visibility, 'visible');
-    });
+    await expect(page.locator('.scroll-story-title')).toHaveAttribute('data-reveal-state','complete');
+    const words=await page.locator('.scroll-story-title [data-text-segment]').evaluateAll(elements=>elements.map(el=>({opacity:Number(getComputedStyle(el).opacity),filter:getComputedStyle(el).filter})));
+    assert.ok(words.length>0 && words.every(word=>word.opacity>.99 && (word.filter==='none'||word.filter==='blur(0px)')),'Portfolio title ends crisp and fully readable');
     await page.locator('.capability-ribbon').scrollIntoViewIfNeeded();
     await page.waitForTimeout(250);
     assert.equal(await page.locator('.capability-ribbon').getAttribute('data-playing'), 'true', 'Ribbon plays only while visible');

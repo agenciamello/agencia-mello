@@ -82,3 +82,7 @@ O usuário substituiu explicitamente a oferta antes do portfólio por capítulos
 ### Animação de eventos no celular
 
 Após aprovar os capítulos, o usuário pediu explicitamente o efeito de eventos também no mobile. O túnel passa a usar uma única passagem das quatro artes no toque/telas pequenas, sem paralaxe de mouse, mantendo galeria completa, ampliação e Behance. Respeitar movimento reduzido com galeria estática, rolagem nativa e pinch-zoom; não alterar oferta ou estrutura comercial.
+
+### Ritmo editorial antes dos eventos
+
+A pedido do usuário, títulos e apresentação dos projetos ganham entradas de texto antes da seção de eventos. A animação destaca a oferta e o raciocínio dos projetos sem acrescentar promessas, bloquear a leitura, alterar preços ou exigir interação. Preservar texto acessível único e versão estática com movimento reduzido.
