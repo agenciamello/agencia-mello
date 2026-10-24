@@ -274,7 +274,7 @@ async function expectTransformMotion(page, selector, description) {
     await page.waitForURL('**/projetos/bellavista');
     await page.getByRole('link', { name: '← Todos os projetos' }).click();
     await page.waitForURL('**/#projetos');
-    await page.getByRole('link', { name: 'Conheça o Site Essencial' }).click();
+    await page.getByRole('link', { name: 'Veja tudo que está incluído' }).click();
     await page.waitForURL('**/site-essencial');
     await page.locator('summary').first().press('Enter');
     await expect(page.locator('details').first()).toHaveAttribute('open', '');

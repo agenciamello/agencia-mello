@@ -1,5 +1,11 @@
 # Condições confirmadas — 30/09/2026 — Issue #13 / PR #14
 
+## Atualização vigente — 24/10/2026 — Issue #25
+
+O usuário alterou o preço do Site Essencial para “De R$ 500 por somente R$ 297,00”. Parcelamento existente preservado: até 3x de R$ 99,00. Escopo, prévia gratuita e pagamento após aprovação mantidos. Sem prazo da promoção ou novas condições confirmadas. Esta atualização substitui o preço anterior; o registro abaixo conserva as demais condições históricas.
+
+## Registro de 30/09/2026
+
 O usuário confirmou prévia sempre gratuita e pagamento somente após aprovação para o Site Essencial.
 Domínio: referência de cerca de R$ 40/ano para .com.br, variável e confirmado antes da contratação.
 Hospedagem: sem mensalidade no plano gratuito da Netlify, respeitando limites; upgrade somente combinado antes. A Vercel Hobby restringe uso a projetos pessoais não comerciais, portanto não foi anunciada como hospedagem grátis comercial.

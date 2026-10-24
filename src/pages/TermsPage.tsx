@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { StudioShell, usePageTitle } from "../components/studio/Studio";
 
 import { SITE_INFO, SITE_ESSENCIAL_CONDITIONS } from "../data/siteData";
+import { ESSENTIAL_PRICE, ESSENTIAL_INSTALLMENTS } from "../data/essentialOffer.js";
 
 export const TermsPage: React.FC = () => {
   usePageTitle("Termos de Uso | Agência Mello");
@@ -45,7 +46,7 @@ export const TermsPage: React.FC = () => {
             <ul className="list-disc pl-5 space-y-1.5">
               <li>Site institucional de uma página contendo até 6 seções;</li>
               <li>Prévia personalizada, privada e gratuita. Não há cobrança pela prévia caso o cliente não aprove;</li>
-              <li>Pagamento no valor anunciado (R$ 500 em até 3x) realizado apenas após a aprovação da prévia;</li>
+              <li>Pagamento no valor anunciado ({ESSENTIAL_PRICE} {ESSENTIAL_INSTALLMENTS}) realizado apenas após a aprovação da prévia;</li>
               <li>Inclusão de até 2 (duas) rodadas de ajustes de textos e imagens após a aprovação;</li>
               <li>{SITE_ESSENCIAL_CONDITIONS.domain}</li><li>{SITE_ESSENCIAL_CONDITIONS.hosting}</li><li>{SITE_ESSENCIAL_CONDITIONS.timing}</li><li>Publicação somente após aprovação do cliente. Alterações e suporte após a entrega são combinados à parte.</li>
             </ul>

@@ -14,17 +14,19 @@ Composição editorial, clareza comercial e movimento derivado da identidade ofi
 
 ## Composição
 
-O título em quatro linhas conduz o hero, acompanhado de CTA para WhatsApp e link para o processo. O símbolo oficial aparece em vídeo silencioso WebM/MP4, com imagem estática para movimento reduzido, erro de mídia ou bloqueio de reprodução automática. Após a aprovação do túnel em 24/10/2026, o usuário pediu explicitamente remover o botão de pausa/reprodução do hero. Esse pedido substitui a exigência anterior de controle manual: não renderizar botão visível nem controle oculto no teclado.
+O título em quatro linhas conduz o hero, acompanhado de CTA para WhatsApp e link para o resumo de serviços. O símbolo oficial aparece em vídeo silencioso WebM/MP4, com imagem estática para movimento reduzido, erro de mídia ou bloqueio de reprodução automática. Após a aprovação do túnel em 24/10/2026, o usuário pediu explicitamente remover o botão de pausa/reprodução do hero. Esse pedido substitui a exigência anterior de controle manual: não renderizar botão visível nem controle oculto no teclado.
 
 O portfólio usa superfície clara, imagens amplas e assimetria. Animalis Pet lidera; Viana Planejados e Du-Rio são outras prévias comerciais. Bellavista e Solace ficam na camada secundária de estudos autorais. Preservar a explicação factual do status de cada projeto.
 
 Entre as prévias comerciais e os estudos autorais, Design para eventos apresenta quatro artes em um bloco escuro com acentos magenta. Após a correção solicitada pelo usuário em 24/10/2026, usar o túnel espacial da referência: composição por ângulo dourado, viagem de -1700px a +500px em Z, opacidade escalonada, título central e paralaxe do ponteiro. O quadro sticky acompanha um trecho de rolagem nativa; não interceptar a roda. Duas passagens das mesmas quatro artes formam o corredor, sem sugerir trabalhos adicionais. A galeria completa permanece logo abaixo, com atalho para pular o túnel. No mobile e em movimento reduzido, não montar o túnel; preservar somente a galeria estática. As peças preservam imagem integral e proporção, com ampliação em diálogo nativo, fechamento por Escape e retorno de foco. Originais são preservados e copiados para `public/assets/eventos`.
 
-Serviços usam índice sticky em desktop e capítulos próprios. Sobre preserva o retrato colorido; processo apresenta etapas e contato oferece três intenções opcionais para WhatsApp. A conclusão é magenta e o footer usa a assinatura oficial. O botão flutuante de WhatsApp aparece após a introdução.
+Serviços usam índice sticky em desktop e capítulos próprios. Sobre preserva o retrato colorido; processo apresenta etapas e contato usa título geral e oferece quatro intenções opcionais para WhatsApp: site, identidade, redes e eventos. Sem seleção, a mensagem é neutra. A conclusão é magenta e o footer usa a assinatura oficial. O botão flutuante de WhatsApp aparece após a introdução.
 
 Mobile tem composição e movimento próprios, com leitura em fluxo nativo, sem pinning ou dependência de hover. Validar 390, 360 e 320px, além de 768, 1024 e 1440px.
 
 ## Motion
+
+O resumo concreto de serviços e a oferta única do Site Essencial aparecem entre o hero e o portfólio. Preservar leitura imediata sem reveal na oferta, preço anterior riscado e identificado, preço vigente em magenta e parcelamento legível. O link secundário do hero aponta ao resumo; o contato geral usa “Vamos criar seu próximo projeto?”.
 
 Tokens atuais em `StudioMotion.tsx`: micro 220ms, reveal 620ms, seção 900ms, stagger 80ms; ease `power3.out`. CSS usa `cubic-bezier(.22,1,.36,1)`. Timelines específicas variam conforme o elemento.
 

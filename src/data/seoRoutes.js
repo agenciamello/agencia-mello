@@ -1,3 +1,5 @@
+import { ESSENTIAL_OFFER, ESSENTIAL_PRICE } from './essentialOffer.js';
+
 export const SEO_SITE = {
   url: 'https://www.agenciamello.site',
   name: 'Agência Mello',
@@ -15,14 +17,14 @@ export const NOINDEX_ROBOTS = 'noindex,follow,max-image-preview:large';
 export const SEO_ROUTES = {
   '/': {
     title: 'Agência Mello | Sites e identidade visual para pequenos negócios',
-    description: 'Sites, identidade visual e conteúdo para pequenos negócios. Veja seu Site Essencial pronto antes de pagar. Atendimento direto no Rio e online em todo o Brasil.',
+    description: 'Sites, identidade visual e artes para redes sociais e eventos. Veja seu Site Essencial pronto antes de pagar. Atendimento direto no Rio e online em todo o Brasil.',
     robots: INDEX_ROBOTS,
     type: 'website',
     schema: 'home',
   },
   '/site-essencial': {
-    title: 'Site Essencial R$ 500 | Site profissional para pequenos negócios',
-    description: 'Site profissional de uma página por R$ 500, com WhatsApp integrado, prévia grátis e privada e até duas rodadas de ajustes. Você só paga se aprovar.',
+    title: `Site Essencial ${ESSENTIAL_PRICE} | Site profissional para pequenos negócios`,
+    description: `Site profissional de uma página por ${ESSENTIAL_PRICE}, com WhatsApp integrado, prévia grátis e privada e até duas rodadas de ajustes. Você só paga se aprovar.`,
     robots: INDEX_ROBOTS,
     type: 'website',
     schema: 'service',
@@ -37,7 +39,7 @@ export const SEO_ROUTES = {
     serviceType: 'Criação de sites profissionais',
     areaName: 'Nova Iguaçu',
     faq: [
-      ['Quanto custa criar um site em Nova Iguaçu?', 'Depende do escopo. O Site Essencial custa R$ 500. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.'],
+      ['Quanto custa criar um site em Nova Iguaçu?', `Depende do escopo. O Site Essencial custa ${ESSENTIAL_PRICE}. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.`],
       ['Quanto tempo leva para o site ficar pronto?', 'No Site Essencial, a estimativa inicial é uma prévia em cerca de 2 horas após receber o material e entrega em cerca de 24 horas após aprovação e ajustes. Projetos sob medida têm prazo definido no orçamento.'],
       ['Vocês atendem negócios de quais regiões de Nova Iguaçu?', 'O processo é online e pode atender negócios de qualquer bairro do município. Centro, Posse, Comendador Soares e Miguel Couto são alguns exemplos de regiões atendidas sem necessidade de reunião presencial.'],
       ['O site funciona bem no celular?', 'Sim. O layout é pensado para celular e computador, com atenção ao caminho até o WhatsApp e outras ações importantes.'],
@@ -55,7 +57,7 @@ export const SEO_ROUTES = {
     serviceType: 'Criação de sites profissionais',
     areaName: 'Belford Roxo',
     faq: [
-      ['Quanto custa criar um site em Belford Roxo?', 'Depende do escopo. O Site Essencial custa R$ 500. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.'],
+      ['Quanto custa criar um site em Belford Roxo?', `Depende do escopo. O Site Essencial custa ${ESSENTIAL_PRICE}. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.`],
       ['Quanto tempo leva para o site ficar pronto?', 'No Site Essencial, a estimativa inicial é uma prévia em cerca de 2 horas após receber o material e entrega em cerca de 24 horas após aprovação e ajustes. Projetos sob medida têm prazo definido no orçamento.'],
       ['Preciso ir presencialmente para fazer o site?', 'Não. O processo pode ser feito online pelo WhatsApp, do briefing à aprovação. Atendemos negócios de diferentes regiões de Belford Roxo, como Centro, Heliópolis, Areia Branca e Lote XV.'],
       ['O site funciona bem no celular?', 'Sim. O layout é pensado para celular e computador, com atenção ao caminho até o WhatsApp e outras ações importantes.'],
@@ -73,7 +75,7 @@ export const SEO_ROUTES = {
     serviceType: 'Criação de sites profissionais',
     areaName: 'Duque de Caxias',
     faq: [
-      ['Quanto custa criar um site em Duque de Caxias?', 'Depende do escopo. O Site Essencial custa R$ 500. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.'],
+      ['Quanto custa criar um site em Duque de Caxias?', `Depende do escopo. O Site Essencial custa ${ESSENTIAL_PRICE}. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.`],
       ['Quanto tempo leva para o site ficar pronto?', 'No Site Essencial, a estimativa inicial é uma prévia em cerca de 2 horas após receber o material e entrega em cerca de 24 horas após aprovação e ajustes. Projetos sob medida têm prazo definido no orçamento.'],
       ['Vocês atendem diferentes regiões de Duque de Caxias?', 'Sim. O processo é online e pode atender negócios de todo o município, incluindo Centro, Jardim 25 de Agosto, Campos Elíseos, Imbariê e Xerém.'],
       ['O site funciona bem no celular?', 'Sim. O layout é pensado para celular e computador, com atenção ao caminho até o WhatsApp e outras ações importantes.'],
@@ -269,8 +271,8 @@ export function buildStructuredData(pathname, fallbackTitle) {
       {
         '@type': 'Service',
         '@id': `${SEO_SITE.url}/#service-conteudo`,
-        name: 'Design e conteúdo para redes sociais',
-        serviceType: 'Design para redes sociais',
+        name: 'Artes para redes sociais e eventos',
+        serviceType: 'Posts, carrosséis e flyers para eventos',
         provider: { '@id': organizationId },
         areaServed: { '@type': 'Country', name: 'Brasil' },
         url: SEO_SITE.url,
@@ -292,8 +294,8 @@ export function buildStructuredData(pathname, fallbackTitle) {
         url: meta.canonical,
         offers: {
           '@type': 'Offer',
-          price: '500',
-          priceCurrency: 'BRL',
+          price: String(ESSENTIAL_OFFER.price),
+          priceCurrency: ESSENTIAL_OFFER.currency,
           url: meta.canonical,
           offeredBy: { '@id': organizationId },
         },

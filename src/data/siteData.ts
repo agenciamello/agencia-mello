@@ -1,3 +1,5 @@
+import { ESSENTIAL_PRICE, ESSENTIAL_INSTALLMENTS } from "./essentialOffer.js";
+
 export const SITE_ESSENCIAL_CONDITIONS = {
   "domain": "Domínio .com.br à parte: cerca de R$ 40/ano, confirmado antes.",
   "hosting": "Hospedagem sem mensalidade no plano gratuito da Netlify. Se precisar mudar de plano, combinamos antes.",
@@ -25,11 +27,11 @@ export const WHATSAPP_MESSAGES = {
   hero: "Oi, Matheus! Vim pelo site e quero ver uma prévia do meu site. Meu negócio é",
   sites: "Oi, Matheus! Vim pelo site e preciso de um site pro meu negócio. Ele é",
   identidade: "Oi, Matheus! Vim pelo site e preciso de uma identidade visual pro meu negócio. Ele é",
-  conteudo: "Oi, Matheus! Vim pelo site e preciso de peças pras redes sociais do meu negócio. Ele é",
+  conteudo: "Oi, Matheus! Vim pelo site e preciso de artes para redes sociais do meu negócio. Ele é",
   eventos: "Oi, Matheus! Vi as artes no site da Agência Mello e quero um orçamento de arte para meu evento. O evento é",
-  destaque: "Oi, Matheus! Vi o Site Essencial de R$ 500 e quero ver uma prévia. Meu negócio é",
+  destaque: `Oi, Matheus! Vi o Site Essencial de ${ESSENTIAL_PRICE} e quero ver uma prévia. Meu negócio é`,
   projetos: "Oi, Matheus! Vi os projetos no site e quero algo assim pro meu negócio. Ele é",
-  final: "Oi, Matheus! Quero ver como meu site ficaria. Meu negócio é",
+  final: "Oi, Matheus! Vim pelo site da Agência Mello e quero conversar sobre um projeto. Preciso de",
   flutuante: "Oi, Matheus! Vim pelo site e queria tirar uma dúvida.",
 };
 
@@ -37,7 +39,7 @@ export const SITE_ESSENCIAL_MESSAGES = {
   header: "Oi, Matheus! Quero ver a prévia do Site Essencial pro meu negócio. Ele é",
   hero: "Oi, Matheus! Quero ver uma prévia do meu site. Meu negócio é",
   recursos: "Oi, Matheus! Queria entender o que está incluso no Site Essencial.",
-  preco: "Oi, Matheus! Queria entender como funciona o pagamento do Site Essencial (R$ 500).",
+  preco: `Oi, Matheus! Queria entender como funciona o pagamento do Site Essencial (${ESSENTIAL_PRICE}).`,
   exemplos: "Oi, Matheus! Queria ver um exemplo de Site Essencial pro meu tipo de negócio. Ele é",
   processo: "Oi, Matheus! Quero pedir minha prévia do Site Essencial. Meu negócio é",
   comparativo: "Oi, Matheus! Queria entender a diferença entre o Site Essencial e um projeto sob medida.",
@@ -71,7 +73,7 @@ export const SITE_ESSENCIAL_NAV_LINKS = [
 
 export const FOOTER_SERVICES_LINKS = [
   { label: "Sites e presença digital", href: getWhatsAppUrl(WHATSAPP_MESSAGES.sites) },
-  { label: "Site Essencial — R$ 500", href: "/site-essencial", to: "/site-essencial" },
+  { label: `Site Essencial — ${ESSENTIAL_PRICE}`, href: "/site-essencial", to: "/site-essencial" },
   { label: "Identidade visual", href: getWhatsAppUrl(WHATSAPP_MESSAGES.identidade) },
   { label: "Conteúdo visual", href: getWhatsAppUrl(WHATSAPP_MESSAGES.conteudo) },
 ];
@@ -170,11 +172,11 @@ export const COMPARISON_YOU_GET = [
 export const HOME_FAQS = [
   {
     q: "O que é o Site Essencial?",
-    a: "É o nosso produto de site profissional de uma página para negócios locais. Ele tem formato e escopo definidos, permitindo um valor acessível de R$ 500 em até 3x, com uma prévia demonstrativa antes da contratação.",
+    a: `É o nosso produto de site profissional de uma página para negócios locais. Ele tem formato e escopo definidos, permitindo um valor acessível de ${ESSENTIAL_PRICE} em até 3x, com uma prévia demonstrativa antes da contratação.`,
   },
   {
-    q: "Todos os sites custam R$500?",
-    a: "Não. O valor de R$ 500 é exclusivo do Site Essencial, que possui uma página e o que está incluso definido. Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.",
+    q: `Todos os sites custam ${ESSENTIAL_PRICE}?`,
+    a: `Não. O valor de ${ESSENTIAL_PRICE} é exclusivo do Site Essencial, que possui uma página e o que está incluso definido. Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.`,
   },
   {
     q: "Preciso pagar antes de ver?",
@@ -195,10 +197,10 @@ export const HOME_FAQS = [
 ];
 
 // SITE ESSENCIAL DATA
-export const SITE_ESSENCIAL_PRICE = "R$ 500";
-export const SITE_ESSENCIAL_INSTALLMENTS = "em até 3x de R$ 166,67";
+export const SITE_ESSENCIAL_PRICE = ESSENTIAL_PRICE;
+export const SITE_ESSENCIAL_INSTALLMENTS = ESSENTIAL_INSTALLMENTS;
 
-export const HOME_SITE_ESSENCIAL_INSTALLMENTS = "em até 3x";
+export const HOME_SITE_ESSENCIAL_INSTALLMENTS = ESSENTIAL_INSTALLMENTS;
 
 export const HOME_SITE_ESSENCIAL_BENEFITS = [
   "Site profissional de uma página",
@@ -361,7 +363,7 @@ export const SITE_ESSENCIAL_POST_APPROVAL = [
 
 export const SITE_ESSENCIAL_FAQS = [
   {
-    "q": "O que está incluído nos R$ 500?",
+    "q": `O que está incluído nos ${ESSENTIAL_PRICE}?`,
     "a": "Uma página com até seis seções, versão mobile e desktop, WhatsApp e até duas rodadas de ajustes."
   },
   {
@@ -389,8 +391,8 @@ export const SITE_ESSENCIAL_FAQS = [
     "a": "Estimativa: prévia em cerca de 2h e entrega em cerca de 24h após aprovação e ajustes."
   },
   {
-    "q": "Todo site custa R$ 500?",
-    "a": "Não. R$ 500 é o Site Essencial. Mais páginas ou funcionalidades têm orçamento próprio."
+    "q": `Todo site custa ${ESSENTIAL_PRICE}?`,
+    "a": `Não. ${ESSENTIAL_PRICE} é o Site Essencial. Mais páginas ou funcionalidades têm orçamento próprio.`
   },
   {
     "q": "Vocês atendem fora do Rio?",

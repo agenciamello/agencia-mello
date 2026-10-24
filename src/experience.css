@@ -118,6 +118,10 @@
 .process-studio .scope-note{font-size:13px;color:var(--muted);max-width:92ch;margin-top:42px}
 .essential-teaser{padding:52px 0 86px;gap:70px}.essential-teaser h2{font-size:clamp(34px,3.4vw,48px);line-height:1.08;margin:20px 0}.essential-teaser p{font-size:15px;line-height:1.8}.essential-teaser p+p{margin-top:14px}
 .teaser-price{width:100%;max-width:390px}.teaser-price>span{font:500 52px/1.2 'Space Grotesk',Arial;letter-spacing:-.04em}.teaser-price small{display:block;font:13px/1.6 Inter,Arial;color:var(--muted);letter-spacing:0;margin:8px 0 14px}.teaser-price .text-link{display:flex;gap:20px}
+.previous-price{display:block;color:var(--muted);font:14px/1.6 Inter,Arial;letter-spacing:0;margin-bottom:8px}
+.offer-label,.teaser-price small.offer-label{display:block;color:var(--pink);font:500 13px/1.5 Inter,Arial;letter-spacing:.02em;margin:0 0 2px}
+.teaser-price>span,.essential-buy>strong{color:var(--pink)}
+.essential-buy>small{margin-left:0}
 
 /* Contact: dark focus rings on the brand color. */
 .studio-contact{position:relative;isolation:isolate;overflow:hidden;background:#ec4899;color:var(--ink);padding:64px 0 52px}.contact-composition{position:relative}

@@ -22,7 +22,7 @@ const fs=require('node:fs');
  assert.equal(await page.locator('.hero-project').count(),0);
  assert.equal(await page.locator('.contact-line').count(),3);
  assert.equal(await page.locator('.contact-composition a').count(),0,'O título editorial não deve ignorar a intenção de contato.');
- assert.ok(new URL(await page.locator('.intent-send').getAttribute('href')).searchParams.get('text').includes('Meu negócio'),'Contato disponível sem escolher um serviço.');
+ assert.ok(new URL(await page.locator('.intent-send').getAttribute('href')).searchParams.get('text').includes('conversar sobre um projeto'),'Contato disponível sem escolher um serviço.');
   const primary=page.locator('.primary-cta');
   await primary.scrollIntoViewIfNeeded();
   await page.mouse.move(0,0);
@@ -41,7 +41,7 @@ const fs=require('node:fs');
   await expect(primary).toBeVisible();
   await expect(primary).toHaveAttribute('href',primaryHref);
  await page.setViewportSize({width:1440,height:900});
- for(const [key,word] of [['sites','um site pro meu negócio'],['identidade','identidade visual'],['conteudo','peças pras redes sociais']]){
+ for(const [key,word] of [['sites','um site pro meu negócio'],['identidade','identidade visual'],['conteudo','artes para redes sociais'],['eventos','arte para meu evento']]){
   await page.locator('.intent-options label').filter({has:page.locator(`input[value="${key}"]`)}).click();
   await expect(page.locator(`input[value="${key}"]`)).toBeChecked();
   const href=await page.locator('.intent-send').getAttribute('href');
@@ -64,6 +64,6 @@ const fs=require('node:fs');
  await page.locator('.contact-intent').scrollIntoViewIfNeeded();
  await page.screenshot({path:'artifacts/sprint-confirm-contact.png'});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
-  console.log('Sprint: CTA estável, feedback de hover, destino, três mensagens, teclado e reduced motion verificados.');
+  console.log('Sprint: CTA estável, feedback de hover, destino, quatro mensagens, teclado e reduced motion verificados.');
  } finally { await browser.close(); }
 })().catch(e=>{console.error(e);process.exit(1)});

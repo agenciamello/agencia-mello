@@ -91,8 +91,8 @@ export function ExperiencePortfolio() {
       <div className="copy-bridge">
         <span className="micro">Depois de ver os projetos</span>
         <h2 className="copy-bridge-reveal" aria-label="Gostou de algum desses projetos?"><span aria-hidden="true"><span className="copy-bridge-word">Gostou</span><span className="copy-bridge-word">de</span><span className="copy-bridge-word">algum</span><span className="copy-bridge-word">desses</span><span className="copy-bridge-word">projetos?</span></span></h2>
-        <p>Podemos criar uma direção para o seu negócio também.</p>
-        <ContactLink messageKey="projetos" className="text-link">Quero uma prévia <span aria-hidden="true">↗</span></ContactLink>
+        <p>Vamos conversar sobre o site, a identidade visual ou as artes que você precisa.</p>
+        <ContactLink messageKey="projetos" className="text-link">Pedir um orçamento <span aria-hidden="true">↗</span></ContactLink>
       </div>
     </div>
   </section>;
