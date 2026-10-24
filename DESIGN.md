@@ -14,7 +14,7 @@ Composição editorial, clareza comercial e movimento derivado da identidade ofi
 
 ## Composição
 
-O título em quatro linhas conduz o hero, acompanhado de CTA para WhatsApp e link para o processo. O símbolo oficial aparece em vídeo silencioso WebM/MP4, com imagem estática para movimento reduzido ou erro de mídia. Um controle discreto permite pausar e reproduzir a animação por clique ou teclado.
+O título em quatro linhas conduz o hero, acompanhado de CTA para WhatsApp e link para o processo. O símbolo oficial aparece em vídeo silencioso WebM/MP4, com imagem estática para movimento reduzido, erro de mídia ou bloqueio de reprodução automática. Após a aprovação do túnel em 24/10/2026, o usuário pediu explicitamente remover o botão de pausa/reprodução do hero. Esse pedido substitui a exigência anterior de controle manual: não renderizar botão visível nem controle oculto no teclado.
 
 O portfólio usa superfície clara, imagens amplas e assimetria. Animalis Pet lidera; Viana Planejados e Du-Rio são outras prévias comerciais. Bellavista e Solace ficam na camada secundária de estudos autorais. Preservar a explicação factual do status de cada projeto.
 
@@ -34,20 +34,20 @@ Tokens atuais em `StudioMotion.tsx`: micro 220ms, reveal 620ms, seção 900ms, s
 - Sobre: entrada de texto e retrato; processo: título e progressão das etapas; contato: revelação tipográfica.
 - Subpáginas: mesma linguagem de entradas, imagens e grupos de informações.
 - Magnetismo sutil nos CTAs principais apenas com mouse em desktop. Sem scroll hijacking ou cursor substituto.
-- Vídeo pausa fora da viewport e em aba oculta; voltar ao hero não desfaz uma pausa escolhida pelo visitante.
+- Vídeo pausa fora da viewport e em aba oculta, retomando automaticamente quando o hero fica visível e a aba volta a ficar ativa.
 - Marquee pausa fora da viewport e em aba oculta. Não usar canvas ou WebGL na experiência ativa.
 
 GSAP/ScrollTrigger são importados dinamicamente. Manter cleanup de timelines, observers, listeners e RAF nas trocas de rota, breakpoint e preferência. Não adicionar animação a cada elemento por padrão.
 
 ## Acessibilidade e comportamento
 
-Conteúdo disponível sem depender de animação. `prefers-reduced-motion` troca o vídeo pela imagem, desliga timelines, marquee, transições e rolagem animada, inclusive quando muda durante a sessão. Foco visível, skip link, Escape no menu, fechamento ao selecionar a mesma âncora e alvos de toque confortáveis. O controle do vídeo deve permanecer acessível, fora de qualquer ancestral `aria-hidden`.
+Conteúdo disponível sem depender de animação. `prefers-reduced-motion` troca o vídeo pela imagem, desliga timelines, marquee, transições e rolagem animada, inclusive quando muda durante a sessão. Foco visível, skip link, Escape no menu, fechamento ao selecionar a mesma âncora e alvos de toque confortáveis. O vídeo decorativo fica fora da árvore de acessibilidade; seu controle manual foi retirado por pedido explícito do usuário em 24/10/2026.
 
 ## Verificação
 
 `npm run lint` e `npm run typecheck` executam TypeScript; não há linter separado. `npm run build` gera o bundle e HTML estático com metadata por rota.
 
-`npm test` cobre responsividade, rotas, navegação, motion e axe. `tests/sprint.cjs` cobre CTA, mensagens, teclado, pausa do vídeo e movimento reduzido. As suítes de copy, portfólio e SEO complementam esses fluxos; `tests/seo-navigation.cjs` cobre barras finais e metadata durante navegação interna. Sempre definir `SITE_URL` para a instância verificada, com Chrome instalado.
+`npm test` cobre responsividade, rotas, navegação, motion e axe. `tests/sprint.cjs` cobre CTA, mensagens, teclado, ausência do botão de vídeo, pausa/retomada automática e movimento reduzido. As suítes de copy, portfólio e SEO complementam esses fluxos; `tests/seo-navigation.cjs` cobre barras finais e metadata durante navegação interna. Sempre definir `SITE_URL` para a instância verificada, com Chrome instalado.
 
 Capturas e resultados em `artifacts` são locais e ignorados pelo Git. Inspecionar screenshots reais; aprovação de build não equivale a aprovação visual ou conformidade WCAG completa.
 

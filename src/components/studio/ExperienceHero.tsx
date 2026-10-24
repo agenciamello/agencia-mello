@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Pause, Play } from 'lucide-react';
 import { ContactLink } from './Studio';
 
 function HeroMotionMark() {
@@ -7,7 +6,6 @@ function HeroMotionMark() {
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   );
   const [failed, setFailed] = useState(false);
-  const [pausedByUser, setPausedByUser] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -25,11 +23,11 @@ function HeroMotionMark() {
     const rect = video.getBoundingClientRect();
     let visible = rect.bottom > 0 && rect.top < window.innerHeight;
     const syncPlayback = () => {
-      if (pausedByUser || document.hidden || !visible) {
+      if (document.hidden || !visible) {
         video.pause();
       } else {
         void video.play().catch(error => {
-          if (!disposed && error.name === 'NotAllowedError') setPausedByUser(true);
+          if (!disposed && error.name === 'NotAllowedError') setFailed(true);
         });
       }
     };
@@ -46,12 +44,12 @@ function HeroMotionMark() {
       document.removeEventListener('visibilitychange', syncPlayback);
       video.pause();
     };
-  }, [reducedMotion, failed, pausedByUser]);
+  }, [reducedMotion, failed]);
 
   if (reducedMotion || failed) {
     return <div className="brand-sculpture brand-sculpture-static"><img src="/assets/agencia-mello-icone.png" alt="" width="292" height="289" fetchPriority="high"/></div>;
   }
-  return <><div className="brand-sculpture brand-sculpture-video">
+  return <div className="brand-sculpture brand-sculpture-video">
     <video
       ref={videoRef}
       className="hero-motion-video"
@@ -67,12 +65,7 @@ function HeroMotionMark() {
       <source src="/assets/agencia-mello-hero-motion.webm" type="video/webm"/>
       <source src="/assets/agencia-mello-hero-motion.mp4" type="video/mp4"/>
     </video>
-  </div><button className="hero-video-control" type="button"
-    aria-label={pausedByUser ? 'Reproduzir animação' : 'Pausar animação'}
-    title={pausedByUser ? 'Reproduzir animação' : 'Pausar animação'}
-    onClick={() => setPausedByUser(value => !value)}>
-    {pausedByUser ? <Play size={18} aria-hidden="true"/> : <Pause size={18} aria-hidden="true"/>}
-  </button></>;
+  </div>;
 }
 
 export function ExperienceHero() {
