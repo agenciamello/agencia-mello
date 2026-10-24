@@ -67,10 +67,14 @@ Ver docs/copy-commercial-confirmed.md. Estas condições substituem as menções
 
 ## Sprint Clareza — 24/10/2026 — Issue #25
 
-- Capacidade: quem visita identifica os serviços na abertura, encontra a oferta do Site Essencial antes do portfólio e inicia uma conversa coerente com seu projeto.
+- Capacidade: quem visita identifica os serviços na abertura, encontra as prévias comerciais antes da oferta do Site Essencial, dentro do capítulo de sites e inicia uma conversa coerente com seu projeto.
 - Superfícies: home, contato compartilhado, Site Essencial, páginas locais, FAQs, termos, mensagens de WhatsApp e metadata/JSON-LD.
 - Contrato comercial: preço vigente R$ 297,00, até 3x de R$ 99,00, aprovado pelo usuário. A apresentação de redução usa “De R$ 500,00 / Por somente R$ 297,00”. Não há prazo promocional, juros, escassez ou novo escopo confirmados.
 - Contato: seleção opcional de site, identidade visual, redes ou eventos; sem seleção, mensagem geral sobre um projeto. A seleção muda somente o texto inicial do WhatsApp, sem envio automático.
 - Invariantes: prévia gratuita e pagamento após aprovação pertencem ao Site Essencial; outros serviços recebem orçamento. Preservar rotas, identidade, portfólio factual, túnel e Behance.
 - Dados: `src/data/essentialOffer.js` é a fonte única do preço, parcelamento e moeda, compartilhada com a geração estática para busca.
 - Não objetivos: novos pacotes, novos resultados comerciais, mudanças no efeito aprovado ou publicação automática. Sem decisões bloqueantes; pronto para implementação e validação em preview.
+
+### Revisão aprovada: exemplos antes do preço
+
+O usuário substituiu explicitamente a oferta antes do portfólio por capítulos integrados. Ordem: hero e resumo → apresentação das soluções → 01 sites (Animalis, Viana/Du-Rio, preço e CTA) → 02 artes para redes/eventos → 03 logo/identidade → Matheus e contato. O preço não precisa mais estar nas primeiras duas telas. Bellavista fica secundário em sites; Solace é identificado como estudo de identidade. Processo fica em detalhes acessíveis no capítulo de sites. Não duplicar uma seção extensa de serviços depois dos trabalhos.

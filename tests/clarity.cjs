@@ -2,7 +2,7 @@ const {chromium, expect} = require('@playwright/test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const base = (process.env.SITE_URL || 'http://127.0.0.1:4176').replace(/\/$/, '');
-const folder = 'artifacts/sprint-clareza';
+const folder = process.env.CLARITY_ARTIFACTS || 'artifacts/sprint-clareza';
 
 (async () => {
   fs.mkdirSync(folder, {recursive:true});
@@ -12,6 +12,7 @@ const folder = 'artifacts/sprint-clareza';
     const page = await browser.newPage({reducedMotion:'reduce'});
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
+    if (process.env.SITE_ACCESS_URL) await page.goto(process.env.SITE_ACCESS_URL,{waitUntil:'networkidle'});
     for (const width of [1440,1024,768,390,360,320]) {
       await page.setViewportSize({width,height:width>700?900:844});
       await page.goto(`${base}/`, {waitUntil:'networkidle'});
@@ -22,19 +23,39 @@ const folder = 'artifacts/sprint-clareza';
       await expect(offer).toContainText('De R$ 500,00');
       await expect(offer).toContainText('Por somenteR$ 297,00');
       await expect(offer).toContainText('em até 3x de R$ 99,00');
+      await expect(page.locator('.experience-services')).toHaveCount(0);
+      await expect(page.locator('#servico-web .commercial-project-grid')).toContainText('Viana Planejados');
+      await expect(page.locator('#servico-web .commercial-project-grid')).toContainText('Du-Rio Planejados');
+      await expect(page.locator('#servico-marca')).toContainText('Estudo conceitual');
+      await expect(page.locator('#servico-conteudo')).toContainText('Design para eventos');
+      assert.ok(await page.locator('.project-thesis').evaluate(el=>parseFloat(getComputedStyle(el).fontSize)>=28),'Tese do projeto mantém tamanho de título após ajuste da hierarquia');
       const position = await page.evaluate(() => {
         const y = selector => document.querySelector(selector).getBoundingClientRect().top + scrollY;
-        const priceNode=Array.from(document.querySelector('.teaser-price>span').childNodes).find(node=>node.nodeType===Node.TEXT_NODE && node.textContent.includes('297,00'));
-        const range=document.createRange();
-        range.selectNode(priceNode);
-        const price=range.getBoundingClientRect();
-        return {offer:y('#oferta-site-essencial'),price:price.top+scrollY,priceBottom:price.bottom+scrollY,portfolio:y('#projetos'),height:innerHeight};
+        const bottom = selector => document.querySelector(selector).getBoundingClientRect().bottom + scrollY;
+        return {intro:y('#projetos'),sites:y('#servico-web'),animalis:y('.showcase-commercial'),otherPreviewsBottom:bottom('.commercial-project-grid'),offer:y('#oferta-site-essencial'),offerBottom:bottom('#oferta-site-essencial'),artes:y('#servico-conteudo'),brand:y('#servico-marca'),about:y('#sobre')};
       });
-      assert.ok(position.offer < position.portfolio, 'Oferta antes do portfólio');
-      assert.ok(position.priceBottom < position.height*2, `Preço inteiro nas primeiras duas telas em ${width}px: ${position.priceBottom}`);
+      assert.ok(position.intro < position.sites && position.sites < position.animalis,'Abertura e capítulo de sites antes das prévias');
+      assert.ok(position.otherPreviewsBottom < position.offer,'Três prévias comerciais antes do preço');
+      assert.ok(position.offerBottom < position.artes && position.artes < position.brand && position.brand < position.about,'Oferta → artes → identidade → Matheus');
+      for (const [index,id] of ['servico-web','servico-conteudo','servico-marca'].entries()) {
+        const link=page.locator('.home-service-links a').nth(index);
+        await expect(link).toHaveAttribute('href',`#${id}`);
+        await link.click();
+        await expect(page).toHaveURL(new RegExp(`#${id}$`));
+        const rect=await page.locator(`#${id}`).boundingBox();
+        assert.ok(rect.y>=0 && rect.y<200,`Atalho chega ao capítulo ${id}`);
+        if ([1440,390].includes(width)) {
+          await page.locator(`#${id} img`).evaluateAll(images=>Promise.allSettled(images.filter(img=>{
+            const rect=img.getBoundingClientRect();
+            return img.checkVisibility() && rect.top<innerHeight && rect.bottom>0;
+          }).map(img=>img.decode())));
+          await page.screenshot({path:`${folder}/${id}-${width}.png`});
+        }
+      }
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth>innerWidth),false,`Sem overflow em ${width}px`);
       results.push({width,...position});
       if ([1440,390,320].includes(width)) {
+        await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
         await page.screenshot({path:`${folder}/hero-${width}.png`});
         await offer.scrollIntoViewIfNeeded();
         await page.screenshot({path:`${folder}/oferta-${width}.png`});
@@ -82,6 +103,6 @@ const folder = 'artifacts/sprint-clareza';
     }
     assert.deepEqual(errors,[]);
     fs.writeFileSync(`${folder}/clarity-results.json`,JSON.stringify({base,results,errors},null,2));
-    console.log('Clareza: oferta antes dos projetos e preço nas primeiras 2 telas em 6 larguras; 4 intenções/teclado; preço, WhatsApp e SEO consistentes em 6 rotas.');
+    console.log('Clareza: capítulos sites → artes → identidade; três prévias antes do preço; atalhos em 6 larguras; 4 intenções/teclado e preço/SEO em 6 rotas.');
   } finally { await browser.close(); }
 })().catch(error=>{console.error(error);process.exit(1)});

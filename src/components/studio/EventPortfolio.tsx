@@ -74,7 +74,7 @@ export function EventPortfolio() {
     <div className="event-intro">
       <div>
         <p className="event-eyebrow">Design para eventos <span aria-hidden="true">↗</span></p>
-        <h3 id="events-heading">Sua próxima data.<br/><em>Uma arte à altura.</em></h3>
+        <h4 id="events-heading">Sua próxima data.<br/><em>Uma arte à altura.</em></h4>
       </div>
       <p>Flyers, agendas e peças de divulgação criadas pela Mello. Uma seleção do que já saiu da nossa mesa para anunciar eventos e lançamentos.</p>
     </div>
@@ -101,7 +101,7 @@ export function EventPortfolio() {
     </div>
 
     <div className="event-outro">
-      <p>Tem evento marcado?<br/><span>Vamos cuidar da divulgação.</span></p>
+      <p>Tem evento marcado?<br/><span>Flyer: R$ 50 · Flyer + motion de 30s: R$ 80.</span></p>
       <ContactLink messageKey="eventos" className="event-cta">Pedir uma arte para meu evento <ArrowUpRight size={18} aria-hidden="true"/></ContactLink>
     </div>
 

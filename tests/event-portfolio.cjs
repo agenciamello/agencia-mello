@@ -30,11 +30,11 @@ async function showEvents(page) {
     const order = await page.evaluate(() => {
       const before = document.querySelector('.commercial-project-grid');
       const events = document.querySelector('#eventos');
-      const after = document.querySelector('.conceptual-introduction');
+      const after = document.querySelector('#servico-marca');
       return Boolean(before.compareDocumentPosition(events) & Node.DOCUMENT_POSITION_FOLLOWING) &&
         Boolean(events.compareDocumentPosition(after) & Node.DOCUMENT_POSITION_FOLLOWING);
     });
-    assert.ok(order, 'Events must follow commercial previews and precede conceptual studies');
+    assert.ok(order, 'Events follow site previews/offer and precede the identity chapter');
     assert.ok((await section.locator('.event-piece').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).transform))).every(value=>value==='none'), 'Complete gallery stays static and readable; spatial motion belongs to the tunnel');
     const stage = await section.locator('.event-stage').boundingBox();
     await page.mouse.move(stage.x + stage.width / 2, Math.max(100, Math.min(750, stage.y + stage.height / 2)));

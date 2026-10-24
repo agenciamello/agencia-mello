@@ -17,7 +17,9 @@ const commercialRoutes = [
     await expect(page.locator('.showcase-commercial')).toContainText('Animalis Pet');
     await expect(page.locator('.commercial-project-grid')).toContainText('Viana Planejados');
     await expect(page.locator('.commercial-project-grid')).toContainText('Du-Rio Planejados');
+    await page.locator('.conceptual-sites summary').click();
     await expect(page.locator('.conceptual-introduction')).toContainText('Estudos autorais');
+    await expect(page.locator('#servico-marca')).toContainText('Estudo conceitual');
     await expect(page.locator('.home-service-orientation')).toContainText('Sites para negócios');
     await expect(page.locator('.home-service-orientation')).toContainText('Logo e identidade visual');
     await expect(page.locator('.home-service-orientation')).toContainText('Artes para redes e eventos');

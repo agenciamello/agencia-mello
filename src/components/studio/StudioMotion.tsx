@@ -226,132 +226,6 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
               scrollTrigger: { trigger: frameEl, start: 'top bottom', end: 'bottom top', scrub: .8 } });
         });
 
-        if (isDesktop) {
-          const serviceIntro = scope.querySelector<HTMLElement>('[data-service-intro]');
-          if (serviceIntro) {
-            const introLines = serviceIntro.querySelectorAll<HTMLElement>('.service-title-line');
-            const introLabel = serviceIntro.querySelector<HTMLElement>('.section-label');
-            const introParagraph = serviceIntro.querySelector<HTMLElement>(':scope > p');
-            const introLinks = serviceIntro.querySelectorAll<HTMLElement>('[data-service-nav]');
-            const introTimeline = gsap.timeline({ scrollTrigger: {
-              trigger: serviceIntro, start: 'top 82%', end: 'bottom 38%', scrub: .78,
-            }});
-            if (introLabel) introTimeline.fromTo(introLabel,
-              { x: -24, opacity: .42 }, { x: 0, opacity: 1, duration: .3, ease: 'none' }, 0);
-            if (introLines.length) introTimeline.fromTo(introLines,
-              { x: (index: number) => index === 1 ? 34 : -34, opacity: .3, scale: .975 },
-              { x: 0, opacity: 1, scale: 1, stagger: .13, duration: .76, ease: 'none' }, .02);
-            introTimeline.to(serviceIntro, { '--service-accent': 1, duration: .38, ease: 'none' }, .34);
-            if (introParagraph) introTimeline.fromTo(introParagraph,
-              { y: 24, opacity: .4 }, { y: 0, opacity: 1, duration: .48, ease: 'none' }, .42);
-            if (introLinks.length) introTimeline.fromTo(introLinks,
-              { x: 20, opacity: .42 }, { x: 0, opacity: 1, stagger: .06, duration: .5, ease: 'none' }, .5);
-          }
-
-          scope.querySelectorAll('[data-service-chapter]').forEach((chapterNode, index) => {
-            const chapter = chapterNode as HTMLElement;
-            const top = chapter.querySelector('.service-chapter-top') as HTMLElement | null;
-            const visual = chapter.querySelector('.service-visual') as HTMLElement | null;
-            const copies = chapter.querySelectorAll('[data-service-copy]');
-            const action = chapter.querySelector('.text-link') as HTMLElement | null;
-
-            gsap.to(chapter, { '--chapter-progress': 1, ease: 'none',
-              scrollTrigger: { trigger: chapter, start: 'top 80%', end: 'bottom 46%', scrub: .65 } });
-
-            if (top) gsap.fromTo(top,
-              { x: -20, opacity: .46 }, { x: 0, opacity: 1, ease: 'none',
-                scrollTrigger: { trigger: top, start: 'top 88%', end: 'top 64%', scrub: .52 } });
-
-            if (visual) {
-              gsap.fromTo(visual,
-                { y: 72, scale: .9, rotation: index === 1 ? -2.8 : index === 2 ? 3.2 : 2.4,
-                  clipPath: 'inset(6% 5% 6% 5%)', opacity: .58 },
-                { y: 0, scale: 1, rotation: 0, clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, ease: 'none',
-                  scrollTrigger: { trigger: visual, start: 'top 88%', end: 'center 48%', scrub: .68 } });
-
-              const scan = visual.querySelector<HTMLElement>('.service-scan-line');
-              if (scan) gsap.fromTo(scan,
-                { y: -2, opacity: 0 },
-                { y: () => Math.max(160, visual.clientHeight + 4), opacity: .72, ease: 'none',
-                  scrollTrigger: { trigger: visual, start: 'top 84%', end: 'bottom 38%', scrub: .62 } });
-            }
-
-            copies.forEach((copy, copyIndex) => {
-              gsap.fromTo(copy,
-                { y: 26, x: copyIndex === 0 ? -12 : 12, opacity: .4 },
-                { y: 0, x: 0, opacity: 1, ease: 'none',
-                  scrollTrigger: { trigger: copy, start: 'top 88%', end: 'top 62%', scrub: .5 } });
-            });
-
-            if (action) gsap.fromTo(action,
-              { y: 18, opacity: .45 }, { y: 0, opacity: 1, ease: 'none',
-                scrollTrigger: { trigger: action, start: 'top 90%', end: 'top 70%', scrub: .44 } });
-          });
-        }
-
-        if (isMobile) {
-          const serviceIntro = scope.querySelector<HTMLElement>('[data-service-intro]');
-          if (serviceIntro) {
-            const introLines = serviceIntro.querySelectorAll<HTMLElement>('.service-title-line');
-            const introLabel = serviceIntro.querySelector<HTMLElement>('.section-label');
-            const introParagraph = serviceIntro.querySelector<HTMLElement>(':scope > p');
-            const introLinks = serviceIntro.querySelectorAll<HTMLElement>('[data-service-nav]');
-            const introTimeline = gsap.timeline({ scrollTrigger: {
-              trigger: serviceIntro, start: 'top 92%', end: 'bottom 42%', scrub: .62,
-            }});
-            if (introLabel) introTimeline.fromTo(introLabel,
-              { x: -16, opacity: .45 }, { x: 0, opacity: 1, duration: .3, ease: 'none' }, 0);
-            if (introLines.length) introTimeline.fromTo(introLines,
-              { x: (index: number) => index === 1 ? 24 : -24, opacity: .28, scale: .965 },
-              { x: 0, opacity: 1, scale: 1, stagger: .12, duration: .72, ease: 'none' }, .04);
-            introTimeline.to(serviceIntro, { '--service-accent': 1, duration: .4, ease: 'none' }, .34);
-            if (introParagraph) introTimeline.fromTo(introParagraph,
-              { y: 22, opacity: .35 }, { y: 0, opacity: 1, duration: .5, ease: 'none' }, .42);
-            if (introLinks.length) introTimeline.fromTo(introLinks,
-              { x: 18, opacity: .38 }, { x: 0, opacity: 1, stagger: .07, duration: .52, ease: 'none' }, .5);
-          }
-
-          scope.querySelectorAll('[data-service-chapter]').forEach((chapterNode, index) => {
-            const chapter = chapterNode as HTMLElement;
-            const top = chapter.querySelector('.service-chapter-top') as HTMLElement | null;
-            const visual = chapter.querySelector('.service-visual') as HTMLElement | null;
-            const copies = chapter.querySelectorAll('[data-service-copy]');
-            const action = chapter.querySelector('.text-link') as HTMLElement | null;
-
-            gsap.to(chapter, { '--chapter-progress': 1, ease: 'none',
-              scrollTrigger: { trigger: chapter, start: 'top 88%', end: 'bottom 48%', scrub: .55 } });
-
-            if (top) gsap.fromTo(top,
-              { x: -16, opacity: .45 }, { x: 0, opacity: 1, ease: 'none',
-                scrollTrigger: { trigger: top, start: 'top 94%', end: 'top 70%', scrub: .45 } });
-
-            if (visual) {
-              gsap.fromTo(visual,
-                { y: 46, scale: .925, rotation: index === 1 ? 2.4 : index === 2 ? -2.8 : 1.8,
-                  clipPath: 'inset(7% 4% 7% 4%)', opacity: .64 },
-                { y: 0, scale: 1, rotation: 0, clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, ease: 'none',
-                  scrollTrigger: { trigger: visual, start: 'top 94%', end: 'center 52%', scrub: .52 } });
-
-              const scan = visual.querySelector<HTMLElement>('.service-scan-line');
-              if (scan) gsap.fromTo(scan,
-                { y: -2, opacity: 0 },
-                { y: () => Math.max(120, visual.clientHeight + 4), opacity: .78, ease: 'none',
-                  scrollTrigger: { trigger: visual, start: 'top 91%', end: 'bottom 44%', scrub: .5 } });
-            }
-
-            copies.forEach((copy, copyIndex) => {
-              gsap.fromTo(copy,
-                { y: 24, x: copyIndex === 0 ? -12 : 10, opacity: .36 },
-                { y: 0, x: 0, opacity: 1, ease: 'none',
-                  scrollTrigger: { trigger: copy, start: 'top 93%', end: 'top 66%', scrub: .45 } });
-            });
-
-            if (action) gsap.fromTo(action,
-              { y: 16, opacity: .45 }, { y: 0, opacity: 1, ease: 'none',
-                scrollTrigger: { trigger: action, start: 'top 94%', end: 'top 76%', scrub: .4 } });
-          });
-        }
-
         scope.querySelectorAll<HTMLElement>('.service-visual').forEach(visual => {
           const sequence = gsap.timeline({ scrollTrigger: {
             trigger: visual, start: 'top 92%', end: 'center 52%', scrub: isDesktop ? .55 : isMobile ? .5 : .4,
@@ -807,12 +681,25 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
       }
 
       const refresh = () => ScrollTrigger.refresh();
+      let detailsFrame = 0;
+      const refreshDetails = (event: Event) => {
+        if (!(event.target instanceof HTMLDetailsElement)) return;
+        cancelAnimationFrame(detailsFrame);
+        detailsFrame = requestAnimationFrame(() => {
+          detailsFrame = 0;
+          refresh();
+        });
+      };
+      // Expandir/recolher os detalhes muda a posição de todos os capítulos seguintes.
+      scope.addEventListener('toggle', refreshDetails, true);
       window.addEventListener('load', refresh, { once: true });
       document.fonts.ready.then(() => { if (!destroyed && ticket === generation) refresh(); });
 
       disposeMotion = () => {
         cleanups.forEach(cleanup => cleanup());
         context.revert();
+        cancelAnimationFrame(detailsFrame);
+        scope.removeEventListener('toggle', refreshDetails, true);
         window.removeEventListener('load', refresh);
       };
     };

@@ -122,25 +122,14 @@ async function expectTransformMotion(page, selector, description) {
     await page.locator('.showcase-image').scrollIntoViewIfNeeded();
     await page.waitForTimeout(350);
     assert.notEqual(await page.locator('.showcase-image img').evaluate(element => element.style.transform), '', 'Mobile project parallax');
-    const serviceIntro = page.locator('[data-service-intro]');
-    const introY = (await documentPosition(serviceIntro)).y;
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - innerHeight * .88), behavior: 'instant' }), introY);
-    await page.waitForTimeout(350);
-    const introStart = await page.locator('.service-title-line').first().evaluate(element => getComputedStyle(element).transform);
-    await page.evaluate(y => window.scrollTo({ top: y + 360, behavior: 'instant' }), Math.max(0, introY - 844 * .88));
-    await page.waitForTimeout(550);
-    const introAfter = await page.locator('.service-title-line').first().evaluate(element => getComputedStyle(element).transform);
-    assert.notEqual(introStart, introAfter, 'Mobile services title reacts to scroll');
-    assert.ok(Number(await serviceIntro.evaluate(element => getComputedStyle(element).getPropertyValue('--service-accent'))) > .15, 'Mobile services accent line progresses with scroll');
-
-    const serviceVisual = page.locator('#servico-web .service-visual');
-    const visualY = (await documentPosition(serviceVisual)).y;
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - innerHeight * .68), behavior: 'instant' }), visualY);
-    await page.waitForTimeout(550);
-    assert.notEqual(await page.locator('#servico-web .mini-browser').evaluate(element => element.style.transform), '', 'Mobile service motion');
-    assert.notEqual(await serviceVisual.evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service frame motion');
-    assert.notEqual(await serviceVisual.locator('.service-scan-line').evaluate(element => getComputedStyle(element).transform), 'none', 'Mobile service scan follows scroll');
-
+    // Capítulos substituem a antiga seção repetida de serviços.
+    for (const [index,id] of ['servico-web','servico-conteudo','servico-marca'].entries()) {
+      await page.locator('.home-service-links a').nth(index).click();
+      await expect(page).toHaveURL(new RegExp(`#${id}$`));
+      await expect(page.locator(`#${id} .solution-chapter-heading h3`)).toBeInViewport();
+    }
+    await loadPage(page);
+    await page.waitForTimeout(1000);
     const aboutSection = page.locator('[data-about-cinematic]');
     const aboutPosition = await documentPosition(aboutSection);
     const aboutStart = Math.max(0, aboutPosition.y - 844 * .90);
@@ -183,36 +172,14 @@ async function expectTransformMotion(page, selector, description) {
     assert.ok(Number(await page.locator('.about-title-line').last().evaluate(element => getComputedStyle(element).opacity)) > .99, 'Mobile about reveal stays settled when scrolling back');
     assert.ok(!(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath)).includes('100%'), 'Mobile portrait stays revealed when scrolling back');
 
-    const processHeading = page.locator('.process-typewriter');
-    const processHeadingY = (await documentPosition(processHeading)).y;
-    const processTriggerY = Math.max(0, processHeadingY - 844 * .90);
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 120), behavior: 'instant' }), processTriggerY);
-    await page.waitForTimeout(180);
-    const mobileTypeBefore = await page.locator('.process-typewriter-char').evaluateAll(elements => elements.filter(element => Number(getComputedStyle(element).opacity) > .5).length);
-    assert.equal(mobileTypeBefore, 0, 'Mobile process headline waits before typing');
-    await page.evaluate(y => window.scrollTo({ top: y + 70, behavior: 'instant' }), processTriggerY);
-    await page.waitForTimeout(520);
-    const mobileTypeMid = await page.locator('.process-typewriter-char').evaluateAll(elements => ({
-      visible: elements.filter(element => Number(getComputedStyle(element).opacity) > .5).length,
-      total: elements.length,
-    }));
-    assert.ok(mobileTypeMid.visible > 0 && mobileTypeMid.visible < mobileTypeMid.total, 'Mobile process headline types progressively');
-    await page.waitForTimeout(1500);
-    assert.ok(await processHeading.evaluate(element => element.classList.contains('is-typed')), 'Mobile process headline completes typing');
-    assert.ok(await page.locator('.process-typewriter-char').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) > .99)), 'Mobile process headline finishes visible');
-
-    const processTimeline = page.locator('[data-process-timeline]');
-    const processTimelinePosition = await documentPosition(processTimeline);
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 844 * .82), behavior: 'instant' }), processTimelinePosition.y);
-    await page.waitForTimeout(250);
-    const mobileTimelineBefore = Number(await processTimeline.evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress')));
-    await page.evaluate(({ y, height }) => window.scrollTo({ top: Math.max(0, y + height * .55 - innerHeight * .5), behavior: 'instant' }), processTimelinePosition);
-    await page.waitForTimeout(620);
-    const mobileTimelineAfter = Number(await processTimeline.evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress')));
-    const mobileNodeOpacity = await page.locator('.process-step-node').evaluateAll(elements => elements.map(element => Number(getComputedStyle(element).opacity)));
-    assert.ok(mobileTimelineBefore < .08 && mobileTimelineAfter > .25, 'Mobile timeline draws with scroll');
-    assert.ok(mobileNodeOpacity[0] - mobileNodeOpacity.at(-1) > .1, 'Mobile timeline reveals milestones progressively');
-
+    const processDetails=page.locator('#processo');
+    await processDetails.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await expect(processDetails).toHaveAttribute('open','');
+    await expect(processDetails.locator('ol li')).toHaveCount(4);
+    await expect(processDetails.locator('ol')).toBeVisible();
+    await page.keyboard.press('Enter');
+    await expect(processDetails).not.toHaveAttribute('open','');
     const contactPosition = await documentPosition(page.locator('.studio-contact'));
     await page.evaluate(y => window.scrollTo({ top: y + 80, behavior: 'instant' }), contactPosition.y);
     await page.waitForTimeout(420);
@@ -227,8 +194,6 @@ async function expectTransformMotion(page, selector, description) {
     assert.equal(await page.locator('.about-title-line').first().evaluate(element => element.style.transform), '', 'Reduced motion removes about title transforms');
     assert.equal(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath), 'none', 'Reduced motion keeps portrait fully revealed');
     assert.equal(Number(await page.locator('.about-cta').evaluate(element => getComputedStyle(element).getPropertyValue('--about-cta-line'))), 1, 'Reduced motion keeps about CTA accent visible');
-    assert.ok(await page.locator('.process-typewriter-char').evaluateAll(elements => elements.every(element => Number(getComputedStyle(element).opacity) === 1)), 'Reduced motion keeps process headline visible');
-    assert.equal(Number(await page.locator('[data-process-timeline]').evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress'))), 1, 'Reduced motion keeps process timeline complete');
     for (const width of viewports) {
       await page.setViewportSize({ width, height: 900 });
       for (const route of routes) {
@@ -270,6 +235,7 @@ async function expectTransformMotion(page, selector, description) {
     await menu.click();
     await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('link', { name: 'Projetos', exact: true }).click();
     await expect(menu).toHaveAttribute('aria-expanded', 'false');
+    await page.locator('.conceptual-sites summary').click();
     await page.getByRole('link', { name: 'Ver o estudo Bellavista', exact: true }).click();
     await page.waitForURL('**/projetos/bellavista');
     await page.getByRole('link', { name: '← Todos os projetos' }).click();
@@ -326,29 +292,16 @@ async function expectTransformMotion(page, selector, description) {
     await page.waitForTimeout(250);
     assert.equal(await page.locator('.capability-ribbon').getAttribute('data-playing'), 'true', 'Ribbon plays only while visible');
 
-    const desktopServiceIntro = page.locator('[data-service-intro]');
-    const desktopIntroY = (await documentPosition(desktopServiceIntro)).y;
-    const desktopIntroStartY = Math.max(0, desktopIntroY - 900 * .82);
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 100), behavior: 'instant' }), desktopIntroStartY);
-    await page.waitForTimeout(260);
-    const desktopIntroBefore = await page.locator('.service-title-line').first().evaluate(element => getComputedStyle(element).transform);
-    await page.evaluate(y => window.scrollTo({ top: y + 430, behavior: 'instant' }), desktopIntroStartY);
+    const socialVisual=page.locator('.social-service-details .service-visual');
+    const socialY=(await documentPosition(socialVisual)).y;
+    await page.evaluate(y=>window.scrollTo({top:Math.max(0,y-900*.7),behavior:'instant'}),socialY);
     await page.waitForTimeout(620);
-    const desktopIntroAfter = await page.locator('.service-title-line').first().evaluate(element => getComputedStyle(element).transform);
-    assert.notEqual(desktopIntroBefore, desktopIntroAfter, 'Desktop services title reacts to scroll');
-    assert.ok(Number(await desktopServiceIntro.evaluate(element => getComputedStyle(element).getPropertyValue('--service-accent'))) > .25, 'Desktop service accent progresses with scroll');
-
-    const desktopServiceVisual = page.locator('#servico-web .service-visual');
-    const desktopVisualY = (await documentPosition(desktopServiceVisual)).y;
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 900 * .66), behavior: 'instant' }), desktopVisualY);
-    await page.waitForTimeout(620);
-    assert.notEqual(await desktopServiceVisual.evaluate(element => getComputedStyle(element).transform), 'none', 'Desktop service frame has scroll choreography');
-    assert.notEqual(await page.locator('#servico-web .mini-browser').evaluate(element => element.style.transform), '', 'Desktop service visual internals animate');
-    assert.notEqual(await desktopServiceVisual.locator('.service-scan-line').evaluate(element => getComputedStyle(element).transform), 'none', 'Desktop service scan follows scroll');
-
-    await page.locator('#servico-marca').evaluate(element => element.scrollIntoView({ block: 'start', behavior: 'instant' }));
-    await expect(page.locator('[data-service-nav="1"]')).toHaveAttribute('aria-current', 'true');
-
+    assert.notEqual(await socialVisual.locator('.sheet-one').evaluate(element=>element.style.transform),'','Desktop social artwork motion remains active');
+    await page.locator('#servico-marca').evaluate(element=>element.scrollIntoView({block:'start',behavior:'instant'}));
+    await expect(page.locator('[data-service-nav="2"]')).toHaveAttribute('aria-current','true');
+    // Isolar o estado inicial do retrato das verificações anteriores de rolagem.
+    await loadPage(page);
+    await page.waitForTimeout(1000);
     const desktopAbout = page.locator('[data-about-cinematic]');
     const desktopAboutPosition = await documentPosition(desktopAbout);
     const desktopAboutStart = Math.max(0, desktopAboutPosition.y - 900 * .82);
@@ -391,33 +344,11 @@ async function expectTransformMotion(page, selector, description) {
     assert.ok(Number(await page.locator('.about-title-line').last().evaluate(element => getComputedStyle(element).opacity)) > .99, 'Desktop about reveal stays settled when scrolling back');
     assert.ok(!(await page.locator('.portrait-window').evaluate(element => getComputedStyle(element).clipPath)).includes('100%'), 'Desktop portrait stays revealed when scrolling back');
 
-    const desktopProcessHeading = page.locator('.process-typewriter');
-    const desktopProcessY = (await documentPosition(desktopProcessHeading)).y;
-    const desktopProcessTrigger = Math.max(0, desktopProcessY - 900 * .84);
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 120), behavior: 'instant' }), desktopProcessTrigger);
-    await page.waitForTimeout(180);
-    assert.equal(await page.locator('.process-typewriter-char').evaluateAll(elements => elements.filter(element => Number(getComputedStyle(element).opacity) > .5).length), 0, 'Desktop process headline waits before typing');
-    await page.evaluate(y => window.scrollTo({ top: y + 70, behavior: 'instant' }), desktopProcessTrigger);
-    await page.waitForTimeout(620);
-    const desktopTypeMid = await page.locator('.process-typewriter-char').evaluateAll(elements => ({
-      visible: elements.filter(element => Number(getComputedStyle(element).opacity) > .5).length,
-      total: elements.length,
-    }));
-    assert.ok(desktopTypeMid.visible > 0 && desktopTypeMid.visible < desktopTypeMid.total, 'Desktop process headline types progressively');
-    await page.waitForTimeout(1500);
-    assert.ok(await desktopProcessHeading.evaluate(element => element.classList.contains('is-typed')), 'Desktop process headline completes typing');
-
-    const desktopProcessTimeline = page.locator('[data-process-timeline]');
-    const desktopProcessTimelinePosition = await documentPosition(desktopProcessTimeline);
-    await page.evaluate(y => window.scrollTo({ top: Math.max(0, y - 900 * .86), behavior: 'instant' }), desktopProcessTimelinePosition.y);
-    await page.waitForTimeout(220);
-    const desktopTimelineBefore = Number(await desktopProcessTimeline.evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress')));
-    await page.evaluate(({ y, height }) => window.scrollTo({ top: Math.max(0, y + height * .55 - innerHeight * .5), behavior: 'instant' }), desktopProcessTimelinePosition);
-    await page.waitForTimeout(650);
-    const desktopTimelineAfter = Number(await desktopProcessTimeline.evaluate(element => getComputedStyle(element).getPropertyValue('--timeline-progress')));
-    const desktopNodes = await page.locator('.process-step-node').evaluateAll(elements => elements.map(element => Number(getComputedStyle(element).opacity)));
-    assert.ok(desktopTimelineBefore < .08 && desktopTimelineAfter > .25, 'Desktop timeline draws with scroll');
-    assert.ok(desktopNodes[0] - desktopNodes.at(-1) > .1, 'Desktop timeline reveals milestones progressively');
+    await page.locator('#processo summary').focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#processo ol')).toBeVisible();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#processo')).not.toHaveAttribute('open','');
 
     // Preference changes clean up running motion without a reload.
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
