@@ -6,24 +6,33 @@ Data: 24/10/2026. Issue: https://github.com/agenciamello/agencia-mello/issues/23
 
 Bloco no portfólio, entre as prévias comerciais e os estudos autorais, com São Simão Folia, Pagô Pra Ver (agenda), Bloco do Mello e Conexão dos Crias. As quatro cópias WebP têm SHA-256 idêntico aos arquivos fornecidos pelo usuário. Nenhuma arte, rosto, texto ou proporção foi alterado.
 
-A perspectiva acompanha a rolagem nativa apenas no desktop com ponteiro fino. Não há captura da roda, pinning, imagens que dependam do movimento para aparecer ou nova dependência. Mobile e movimento reduzido mantêm galeria estática. Ampliação em diálogo com foco contido, Escape, botão de fechar e retorno ao botão de origem. O WhatsApp usa intenção própria de orçamento para evento, sem enviar mensagem automaticamente.
+Na revisão solicitada em 24/10/2026, a grade inclinada da primeira prévia foi substituída pelo túnel espacial do componente anexado. O componente em `src/components/ui/perspective-tunnel-hero.tsx` preserva ângulo dourado de 137,5°, profundidade de -1700px a +500px, distribuição escalonada das opacidades, título central com escala e paralaxe do ponteiro. As mesmas quatro peças aparecem em duas passagens; isso não representa oito trabalhos distintos.
+
+O quadro sticky usa a rolagem nativa, sem capturar a roda. A galeria integral permanece abaixo, com atalho para pular a passagem e ampliar cada peça. No mobile e em movimento reduzido o túnel não é montado. Motion/React reutiliza o pacote `motion` já existente, sem instalação de dependência, e carrega em um bloco separado apenas quando habilitado. A entrada principal ficou em 384,44kB, e o bloco do túnel em 137,05kB (45,34kB gzip).
+
+Ampliação em diálogo com foco contido, Escape, botão de fechar e retorno ao botão de origem. O WhatsApp usa intenção própria de orçamento para evento, sem enviar mensagem automaticamente. A mudança de altura ao ativar/desativar o túnel atualiza as posições das animações dos capítulos seguintes.
 
 ## Verificações executadas
 
 - `npm run lint`: TypeScript aprovado, saída 0.
 - `npm run build`: bundle e HTML estático das 12 rotas mais 404 gerados, saída 0.
-- `SITE_URL=http://127.0.0.1:4175 npm test`: 13 rotas em seis larguras; navegação, motion e interações aprovados, sem erros de página. Axe sem violações nas 14 combinações de rota/largura examinadas pela suíte. Saída 0.
-- `SITE_URL=http://127.0.0.1:4175 node tests/sprint.cjs`: CTA, destino, três intenções de WhatsApp, teclado, controle do vídeo e movimento reduzido aprovados, saída 0.
-- `node tests/event-portfolio.cjs`: aprovado no servidor de desenvolvimento (4175) e na prévia local do build (4176), saída 0. Verifica ordem no portfólio, quatro imagens completas, seis larguras (1440, 1024, 768, 390, 360 e 320px), rolagem nativa, perspectiva, ampliação por teclado/toque, foco, proporção da ampliação, mudança de movimento reduzido em tempo real, limpeza ao trocar de rota e CTA correto. Axe sem violações no bloco nas seis larguras e no diálogo aberto em desktop.
+- `SITE_URL=http://127.0.0.1:4176 npm test`: 13 rotas em seis larguras; navegação, motion e interações aprovados, sem erros de página. Axe sem violações nas 14 combinações de rota/largura examinadas pela suíte. Saída 0, na versão de publicação da revisão.
+- `SITE_URL=http://127.0.0.1:4176 node tests/sprint.cjs`: CTA, destino, três intenções de WhatsApp, teclado, controle do vídeo e movimento reduzido aprovados, saída 0.
+- `SITE_URL=http://127.0.0.1:4176 node tests/event-portfolio.cjs`: saída 0. Ordem no portfólio, quatro imagens completas, seis larguras (1440, 1024, 768, 390, 360 e 320px), galeria estática, ampliação por teclado/toque, foco, proporção da ampliação, mudança de movimento reduzido em tempo real, limpeza ao trocar de rota e CTA correto. Axe sem violações no bloco nas seis larguras e no diálogo aberto em desktop.
+- `SITE_URL=http://127.0.0.1:4176 node tests/event-tunnel.cjs`: saída 0. Regressão reproduzida antes da correção (a grade antiga não continha o túnel). A revisão verifica deslocamento em Z superior a 900px, ampliação visual superior a 1,8 vez, passagem diante da câmera com fade, viewport sticky, paralaxe, roda nativa, atalho por teclado e remoção do túnel ao ativar movimento reduzido ou redimensionar para celular. Amostra real do primeiro card: -1125,83px no início, +264,65px no meio e +500px com opacidade zero no fim.
 - Falha de rede simulada em uma arte: outras três continuam disponíveis; mensagem de falha aparece, ampliação oferece tentar novamente e a recuperação carrega a arte após restaurar a rede.
-- Capturas reais do bloco, ampliação desktop/mobile e movimento reduzido inspecionadas. Evidências locais ignoradas em `artifacts/eventos-23`; contrato e registro JSON conferidos com o checker de evidências da skill de direção de frontend.
+- Capturas reais em seis larguras, ampliação desktop/mobile, movimento reduzido e três fases do túnel inspecionadas. Demonstração WebM de 1440×900 gravada sobre o build local e decodificada integralmente com FFmpeg, saída 0. Evidências locais ignoradas em `artifacts/eventos-23`; contrato e registro JSON conferidos com o checker de evidências da skill de direção de frontend.
 - `git diff --check`: aprovado.
 
 ## Preview e publicação
 
 Branch: `improvement/23-design-eventos`, criada a partir de `origin/main` atualizado (`063e12e`). Remoto confirmado: `agenciamello/agencia-mello`. Produção atual confirmada na Vercel como `source=git`, branch `main`, commit `063e12eff10e2ce39fa373634bd572b2597d6868`.
 
-O PR e sua preview serão registrados na Issue #23. Esta entrega é para avaliação em preview, sem merge ou publicação em produção.
+PR: https://github.com/agenciamello/agencia-mello/pull/24. A preview atualizada e o commit desta revisão serão registrados no PR e na Issue #23. Esta entrega é para avaliação em preview, sem merge ou publicação em produção.
+
+## Diagnóstico e recuperação durante a revisão
+
+A primeira tentativa de `npm test` nesta revisão falhou na checagem de imagens da home: o servidor de desenvolvimento foi encerrado por `EBUSY` ao monitorar a gravação WebM em escrita. Não foram alteradas as expectativas da suíte geral para ocultar essa falha. A recuperação foi executar o build e servir `dist` com `vite preview` na porta 4176, sem monitoramento de arquivos; a suíte geral, o sprint e as duas suítes de eventos passaram nessa instância estável.
 
 ## Limites
 

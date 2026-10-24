@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Maximize2, X } from 'lucide-react';
 import { ContactLink } from './Studio';
 import './event-portfolio.css';
+
+const PerspectiveTunnelHero = lazy(() => import('../ui/perspective-tunnel-hero'));
 
 const EVENT_ARTWORKS = [
   { slug: 'sao-simao-folia', name: 'São Simão Folia', type: 'Flyer de evento', width: 1400, height: 1750, alt: 'Flyer São Simão Folia com Bruna Alves e DJs, em branco e magenta.' },
@@ -35,29 +37,24 @@ export function EventPortfolio() {
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   const [selected, setSelected] = useState<EventArtwork | null>(null);
+  const [tunnelEnabled, setTunnelEnabled] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
-    let revert = () => {};
-    // Use the site's existing motion engine. The page keeps its native scroll.
-    void Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
-      if (cancelled || !section.current) return;
-      gsap.registerPlugin(ScrollTrigger);
-      const media = gsap.matchMedia();
-      media.add('(min-width: 901px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
-        const cards = section.current!.querySelectorAll<HTMLElement>('.event-piece');
-        cards.forEach((card, index) => {
-          const direction = index % 2 === 0 ? -1 : 1;
-          gsap.fromTo(card,
-            { z: -100 - index * 20, y: direction * 24, rotationZ: direction * 5, rotationY: direction * 7 },
-            { z: 36 + index * 8, y: direction * -12, rotationZ: direction * 2, rotationY: 0, ease: 'none',
-              scrollTrigger: { trigger: section.current, start: 'top bottom', end: 'bottom top', scrub: .7 } });
-        });
-      }, section);
-      revert = () => media.revert();
-    }).catch(() => { /* The complete static gallery remains usable if motion cannot load. */ });
-    return () => { cancelled = true; revert(); };
+    const media = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+    const update = () => setTunnelEnabled(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
   }, []);
+
+  useEffect(() => {
+    // Adding/removing the tunnel changes the positions of the site's later chapters.
+    let active = true;
+    void import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      if (active) ScrollTrigger.refresh();
+    }).catch(() => {});
+    return () => { active = false; };
+  }, [tunnelEnabled]);
 
   useEffect(() => {
     if (!selected || !dialog.current) return;
@@ -81,7 +78,11 @@ export function EventPortfolio() {
       <p>Flyers, agendas e peças de divulgação criadas pela Mello. Uma seleção do que já saiu da nossa mesa para anunciar eventos e lançamentos.</p>
     </div>
 
-    <div className="event-stage">
+    {tunnelEnabled && <Suspense fallback={<div className="event-tunnel-loading" aria-hidden="true"/>}><PerspectiveTunnelHero images={EVENT_ARTWORKS.map(artwork => ({
+      src: `/assets/eventos/${artwork.slug}.webp`, title: artwork.name, width: artwork.width, height: artwork.height,
+    }))}/></Suspense>}
+
+    <div className="event-stage" id="eventos-galeria" tabIndex={-1}>
       {EVENT_ARTWORKS.map((artwork, index) => <figure className="event-piece" key={artwork.slug}>
         <button className="event-open" type="button" aria-label={`Ampliar arte: ${artwork.name}`}
           aria-haspopup="dialog" onClick={event => { opener.current = event.currentTarget; setSelected(artwork); }}>

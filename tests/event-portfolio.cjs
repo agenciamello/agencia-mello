@@ -8,8 +8,8 @@ const output = 'artifacts/eventos-23';
 const viewports = [[1440,900],[1024,900],[768,900],[390,844],[360,844],[320,844]];
 
 async function showEvents(page) {
-  await page.locator('#eventos').scrollIntoViewIfNeeded();
-  await page.locator('#eventos img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
+  await page.locator('#eventos-galeria').scrollIntoViewIfNeeded();
+  await page.locator('.event-open img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(850);
 }
@@ -35,11 +35,7 @@ async function showEvents(page) {
         Boolean(events.compareDocumentPosition(after) & Node.DOCUMENT_POSITION_FOLLOWING);
     });
     assert.ok(order, 'Events must follow commercial previews and precede conceptual studies');
-    const before = await section.locator('.event-piece').first().evaluate(el => getComputedStyle(el).transform);
-    await page.evaluate(() => window.scrollBy({top:160,behavior:'instant'}));
-    await page.waitForTimeout(1100);
-    const after = await section.locator('.event-piece').first().evaluate(el => getComputedStyle(el).transform);
-    assert.notEqual(before, after, 'Perspective must respond to native page scroll');
+    assert.ok((await section.locator('.event-piece').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).transform))).every(value=>value==='none'), 'Complete gallery stays static and readable; spatial motion belongs to the tunnel');
     const stage = await section.locator('.event-stage').boundingBox();
     await page.mouse.move(stage.x + stage.width / 2, Math.max(100, Math.min(750, stage.y + stage.height / 2)));
     const scrollBefore = await page.evaluate(() => scrollY);
@@ -103,11 +99,11 @@ async function showEvents(page) {
     await page.setViewportSize({width:1440,height:900});
     await showEvents(page);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await expect.poll(()=>section.locator('.event-piece').first().evaluate(element=>element.style.transform)).toBe('');
+    await expect(page.locator('.perspective-tunnel')).toHaveCount(0);
     assert.ok((await section.locator('.event-piece').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).transform))).every(value=>value==='none'));
     await section.screenshot({path:`${output}/reduced-motion.png`});
     await page.emulateMedia({reducedMotion:'no-preference'});
-    await expect.poll(()=>section.locator('.event-piece').first().evaluate(element=>element.style.transform)).not.toBe('');
+    await expect(page.locator('.perspective-tunnel')).toHaveCount(1);
     // A route change must close an open dialog and restore scrolling on unmount.
     await section.locator('.event-open').first().click();
     await page.evaluate(()=>{history.pushState({},'', '/site-essencial');dispatchEvent(new PopStateEvent('popstate'));});
@@ -130,7 +126,7 @@ async function showEvents(page) {
     const failure = await browser.newPage({viewport:{width:390,height:844}});
     await failure.route('**/assets/eventos/sao-simao-folia.webp*',route=>route.abort());
     await failure.goto(base);
-    await failure.locator('#eventos').scrollIntoViewIfNeeded();
+    await failure.locator('#eventos-galeria').scrollIntoViewIfNeeded();
     await expect(failure.locator('.event-open').first()).toContainText('Não foi possível carregar');
     await expect(failure.locator('.event-open img')).toHaveCount(3);
     await failure.locator('.event-open').first().click();
@@ -155,6 +151,6 @@ async function showEvents(page) {
         permission:{status:'not-applicable',reason:'Public static portfolio, with no authenticated or permission-restricted operation.'},
       },motion:'Desktop scroll and live reduced-motion/viewport cleanup verified; native wheel continues the page.',errors,
     },null,2));
-    console.log('Events: six viewports, native scroll/depth, keyboard/touch enlargement, focus, motion cleanup, image retry, WhatsApp and axe passed.');
+    console.log('Events: six viewports, static complete gallery, keyboard/touch enlargement, focus, motion preference cleanup, image retry, WhatsApp and axe passed.');
   } finally { await browser.close(); }
 })().catch(error=>{console.error(error);process.exit(1);});
