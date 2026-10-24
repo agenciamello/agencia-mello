@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-const chapters = [{id:'inicio',name:'Início'},{id:'projetos',name:'Projetos'},{id:'servicos',name:'Serviços'},{id:'sobre',name:'Agência'},{id:'contato',name:'Contato'}];
+const chapters = [{id:'inicio',name:'Início'},{id:'servico-web',name:'Sites'},{id:'servico-conteudo',name:'Artes'},{id:'servico-marca',name:'Identidade'},{id:'sobre',name:'Agência'},{id:'contato',name:'Contato'}];
 export function ChapterNavigation(){
   const [active,setActive]=useState('inicio');
   useEffect(()=>{

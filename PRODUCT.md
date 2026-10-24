@@ -28,7 +28,7 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 ## Capabilities and Constraints
 
 - Serviços principais: sites e presença digital, identidade visual e conteúdo visual.
-- O Site Essencial custa R$ 500, com pagamento em até 3 vezes.
+- O Site Essencial custa R$ 297,00, em até 3x de R$ 99,00. O preço anterior confirmado de R$ 500,00 aparece somente como referência anterior identificada (De / por somente).
 - O Site Essencial inclui uma página com até seis seções, versão responsiva, integração com WhatsApp e até duas rodadas de ajustes.
 - A prévia antes do pagamento é uma característica confirmada do Site Essencial, não uma promessa automática para todos os serviços.
 - Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.
@@ -64,3 +64,25 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 ## Condições confirmadas em 30/09/2026
 
 Ver docs/copy-commercial-confirmed.md. Estas condições substituem as menções anteriores de custos ainda pendentes.
+
+## Sprint Clareza — 24/10/2026 — Issue #25
+
+- Capacidade: quem visita identifica os serviços na abertura, encontra as prévias comerciais antes da oferta do Site Essencial, dentro do capítulo de sites e inicia uma conversa coerente com seu projeto.
+- Superfícies: home, contato compartilhado, Site Essencial, páginas locais, FAQs, termos, mensagens de WhatsApp e metadata/JSON-LD.
+- Contrato comercial: preço vigente R$ 297,00, até 3x de R$ 99,00, aprovado pelo usuário. A apresentação de redução usa “De R$ 500,00 / Por somente R$ 297,00”. Não há prazo promocional, juros, escassez ou novo escopo confirmados.
+- Contato: seleção opcional de site, identidade visual, redes ou eventos; sem seleção, mensagem geral sobre um projeto. A seleção muda somente o texto inicial do WhatsApp, sem envio automático.
+- Invariantes: prévia gratuita e pagamento após aprovação pertencem ao Site Essencial; outros serviços recebem orçamento. Preservar rotas, identidade, portfólio factual, túnel e Behance.
+- Dados: `src/data/essentialOffer.js` é a fonte única do preço, parcelamento e moeda, compartilhada com a geração estática para busca.
+- Não objetivos: novos pacotes, novos resultados comerciais, mudanças no efeito aprovado ou publicação automática. Sem decisões bloqueantes; pronto para implementação e validação em preview.
+
+### Revisão aprovada: exemplos antes do preço
+
+O usuário substituiu explicitamente a oferta antes do portfólio por capítulos integrados. Ordem: hero e resumo → apresentação das soluções → 01 sites (Animalis, Viana/Du-Rio, preço e CTA) → 02 artes para redes/eventos → 03 logo/identidade → Matheus e contato. O preço não precisa mais estar nas primeiras duas telas. Bellavista fica secundário em sites; Solace é identificado como estudo de identidade. Processo fica em detalhes acessíveis no capítulo de sites. Não duplicar uma seção extensa de serviços depois dos trabalhos.
+
+### Animação de eventos no celular
+
+Após aprovar os capítulos, o usuário pediu explicitamente o efeito de eventos também no mobile. O túnel passa a usar uma única passagem das quatro artes no toque/telas pequenas, sem paralaxe de mouse, mantendo galeria completa, ampliação e Behance. Respeitar movimento reduzido com galeria estática, rolagem nativa e pinch-zoom; não alterar oferta ou estrutura comercial.
+
+### Ritmo editorial antes dos eventos
+
+A pedido do usuário, títulos e apresentação dos projetos ganham entradas de texto antes da seção de eventos. A animação destaca a oferta e o raciocínio dos projetos sem acrescentar promessas, bloquear a leitura, alterar preços ou exigir interação. Preservar texto acessível único e versão estática com movimento reduzido.

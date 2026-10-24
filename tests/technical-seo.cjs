@@ -74,7 +74,7 @@ function readStaticMeta(file) {
   const serviceGraph = serviceStatic.jsonLd['@graph'];
   const service = serviceGraph.find(item => item['@type'] === 'Service' && item.name === 'Site Essencial');
   assert.ok(service, 'Site Essencial schema includes Service');
-  assert.equal(service.offers?.price, '500', 'Site Essencial structured price is R$ 500');
+  assert.equal(service.offers?.price, '297', 'Site Essencial structured price is R$ 297,00');
   assert.equal(service.offers?.priceCurrency, 'BRL', 'Site Essencial structured currency is BRL');
   assert.ok(graphTypes(serviceStatic.jsonLd).has('BreadcrumbList'), 'Site Essencial schema includes breadcrumbs');
 

@@ -70,11 +70,12 @@ async function travel(page,progress){
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Narrow desktop preview keeps the tunnel without horizontal overflow');
     await page.screenshot({path:`${output}/narrow-desktop-middle.png`});
     await page.setViewportSize({width:390,height:844});
-    await expect(page.locator('.perspective-tunnel')).toHaveCount(0);
+    await expect(page.locator('.perspective-tunnel')).toHaveCount(1);
+    await expect(page.locator('.tunnel-card')).toHaveCount(4);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     assert.deepEqual(errors,[]);
-    fs.writeFileSync(`${output}/verification.json`,JSON.stringify({initialZ:initial,middleZ:middle,lastZ:last,lastOpacity,sticky:true,pointer:true,nativeWheel:true,reducedMotion:true,mobileFallback:true,errors},null,2));
-    console.log('Tunnel: long Z travel, staggered visibility, sticky viewport, pointer parallax, native scroll, keyboard skip, reduced motion and mobile fallback passed.');
+    fs.writeFileSync(`${output}/verification.json`,JSON.stringify({initialZ:initial,middleZ:middle,lastZ:last,lastOpacity,sticky:true,pointer:true,nativeWheel:true,reducedMotion:true,mobileTunnel:true,errors},null,2));
+    console.log('Tunnel: long Z travel, sticky viewport, pointer parallax, native scroll, keyboard skip, reduced motion and compact mobile tunnel passed.');
     await context.close();
   }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1)});

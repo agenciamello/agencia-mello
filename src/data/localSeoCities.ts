@@ -1,3 +1,4 @@
+import { ESSENTIAL_PRICE } from "./essentialOffer.js";
 export type LocalSeoCityKey = 'nova-iguacu' | 'belford-roxo' | 'duque-de-caxias';
 
 type BusinessCard = {
@@ -76,7 +77,7 @@ export const LOCAL_SEO_CITIES: Record<LocalSeoCityKey, LocalSeoCity> = {
     faqs: [
       {
         q: 'Quanto custa criar um site em Nova Iguaçu?',
-        a: 'Depende do escopo. O Site Essencial custa R$ 500. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.',
+        a: `Depende do escopo. O Site Essencial custa ${ESSENTIAL_PRICE}. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.`,
       },
       commonFaqs.timing,
       {
@@ -113,7 +114,7 @@ export const LOCAL_SEO_CITIES: Record<LocalSeoCityKey, LocalSeoCity> = {
     faqs: [
       {
         q: 'Quanto custa criar um site em Belford Roxo?',
-        a: 'Depende do escopo. O Site Essencial custa R$ 500. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.',
+        a: `Depende do escopo. O Site Essencial custa ${ESSENTIAL_PRICE}. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.`,
       },
       commonFaqs.timing,
       {
@@ -150,7 +151,7 @@ export const LOCAL_SEO_CITIES: Record<LocalSeoCityKey, LocalSeoCity> = {
     faqs: [
       {
         q: 'Quanto custa criar um site em Duque de Caxias?',
-        a: 'Depende do escopo. O Site Essencial custa R$ 500. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.',
+        a: `Depende do escopo. O Site Essencial custa ${ESSENTIAL_PRICE}. Projetos com mais páginas, funções ou necessidades específicas recebem orçamento personalizado.`,
       },
       commonFaqs.timing,
       {

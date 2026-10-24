@@ -211,7 +211,7 @@ export function LocalSeoCityPage({ cityKey }: { cityKey: LocalSeoCityKey }) {
       <div className="local-internal-links">
         <Link to="/#servicos">Conhecer todos os serviços <ArrowUpRight size={17} aria-hidden="true"/></Link>
         <Link to="/#servico-marca">Identidade visual <ArrowUpRight size={17} aria-hidden="true"/></Link>
-        <Link to="/#servico-conteudo">Design para redes sociais <ArrowUpRight size={17} aria-hidden="true"/></Link>
+        <Link to="/#servico-conteudo">Artes para redes e eventos <ArrowUpRight size={17} aria-hidden="true"/></Link>
       </div>
     </section>
 

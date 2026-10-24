@@ -17,14 +17,16 @@ const commercialRoutes = [
     await expect(page.locator('.showcase-commercial')).toContainText('Animalis Pet');
     await expect(page.locator('.commercial-project-grid')).toContainText('Viana Planejados');
     await expect(page.locator('.commercial-project-grid')).toContainText('Du-Rio Planejados');
+    await page.locator('.conceptual-sites summary').click();
     await expect(page.locator('.conceptual-introduction')).toContainText('Estudos autorais');
-    await expect(page.locator('.home-service-orientation')).toContainText('Sites e landing pages');
-    await expect(page.locator('.home-service-orientation')).toContainText('Identidade visual');
-    await expect(page.locator('.home-service-orientation')).toContainText('Design para redes sociais');
+    await expect(page.locator('#servico-marca')).toContainText('Estudo conceitual');
+    await expect(page.locator('.home-service-orientation')).toContainText('Sites para negócios');
+    await expect(page.locator('.home-service-orientation')).toContainText('Logo e identidade visual');
+    await expect(page.locator('.home-service-orientation')).toContainText('Artes para redes e eventos');
     await expect(page.locator('.showcase-commercial')).toContainText('proposta desenvolvida');
     await expect(page.locator('.showcase-commercial')).not.toContainText('não contratado');
     await expect(page.getByRole('heading', { name: 'Gostou de algum desses projetos?' })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Quero uma prévia/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Pedir um orçamento/i })).toBeVisible();
     assert.equal(await page.locator('.conceptual-project-grid').count(), 1, 'Authored studies remain secondary but accessible');
 
     for (const [route,name,statusText] of commercialRoutes) {
