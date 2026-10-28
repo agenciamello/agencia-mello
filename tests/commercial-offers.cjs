@@ -28,12 +28,12 @@ function structuredPrices(value, result = []) {
   return result;
 }
 
-async function toggleByKeyboard(page, selector, open) {
+async function toggleByKeyboard(page, selector, open, key = 'Enter') {
   const details = page.locator(selector);
   const summary = details.locator('summary');
   await summary.focus();
   await expect(summary).toBeFocused();
-  await page.keyboard.press('Enter');
+  await page.keyboard.press(key);
   await expect.poll(() => details.evaluate(element => element.open)).toBe(open);
 }
 
@@ -60,13 +60,49 @@ async function toggleByKeyboard(page, selector, open) {
     for (const width of [1440,1024,768,390,360,320]) {
       await page.setViewportSize({width,height:width>700?900:844});
       await page.goto(base,{waitUntil:'networkidle'});
+      await page.reload({waitUntil:'networkidle'});
       await page.evaluate(() => document.fonts.ready);
       await expect(page.locator('h1')).toHaveAccessibleName('Sites e design para transformar interesse em VENDAS.');
       await expect(page.locator('.hero-message .line-mask')).toHaveCount(4);
-      await expect(page.locator('.site-offers .package-card')).toHaveCount(3);
+      await expect(page.locator('.package-card')).toHaveCount(3);
       assert.ok(await page.locator('.home-service-links strong').evaluateAll(labels=>labels.length===3 && labels.every(label=>parseFloat(getComputedStyle(label).fontSize)>=12)),'Os três serviços mantêm rótulos legíveis de pelo menos 12px');
       await expect(page.locator('#events-heading')).toHaveAccessibleName('Artes para divulgar seu evento e vender mais ingressos.');
       await expect(page.locator('#arts-chapter-heading')).toHaveAccessibleName('Sua divulgação precisa chamar atenção e gerar interesse.');
+
+      const otherPackages = page.locator('#outros-pacotes');
+      const otherSummary = otherPackages.locator('summary');
+      await expect.poll(()=>otherPackages.evaluate(element=>element.open)).toBe(false);
+      await expect(otherSummary).toHaveAccessibleName(/Ver outros pacotes/);
+      await expect(page.locator('[data-offer="essencial"]')).toBeVisible();
+      for (const id of ['divulgacao','campanha']) await expect(page.locator(`[data-offer="${id}"]`)).toBeHidden();
+      const initialVisibleText = await page.locator('main').innerText();
+      assert.match(initialVisibleText,/R\$ 297,00/);
+      assert.doesNotMatch(initialVisibleText,/R\$ (?:697,00|1\.297,00)/,'Somente o preço Essencial aparece antes de abrir os outros pacotes');
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`Pacotes fechados sem overflow em ${width}px`);
+      if ([1440,390,320].includes(width)) {
+        await page.locator('#oferta-site-essencial').evaluate(element=>element.scrollIntoView({block:'start',behavior:'instant'}));
+        await page.screenshot({path:`${output}/essencial-fechado-${width}.png`});
+        await otherSummary.scrollIntoViewIfNeeded();
+        await page.screenshot({path:`${output}/controle-fechado-${width}.png`});
+      }
+
+      // Both native summary keys open and close the panel without losing focus.
+      await toggleByKeyboard(page,'#outros-pacotes',true);
+      await expect(otherSummary).toHaveAccessibleName(/Fechar outros pacotes/);
+      for (const id of ['divulgacao','campanha']) await expect(page.locator(`[data-offer="${id}"]`)).toBeVisible();
+      await toggleByKeyboard(page,'#outros-pacotes',false,'Space');
+      await expect(otherSummary).toBeFocused();
+      await expect(otherSummary).toBeVisible();
+      await expect(otherSummary).toHaveAccessibleName(/Ver outros pacotes/);
+      await toggleByKeyboard(page,'#outros-pacotes',true,'Space');
+      await toggleByKeyboard(page,'#outros-pacotes',false);
+      await expect(otherSummary).toBeFocused();
+      await toggleByKeyboard(page,'#outros-pacotes',true);
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`Pacotes abertos sem overflow em ${width}px`);
+      if ([1440,390,320].includes(width)) {
+        await page.locator('[data-offer="divulgacao"]').scrollIntoViewIfNeeded();
+        await page.screenshot({path:`${output}/extras-abertos-${width}.png`});
+      }
 
       const messages = [];
       for (const offer of offers) {
@@ -145,7 +181,20 @@ async function toggleByKeyboard(page, selector, open) {
       await expect.poll(()=>page.locator('#essential-offer-heading').evaluate(element=>{
         return element.getBoundingClientRect().top-document.querySelector('.studio-header').getBoundingClientRect().bottom;
       }),{message:`Âncora do Essencial mantém o título livre do cabeçalho em ${width}px`}).toBeGreaterThanOrEqual(-1);
-      results.push({width,offers:3,keyboard:true,scope:true,structuredPrices:true,legacyAnchor:true,messages});
+      for (const [id,heading] of [['oferta-site-divulgacao','divulgacao-offer-heading'],['oferta-site-campanha','campanha-offer-heading']]) {
+        if (await otherPackages.evaluate(element=>element.open)) await toggleByKeyboard(page,'#outros-pacotes',false);
+        await page.goto(`${base}/#${id}`,{waitUntil:'networkidle'});
+        await expect.poll(()=>otherPackages.evaluate(element=>element.open)).toBe(true);
+        await expect(page.locator(`#${heading}`)).toBeVisible();
+        await expect.poll(()=>page.locator(`#${heading}`).evaluate(element=>element.getBoundingClientRect().top-document.querySelector('.studio-header').getBoundingClientRect().bottom),{message:`Hash #${id} abre e posiciona o pacote em ${width}px`}).toBeGreaterThanOrEqual(-1);
+        // Reload proves that an external deep link also opens the initially closed panel.
+        await page.reload({waitUntil:'networkidle'});
+        await expect.poll(()=>otherPackages.evaluate(element=>element.open)).toBe(true);
+        await expect(page.locator(`#${heading}`)).toBeInViewport();
+        await expect.poll(()=>page.locator(`#${heading}`).evaluate(element=>element.getBoundingClientRect().top-document.querySelector('.studio-header').getBoundingClientRect().bottom)).toBeGreaterThanOrEqual(-1);
+        assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`Link direto #${id} sem overflow em ${width}px`);
+      }
+      results.push({width,offers:3,initialOffer:'essencial',keyboard:true,enterAndSpace:true,focusOnClose:true,scope:true,structuredPrices:true,legacyAnchor:true,extraDeepLinks:true,messages});
     }
 
     await page.goto(`${base}/termos-de-uso`,{waitUntil:'networkidle'});
@@ -165,6 +214,6 @@ async function toggleByKeyboard(page, selector, open) {
     assert.deepEqual(errors,[]);
     assert.deepEqual(measurementRequests,[],'Descrever Analytics/Pixel do pacote não instala rastreadores na agência');
     fs.writeFileSync(`${output}/commercial-offers-results.json`,JSON.stringify({base,results,errors,measurementRequests},null,2));
-    console.log('Sprint Vendas: três ofertas após as prévias; preços/condições/JSON-LD e mensagens distintos; teclado e detalhes sem overflow em seis larguras; termos e Essencial coerentes.');
+    console.log('Sprint Vendas: Essencial visível por padrão, extras via Enter/Espaço, foco e links diretos preservados; três ofertas/preços/JSON-LD e mensagens coerentes, sem overflow em seis larguras.');
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1)});

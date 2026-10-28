@@ -59,9 +59,18 @@
 .home-service-links a{align-items:flex-start;padding-block:12px}
 .studio .sales-contact h2.contact-title{font-size:clamp(48px,7vw,100px)}
 .contact-invitation{max-width:54ch;line-height:1.7;font-size:16px;margin-bottom:26px}
-.site-offers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:64px 0 24px;scroll-margin-top:112px}
+.site-offers{margin:64px 0 24px;scroll-margin-top:112px}
 .package-card{display:flex;flex-direction:column;min-width:0;gap:20px;padding:30px 24px;background:#101014;color:#eeeae4;border:1px solid #ffffff24}
-.package-essential{border-top:3px solid var(--pink)}.package-card[id]{scroll-margin-top:112px}
+.package-essential{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:64px;padding:40px;border-top:3px solid var(--pink)}.package-card[id]{scroll-margin-top:112px}
+.package-copy,.package-buy{display:grid;gap:20px;min-width:0}.package-copy>.micro{font-size:11px;line-height:1.6;color:#b9b2bd}
+.package-buy .package-price{margin:0;padding:0}.package-buy .package-price strong{font-size:clamp(44px,4vw,58px)}
+.other-packages{margin:24px 0;scroll-margin-top:112px}
+.other-packages-toggle{display:flex;align-items:center;justify-content:space-between;gap:28px;width:fit-content;min-height:48px;padding:12px 20px;border:1px solid #8b2357;color:#8b2357;font-size:14px;line-height:1.6;cursor:pointer;list-style:none}
+.other-packages-toggle::-webkit-details-marker{display:none}.other-packages-toggle:hover{background:#8b23570d}
+.other-packages-toggle:focus-visible{outline:2px solid #8b2357;outline-offset:4px}
+.other-packages-icon{font-size:24px;line-height:1}.other-packages[open] .other-packages-icon{transform:rotate(45deg)}
+.other-packages-hide,.other-packages[open] .other-packages-show{display:none}.other-packages[open] .other-packages-hide{display:inline}
+.other-offers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding-top:24px}.other-packages:not([open]) .other-offers{display:none}
 .package-card>.micro{font-size:10px;color:#b9b2bd;line-height:1.6}
 .package-card h4{font:500 clamp(24px,2.2vw,32px)/1.14 'Space Grotesk',Arial;letter-spacing:-.04em}
 .package-card p,.package-card li{font-size:13px;line-height:1.75;color:#b9b2bd}
@@ -78,6 +87,5 @@
 .package-conditions dt{font-size:15px;line-height:1.5;margin-bottom:10px}.package-conditions dd{font-size:13px;line-height:1.8;color:#5c535a}
 .package-terms-link{display:inline-flex;gap:14px;align-items:center;min-height:44px;font-size:13px;margin-bottom:22px;color:#8b2357;text-decoration:underline;text-underline-offset:5px}
 @media(max-width:1000px){.package-card{padding:26px 18px}.home-service-links a>span:last-child{max-width:210px}.package-card h4{font-size:25px}}
-@media(max-width:900px){.site-offers{grid-template-columns:1fr}.package-card{padding:32px;gap:18px}.package-price{margin-top:0}.package-card .package-payment{min-height:0}.package-card .package-cta{max-width:420px}.package-details-link{max-width:420px}.package-card h4{font-size:30px}}
-@media(min-width:901px){.package-card:not(.package-essential)::after{content:'';min-height:44px}.package-price{min-height:128px;display:flex;flex-direction:column;justify-content:flex-end}.package-card:not(.package-essential) .package-price::after{content:'';height:20.4px}}
-@media(max-width:700px){.hero-sales-copy .hero-message h1{font-size:clamp(31px,10.5vw,62px)}.studio .sales-contact h2.contact-title{font-size:clamp(30px,9.5vw,62px)}.contact-invitation{font-size:14px}.home-service-links a>span:last-child{max-width:none}.site-offers{margin-top:40px;scroll-margin-top:94px}.package-card{padding:28px 22px}.package-card[id]{scroll-margin-top:94px}.package-conditions dl{grid-template-columns:1fr;gap:22px}.package-card .package-promise{font-size:19px}}
+@media(max-width:900px){.package-card{padding:32px;gap:18px}.package-essential{gap:32px}.package-card .package-payment{min-height:0}.package-card .package-cta{max-width:420px}.package-details-link{max-width:420px}.package-card h4{font-size:30px}}
+@media(max-width:700px){.hero-sales-copy .hero-message h1{font-size:clamp(31px,10.5vw,62px)}.studio .sales-contact h2.contact-title{font-size:clamp(30px,9.5vw,62px)}.contact-invitation{font-size:14px}.home-service-links a>span:last-child{max-width:none}.site-offers{margin-top:40px;scroll-margin-top:94px}.package-card{padding:28px 22px}.package-essential{grid-template-columns:1fr;gap:28px}.other-offers{grid-template-columns:1fr}.other-packages-toggle{width:100%}.package-card[id]{scroll-margin-top:94px}.package-conditions dl{grid-template-columns:1fr;gap:22px}.package-card .package-promise{font-size:19px}}

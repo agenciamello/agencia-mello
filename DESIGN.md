@@ -26,7 +26,7 @@ Mobile tem composição e movimento próprios, com leitura em fluxo nativo e sem
 
 ## Motion
 
-O resumo concreto de serviços aparece após o hero. Por pedido explícito do usuário, os exemplos Animalis/Viana/Du-Rio continuam antes do preço e do capítulo de artes. Na revisão de 28/10/2026, a oferta única é substituída por três cards: Site Essencial, Site + Divulgação e Site para Campanha. Preservar leitura imediata sem reveal nos preços, preço anterior do Essencial riscado e identificado, preços vigentes em magenta e condições legíveis. Em desktop, comparar os três pacotes na mesma região; em mobile, usar fluxo vertical, sem carrossel ou interação necessária para ler preço/condições. Diferenciar prévia grátis e pagamento após aprovação do Essencial do pagamento 50%/50% dos novos pacotes. O link secundário do hero aponta aos trabalhos; o contato mantém intenção geral coerente com todos os serviços.
+O resumo concreto de serviços aparece após o hero. Por pedido explícito do usuário, os exemplos Animalis/Viana/Du-Rio continuam antes do preço e do capítulo de artes. Na revisão de 28/10/2026, o Site Essencial fica sozinho em destaque; Site + Divulgação e Site para Campanha aparecem ao abrir “Ver outros pacotes”, fechado por padrão. Preservar leitura imediata sem reveal nos preços, preço anterior do Essencial riscado e identificado, preços vigentes em magenta e condições legíveis. Em desktop, o Essencial usa oferta e preço em duas colunas e os outros pacotes abrem lado a lado; em mobile, todos seguem em uma coluna, sem carrossel. Diferenciar prévia grátis e pagamento após aprovação do Essencial do pagamento 50%/50% dos novos pacotes. O link secundário do hero aponta aos trabalhos; o contato mantém intenção geral coerente com todos os serviços.
 
 Tokens compartilhados em `src/lib/motion-tokens.ts`, consumidos por `StudioMotion.tsx` e pelo text reveal: micro 220ms, reveal 620ms, seção 900ms, stagger 80ms; ease `power3.out`. CSS usa `cubic-bezier(.22,1,.36,1)`. Timelines específicas variam conforme o elemento.
 
@@ -64,3 +64,7 @@ O componente enviado pelo usuário foi adaptado em `src/components/ui/text-revea
 ## Exceção aprovada — Sprint Vendas, Issue #27
 
 O pedido explícito do usuário de 28/10/2026 autoriza a nova copy comercial, as headlines de artes/eventos e o layout dos três pacotes, substituindo a restrição anterior de não trocar copy nesta revisão. Preservar logo, cores, retrato colorido, rotas, hierarquia factual, animações existentes e túnel de eventos. A mudança é editorial/comercial; não iniciar redesign, criar efeitos adicionais ou instalar rastreadores da agência. Informação técnica das ofertas fica em detalhes acessíveis quando necessária para a decisão, sem alongar a leitura principal.
+
+### Refinamento da prévia — foco no Essencial
+
+O usuário considerou muitos preços simultâneos e substituiu os três cards abertos por um destaque único para o Site Essencial. “Ver outros pacotes” é um botão de expansão nativo (summary/details), fechado por padrão, que revela Divulgação/Campanha. Desktop usa duas colunas no Essencial (oferta e preço/CTA); mobile mantém fluxo em uma coluna. Preservar teclado, foco, âncoras de cada pacote e refresh das animações quando a expansão muda a altura. Links diretos dos pacotes adicionais abrem o painel antes de posicionar o conteúdo.

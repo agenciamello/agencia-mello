@@ -19,7 +19,7 @@ async function measure(page) {
    await page.waitForTimeout(1200);
    const initial=await measure(page);
    assert.ok(initial.starts.length>0,'Há animações ativas para verificar');
-   for(const selector of ['#processo','#condicoes-pacotes','.conceptual-sites']) {
+   for(const selector of ['#outros-pacotes','#processo','#condicoes-pacotes','.conceptual-sites']) {
     const before=await measure(page);
     await page.locator(selector).evaluate(el=>el.open=true);
     await expect.poll(async()=>{

@@ -1,22 +1,52 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { ContactLink } from './Studio';
 import { ESSENTIAL_PRICE, ESSENTIAL_PREVIOUS_PRICE, ESSENTIAL_INSTALLMENTS } from '../../data/essentialOffer.js';
 import { COMMERCIAL_OFFERS, COMMERCIAL_PAYMENT, COMMERCIAL_REVISIONS, formatOfferPrice } from '../../data/commercialOffers.js';
 
 export function SiteEssentialOffer() {
   const { divulgacao, campanha } = COMMERCIAL_OFFERS;
+  const otherPackages = useRef<HTMLDetailsElement>(null);
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    let frame = 0;
+    const revealLinkedPackage = () => {
+      const id = window.location.hash.slice(1);
+      if (!['oferta-site-divulgacao', 'oferta-site-campanha'].includes(id)) return;
+      if (otherPackages.current) otherPackages.current.open = true;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'instant' }));
+    };
+    revealLinkedPackage();
+    window.addEventListener('hashchange', revealLinkedPackage);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('hashchange', revealLinkedPackage);
+    };
+  }, [hash]);
+
   return <>
     <section id="pacotes-sites" className="site-offers" aria-label="Pacotes de sites">
       <article id="oferta-site-essencial" className="package-card package-essential" data-offer="essencial" aria-labelledby="essential-offer-heading">
+        <div className="package-copy">
         <span className="micro">Para apresentar seu negócio</span>
         <h4 id="essential-offer-heading">Site Essencial</h4>
         <p className="package-promise">Veja a prévia.<br/>Só pague se aprovar.</p>
         <p>Uma página com até seis seções, adaptada ao celular, com WhatsApp, configuração básica para busca e até duas rodadas de ajustes.</p>
+        </div>
+        <div className="package-buy">
         <div className="package-price"><del className="previous-price">De {ESSENTIAL_PREVIOUS_PRICE}</del><span className="offer-label">Por somente</span><strong>{ESSENTIAL_PRICE}</strong><small>{ESSENTIAL_INSTALLMENTS}</small></div>
         <p className="package-payment">Prévia privada e gratuita. Pagamento após aprovação.</p>
         <ContactLink messageKey="destaque" className="text-link package-cta">Quero minha prévia grátis <span aria-hidden="true">↗</span></ContactLink>
         <Link to="/site-essencial" className="package-details-link">Ver tudo que está incluído <span aria-hidden="true">↗</span></Link>
+        </div>
       </article>
+    </section>
+    <p className="offer-scope-note">Domínio à parte. O valor de {ESSENTIAL_PRICE} corresponde ao Essencial; as prévias do portfólio têm escopos próprios.</p>
+    <details id="outros-pacotes" className="other-packages" ref={otherPackages}>
+      <summary className="other-packages-toggle"><span className="other-packages-show">Ver outros pacotes</span><span className="other-packages-hide">Fechar outros pacotes</span><span className="other-packages-icon" aria-hidden="true">+</span></summary>
+      <div className="other-offers">
       <article id="oferta-site-divulgacao" className="package-card" data-offer="divulgacao" aria-labelledby="divulgacao-offer-heading">
         <span className="micro">Para começar a divulgar</span>
         <h4 id="divulgacao-offer-heading">{divulgacao.name}</h4>
@@ -35,8 +65,8 @@ export function SiteEssentialOffer() {
         <p className="package-payment">{COMMERCIAL_PAYMENT}</p>
         <ContactLink messageKey="campanha" className="text-link package-cta">Planejar minha campanha <span aria-hidden="true">↗</span></ContactLink>
       </article>
-    </section>
-    <p className="offer-scope-note">Domínio à parte. O valor de {ESSENTIAL_PRICE} corresponde ao Essencial; as prévias do portfólio têm escopos próprios.</p>
+      </div>
+    </details>
     <details id="processo" className="chapter-details site-process-details">
       <summary>Como funciona o Site Essencial</summary>
       <ol className="chapter-process">
