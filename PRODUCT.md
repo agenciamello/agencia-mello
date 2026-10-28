@@ -50,7 +50,7 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 
 ## Evidence on Hand
 
-- Animalis Pet ocupa o destaque principal. Viana Planejados e Du-Rio aparecem como outras prévias comerciais; Bellavista e Solace são estudos autorais secundários. Hierarquia confirmada pelo usuário em 16/10/2026, substituindo o pedido original de destaque principal para Viana.
+- Animalis Pet ocupa o destaque principal. Viana Planejados e Du-Rio aparecem como outras prévias comerciais; Solace é um estudo autoral secundário. Na revisão de 28/10/2026, o usuário retirou Bellavista da home; a rota própria continua disponível e identificada como estudo autoral. Esta decisão substitui sua presença secundária na home, mantendo o destaque de Animalis confirmado em 16/10/2026.
 - Animalis Pet e Du-Rio são prévias comerciais desenvolvidas para negócios reais; Viana Planejados é uma prévia comercial em negociação. Isso não comprova contratação, entrega definitiva ou resultados.
 - As páginas de projeto descrevem contexto e proposta. Não há depoimentos ou métricas de resultado confirmados; trabalhos futuros não devem inventá-los.
 - Os ativos institucionais disponíveis incluem o logo da Agência Mello, a fotografia de Matheus Mello e demonstrações visuais mantidas em `public/assets`.
@@ -76,7 +76,7 @@ O usuário aprovou a implementação da copy curta e dos três pacotes. Esta dec
 
 - Headline exata aprovada: “Sites e design para transformar interesse em VENDAS.”. É a finalidade comercial do trabalho, não garantia de faturamento ou de conversão.
 - Artes: “Sua divulgação precisa chamar atenção e gerar interesse.”. Eventos: “Artes para divulgar seu evento e vender mais ingressos.”. Explicar as peças entregues, sem atribuir vendas aos trabalhos existentes ou prometer esgotar ingressos.
-- Estrutura preservada: abertura e resumo dos três serviços; sites com Animalis em destaque e Viana/Du-Rio antes do Essencial em destaque; artes/eventos; identidade; Matheus/contato. Na revisão da prévia, o usuário pediu que Divulgação e Campanha apareçam somente ao abrir “Ver outros pacotes”, recolhidos por padrão. Preços e condições dos três pacotes permanecem disponíveis. Bellavista e Solace seguem estudos secundários identificados.
+- Estrutura preservada: abertura e resumo dos três serviços; sites com Animalis em destaque e Viana/Du-Rio antes do Essencial em destaque; artes/eventos; identidade; Matheus/contato. Na revisão da prévia, o usuário pediu que Divulgação e Campanha apareçam somente ao abrir “Ver outros pacotes”, recolhidos por padrão. Preços e condições dos três pacotes permanecem disponíveis. Bellavista foi removido da home a pedido do usuário; Solace segue identificado como estudo secundário.
 - Os novos pacotes usam `src/data/commercialOffers.js` como fonte compartilhada de preço, quantidade de criativos/arquivos, suporte, pagamento e revisões. `src/data/essentialOffer.js` continua sendo a fonte do Essencial.
 - Preços das artes preservados: avulsa para redes R$ 35; dez artes R$ 250; flyer de evento R$ 50; flyer + motion de 30s R$ 80. Identidade visual recebe orçamento próprio. Não acrescentar bônus fictícios, ancoragem hipotética, escassez, recorrência ou condições não aprovadas.
 - Domínio à parte, hospedagem em plano gratuito respeitando limites e custos extras combinados antes. Prazo combinado de acordo com materiais, acessos, aprovação e ajustes; não publicar estimativas internas de esforço como prazo garantido.

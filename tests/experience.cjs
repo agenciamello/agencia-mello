@@ -221,9 +221,8 @@ async function expectTransformMotion(page, selector, description) {
     await menu.click();
     await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('link', { name: 'Projetos', exact: true }).click();
     await expect(menu).toHaveAttribute('aria-expanded', 'false');
-    await page.locator('.conceptual-sites summary').click();
-    await page.getByRole('link', { name: 'Ver o estudo Bellavista', exact: true }).click();
-    await page.waitForURL('**/projetos/bellavista');
+    await page.getByRole('link', { name: 'Ver projeto Animalis Pet', exact: true }).click();
+    await page.waitForURL('**/projetos/animalis-pet');
     await page.getByRole('link', { name: '← Todos os projetos' }).click();
     await page.waitForURL('**/#projetos');
     const essentialDetailsLink = page.locator('.package-details-link');

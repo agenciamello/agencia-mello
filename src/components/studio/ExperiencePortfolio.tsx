@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { ContactLink } from './Studio';
-import { CASES } from '../../data/cases';
 import { COMMERCIAL_PROJECTS } from '../../data/commercialProjects';
 import { EventPortfolio } from './EventPortfolio';
 import { SiteEssentialOffer } from './SiteEssentialOffer';
@@ -10,7 +9,6 @@ import './service-chapters.css';
 import { TextReveal } from '../ui/text-reveal';
 
 const [animalis, ...regionalProjects] = COMMERCIAL_PROJECTS;
-const bellavista=CASES.find(project=>project.slug==='bellavista')!;
 
 export function ExperiencePortfolio() {
   return <section className="experience-work" id="projetos" data-chapter="Soluções">
@@ -74,14 +72,6 @@ export function ExperiencePortfolio() {
       </div>
 
       <SiteEssentialOffer/>
-      <details className="chapter-details conceptual-sites">
-        <summary>Bellavista — estudo autoral de site</summary>
-        <div className="study-introduction conceptual-introduction"><span className="micro">Estudos autorais / Site</span><p>Exploração conceitual de direção visual, sem vínculo com cliente contratado.</p></div>
-        <div className="study-grid conceptual-project-grid"><article className="study-card">
-          <Link className="study-image" to={`/projetos/${bellavista.slug}`} aria-label={`Ver o estudo ${bellavista.name}`}><img src={bellavista.image} alt={bellavista.alt} width="1024" height="768" loading="lazy"/></Link>
-          <div className="study-copy"><span>Site · Estudo conceitual</span><h4>{bellavista.name}</h4><Link to={`/projetos/${bellavista.slug}`} className="project-detail-link">Ver estudo <ArrowUpRight size={18} aria-hidden="true"/></Link></div>
-        </article></div>
-      </details>
       </section>
 
       <section id="servico-conteudo" className="solution-chapter arts-service-chapter" aria-labelledby="arts-chapter-heading" data-service-index="1">
@@ -91,7 +81,7 @@ export function ExperiencePortfolio() {
       </section>
       <BrandServiceChapter/>
 
-      <p className="work-honesty">Sites apresentados como prévias comerciais. Bellavista e Solace são estudos autorais.</p>
+      <p className="work-honesty">Sites apresentados como prévias comerciais. Solace é um estudo autoral.</p>
       <div className="copy-bridge">
         <span className="micro">Depois de ver os projetos</span>
         <h2 className="copy-bridge-reveal" aria-label="Vamos conversar sobre seu projeto."><span aria-hidden="true"><span className="copy-bridge-word">Vamos</span><span className="copy-bridge-word">conversar</span><span className="copy-bridge-word">sobre</span><span className="copy-bridge-word">seu</span><span className="copy-bridge-word">projeto.</span></span></h2>
