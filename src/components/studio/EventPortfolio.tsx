@@ -83,9 +83,9 @@ export function EventPortfolio() {
     <div className="event-intro">
       <div>
         <p className="event-eyebrow">Design para eventos <span aria-hidden="true">↗</span></p>
-        <h4 id="events-heading">Sua próxima data.<br/><em>Uma arte à altura.</em></h4>
+        <h4 id="events-heading">Artes para divulgar seu evento<br/><em>e vender mais ingressos.</em></h4>
       </div>
-      <p>Flyers, agendas e peças de divulgação criadas pela Mello. Uma seleção do que já saiu da nossa mesa para anunciar eventos e lançamentos.</p>
+      <p>Data, atrações e informações de compra em destaque na sua divulgação.</p>
     </div>
 
     {tunnelEnabled && <Suspense fallback={<div className={`event-tunnel-loading${compactTunnel ? ' event-tunnel-loading-compact' : ''}`} aria-hidden="true"/>}><PerspectiveTunnelHero compact={compactTunnel} images={EVENT_ARTWORKS.map(artwork => ({
@@ -111,7 +111,7 @@ export function EventPortfolio() {
 
     <div className="event-outro">
       <p>Tem evento marcado?<br/><span>Flyer: R$ 50 · Flyer + motion de 30s: R$ 80.</span></p>
-      <ContactLink messageKey="eventos" className="event-cta">Pedir uma arte para meu evento <ArrowUpRight size={18} aria-hidden="true"/></ContactLink>
+      <ContactLink messageKey="eventos" className="event-cta">Pedir arte para meu evento <ArrowUpRight size={18} aria-hidden="true"/></ContactLink>
     </div>
 
     <dialog ref={dialog} className="event-lightbox" aria-labelledby="event-lightbox-title" aria-describedby="event-lightbox-description"

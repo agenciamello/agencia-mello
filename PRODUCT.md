@@ -31,6 +31,11 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 - O Site Essencial custa R$ 297,00, em até 3x de R$ 99,00. O preço anterior confirmado de R$ 500,00 aparece somente como referência anterior identificada (De / por somente).
 - O Site Essencial inclui uma página com até seis seções, versão responsiva, integração com WhatsApp e até duas rodadas de ajustes.
 - A prévia antes do pagamento é uma característica confirmada do Site Essencial, não uma promessa automática para todos os serviços.
+- Site + Divulgação: R$ 697,00, uma página responsiva de até seis seções com WhatsApp, três criativos estáticos originais adaptados para Feed e Stories (seis arquivos) e roteiro inicial de atendimento no WhatsApp adaptado ao negócio.
+- Site para Campanha: R$ 1.297,00, uma página responsiva para uma oferta específica, com até seis seções e WhatsApp; cinco criativos estáticos originais em Feed e Stories (dez arquivos), roteiro inicial de WhatsApp e configuração de uma propriedade GA4 e um Pixel em contas do cliente, com verificação de visitas e cliques no WhatsApp. Cliques não comprovam conversa ou venda.
+- Os dois novos pacotes têm pagamento de 50% para iniciar e 50% antes da publicação, até duas rodadas de ajustes na página e uma rodada consolidada nas artes. Publicação somente após aprovação final e pagamento do saldo; a prévia gratuita do Essencial não se aplica.
+- Site para Campanha inclui 30 dias após a publicação para correções de falhas técnicas do escopo entregue, sem cota dessas correções. Não inclui manutenção recorrente, novos recursos, conteúdo ou mudanças de serviços de terceiros. O prazo não representa promessa de resultado comercial.
+- Adaptação de formato não é um novo criativo. Gestão de anúncios, verba de mídia, CRM e integrações extras não estão incluídos. A configuração de medição é entrega ao cliente; esta oferta não autoriza instalar rastreadores no site da agência.
 - Projetos com mais páginas, sistemas ou funcionalidades recebem orçamento personalizado.
 - Domínio, hospedagem, suporte recorrente e demandas fora do escopo são alinhados antes da contratação; nenhuma cobrança recorrente deve ser apresentada como automática.
 - A configuração básica para busca não representa garantia de posicionamento no Google.
@@ -65,7 +70,18 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 
 Ver docs/copy-commercial-confirmed.md. Estas condições substituem as menções anteriores de custos ainda pendentes.
 
-## Sprint Clareza — 24/10/2026 — Issue #25
+## Sprint Vendas — 28/10/2026 — Issue #27
+
+O usuário aprovou a implementação da copy curta e dos três pacotes. Esta decisão substitui o limite anterior de oferta única e o não objetivo de novos pacotes registrado na Sprint Clareza. Não implica publicação automática; acompanhar Issue, PR, preview e validações.
+
+- Headline exata aprovada: “Sites e design para transformar interesse em VENDAS.”. É a finalidade comercial do trabalho, não garantia de faturamento ou de conversão.
+- Artes: “Sua divulgação precisa chamar atenção e gerar interesse.”. Eventos: “Artes para divulgar seu evento e vender mais ingressos.”. Explicar as peças entregues, sem atribuir vendas aos trabalhos existentes ou prometer esgotar ingressos.
+- Estrutura preservada: abertura e resumo dos três serviços; sites com Animalis em destaque e Viana/Du-Rio antes dos preços; três cards de pacotes; artes/eventos; identidade; Matheus/contato. Bellavista e Solace permanecem estudos secundários identificados.
+- Os novos pacotes usam `src/data/commercialOffers.js` como fonte compartilhada de preço, quantidade de criativos/arquivos, suporte, pagamento e revisões. `src/data/essentialOffer.js` continua sendo a fonte do Essencial.
+- Preços das artes preservados: avulsa para redes R$ 35; dez artes R$ 250; flyer de evento R$ 50; flyer + motion de 30s R$ 80. Identidade visual recebe orçamento próprio. Não acrescentar bônus fictícios, ancoragem hipotética, escassez, recorrência ou condições não aprovadas.
+- Domínio à parte, hospedagem em plano gratuito respeitando limites e custos extras combinados antes. Prazo combinado de acordo com materiais, acessos, aprovação e ajustes; não publicar estimativas internas de esforço como prazo garantido.
+
+## Sprint Clareza — 24/10/2026 — Issue #25 — registro histórico
 
 - Capacidade: quem visita identifica os serviços na abertura, encontra as prévias comerciais antes da oferta do Site Essencial, dentro do capítulo de sites e inicia uma conversa coerente com seu projeto.
 - Superfícies: home, contato compartilhado, Site Essencial, páginas locais, FAQs, termos, mensagens de WhatsApp e metadata/JSON-LD.

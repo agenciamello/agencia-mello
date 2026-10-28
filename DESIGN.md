@@ -1,6 +1,6 @@
 # Agência Mello — sistema da experiência
 
-## Direção atual — 16/10/2026
+## Direção atual — revisão de 28/10/2026
 
 Composição editorial, clareza comercial e movimento derivado da identidade oficial. Refinar a experiência existente em React/Vite, preservando os avanços posteriores ao sprint editorial original. Nenhum cliente, prêmio ou resultado inventado. O estado de publicação está nas Issues e PRs, não neste documento.
 
@@ -14,7 +14,7 @@ Composição editorial, clareza comercial e movimento derivado da identidade ofi
 
 ## Composição
 
-O título em quatro linhas conduz o hero, acompanhado de CTA para WhatsApp e link para o resumo de serviços. O símbolo oficial aparece em vídeo silencioso WebM/MP4, com imagem estática para movimento reduzido, erro de mídia ou bloqueio de reprodução automática. Após a aprovação do túnel em 24/10/2026, o usuário pediu explicitamente remover o botão de pausa/reprodução do hero. Esse pedido substitui a exigência anterior de controle manual: não renderizar botão visível nem controle oculto no teclado.
+A headline aprovada “Sites e design para transformar interesse em VENDAS.” conduz o hero, acompanhada de descrição concreta dos serviços, CTA geral para WhatsApp e link para trabalhos. A aprovação de 28/10/2026, Issue #27, substitui o texto e a composição obrigatória em quatro linhas da revisão anterior: adaptar as quebras à leitura em desktop e mobile sem cortar ou abreviar a frase. O símbolo oficial aparece em vídeo silencioso WebM/MP4, com imagem estática para movimento reduzido, erro de mídia ou bloqueio de reprodução automática. Após a aprovação do túnel em 24/10/2026, o usuário pediu explicitamente remover o botão de pausa/reprodução do hero. Esse pedido substitui a exigência anterior de controle manual: não renderizar botão visível nem controle oculto no teclado.
 
 O portfólio usa superfície clara, imagens amplas e assimetria. Animalis Pet lidera; Viana Planejados e Du-Rio são outras prévias comerciais. Bellavista e Solace ficam na camada secundária de estudos autorais. Preservar a explicação factual do status de cada projeto.
 
@@ -26,7 +26,7 @@ Mobile tem composição e movimento próprios, com leitura em fluxo nativo e sem
 
 ## Motion
 
-O resumo concreto de serviços aparece após o hero. Por pedido explícito do usuário, a oferta única do Site Essencial vem depois de Animalis/Viana/Du-Rio e antes do capítulo de artes; substitui a oferta antes dos projetos da primeira prévia. Preservar leitura imediata sem reveal na oferta, preço anterior riscado e identificado, preço vigente em magenta e parcelamento legível. O link secundário do hero aponta ao resumo; o contato geral usa “Vamos criar seu próximo projeto?”.
+O resumo concreto de serviços aparece após o hero. Por pedido explícito do usuário, os exemplos Animalis/Viana/Du-Rio continuam antes do preço e do capítulo de artes. Na revisão de 28/10/2026, a oferta única é substituída por três cards: Site Essencial, Site + Divulgação e Site para Campanha. Preservar leitura imediata sem reveal nos preços, preço anterior do Essencial riscado e identificado, preços vigentes em magenta e condições legíveis. Em desktop, comparar os três pacotes na mesma região; em mobile, usar fluxo vertical, sem carrossel ou interação necessária para ler preço/condições. Diferenciar prévia grátis e pagamento após aprovação do Essencial do pagamento 50%/50% dos novos pacotes. O link secundário do hero aponta aos trabalhos; o contato mantém intenção geral coerente com todos os serviços.
 
 Tokens compartilhados em `src/lib/motion-tokens.ts`, consumidos por `StudioMotion.tsx` e pelo text reveal: micro 220ms, reveal 620ms, seção 900ms, stagger 80ms; ease `power3.out`. CSS usa `cubic-bezier(.22,1,.36,1)`. Timelines específicas variam conforme o elemento.
 
@@ -60,3 +60,7 @@ Os passes de setembro (impacto, Motion V2 e Mobile V3) evoluíram com vídeo no 
 ## Revelação editorial — revisão do usuário
 
 O componente enviado pelo usuário foi adaptado em `src/components/ui/text-reveal.tsx`, com demo, estilos próprios e tokens compartilhados. Abertura das soluções, título do capítulo de sites e tese do Animalis revelam palavras com blur leve e deslocamento ao entrar na viewport, uma vez por visita à página. Remover a timeline antiga da tese; os mesmos elementos não podem receber GSAP e Motion simultaneamente. Textos de apoio, linhas de contexto e cards comerciais entram com deslocamento discreto em GSAP, iniciando cedo o suficiente para completar antes da leitura principal. Movimento reduzido entrega os títulos estáticos imediatamente, inclusive quando a preferência muda durante a sessão; segmentos visuais não duplicam a leitura assistiva. Não animar preço, trocar imagens/copy ou modificar o túnel nesta revisão.
+
+## Exceção aprovada — Sprint Vendas, Issue #27
+
+O pedido explícito do usuário de 28/10/2026 autoriza a nova copy comercial, as headlines de artes/eventos e o layout dos três pacotes, substituindo a restrição anterior de não trocar copy nesta revisão. Preservar logo, cores, retrato colorido, rotas, hierarquia factual, animações existentes e túnel de eventos. A mudança é editorial/comercial; não iniciar redesign, criar efeitos adicionais ou instalar rastreadores da agência. Informação técnica das ofertas fica em detalhes acessíveis quando necessária para a decisão, sem alongar a leitura principal.

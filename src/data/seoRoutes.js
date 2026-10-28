@@ -1,4 +1,5 @@
 import { ESSENTIAL_OFFER, ESSENTIAL_PRICE } from './essentialOffer.js';
+import { COMMERCIAL_OFFERS, COMMERCIAL_PAYMENT, COMMERCIAL_REVISIONS, formatOfferPrice } from './commercialOffers.js';
 
 export const SEO_SITE = {
   url: 'https://www.agenciamello.site',
@@ -16,8 +17,8 @@ export const NOINDEX_ROBOTS = 'noindex,follow,max-image-preview:large';
 
 export const SEO_ROUTES = {
   '/': {
-    title: 'Agência Mello | Sites e identidade visual para pequenos negócios',
-    description: 'Sites, identidade visual e artes para redes sociais e eventos. Veja seu Site Essencial pronto antes de pagar. Atendimento direto no Rio e online em todo o Brasil.',
+    title: 'Agência Mello | Sites, artes e identidade visual para negócios',
+    description: `Sites e design para transformar interesse em vendas. Conheça o Site Essencial de ${ESSENTIAL_PRICE}, sites com divulgação, artes para redes e eventos e identidade visual.`,
     robots: INDEX_ROBOTS,
     type: 'website',
     schema: 'home',
@@ -258,6 +259,30 @@ export function buildStructuredData(pathname, fallbackTitle) {
         provider: { '@id': organizationId },
         areaServed: { '@type': 'Country', name: 'Brasil' },
         url: SEO_SITE.url,
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Pacotes de sites',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              name: 'Site Essencial',
+              price: String(ESSENTIAL_OFFER.price),
+              priceCurrency: ESSENTIAL_OFFER.currency,
+              url: `${SEO_SITE.url}/site-essencial`,
+              description: 'Uma página responsiva de até seis seções, WhatsApp e até duas rodadas de ajustes. Prévia privada e gratuita; pagamento após aprovação da prévia. Domínio à parte.',
+              itemOffered: { '@type': 'Service', name: 'Site Essencial' },
+            },
+            ...Object.entries(COMMERCIAL_OFFERS).map(([key, offer]) => ({
+              '@type': 'Offer',
+              name: offer.name,
+              price: String(offer.price),
+              priceCurrency: ESSENTIAL_OFFER.currency,
+              url: `${SEO_SITE.url}/#oferta-site-${key}`,
+              description: `${offer.name} por ${formatOfferPrice(offer.price)}: uma página responsiva de até seis seções, WhatsApp, ${offer.creativeCount} criativos estáticos originais em Feed e Stories (${offer.fileCount} arquivos) e roteiro inicial de WhatsApp adaptado. ${COMMERCIAL_PAYMENT} ${COMMERCIAL_REVISIONS} ${key === 'campanha' ? 'Página para uma oferta específica; configuração de uma propriedade GA4 e um Pixel nas contas do cliente para visitas e cliques no WhatsApp, sem comprovação de vendas; 30 dias de correções de falhas técnicas após a publicação, sem manutenção, novos recursos ou conteúdo. ' : ''}Domínio à parte; hospedagem em plano gratuito sujeita aos limites. Prazo combinado. Sem gestão ou verba de anúncios, CRM ou garantia de vendas.`,
+              itemOffered: { '@type': 'Service', name: offer.name },
+            })),
+          ],
+        },
       },
       {
         '@type': 'Service',

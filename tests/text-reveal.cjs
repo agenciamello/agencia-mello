@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const base=process.env.SITE_URL||'http://127.0.0.1:4176';
 const output=process.env.TEXT_REVEAL_ARTIFACTS||'artifacts/text-reveal';
-const targets=[['.scroll-story-title','Negócios diferentes. Soluções diferentes.'],['#site-chapter-heading','Seu site pronto antes de você pagar.'],['.project-thesis','Do Google ao WhatsApp, o caminho precisa ser curto.']];
+const targets=[['.scroll-story-title','Negócios diferentes. Soluções diferentes.'],['#site-chapter-heading','Apresente seus serviços. Facilite o pedido de orçamento.'],['.project-thesis','Serviços, localização e contato no mesmo lugar.']];
 
 async function words(locator){return locator.locator('[data-text-segment]').evaluateAll(items=>items.map(el=>({opacity:Number(getComputedStyle(el).opacity),filter:getComputedStyle(el).filter,transform:getComputedStyle(el).transform})));}
 async function position(locator){return locator.evaluate(el=>el.getBoundingClientRect().top+scrollY);}
