@@ -29,17 +29,19 @@ export function SiteEssentialOffer() {
   return <>
     <section id="pacotes-sites" className="site-offers" aria-label="Pacotes de sites">
       <article id="oferta-site-essencial" className="package-card package-essential" data-offer="essencial" aria-labelledby="essential-offer-heading">
+        <span className="essential-surface" aria-hidden="true"/>
+        <svg className="essential-outline" aria-hidden="true" focusable="false"><rect className="essential-outline-path" width="100%" height="100%" pathLength="1" vectorEffect="non-scaling-stroke"/></svg>
         <div className="package-copy">
-        <span className="micro">Para apresentar seu negócio</span>
-        <h4 id="essential-offer-heading">Site Essencial</h4>
-        <p className="package-promise">Veja a prévia.<br/>Só pague se aprovar.</p>
-        <p>Uma página com até seis seções, adaptada ao celular, com WhatsApp, configuração básica para busca e até duas rodadas de ajustes.</p>
+          <span className="micro">Para apresentar seu negócio</span>
+          <h4 id="essential-offer-heading">Site Essencial</h4>
+          <p className="package-promise">Veja a prévia.<br/>Só pague se aprovar.</p>
+          <p>Uma página com até seis seções, adaptada ao celular, com WhatsApp, configuração básica para busca e até duas rodadas de ajustes.</p>
         </div>
         <div className="package-buy">
-        <div className="package-price"><del className="previous-price">De {ESSENTIAL_PREVIOUS_PRICE}</del><span className="offer-label">Por somente</span><strong>{ESSENTIAL_PRICE}</strong><small>{ESSENTIAL_INSTALLMENTS}</small></div>
-        <p className="package-payment">Prévia privada e gratuita. Pagamento após aprovação.</p>
-        <ContactLink messageKey="destaque" className="text-link package-cta">Quero minha prévia grátis <span aria-hidden="true">↗</span></ContactLink>
-        <Link to="/site-essencial" className="package-details-link">Ver tudo que está incluído <span aria-hidden="true">↗</span></Link>
+          <div className="package-price"><del className="previous-price">De {ESSENTIAL_PREVIOUS_PRICE}</del><span className="offer-label">Por somente</span><strong>{ESSENTIAL_PRICE}</strong><small>{ESSENTIAL_INSTALLMENTS}</small></div>
+          <p className="package-payment">Prévia privada e gratuita. Pagamento após aprovação.</p>
+          <ContactLink messageKey="destaque" className="text-link package-cta">Quero minha prévia grátis <span aria-hidden="true">↗</span></ContactLink>
+          <Link to="/site-essencial" className="package-details-link">Ver tudo que está incluído <span aria-hidden="true">↗</span></Link>
         </div>
       </article>
     </section>

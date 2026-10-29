@@ -62,7 +62,14 @@
 .contact-invitation{max-width:54ch;line-height:1.7;font-size:16px;margin-bottom:26px}
 .site-offers{margin:64px 0 24px;scroll-margin-top:112px}
 .package-card{display:flex;flex-direction:column;min-width:0;gap:20px;padding:30px 24px;background:#101014;color:#eeeae4;border:1px solid #ffffff24}
-.package-essential{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:64px;padding:40px;border-top:3px solid var(--pink)}.package-card[id]{scroll-margin-top:112px}
+.package-essential{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:64px;padding:40px;border-top:3px solid var(--pink)}.package-card[id]{scroll-margin-top:112px}
+.essential-surface{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 100% 0%,#ec489910,transparent 65%)}
+.essential-surface::before{content:'';position:absolute;inset:0;opacity:.18;background-image:linear-gradient(#ffffff1a 1px,transparent 1px),linear-gradient(90deg,#ffffff1a 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(145deg,transparent 28%,#000);pointer-events:none}
+.essential-surface::after{content:'';position:absolute;top:-20%;bottom:-20%;left:-60%;width:45%;opacity:var(--offer-light,0);transform:translateX(calc(var(--offer-sweep,0)*450%)) skewX(-18deg);background:linear-gradient(105deg,transparent 30%,#ec489914 44%,#fff8f726 50%,#ec48990d 56%,transparent 70%);pointer-events:none}
+.essential-outline{position:absolute;inset:1px;z-index:2;width:calc(100% - 2px);height:calc(100% - 2px);overflow:visible;pointer-events:none}.essential-outline-path{fill:none;stroke:var(--pink);stroke-width:1;stroke-opacity:.72;stroke-dasharray:1;stroke-dashoffset:var(--offer-trace,0)}
+.package-essential>.package-copy,.package-essential>.package-buy{position:relative;z-index:1}
+.package-essential .package-cta{transform-origin:left center;transition:scale var(--micro) var(--ease),background-color var(--micro) var(--ease),color var(--micro) var(--ease)}.package-essential .package-cta:active{scale:.98;background-color:#ec48990d}
+@media(prefers-reduced-motion:reduce){.essential-surface::after{opacity:0!important}.essential-outline-path{stroke-dashoffset:0!important}.package-essential .package-cta{transition:none}.package-essential .package-cta:active{scale:1}}
 .package-copy,.package-buy{display:grid;gap:20px;min-width:0}.package-copy>.micro{font-size:11px;line-height:1.6;color:#b9b2bd}
 .package-buy .package-price{margin:0;padding:0}.package-buy .package-price strong{font-size:clamp(44px,4vw,58px)}
 .other-packages{margin:24px 0;scroll-margin-top:112px}
