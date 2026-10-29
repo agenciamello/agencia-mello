@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react';
 
-import { MOTION, TEXT_MOTION } from '../../lib/motion-tokens';
+import { COMMERCIAL_MOTION, MOTION, TEXT_MOTION } from '../../lib/motion-tokens';
 export { MOTION } from '../../lib/motion-tokens';
 
 export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: string) {
@@ -85,6 +85,37 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
             { y: TEXT_MOTION.editorialDistance, opacity: TEXT_MOTION.editorialOpacity },
             { y: 0, opacity: 1, duration: MOTION.reveal, ease: MOTION.ease,
               scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
+        });
+
+        const animalisImage = scope.querySelector<HTMLElement>('.showcase-commercial .showcase-image');
+        if (animalisImage) {
+          // The entrance belongs to the frame; image parallax keeps its own transform.
+          gsap.fromTo(animalisImage,
+            { y: TEXT_MOTION.editorialDistance, opacity: COMMERCIAL_MOTION.imageOpacity },
+            { y: 0, opacity: 1, duration: MOTION.section, ease: MOTION.ease,
+              scrollTrigger: { trigger: animalisImage, start: 'top 92%', once: true } });
+        }
+
+        const essentialPriceBlock = scope.querySelector<HTMLElement>('.package-essential .package-buy');
+        if (essentialPriceBlock) {
+          const price = essentialPriceBlock.querySelector<HTMLElement>('.package-price strong');
+          const entrance = gsap.timeline({ scrollTrigger: {
+            trigger: essentialPriceBlock, start: 'top 92%', once: true,
+          }});
+          // Keep the actual amount readable throughout; never count or replace digits.
+          entrance.fromTo(essentialPriceBlock,
+            { y: TEXT_MOTION.editorialDistance, opacity: COMMERCIAL_MOTION.priceOpacity },
+            { y: 0, opacity: 1, duration: MOTION.reveal, ease: MOTION.ease }, 0);
+          if (price) entrance.fromTo(price,
+            { scale: COMMERCIAL_MOTION.priceScale, transformOrigin: 'left center' },
+            { scale: 1, duration: MOTION.section, ease: MOTION.ease }, 0);
+        }
+
+        scope.querySelectorAll<HTMLElement>('.next-post-underline').forEach(accent => {
+          gsap.fromTo(accent,
+            { '--post-underline': 0 },
+            { '--post-underline': 1, duration: MOTION.section, ease: MOTION.ease,
+              scrollTrigger: { trigger: accent, start: 'top 88%', once: true } });
         });
 
         const bridgeReveal = scope.querySelector<HTMLElement>('.copy-bridge-reveal');

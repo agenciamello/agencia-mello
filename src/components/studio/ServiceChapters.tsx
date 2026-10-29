@@ -6,7 +6,7 @@ export function SocialServiceDetails() {
   return <section className="social-service-details" aria-labelledby="social-service-heading">
     <div>
       <span className="micro">Também para o dia a dia da sua marca</span>
-      <h4 id="social-service-heading">Seu produto, serviço ou oferta<br/>no próximo post.</h4>
+      <h4 id="social-service-heading">Seu produto, serviço ou oferta<br/>no <span className="next-post-underline">próximo post.</span></h4>
       <p>Peças com a identidade da sua marca para divulgar novidades e promoções.</p>
       <dl className="art-prices"><div><dt>Arte avulsa para redes</dt><dd>R$ 35</dd></div><div><dt>Pacote de 10 artes</dt><dd>R$ 250</dd></div></dl>
       <ContactLink messageKey="conteudo" className="text-link">Pedir artes para minhas redes <span aria-hidden="true">↗</span></ContactLink>

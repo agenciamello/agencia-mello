@@ -1,5 +1,6 @@
 // Preserve the existing studio rhythm; text presets share the same easing.
 export const MOTION = { micro: .22, reveal: .62, section: .9, stagger: .08, ease: 'power3.out' } as const;
+export const COMMERCIAL_MOTION = { priceScale: .94, priceOpacity: .7, imageOpacity: .45 } as const;
 export const TEXT_MOTION = {
   stagger: {char:.03, line:.1, word:.05},
   duration: .3,

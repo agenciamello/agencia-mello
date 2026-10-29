@@ -31,7 +31,7 @@ export function ExperiencePortfolio() {
       <div className="showcase-list showcase-commercial-list">
         <article className="showcase-project showcase-commercial" data-project-story="0">
           <div className="project-heading">
-            <h4><Link to={`/projetos/${animalis.slug}`}>{animalis.name}</Link></h4>
+            <h4><Link to={`/projetos/${animalis.slug}`}><TextReveal as="span" className="animalis-name-reveal" per="word" preset="fade-in-blur" speedReveal={1.2} speedSegment={.6}>{animalis.name}</TextReveal></Link></h4>
             <span className="project-status">{animalis.category} · {animalis.location}<br/><strong>Prévia comercial</strong></span>
           </div>
           <Link className="showcase-image" to={`/projetos/${animalis.slug}`} aria-label={`Ver projeto ${animalis.name}`}>
@@ -75,7 +75,7 @@ export function ExperiencePortfolio() {
       </section>
 
       <section id="servico-conteudo" className="solution-chapter arts-service-chapter" aria-labelledby="arts-chapter-heading" data-service-index="1">
-        <div className="solution-chapter-heading"><span className="micro">02 / Artes para redes e eventos</span><h3 id="arts-chapter-heading">Sua divulgação precisa chamar atenção<br/>e gerar interesse.</h3><p>Posts, carrosséis, flyers e peças com movimento para divulgar o que você oferece.</p></div>
+        <div className="solution-chapter-heading"><span className="micro">02 / Artes para redes e eventos</span><TextReveal as="h3" id="arts-chapter-heading" per="word" preset="fade-in-blur" speedReveal={1.2} speedSegment={.6}>{'Sua divulgação precisa chamar atenção\ne gerar interesse.'}</TextReveal><p>Posts, carrosséis, flyers e peças com movimento para divulgar o que você oferece.</p></div>
         <EventPortfolio/>
         <SocialServiceDetails/>
       </section>
