@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react';
 
-import { MOTION, TEXT_MOTION } from '../../lib/motion-tokens';
+import { COMMERCIAL_MOTION, ESSENTIAL_MOTION, MOTION, TEXT_MOTION } from '../../lib/motion-tokens';
 export { MOTION } from '../../lib/motion-tokens';
 
 export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: string) {
@@ -85,6 +85,81 @@ export function useStudioMotion(root: RefObject<HTMLDivElement | null>, route: s
             { y: TEXT_MOTION.editorialDistance, opacity: TEXT_MOTION.editorialOpacity },
             { y: 0, opacity: 1, duration: MOTION.reveal, ease: MOTION.ease,
               scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
+        });
+
+        const animalisImage = scope.querySelector<HTMLElement>('.showcase-commercial .showcase-image');
+        if (animalisImage) {
+          // The entrance belongs to the frame; image parallax keeps its own transform.
+          gsap.fromTo(animalisImage,
+            { y: TEXT_MOTION.editorialDistance, opacity: COMMERCIAL_MOTION.imageOpacity },
+            { y: 0, opacity: 1, duration: MOTION.section, ease: MOTION.ease,
+              scrollTrigger: { trigger: animalisImage, start: 'top 92%', once: true } });
+        }
+
+        const essentialCard = scope.querySelector<HTMLElement>('.package-essential');
+        if (essentialCard) {
+          const entry = isMobile ? ESSENTIAL_MOTION.mobile : ESSENTIAL_MOTION.desktop;
+          const frameEntrance = gsap.timeline({ scrollTrigger: {
+            trigger: essentialCard, start: 'top 88%', once: true,
+          }});
+          frameEntrance
+            .fromTo(essentialCard,
+              { y: entry.distance, rotationX: entry.rotation, scale: entry.scale,
+                transformPerspective: ESSENTIAL_MOTION.perspective, transformOrigin: 'center top' },
+              { y: 0, rotationX: 0, scale: 1, duration: ESSENTIAL_MOTION.cardDuration, ease: MOTION.ease }, 0)
+            .fromTo(essentialCard, { '--offer-trace': 1 },
+              { '--offer-trace': 0, duration: ESSENTIAL_MOTION.traceDuration, ease: 'power2.inOut' }, 0)
+            .fromTo(essentialCard, { '--offer-sweep': 0 },
+              { '--offer-sweep': 1, duration: ESSENTIAL_MOTION.sweepDuration, ease: 'power2.inOut' }, ESSENTIAL_MOTION.sweepDelay)
+            .fromTo(essentialCard, { '--offer-light': 0 },
+              { '--offer-light': 1, duration: MOTION.micro }, ESSENTIAL_MOTION.sweepDelay)
+            .to(essentialCard, { '--offer-light': 0, duration: MOTION.micro }, ESSENTIAL_MOTION.sweepDuration)
+            .set(essentialCard, { clearProps: 'transform,transformOrigin' }, ESSENTIAL_MOTION.cardDuration);
+
+          const copy = essentialCard.querySelector<HTMLElement>('.package-copy');
+          const priceBlock = essentialCard.querySelector<HTMLElement>('.package-buy');
+          const contentEntrances: gsap.core.Timeline[] = [];
+          if (copy) {
+            const copyEntrance = gsap.timeline({ scrollTrigger: {
+              trigger: copy, start: 'top 88%', once: true,
+            }}).fromTo(Array.from(copy.children),
+              { y: ESSENTIAL_MOTION.childDistance, opacity: TEXT_MOTION.editorialOpacity },
+              { y: 0, opacity: 1, stagger: MOTION.stagger, duration: MOTION.reveal, ease: MOTION.ease });
+            contentEntrances.push(copyEntrance);
+          }
+          if (priceBlock) {
+            // Separate mobile trigger: the price sequence starts when its own block enters.
+            const price = priceBlock.querySelector<HTMLElement>('.package-price strong');
+            const priceLines = priceBlock.querySelectorAll('.package-price > *');
+            const actions = priceBlock.querySelectorAll(':scope > p, :scope > a');
+            const priceEntrance = gsap.timeline({ scrollTrigger: {
+              trigger: priceBlock, start: 'top 88%', once: true,
+            }})
+              .fromTo(priceBlock, { y: TEXT_MOTION.editorialDistance },
+                { y: 0, duration: MOTION.section, ease: MOTION.ease }, 0)
+              .fromTo(priceLines, { y: ESSENTIAL_MOTION.childDistance, opacity: COMMERCIAL_MOTION.priceOpacity },
+                { y: 0, opacity: 1, stagger: MOTION.stagger, duration: MOTION.reveal, ease: MOTION.ease }, 0)
+              .fromTo(actions, { y: ESSENTIAL_MOTION.childDistance, opacity: COMMERCIAL_MOTION.priceOpacity },
+                { y: 0, opacity: 1, stagger: MOTION.stagger, duration: MOTION.reveal, ease: MOTION.ease }, MOTION.stagger * 2);
+            if (price) priceEntrance.fromTo(price,
+              { scale: COMMERCIAL_MOTION.priceScale, transformOrigin: 'left center' },
+              { scale: 1, duration: MOTION.section, ease: MOTION.ease }, MOTION.stagger);
+            contentEntrances.push(priceEntrance);
+          }
+          // Keyboard navigation completes the decorative sequence immediately.
+          const revealFocusedOffer = () => {
+            frameEntrance.progress(1);
+            contentEntrances.forEach(entrance => entrance.progress(1));
+          };
+          essentialCard.addEventListener('focusin', revealFocusedOffer);
+          cleanups.push(() => essentialCard.removeEventListener('focusin', revealFocusedOffer));
+        }
+
+        scope.querySelectorAll<HTMLElement>('.next-post-underline').forEach(accent => {
+          gsap.fromTo(accent,
+            { '--post-underline': 0 },
+            { '--post-underline': 1, duration: MOTION.section, ease: MOTION.ease,
+              scrollTrigger: { trigger: accent, start: 'top 88%', once: true } });
         });
 
         const bridgeReveal = scope.querySelector<HTMLElement>('.copy-bridge-reveal');

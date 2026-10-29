@@ -69,15 +69,15 @@ function HeroMotionMark() {
 }
 
 export function ExperienceHero() {
-  return <section className="experience-hero" id="inicio" data-chapter="Início">
+  return <section className="experience-hero hero-sales-copy" id="inicio" data-chapter="Início">
     <div className="wrap hero-scene">
       <div className="hero-eyebrow"><span>Design + presença digital</span><span className="hero-edition">Para pequenos negócios</span></div>
       <div className="hero-composition">
         <div className="hero-message">
-          <h1 aria-label="Seu negócio já é bom. Faça isso aparecer."><span className="line-mask"><span>Seu negócio</span></span><span className="line-mask"><span>já é bom.</span></span><span className="line-mask hero-emphasis"><span>Faça isso</span></span><span className="line-mask hero-emphasis"><span>aparecer<span className="headline-period">.</span></span></span></h1>
+          <h1 aria-label="Sites e design para transformar interesse em VENDAS."><span className="line-mask"><span>Sites e design</span></span><span className="line-mask"><span>para transformar</span></span><span className="line-mask hero-emphasis"><span>interesse em</span></span><span className="line-mask hero-emphasis"><span>VENDAS<span className="headline-period">.</span></span></span></h1>
           <p className="hero-description">Criamos sites, identidade visual e artes para redes sociais e eventos.</p>
           <p className="hero-scope">Atendimento direto com Matheus Mello.</p>
-          <div className="hero-actions"><ContactLink className="primary-cta" messageKey="hero">Quero ver meu site pronto <span aria-hidden="true">↗</span></ContactLink><a href="#solucoes" className="quiet-link">Ver serviços <span aria-hidden="true">↓</span></a></div>
+          <div className="hero-actions"><ContactLink className="primary-cta" messageKey="hero">Falar sobre meu projeto <span aria-hidden="true">↗</span></ContactLink><a href="#projetos" className="quiet-link">Ver trabalhos <span aria-hidden="true">↓</span></a></div>
         </div>        <div className="hero-art">
           <div className="hero-art-plane" data-depth>
             <HeroMotionMark/>

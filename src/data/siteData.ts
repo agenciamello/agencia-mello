@@ -1,4 +1,5 @@
 import { ESSENTIAL_PRICE, ESSENTIAL_INSTALLMENTS } from "./essentialOffer.js";
+import { COMMERCIAL_OFFERS, formatOfferPrice } from "./commercialOffers.js";
 
 export const SITE_ESSENCIAL_CONDITIONS = {
   "domain": "Domínio .com.br à parte: cerca de R$ 40/ano, confirmado antes.",
@@ -24,12 +25,14 @@ export const SITE_INFO = {
 
 export const WHATSAPP_MESSAGES = {
   header: "Oi, Matheus! Vim pelo site da Agência Mello e queria conversar sobre um projeto. Meu negócio é",
-  hero: "Oi, Matheus! Vim pelo site e quero ver uma prévia do meu site. Meu negócio é",
+  hero: "Oi, Matheus! Vim pela abertura do site da Agência Mello e quero conversar sobre um projeto. Meu negócio é",
   sites: "Oi, Matheus! Vim pelo site e preciso de um site pro meu negócio. Ele é",
   identidade: "Oi, Matheus! Vim pelo site e preciso de uma identidade visual pro meu negócio. Ele é",
   conteudo: "Oi, Matheus! Vim pelo site e preciso de artes para redes sociais do meu negócio. Ele é",
   eventos: "Oi, Matheus! Vi as artes no site da Agência Mello e quero um orçamento de arte para meu evento. O evento é",
   destaque: `Oi, Matheus! Vi o Site Essencial de ${ESSENTIAL_PRICE} e quero ver uma prévia. Meu negócio é`,
+  divulgacao: `Oi, Matheus! Vi o pacote ${COMMERCIAL_OFFERS.divulgacao.name} de ${formatOfferPrice(COMMERCIAL_OFFERS.divulgacao.price)} na página da Mello e quero um site com divulgação. Meu negócio é`,
+  campanha: `Oi, Matheus! Vi o pacote ${COMMERCIAL_OFFERS.campanha.name} de ${formatOfferPrice(COMMERCIAL_OFFERS.campanha.price)} na página da Mello e quero planejar minha campanha. Minha oferta é`,
   projetos: "Oi, Matheus! Vi os projetos no site e quero algo assim pro meu negócio. Ele é",
   final: "Oi, Matheus! Vim pelo site da Agência Mello e quero conversar sobre um projeto. Preciso de",
   flutuante: "Oi, Matheus! Vim pelo site e queria tirar uma dúvida.",

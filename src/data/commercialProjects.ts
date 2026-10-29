@@ -29,7 +29,7 @@ export const COMMERCIAL_PROJECTS = [
     alt: 'Prévia comercial do site Viana Planejados, marcenaria em Belford Roxo.',
     previewUrl: 'https://vianaplanejados.vercel.app/',
     status: 'Prévia comercial · em negociação',
-    intro: 'Um endereço próprio para apresentar projeto, execução e contato com mais clareza.',
+    intro: 'Projetos e serviços da marcenaria organizados para apresentar o trabalho.',
     context: 'Prévia comercial criada para uma marcenaria real de Belford Roxo. A proposta organiza serviços, portfólio, localização e orçamento fora da dependência exclusiva do Instagram.',
     decision: 'Fotografia de ambientes ocupa o protagonismo, enquanto uma estrutura editorial conduz da apresentação da marcenaria até o pedido de orçamento.',
     details: [
@@ -49,7 +49,7 @@ export const COMMERCIAL_PROJECTS = [
     alt: 'Prévia comercial do site Du-Rio Móveis Planejados, marcenaria fina em Duque de Caxias.',
     previewUrl: 'https://durioplanejados.vercel.app/',
     status: 'Prévia comercial · proposta desenvolvida',
-    intro: 'Uma direção mais editorial para posicionar móveis planejados como projeto de valor.',
+    intro: 'Ambientes e acabamento em destaque para valorizar os móveis sob medida.',
     context: 'Prévia comercial criada para uma marcenaria real de Duque de Caxias. A proposta trabalha percepção de acabamento, processo e projeto sob medida.',
     decision: 'A interface usa fotografia em tela cheia, serifas de alto contraste e detalhes dourados para construir uma presença mais sofisticada e autoral.',
     details: [

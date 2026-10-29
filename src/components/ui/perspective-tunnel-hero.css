@@ -1,4 +1,4 @@
-.perspective-tunnel{position:relative;height:260svh;margin:32px calc(clamp(24px,3.8vw,54px)*-1) 0}
+.perspective-tunnel{position:relative;height:300svh;margin:32px calc(clamp(24px,3.8vw,54px)*-1) 0}
 .tunnel-viewport{position:sticky;top:88px;height:calc(100svh - 88px);min-height:480px;background:#101014}
 .tunnel-scene{position:absolute;inset:0;overflow:hidden;perspective:1200px;transform-style:preserve-3d;isolation:isolate;pointer-events:none}
 .tunnel-grid{position:absolute;inset:0;background-image:radial-gradient(#ad5f8c66 1px,transparent 1px),radial-gradient(ellipse at center,#ec489916,transparent 70%);background-size:28px 28px,100% 100%;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);opacity:.65}
@@ -16,7 +16,7 @@
 .tunnel-prompt>span{color:#ff8bc5;font-size:20px}
 .tunnel-skip{position:absolute;right:28px;bottom:22px;z-index:20;display:flex;align-items:center;gap:24px;padding:12px 15px;min-height:48px;background:#101014e8;color:#eeeae4;border:1px solid #ffffff40;font-size:12px}
 .tunnel-skip:hover{border-color:#ff8bc5;color:#ff8bc5}
-.perspective-tunnel[data-compact=true]{height:220svh}
+.perspective-tunnel[data-compact=true]{height:320svh}
 .perspective-tunnel[data-compact=true] .tunnel-viewport{min-height:0;touch-action:pan-y pinch-zoom}
 .perspective-tunnel[data-compact=true] .tunnel-scene{perspective:1000px}
 .perspective-tunnel[data-compact=true] .tunnel-title>div{font-size:clamp(44px,13vw,72px)}

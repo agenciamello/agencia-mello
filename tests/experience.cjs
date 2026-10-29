@@ -82,7 +82,7 @@ async function expectTransformMotion(page, selector, description) {
     const thesis = page.locator('.project-thesis');
     await thesis.scrollIntoViewIfNeeded();
     await expect(thesis).toHaveAttribute('data-reveal-state','complete');
-    await expect(thesis).toHaveAccessibleName('Do Google ao WhatsApp, o caminho precisa ser curto.');
+    await expect(thesis).toHaveAccessibleName('Serviços, localização e contato no mesmo lugar.');
     assert.ok(await thesis.locator('[data-text-segment]').evaluateAll(elements=>elements.every(el=>Number(getComputedStyle(el).opacity)>.99)), 'Portfolio thesis finishes fully readable');
     assert.equal(Number(await thesis.evaluate(el=>getComputedStyle(el).getPropertyValue('--thesis-line'))),1,'Portfolio thesis accent completes');
 
@@ -201,7 +201,7 @@ async function expectTransformMotion(page, selector, description) {
     }
 
     await loadPage(page, '/#%');
-    assert.match(await page.locator('h1').innerText(), /Seu negócio/);
+    await expect(page.locator('h1')).toHaveAccessibleName('Sites e design para transformar interesse em VENDAS.');
     await page.keyboard.press('Tab');
     const skip = page.getByRole('link', { name: 'Pular para o conteúdo' });
     await expect(skip).toBeFocused();
@@ -221,12 +221,13 @@ async function expectTransformMotion(page, selector, description) {
     await menu.click();
     await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('link', { name: 'Projetos', exact: true }).click();
     await expect(menu).toHaveAttribute('aria-expanded', 'false');
-    await page.locator('.conceptual-sites summary').click();
-    await page.getByRole('link', { name: 'Ver o estudo Bellavista', exact: true }).click();
-    await page.waitForURL('**/projetos/bellavista');
+    await page.getByRole('link', { name: 'Ver projeto Animalis Pet', exact: true }).click();
+    await page.waitForURL('**/projetos/animalis-pet');
     await page.getByRole('link', { name: '← Todos os projetos' }).click();
     await page.waitForURL('**/#projetos');
-    await page.getByRole('link', { name: 'Veja tudo que está incluído' }).click();
+    const essentialDetailsLink = page.locator('.package-details-link');
+    await expect(essentialDetailsLink).toHaveAccessibleName(/Ver tudo que está incluído/);
+    await essentialDetailsLink.click();
     await page.waitForURL('**/site-essencial');
     await page.locator('summary').first().press('Enter');
     await expect(page.locator('details').first()).toHaveAttribute('open', '');
