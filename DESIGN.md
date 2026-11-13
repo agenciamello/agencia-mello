@@ -61,6 +61,12 @@ A inclusão autorizada pelo usuário coloca SulSign como destaque do capítulo d
 
 A página própria descreve sistema visual e peças de divulgação a partir do logotipo existente. Mostrar trechos do manual em detalhes acessíveis e identificar o PDF original como proposta. Identificar as representações de fachada/estande como simulações, preservando o escopo do design e a transparência. Esta autorização substitui somente o destaque anterior de Solace e a ilustração de redes; hero, oferta, sites, túnel, contato e rotas existentes permanecem.
 
+### Refinamentos da prévia — copy, CTAs e galeria de eventos
+
+Na revisão da mesma entrega, o usuário alterou os títulos/apoios de sites, redes e identidade descritos em PRODUCT.md. Adaptar as quebras de linha sem abreviar a copy. Os CTAs “Quero minha prévia grátis” e “Pedir artes para minhas redes” usam preenchimento magenta e texto escuro, foco evidente e resposta curta ao toque, sem loop decorativo.
+
+O pedido substitui a grade estática padrão após o túnel por carrossel horizontal nativo e lento com seis peças completas. Rolagem automática de ida e volta, sem salto ou clones interativos; botões de anterior/próximo e pausar/reproduzir. Pausar com foco nas peças, hover de mouse, interação manual, diálogo aberto, fora da viewport e em aba oculta; respeitar a pausa escolhida pelo usuário. A âncora da galeria mantém os controles visíveis abaixo do cabeçalho, e o foco na própria região de destino não interrompe a passagem. Preservar gesto vertical, gesto horizontal e pinch-zoom. No mobile, deixar a próxima peça parcialmente visível. Movimento reduzido apresenta grade estática completa, inclusive quando a preferência muda durante a sessão. Manter ampliação, Escape, retorno de foco, tratamento de falha/retry, CTA e Behance. O túnel continua com as quatro peças originais e seu percurso aprovado. Esta revisão não estende autorização para publicação.
+
 Os passes de setembro (impacto, Motion V2 e Mobile V3) evoluíram com vídeo no hero, novas prévias comerciais, revisão de copy e motion das subpáginas. Esta especificação substitui as descrições antigas de hero em planos sem vídeo e de mobile sem parallax.
 
 ## Revelação editorial — revisão do usuário

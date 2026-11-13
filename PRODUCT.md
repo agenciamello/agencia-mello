@@ -56,7 +56,7 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 - Animalis Pet e Du-Rio são prévias comerciais desenvolvidas para negócios reais; Viana Planejados é uma prévia comercial em negociação. Isso não comprova contratação, entrega definitiva ou resultados.
 - As páginas de projeto descrevem contexto e proposta. Não há depoimentos ou métricas de resultado confirmados; trabalhos futuros não devem inventá-los.
 - Os ativos institucionais disponíveis incluem o logo da Agência Mello, a fotografia de Matheus Mello e demonstrações visuais mantidas em `public/assets`.
-- Design para eventos apresenta quatro peças realizadas pela Mello, fornecidas e selecionadas com o usuário em 24/10/2026: São Simão Folia, Pagô Pra Ver (agenda), Bloco do Mello e Conexão dos Crias. O trabalho nas artes não implica contratação direta pelos artistas retratados nem comprova resultados comerciais. O CTA tem intenção própria de orçamento para evento; a prévia gratuita do Site Essencial não se estende automaticamente a flyers.
+- Design para eventos apresenta seis peças fornecidas pelo usuário: São Simão Folia, Pagô Pra Ver (agenda), Bloco do Mello e Conexão dos Crias, selecionadas em 24/10/2026; Uma Noite no Brega Funk e MC Poze do Rodo, adicionadas em 13/11/2026. As duas novas peças ampliam somente a galeria após o túnel, que conserva as quatro originais. O trabalho nas artes não implica contratação direta pelos artistas retratados nem comprova resultados comerciais. O CTA tem intenção própria de orçamento para evento; a prévia gratuita do Site Essencial não se estende automaticamente a flyers.
 - Behance oficial fornecido pelo usuário: `https://www.behance.net/agenciamello`. Link secundário abaixo da galeria de eventos e no rodapé, apresentado como mais trabalhos, sem prometer acervo completo, atualização em 2026 ou resultados. O usuário informou que o perfil reúne flyers de 2024/2025; o WhatsApp permanece a ação principal de orçamento.
 
 ## Product Principles
@@ -66,6 +66,14 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 3. Manter escopo, investimento e etapas compreensíveis antes da contratação.
 4. Tratar proximidade, agilidade e ausência de burocracia como prática operacional, não como promessa vazia.
 5. Usar apenas provas reais e identificar explicitamente projetos conceituais.
+
+## Revisão da prévia — 13/11/2026 — Issue #29
+
+- O usuário aprovou a inclusão SulSign e pediu refinamentos na mesma entrega/PR #30.
+- Título de sites: “Apresente seus serviços. Facilite o pedido de orçamento com um site próprio!”. Apoio: “Seu negócio aparecendo nas pesquisas com um site próprio, informações claras, versão para celular e WhatsApp em destaque.”. A presença nas pesquisas é finalidade do site e da configuração básica; não acrescentar garantia de ranking ou posição.
+- Chamada de redes: “Artes para o dia a dia da sua marca nas redes sociais”. Título de identidade: “Tenha Uma marca que seu cliente reconhece.”, com a capitalização solicitada.
+- CTAs de prévia Essencial e artes para redes ganham destaque visual; textos dos botões, mensagens de WhatsApp, preços e condições continuam iguais.
+- A galeria após o túnel passa a ser um carrossel lento com seis peças e navegação manual, preservando ampliação e preferência por movimento reduzido. Não implica publicação automática.
 
 
 ## Condições confirmadas em 30/09/2026

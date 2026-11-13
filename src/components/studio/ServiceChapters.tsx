@@ -5,11 +5,11 @@ import { CASES } from '../../data/cases';
 export function SocialServiceDetails() {
   return <section className="social-service-details" aria-labelledby="social-service-heading">
     <div>
-      <span className="micro">Também para o dia a dia da sua marca</span>
+      <span className="micro">Artes para o dia a dia da sua marca nas redes sociais</span>
       <h4 id="social-service-heading">Seu produto, serviço ou oferta<br/>no <span className="next-post-underline">próximo post.</span></h4>
       <p>Peças com a identidade da sua marca para divulgar novidades e promoções.</p>
       <dl className="art-prices"><div><dt>Arte avulsa para redes</dt><dd>R$ 35</dd></div><div><dt>Pacote de 10 artes</dt><dd>R$ 250</dd></div></dl>
-      <ContactLink messageKey="conteudo" className="text-link">Pedir artes para minhas redes <span aria-hidden="true">↗</span></ContactLink>
+      <ContactLink messageKey="conteudo" className="solid-link conversion-cta social-service-cta">Pedir artes para minhas redes <span aria-hidden="true">↗</span></ContactLink>
     </div>
     <div className="social-client-showcase">
       <div className="social-client-pieces" data-editorial-reveal="card">
@@ -29,7 +29,7 @@ export function SocialServiceDetails() {
 export function BrandServiceChapter() {
   const study=CASES.find(item=>item.slug==='solace')!;
   return <section id="servico-marca" className="solution-chapter brand-service-chapter" aria-labelledby="brand-chapter-heading" data-service-index="2">
-    <div className="solution-chapter-heading"><span className="micro">03 / Logo e identidade visual</span><h3 id="brand-chapter-heading">Uma marca que<br/>seu cliente reconhece.</h3><p>Logo, cores e tipografia para usar no perfil, nas artes e nos materiais do negócio.</p></div>
+    <div className="solution-chapter-heading"><span className="micro">03 / Logo e identidade visual</span><h3 id="brand-chapter-heading">Tenha Uma marca que<br/>seu cliente reconhece.</h3><p>Logo, cores e tipografia para usar no perfil, nas artes e nos materiais do negócio.</p></div>
     <article className="brand-client-feature">
       <div className="brand-client-media" data-editorial-reveal="card">
         <figure>

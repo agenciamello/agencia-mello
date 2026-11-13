@@ -78,7 +78,7 @@ async function swipe(page,session,width,height){
    await page.emulateMedia({reducedMotion:'reduce'});
    await expect(page.locator('.perspective-tunnel')).toHaveCount(0);
    await expect(page.locator('.event-tunnel-loading')).toHaveCount(0);
-   await expect(page.locator('.event-open')).toHaveCount(4);
+   await expect(page.locator('.event-open')).toHaveCount(6);
    await page.emulateMedia({reducedMotion:'no-preference'});
    await expect(page.locator('.perspective-tunnel')).toHaveCount(1);
    results.push({width,height,initial,middle,afterSwipe,nativeTouch:true,reducedMotion:true});

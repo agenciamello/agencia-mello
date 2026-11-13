@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const base=process.env.SITE_URL||'http://127.0.0.1:4176';
 const output=process.env.TEXT_REVEAL_ARTIFACTS||'artifacts/text-reveal';
-const targets=[['.scroll-story-title','Negócios diferentes. Soluções diferentes.'],['#site-chapter-heading','Apresente seus serviços. Facilite o pedido de orçamento.'],['.animalis-name-reveal','Animalis Pet','.showcase-commercial .project-heading h4 a'],['.project-thesis','Serviços, localização e contato no mesmo lugar.'],['#arts-chapter-heading','Sua divulgação precisa chamar atenção e gerar interesse.']];
+const targets=[['.scroll-story-title','Negócios diferentes. Soluções diferentes.'],['#site-chapter-heading','Apresente seus serviços. Facilite o pedido de orçamento com um site próprio!'],['.animalis-name-reveal','Animalis Pet','.showcase-commercial .project-heading h4 a'],['.project-thesis','Serviços, localização e contato no mesmo lugar.'],['#arts-chapter-heading','Sua divulgação precisa chamar atenção e gerar interesse.']];
 
 async function words(locator){return locator.locator('[data-text-segment]').evaluateAll(items=>items.map(el=>({opacity:Number(getComputedStyle(el).opacity),filter:getComputedStyle(el).filter,transform:getComputedStyle(el).transform})));}
 async function position(locator){return locator.evaluate(el=>el.getBoundingClientRect().top+scrollY);}
