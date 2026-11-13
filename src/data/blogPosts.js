@@ -1,0 +1,122 @@
+// Conteúdo editorial compartilhado pela aplicação, metadados e HTML inicial.
+// Datas e afirmações temporais devem ser revisadas antes de uma nova publicação.
+export const GTA_MARKETING_POST = {
+  slug: 'gta-vi-marketing-licoes-lancamento',
+  path: '/blog/gta-vi-marketing-licoes-lancamento',
+  title: 'GTA VI e marketing: 5 lições de lançamento para aplicar no seu negócio',
+  description: 'Cinco lições de divulgação inspiradas na apresentação de GTA VI, com exemplos para pequenos negócios: planejamento, identidade visual e caminho até o pedido.',
+  dek: 'Como preparar a divulgação, apresentar sua novidade e facilitar o caminho até o pedido.',
+  category: 'Marketing na prática',
+  publishedAt: '2026-11-13',
+  modifiedAt: '2026-11-13',
+  dateLabel: '13 de novembro de 2026',
+  readingMinutes: 6,
+  author: 'Agência Mello',
+  cover: '/assets/blog/gta-vi/capa.webp',
+  coverAlt: 'Capa editorial da Mello: GTA VI e marketing, cinco lições para seu lançamento.',
+  intro: [
+    'Imagine uma pizzaria prestes a lançar um novo sabor.',
+    'A receita foi testada. Os ingredientes foram escolhidos. A equipe está animada. Na hora de divulgar, tudo vira uma foto com a legenda: “Novidade! Já disponível.”',
+    'Para quem preparou a pizza, aquele post é a conclusão de um trabalho. Para quem está rolando o Instagram, pode ser o primeiro contato com a oferta.',
+    'O cliente ainda precisa entender o que chegou, por que experimentar e como pedir.',
+    'GTA VI oferece uma oportunidade para observar esse processo. Com lançamento anunciado para 19 de novembro de 2026, o jogo já tem uma apresentação oficial que reúne vídeos, informações e acesso à pré-venda.',
+  ],
+  context: 'A comparação tem um limite: GTA chega com o público de uma franquia consolidada. Aqui, vamos observar cinco escolhas de divulgação e adaptá-las à realidade de um pequeno negócio.',
+  sections: [
+    {
+      id: 'prepare-a-divulgacao',
+      title: 'Comece a divulgação antes de abrir as vendas',
+      paragraphs: [
+        'O catálogo oficial de GTA VI reúne vídeos divulgados em diferentes momentos, incluindo trailers e uma apresentação mais longa do jogo. São oportunidades de conhecer partes do lançamento antes da estreia.',
+        'Na pizzaria do nosso exemplo, essa preparação poderia acontecer assim:',
+        'Cada publicação acrescenta uma informação. Quando as vendas abrem, quem acompanhou já sabe do que se trata.',
+        'Planeje essa sequência junto com a preparação do produto. O calendário deve acompanhar sua capacidade de produzir, atender e entregar.',
+      ],
+      list: [
+        'Segunda-feira: apresentar o novo sabor e informar quando ele entra no cardápio.',
+        'Quarta-feira: mostrar os ingredientes e um trecho do preparo.',
+        'Sexta-feira: publicar a oferta completa, com preço, disponibilidade e caminho para pedir.',
+      ],
+      listAfterParagraph: 1,
+      source: { label: 'Veja os vídeos oficiais da Rockstar', url: 'https://www.rockstargames.com/VI/launch-trailer' },
+      visual: 'timeline',
+    },
+    {
+      id: 'mantenha-a-identidade',
+      title: 'Faça suas peças parecerem parte da mesma marca',
+      paragraphs: [
+        'Vice City e Leonida são referências recorrentes na apresentação de GTA VI. O universo anunciado conecta as diferentes partes da divulgação.',
+        'Para um pequeno negócio, essa conexão também pode aparecer nas cores, na tipografia, nas imagens e na maneira de escrever.',
+        'Na pizzaria, o post do lançamento, o Story e o cardápio precisam permitir que a pessoa reconheça de quem é aquela oferta. Ao adaptar o formato, preserve os elementos que identificam o negócio e mantenha as informações legíveis.',
+        'Faça um teste simples: coloque suas três últimas peças lado a lado. Observe se elas parecem pertencer à mesma empresa e se a informação principal aparece com clareza.',
+        'Uma identidade visual precisa funcionar enquanto o cliente encontra sua marca em lugares diferentes.',
+      ],
+      visual: 'brand-kit',
+    },
+    {
+      id: 'mostre-o-produto',
+      title: 'Mostre o que a pessoa vai receber',
+      paragraphs: [
+        'A Rockstar disponibiliza uma galeria de imagens para apresentar cenários do jogo. É uma prévia visual do produto anunciado.',
+        'Na sua divulgação, procure oferecer uma demonstração concreta do que está vendendo.',
+        'Para a pizzaria, isso significa mostrar a pizza que será entregue, informar o tamanho e apresentar os ingredientes. Uma foto precisa ajudar a formar uma expectativa compatível com o pedido.',
+        'Para quem presta serviços, vale apresentar um trabalho real e explicar o que foi feito. Uma marcenaria pode mostrar o acabamento de um móvel. Um designer pode apresentar uma peça e comentar suas escolhas.',
+        'Antes de publicar, identifique qual dúvida aquela imagem ou explicação ajuda a resolver. Isso dá uma função à sua divulgação.',
+      ],
+      source: { label: 'Explore a galeria oficial de GTA VI', url: 'https://www.rockstargames.com/VI/launch-gallery' },
+      visual: 'product',
+    },
+    {
+      id: 'de-contexto-a-oferta',
+      title: 'Mostre em que situação sua novidade faz sentido',
+      paragraphs: [
+        'A apresentação oficial de GTA VI também dedica espaço aos personagens e aos lugares de Leonida. Existe uma história acompanhando o universo divulgado.',
+        'A aplicação para o seu negócio está em dar contexto ao que oferece.',
+        'Na lição anterior, o cliente descobriu o que recebe. Agora, ele precisa perceber em qual momento aquilo pode ser útil ou desejável.',
+        'A pizzaria pode apresentar o novo sabor como uma opção para dividir com os amigos na sexta-feira. Um salão pode mostrar um penteado pensado para uma formatura e explicar como agendar o atendimento.',
+        'Escolha uma situação que seu público reconheça e mostre como seu produto ou serviço participa dela. Use benefícios que você consegue entregar e exemplos próximos da rotina do cliente.',
+      ],
+      source: { label: 'Conheça personagens e lugares na apresentação oficial', url: 'https://www.rockstargames.com/VI/only-in-leonida' },
+      visual: 'context',
+    },
+    {
+      id: 'facilite-o-pedido',
+      title: 'Deixe o próximo passo evidente',
+      paragraphs: [
+        'Na página oficial de GTA VI, o visitante encontra a data anunciada, as plataformas e chamadas para a pré-venda.',
+        'Na sua campanha, a pessoa também precisa encontrar o que fazer depois de se interessar.',
+        'Se a divulgação apresenta uma pizza específica, o link pode abrir o cardápio naquele item ou iniciar uma conversa identificando o pedido. Se apresenta um serviço, explique como solicitar um orçamento e quais informações enviar.',
+        'Antes do lançamento, peça a alguém que não participou da divulgação para percorrer esse caminho pelo celular. Observe se essa pessoa consegue:',
+        'Depois, acompanhe o que aconteceu: cliques, conversas e pedidos são etapas diferentes. Essa distinção ajuda a descobrir onde melhorar.',
+      ],
+      list: [
+        'Encontrar o produto ou serviço anunciado.',
+        'Entender preço, condições ou como pedir orçamento.',
+        'Iniciar o pedido ou contato.',
+      ],
+      listAfterParagraph: 3,
+      source: { label: 'Confira a página oficial de GTA VI', url: 'https://www.rockstargames.com/VI' },
+      visual: 'purchase',
+    },
+  ],
+  quotes: [
+    { id: 'lancamento', text: 'Seu lançamento começa antes do “já disponível”.', image: '/assets/blog/gta-vi/card-lancamento.png', downloadName: 'mello-seu-lancamento.png' },
+    { id: 'missao', text: 'Comprar de você precisa ser mais fácil que uma missão do GTA.', image: '/assets/blog/gta-vi/card-missao.png', downloadName: 'mello-caminho-ate-o-pedido.png' },
+  ],
+  sources: [
+    { label: 'GTA VI — apresentação e data anunciada', url: 'https://www.rockstargames.com/VI' },
+    { label: 'Vídeos oficiais de GTA VI', url: 'https://www.rockstargames.com/VI/launch-trailer' },
+    { label: 'Galeria oficial de imagens', url: 'https://www.rockstargames.com/VI/launch-gallery' },
+    { label: 'Personagens e lugares de Leonida', url: 'https://www.rockstargames.com/VI/only-in-leonida' },
+  ],
+  closing: [
+    'Antes de lançar, defina a sequência de publicações, a apresentação visual, o que será demonstrado, a situação de uso e o caminho até o pedido.',
+    'A Agência Mello pode ajudar a organizar as artes e o site que vão apresentar essa oferta.',
+  ],
+  cta: { label: 'Falar com a Mello sobre minha divulgação', href: '/#contato' },
+  editorialNote: 'Análise editorial da Agência Mello, com fontes oficiais consultadas em 13 de novembro de 2026. As lições são interpretações aplicadas a pequenos negócios, sem atribuir resultados comerciais à campanha. A pizzaria e suas peças são exemplos fictícios; as imagens da pizza foram geradas com IA para ilustrar a explicação. GTA VI e Rockstar Games são referências ao objeto da análise, sem vínculo com a Agência Mello.',
+};
+
+export const BLOG_POSTS = [GTA_MARKETING_POST];
+export const BLOG_CATEGORIES = [...new Set(BLOG_POSTS.map(post => post.category))];
+export function getBlogPost(slug) { return BLOG_POSTS.find(post => post.slug === slug); }

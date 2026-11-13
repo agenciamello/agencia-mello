@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { SEO_ROUTES, SEO_SITE, buildStructuredData, getSeoForPath } from '../src/data/seoRoutes.js';
+import { BLOG_STATIC_STYLE, blogSitemapEntries, renderBlogStatic } from './blog-static.mjs';
 
 const distDir = path.resolve('dist');
 const indexPath = path.join(distDir, 'index.html');
@@ -39,17 +40,34 @@ function renderRoute(pathname, fallbackTitle) {
   html = replaceTag(html, /<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${seo.image}" />`, 'og:image');
   html = replaceTag(html, /<meta property="og:image:secure_url" content="[^"]*" \/>/, `<meta property="og:image:secure_url" content="${seo.image}" />`, 'og:image:secure_url');
   html = replaceTag(html, /<meta property="og:image:alt" content="[^"]*" \/>/, `<meta property="og:image:alt" content="${escapeHtml(seo.imageAlt)}" />`, 'og:image:alt');
+  html = replaceTag(html, /<meta property="og:image:type" content="[^"]*" \/>/, `<meta property="og:image:type" content="${seo.imageType}" />`, 'og:image:type');
+  html = replaceTag(html, /<meta property="og:image:width" content="[^"]*" \/>/, `<meta property="og:image:width" content="${seo.imageWidth}" />`, 'og:image:width');
+  html = replaceTag(html, /<meta property="og:image:height" content="[^"]*" \/>/, `<meta property="og:image:height" content="${seo.imageHeight}" />`, 'og:image:height');
 
   html = replaceTag(html, /<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${escapeHtml(seo.title)}" />`, 'twitter:title');
   html = replaceTag(html, /<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${escapeHtml(seo.description)}" />`, 'twitter:description');
   html = replaceTag(html, /<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${seo.image}" />`, 'twitter:image');
   html = replaceTag(html, /<meta name="twitter:image:alt" content="[^"]*" \/>/, `<meta name="twitter:image:alt" content="${escapeHtml(seo.imageAlt)}" />`, 'twitter:image:alt');
 
+  const articleMetadata = [
+    ['article:published_time', seo.articlePublishedAt],
+    ['article:modified_time', seo.articleModifiedAt],
+    ['article:author', seo.articleAuthor],
+    ['article:section', seo.articleSection],
+  ].filter(([, value]) => Boolean(value)).map(([key, value]) => `<meta property="${key}" content="${escapeHtml(value)}" />`).join('\n    ');
+  if (articleMetadata) html = html.replace('</head>', `    ${articleMetadata}\n  </head>`);
+
   const structuredData = buildStructuredData(pathname, fallbackTitle);
   html = html.replace(/\s*<script type="application\/ld\+json" data-seo-jsonld>.*?<\/script>/gs, '');
   if (structuredData && !Array.isArray(structuredData)) {
     const json = JSON.stringify(structuredData).replaceAll('</script', '<\\/script');
     html = html.replace('</head>', `    <script type="application/ld+json" data-seo-jsonld>${json}</script>\n  </head>`);
+  }
+
+  const blogContent = renderBlogStatic(pathname);
+  if (blogContent) {
+    html = replaceTag(html, /<div id="root"><\/div>/, `<div id="root">${blogContent}</div>`, 'blog initial content');
+    html = html.replace('</head>', `    ${BLOG_STATIC_STYLE}\n  </head>`);
   }
 
   return html;
@@ -69,5 +87,15 @@ for (const pathname of Object.keys(SEO_ROUTES)) {
 
 const notFoundHtml = renderRoute('/pagina-inexistente', 'Página não encontrada | Agência Mello');
 await fs.writeFile(path.join(distDir, '404.html'), notFoundHtml, 'utf8');
+
+// New blog routes and dates come from the article data rather than a copied date.
+const sitemapPath = path.join(distDir, 'sitemap.xml');
+let sitemap = await fs.readFile(sitemapPath, 'utf8');
+for (const entry of blogSitemapEntries(SEO_SITE.url)) {
+  const node = `<url><loc>${entry.loc}</loc>${entry.lastmod ? `<lastmod>${escapeHtml(entry.lastmod)}</lastmod>` : ''}</url>`;
+  const existing = new RegExp(`<url>\\s*<loc>${entry.loc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}<\\/loc>[\\s\\S]*?<\\/url>`);
+  sitemap = existing.test(sitemap) ? sitemap.replace(existing, node) : sitemap.replace('</urlset>', `  ${node}\n</urlset>`);
+}
+await fs.writeFile(sitemapPath, sitemap, 'utf8');
 
 console.log(`SEO static HTML: ${Object.keys(SEO_ROUTES).length} routes + 404 generated for ${SEO_SITE.url}`);

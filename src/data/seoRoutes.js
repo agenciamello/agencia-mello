@@ -1,5 +1,6 @@
 import { ESSENTIAL_OFFER, ESSENTIAL_PRICE } from './essentialOffer.js';
 import { COMMERCIAL_OFFERS, COMMERCIAL_PAYMENT, COMMERCIAL_REVISIONS, formatOfferPrice } from './commercialOffers.js';
+import { BLOG_POSTS, getBlogPost } from './blogPosts.js';
 
 export const SEO_SITE = {
   url: 'https://www.agenciamello.site',
@@ -30,6 +31,33 @@ export const SEO_ROUTES = {
     type: 'website',
     schema: 'service',
   },
+  '/blog': {
+    title: 'Blog da Mello | Marketing e design na prática',
+    description: 'Ideias práticas sobre marketing, design e presença digital para apresentar seu negócio, organizar sua divulgação e facilitar o caminho até o cliente.',
+    robots: INDEX_ROBOTS,
+    type: 'website',
+    schema: 'blog',
+    projectImage: `${SEO_SITE.url}/assets/blog/gta-vi/capa.webp`,
+    projectImageAlt: 'Blog da Mello: cinco lições de lançamento a partir de GTA VI e marketing',
+    projectImageWidth: 1600,
+    projectImageHeight: 900,
+  },
+  ...Object.fromEntries(BLOG_POSTS.map(post => [post.path, {
+    title: `${post.title} | Agência Mello`,
+    description: post.description,
+    robots: INDEX_ROBOTS,
+    type: 'article',
+    schema: 'blog-post',
+    articleSlug: post.slug,
+    articlePublishedAt: post.publishedAt,
+    articleModifiedAt: post.modifiedAt,
+    articleAuthor: SEO_SITE.url,
+    articleSection: post.category,
+    projectImage: new URL(post.cover, SEO_SITE.url).href,
+    projectImageAlt: post.coverAlt,
+    projectImageWidth: 1600,
+    projectImageHeight: 900,
+  }])),
   '/criacao-de-sites-nova-iguacu': {
     title: 'Criação de Sites em Nova Iguaçu | Agência Mello',
     description: 'Criação de sites profissionais em Nova Iguaçu para pequenos negócios, com WhatsApp integrado, atendimento direto e orçamento personalizado.',
@@ -176,7 +204,18 @@ export function canonicalFor(pathname) {
 
 export function getSeoForPath(pathname, fallbackTitle = 'Agência Mello') {
   const route = SEO_ROUTES[normalizePathname(pathname)];
-  if (route) return { ...route, canonical: canonicalFor(pathname), image: route.projectImage || SEO_SITE.defaultImage, imageAlt: route.projectImageAlt || SEO_SITE.defaultImageAlt };
+  if (route) {
+    const image = route.projectImage || SEO_SITE.defaultImage;
+    return {
+      ...route,
+      canonical: canonicalFor(pathname),
+      image,
+      imageAlt: route.projectImageAlt || SEO_SITE.defaultImageAlt,
+      imageWidth: route.projectImageWidth || 1200,
+      imageHeight: route.projectImageHeight || 630,
+      imageType: /\.webp(?:\?|$)/i.test(image) ? 'image/webp' : /\.png(?:\?|$)/i.test(image) ? 'image/png' : 'image/jpeg',
+    };
+  }
 
   return {
     title: fallbackTitle,
@@ -187,6 +226,13 @@ export function getSeoForPath(pathname, fallbackTitle = 'Agência Mello') {
     canonical: canonicalFor(pathname),
     image: SEO_SITE.defaultImage,
     imageAlt: SEO_SITE.defaultImageAlt,
+    imageWidth: 1200,
+    imageHeight: 630,
+    imageType: 'image/jpeg',
+    articlePublishedAt: undefined,
+    articleModifiedAt: undefined,
+    articleAuthor: undefined,
+    articleSection: undefined,
   };
 }
 
@@ -255,12 +301,72 @@ export function buildStructuredData(pathname, fallbackTitle) {
     primaryImageOfPage: {
       '@type': 'ImageObject',
       url: meta.image,
-      width: meta.projectImageWidth || 1200,
-      height: meta.projectImageHeight || 630,
+      width: meta.imageWidth,
+      height: meta.imageHeight,
     },
   };
 
   const graph = [person, organization, website, webpage];
+
+  if (meta.schema === 'blog' || meta.schema === 'blog-post') {
+    const blogId = `${SEO_SITE.url}/blog#blog`;
+    graph.push({
+      '@type': 'Blog',
+      '@id': blogId,
+      name: 'Blog da Mello',
+      description: SEO_ROUTES['/blog'].description,
+      url: `${SEO_SITE.url}/blog`,
+      inLanguage: SEO_SITE.language,
+      publisher: { '@id': organizationId },
+      blogPost: BLOG_POSTS.map(post => ({ '@id': `${SEO_SITE.url}${post.path}#article` })),
+    });
+    const crumbs = [
+      { '@type': 'ListItem', position: 1, name: 'Agência Mello', item: `${SEO_SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SEO_SITE.url}/blog` },
+    ];
+
+    if (meta.schema === 'blog') {
+      webpage.mainEntity = { '@id': blogId };
+    } else {
+      const post = getBlogPost(meta.articleSlug);
+      const articleId = `${meta.canonical}#article`;
+      const body = [
+        ...post.intro,
+        post.context,
+        ...post.sections.flatMap(section => {
+          const after = Number.isInteger(section.listAfterParagraph) ? section.listAfterParagraph : section.paragraphs.length - 1;
+          return [section.title, ...section.paragraphs.flatMap((paragraph, index) => [paragraph, ...(index === after ? section.list || [] : [])])];
+        }),
+        ...post.quotes.map(quote => quote.text),
+        ...post.closing,
+        post.editorialNote,
+      ].filter(Boolean).join('\n\n');
+      graph.push({
+        '@type': 'BlogPosting',
+        '@id': articleId,
+        url: meta.canonical,
+        headline: post.title,
+        description: post.description,
+        image: { '@type': 'ImageObject', url: meta.image, width: meta.imageWidth, height: meta.imageHeight },
+        datePublished: post.publishedAt,
+        dateModified: post.modifiedAt,
+        author: { '@type': 'Organization', '@id': organizationId, name: post.author, url: SEO_SITE.url },
+        publisher: { '@id': organizationId },
+        isPartOf: { '@id': blogId },
+        mainEntityOfPage: { '@id': pageId },
+        articleSection: post.category,
+        inLanguage: SEO_SITE.language,
+        isAccessibleForFree: true,
+        articleBody: body,
+        wordCount: body.trim().split(/\s+/u).length,
+        citation: post.sources.map(source => source.url),
+      });
+      webpage.mainEntity = { '@id': articleId };
+      crumbs.push({ '@type': 'ListItem', position: 3, name: post.title, item: meta.canonical });
+    }
+
+    graph.push({ '@type': 'BreadcrumbList', '@id': `${meta.canonical}#breadcrumb`, itemListElement: crumbs });
+  }
 
   if (meta.schema === 'home') {
     graph.push(
