@@ -1,0 +1,67 @@
+.sulsign-project{--sulsign-green:#18d878}
+.sulsign-head .section-top{margin-top:50px}
+.sulsign-head .section-top>.micro{color:var(--muted)}
+.sulsign-opening{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(40px,7vw,110px);align-items:center}
+.sulsign-opening>*,.sulsign-art-grid>*{min-width:0}
+.studio .sulsign-head h1{font-size:clamp(70px,10vw,144px);line-height:1.02}
+.sulsign-opening .case-intro{font-size:clamp(25px,3.1vw,44px);line-height:1.17;max-width:16ch}
+.sulsign-project .sulsign-lead{margin-top:26px;max-width:43ch;font-size:15px;line-height:1.8;color:var(--muted)}
+.sulsign-opening-copy>.text-link{margin-top:28px;color:#ff8bc5}
+.sulsign-project figure{margin:0}
+.sulsign-project figure img{display:block;width:100%;height:auto}
+.sulsign-project figcaption{margin-top:14px;color:var(--muted);font-size:11px;line-height:1.65}
+.sulsign-lead-figure{max-width:500px;justify-self:end;background:#080c0a}
+.sulsign-lead-figure figcaption{padding:0 16px 16px}
+.sulsign-story{padding-top:60px}
+.sulsign-project .section-label>span{color:#ff8bc5}
+.sulsign-deliverables .micro{color:#ff8bc5;font-size:11px}
+.sulsign-deliverables h3{line-height:1.15}
+.sulsign-system,.sulsign-applications{padding-top:90px;scroll-margin-top:112px}
+.sulsign-section-heading{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:end;margin:28px 0 38px}
+.studio .sulsign-section-heading h2{font-size:clamp(34px,4.3vw,58px);line-height:1.08}
+.sulsign-section-heading p{max-width:40ch;color:var(--muted);font-size:14px;line-height:1.8}
+.sulsign-manual-signature{max-width:1000px}
+.sulsign-manual-details{border-block:1px solid #ffffff30;margin-top:30px}
+.sulsign-manual-details summary{cursor:pointer;padding:20px 0;min-height:60px;font-size:15px;line-height:1.7}
+.sulsign-manual-pages{display:grid;gap:30px;padding:14px 0 30px;max-width:1000px}
+.sulsign-manual-link{flex-wrap:wrap;justify-content:flex-start;margin-top:20px;gap:14px;color:#ff8bc5}
+.sulsign-file-type{font-size:11px!important;color:var(--muted)}
+.sulsign-art-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:40px;align-items:start}
+.sulsign-art-grid>figure:last-child{max-width:500px;justify-self:end}
+.sulsign-note{padding-top:40px;padding-bottom:48px;border-bottom:1px solid #ffffff30}
+.sulsign-note .micro{color:#ff8bc5}
+.sulsign-note p{margin-top:12px}
+.sulsign-note>.text-link{flex-shrink:0;color:#ff8bc5}
+.sulsign-contact{margin-top:0;border-top:0}
+.sulsign-contact-actions{grid-column:2;grid-row:1/3;display:grid;gap:10px;justify-items:start;max-width:350px}
+.sulsign-contact-actions .solid-link{margin-top:0;align-items:center;font-size:14px}
+.sulsign-contact-actions .text-link{grid-column:auto;grid-row:auto}
+@media(max-width:1000px){.sulsign-opening{gap:40px}.sulsign-art-grid{gap:28px}.sulsign-note{align-items:start;flex-direction:column;gap:24px}}
+@media(max-width:700px){
+ .sulsign-head .section-top{margin-top:34px;margin-bottom:22px}
+ .sulsign-opening{grid-template-columns:1fr;gap:32px}
+ .studio .sulsign-head h1{font-size:clamp(62px,19vw,105px)}
+ .sulsign-opening .case-intro{font-size:29px;margin-top:20px!important;max-width:20ch}
+ .sulsign-project .sulsign-lead{margin-top:20px;font-size:14px;max-width:36ch}
+ .sulsign-opening-copy>.text-link{margin-top:18px}
+ .sulsign-lead-figure{width:100%;max-width:500px;justify-self:start}
+ .sulsign-story{padding-top:30px}
+ .studio .sulsign-story h2{font-size:38px;line-height:1.08}
+ .sulsign-story p:not(.section-label){font-size:14px;line-height:1.8}
+ .sulsign-deliverables h3{font-size:25px;margin-top:12px}
+ .sulsign-deliverables p{font-size:14px;margin-top:12px}
+ .sulsign-system,.sulsign-applications{padding-top:54px;scroll-margin-top:94px}
+ .sulsign-section-heading{grid-template-columns:1fr;gap:18px;margin:22px 0 28px}
+ .studio .sulsign-section-heading h2{font-size:35px}
+ .sulsign-project figcaption{font-size:10px}
+ .sulsign-manual-details{margin-top:24px}
+ .sulsign-manual-details summary{font-size:14px}
+ .sulsign-manual-pages{gap:24px}
+ .sulsign-manual-link{font-size:13px;gap:10px}
+ .sulsign-file-type{flex-basis:100%;order:1}
+ .sulsign-art-grid{grid-template-columns:1fr;gap:32px}
+ .sulsign-art-grid>figure:last-child{width:100%;justify-self:start}
+ .sulsign-contact-actions{grid-column:1;grid-row:auto;max-width:100%;gap:14px}
+ .sulsign-contact-actions .solid-link{font-size:13px;padding:14px 18px;gap:20px}
+ .studio .sulsign-contact h2{font-size:34px;line-height:1.1}
+}

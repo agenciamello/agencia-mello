@@ -271,11 +271,17 @@ async function expectTransformMotion(page, selector, description) {
     await page.waitForTimeout(250);
     assert.equal(await page.locator('.capability-ribbon').getAttribute('data-playing'), 'true', 'Ribbon plays only while visible');
 
-    const socialVisual=page.locator('.social-service-details .service-visual');
-    const socialY=(await documentPosition(socialVisual)).y;
-    await page.evaluate(y=>window.scrollTo({top:Math.max(0,y-900*.7),behavior:'instant'}),socialY);
-    await page.waitForTimeout(620);
-    assert.notEqual(await socialVisual.locator('.sheet-one').evaluate(element=>element.style.transform),'','Desktop social artwork motion remains active');
+    const socialVisual=page.locator('.social-client-showcase');
+    const socialArtwork=socialVisual.locator('.social-client-main img');
+    await socialArtwork.scrollIntoViewIfNeeded();
+    await socialArtwork.evaluate(image=>image.decode());
+    const socialImage=await socialArtwork.evaluate(image=>({
+      loaded:image.complete&&image.naturalWidth>0,
+      ratio:image.clientWidth/image.clientHeight,
+      naturalRatio:image.naturalWidth/image.naturalHeight,
+    }));
+    assert.ok(socialImage.loaded&&Math.abs(socialImage.ratio-socialImage.naturalRatio)<.025,'Client social artwork loads in full without cropping its message');
+    await expect(socialVisual.locator('.social-client-project-link')).toHaveAttribute('href','/projetos/sulsign');
     await page.locator('#servico-marca').evaluate(element=>element.scrollIntoView({block:'start',behavior:'instant'}));
     await expect(page.locator('[data-service-nav="2"]')).toHaveAttribute('aria-current','true');
     // Isolar o estado inicial do retrato das verificações anteriores de rolagem.

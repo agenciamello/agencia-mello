@@ -55,6 +55,12 @@ Capturas e resultados em `artifacts` são locais e ignorados pelo Git. Inspecion
 
 ## Histórico
 
+### Portfólio SulSign — 13/11/2026 — Issue #29
+
+A inclusão autorizada pelo usuário coloca SulSign como destaque do capítulo de identidade, mantendo Solace como estudo secundário compacto. Redes substitui a ilustração CSS da Mello por peças SulSign: Impacto Desde a Fachada em destaque e aplicação complementar no desktop. Preservar a proporção integral e os textos das peças, sem paralaxe que corte a arte, carrossel ou dependência de hover. No mobile, uma peça principal mantém a home enxuta; o link leva à página do projeto com o conjunto completo. A arte do estande fica nessa página. Reutilizar entradas editoriais e a versão estática de movimento reduzido. Verde e preto pertencem às peças do cliente; a interface mantém a identidade magenta da Mello.
+
+A página própria descreve sistema visual e peças de divulgação a partir do logotipo existente. Mostrar trechos do manual em detalhes acessíveis e identificar o PDF original como proposta. Identificar as representações de fachada/estande como simulações, preservando o escopo do design e a transparência. Esta autorização substitui somente o destaque anterior de Solace e a ilustração de redes; hero, oferta, sites, túnel, contato e rotas existentes permanecem.
+
 Os passes de setembro (impacto, Motion V2 e Mobile V3) evoluíram com vídeo no hero, novas prévias comerciais, revisão de copy e motion das subpáginas. Esta especificação substitui as descrições antigas de hero em planos sem vídeo e de mobile sem parallax.
 
 ## Revelação editorial — revisão do usuário

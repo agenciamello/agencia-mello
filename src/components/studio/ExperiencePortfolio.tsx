@@ -81,7 +81,7 @@ export function ExperiencePortfolio() {
       </section>
       <BrandServiceChapter/>
 
-      <p className="work-honesty">Sites apresentados como prévias comerciais. Solace é um estudo autoral.</p>
+      <p className="work-honesty">Sites apresentados como prévias comerciais. SulSign é um cliente Mello, com sistema visual e peças de divulgação. Solace é um estudo autoral.</p>
       <div className="copy-bridge">
         <span className="micro">Depois de ver os projetos</span>
         <h2 className="copy-bridge-reveal" aria-label="Vamos conversar sobre seu projeto."><span aria-hidden="true"><span className="copy-bridge-word">Vamos</span><span className="copy-bridge-word">conversar</span><span className="copy-bridge-word">sobre</span><span className="copy-bridge-word">seu</span><span className="copy-bridge-word">projeto.</span></span></h2>

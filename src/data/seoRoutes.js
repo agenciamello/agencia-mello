@@ -127,6 +127,19 @@ export const SEO_ROUTES = {
     projectType: 'Estudo conceitual de site para restaurante',
     projectImage: 'https://www.agenciamello.site/assets/portfolio-restaurant.webp',
   },
+  '/projetos/sulsign': {
+    title: 'SulSign | Sistema visual e peças de divulgação | Agência Mello',
+    description: 'Sistema visual e peças de divulgação desenvolvidos pela Agência Mello para a SulSign, a partir do logotipo existente, com paleta, tipografia e simulações de aplicação.',
+    robots: INDEX_ROBOTS,
+    type: 'article',
+    schema: 'project',
+    projectName: 'SulSign',
+    projectType: 'Sistema visual e peças de divulgação, com preservação do logotipo existente',
+    projectImage: 'https://www.agenciamello.site/assets/sulsign/assinatura.webp',
+    projectImageAlt: 'Assinatura SulSign preservada no sistema visual desenvolvido pela Agência Mello',
+    projectImageWidth: 1000,
+    projectImageHeight: 563,
+  },
   '/projetos/solace': {
     title: 'Solace | Estudo de identidade visual | Agência Mello',
     description: 'Estudo conceitual de identidade visual criado pela Agência Mello, explorando sistema de marca, tipografia, cor e aplicações com consistência.',
@@ -242,8 +255,8 @@ export function buildStructuredData(pathname, fallbackTitle) {
     primaryImageOfPage: {
       '@type': 'ImageObject',
       url: meta.image,
-      width: 1200,
-      height: 630,
+      width: meta.projectImageWidth || 1200,
+      height: meta.projectImageHeight || 630,
     },
   };
 
