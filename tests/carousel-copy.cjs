@@ -89,6 +89,15 @@ async function tapSwipe(page, cdp, horizontal) {
       await expect(page.locator('.event-stage-carousel')).toHaveCount(0);
       for (const button of await stage.locator('.event-open').all()) {
         await button.focus();
+        const thumb=button.locator('img');
+        await thumb.evaluate(image=>image.decode());
+        const geometry=await thumb.evaluate(image=>({
+          width:image.clientWidth,height:image.clientHeight,
+          naturalRatio:image.naturalWidth/image.naturalHeight,
+          radius:parseFloat(getComputedStyle(image).borderTopLeftRadius),
+        }));
+        assert.ok(geometry.width>0&&geometry.height>0&&geometry.radius>0&&Math.abs(geometry.width/geometry.height-geometry.naturalRatio)<.025,
+          `Artwork has rounded corners on its complete image, including square pieces: ${JSON.stringify(geometry)}`);
         const expectedSrc = await button.locator('img').getAttribute('src');
         await button.press('Enter');
         await expect(page.getByRole('dialog')).toBeVisible();

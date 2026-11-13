@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ContactLink } from './Studio';
 import { CASES } from '../../data/cases';
+import { TextReveal } from '../ui/text-reveal';
 
 export function SocialServiceDetails() {
   return <section className="social-service-details" aria-labelledby="social-service-heading">
@@ -29,7 +30,7 @@ export function SocialServiceDetails() {
 export function BrandServiceChapter() {
   const study=CASES.find(item=>item.slug==='solace')!;
   return <section id="servico-marca" className="solution-chapter brand-service-chapter" aria-labelledby="brand-chapter-heading" data-service-index="2">
-    <div className="solution-chapter-heading"><span className="micro">03 / Logo e identidade visual</span><h3 id="brand-chapter-heading">Tenha Uma marca que<br/>seu cliente reconhece.</h3><p>Logo, cores e tipografia para usar no perfil, nas artes e nos materiais do negócio.</p></div>
+    <div className="solution-chapter-heading"><span className="micro">03 / Logo e identidade visual</span><TextReveal as="h3" id="brand-chapter-heading" per="word" preset="blur" speedReveal={.6} speedSegment={.7}>{'Tenha Uma marca que\nseu cliente reconhece.'}</TextReveal><p>Logo, cores e tipografia para usar no perfil, nas artes e nos materiais do negócio.</p></div>
     <article className="brand-client-feature">
       <div className="brand-client-media" data-editorial-reveal="card">
         <figure>
