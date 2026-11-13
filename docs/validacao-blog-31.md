@@ -30,4 +30,6 @@ Evidências locais ignoradas pelo Git: `artifacts/blog-31/qa`, `artifacts/blog-3
 
 Chrome e emulação responsiva; sem aceitação em aparelho físico ou Safari. Compartilhamento nativo e suas falhas simulados nos testes; nenhuma mensagem enviada. Os testes axe cobrem os escopos exercitados e não comprovam conformidade WCAG integral. A interface nativa e os aplicativos de destino variam conforme o dispositivo. Download PNG continua disponível.
 
-Deployment e conferência remota da prévia: pendentes. Produção permanece na versão anterior até aprovação específica.
+Prévia Git e identificadores de deployment/commit registrados no [PR #32](https://github.com/agenciamello/agencia-mello/pull/32). Smoke remoto em sessões limpas de 390/1440 passou: índice/artigo, conteúdo e metadados nas URLs naturais com e sem barra final, imagens e PNGs, cópia do endereço do ambiente, reduced motion e ausência de overflow/erros. Navegação índice → artigo também conferida com JavaScript desativado no deployment Vercel.
+
+O provedor pode consumir `_vercel_share` no redirecionamento inicial e autenticar por cookie antes de executar a aplicação. O helper preserva o token quando ele está disponível ao app; links externos de revisão são fornecidos completos e testados em sessão limpa, sem gravar o token em arquivos ou mensagens do PR. Produção permanece na versão anterior até aprovação específica.
