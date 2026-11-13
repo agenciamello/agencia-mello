@@ -6,8 +6,8 @@ Entrega: `/blog` e `/blog/gta-vi-marketing-licoes-lancamento`, com navegação c
 
 - Fonte única em `src/data/blogPosts.js`, usada por páginas, SEO e HTML inicial. Cinco lições e listas na ordem aprovada, autoria institucional, data de 13/11/2026 e estimativa de seis minutos de leitura.
 - Data anunciada de GTA VI (19/11/2026) e referências verificadas no site oficial em 13/11/2026. Revisar o texto temporal antes de publicar após o lançamento.
-- Capa e dois cards com logo oficial preservado, fontes incorporadas nos SVGs editáveis e PNGs de download 1080×1350. Duas fotos fictícias geradas com IA e identificadas nas legendas. Proveniência em `docs/blog-assets-31.md`.
-- Sem assets Rockstar incorporados, clientes/métricas inventados, CMS/login, comentários, afiliados, rastreadores ou novos pacotes comerciais.
+- Capa tipográfica inicial e dois cards com logo oficial preservado, fontes incorporadas nos SVGs editáveis e PNGs de download 1080×1350. Duas fotos fictícias geradas com IA e identificadas nas legendas. A capa foi posteriormente substituída pela recriação aprovada conforme registro abaixo. Proveniência em `docs/blog-assets-31.md`.
+- Sem arquivos oficiais Rockstar baixados e incorporados diretamente, clientes/métricas inventados, CMS/login, comentários, afiliados, rastreadores ou novos pacotes comerciais. A nova capa é uma recriação derivada de referência fornecida, identificada como imagem não oficial.
 
 ## Validações locais executadas
 
@@ -33,3 +33,9 @@ Chrome e emulação responsiva; sem aceitação em aparelho físico ou Safari. C
 Prévia Git e identificadores de deployment/commit registrados no [PR #32](https://github.com/agenciamello/agencia-mello/pull/32). Smoke remoto em sessões limpas de 390/1440 passou: índice/artigo, conteúdo e metadados nas URLs naturais com e sem barra final, imagens e PNGs, cópia do endereço do ambiente, reduced motion e ausência de overflow/erros. Navegação índice → artigo também conferida com JavaScript desativado no deployment Vercel.
 
 O provedor pode consumir `_vercel_share` no redirecionamento inicial e autenticar por cookie antes de executar a aplicação. O helper preserva o token quando ele está disponível ao app; links externos de revisão são fornecidos completos e testados em sessão limpa, sem gravar o token em arquivos ou mensagens do PR. Produção permanece na versão anterior até aprovação específica.
+
+## Revisão — nova capa ilustrada
+
+Por solicitação do usuário, `capa-foto.webp` substitui a capa tipográfica no índice, artigo, HTML inicial e OG/Twitter/BlogPosting. Imagem WebP de 1600×900 e aproximadamente 247 KiB, preservando o enquadramento aprovado; alt descreve a fotografia entre os personagens e legenda/nota editorial identificam recriação com IA e imagem não oficial. A versão anterior e o PNG original foram preservados.
+
+Validação local desta revisão: lint, build, diff, `tests/blog-seo.cjs` e `tests/blog.cjs` passaram. Conferência em seis larguras, downloads/compartilhamento e demais fluxos do Blog sem regressões; inspeção visual desktop/mobile e console sem erros. Uma revisão independente confirmou uso consistente da nova imagem e ausência de caminhos antigos ativos. O PR #32 reúne o deployment correspondente e o registro da conferência remota. Não há autorização de merge ou produção nesta revisão.

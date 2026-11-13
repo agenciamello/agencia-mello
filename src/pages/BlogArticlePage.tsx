@@ -176,7 +176,7 @@ function ArticleContent({ post }: { post: BlogPost }) {
         </div>
       </header>
 
-      <figure className="blog-article-cover wrap"><img src={post.cover} alt={post.coverAlt} width="1600" height="900" fetchPriority="high"/><figcaption>Ilustração editorial da Agência Mello.</figcaption></figure>
+      <figure className="blog-article-cover wrap"><img src={post.cover} alt={post.coverAlt} width="1600" height="900" fetchPriority="high"/><figcaption>{post.coverCaption}</figcaption></figure>
 
       <div className="blog-article-layout wrap">
         <aside className="blog-toc" aria-label="Sumário do artigo"><span>Nesta leitura</span><nav aria-label="Lições do artigo">{toc}</nav><Link to={blogHref('/blog')} className="blog-toc-back"><ArrowLeft size={14} aria-hidden="true"/>Blog da Mello</Link></aside>

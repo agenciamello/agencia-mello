@@ -12,8 +12,9 @@ export const GTA_MARKETING_POST = {
   dateLabel: '13 de novembro de 2026',
   readingMinutes: 6,
   author: 'Agência Mello',
-  cover: '/assets/blog/gta-vi/capa.webp',
-  coverAlt: 'Capa editorial da Mello: GTA VI e marketing, cinco lições para seu lançamento.',
+  cover: '/assets/blog/gta-vi/capa-foto.webp',
+  coverAlt: 'Recriação ilustrada: mulher fotografa um homem posando junto a um carro vermelho, sob um pôr do sol com palmeiras.',
+  coverCaption: 'Recriação ilustrada com IA para este artigo. Imagem não oficial.',
   intro: [
     'Imagine uma pizzaria prestes a lançar um novo sabor.',
     'A receita foi testada. Os ingredientes foram escolhidos. A equipe está animada. Na hora de divulgar, tudo vira uma foto com a legenda: “Novidade! Já disponível.”',
@@ -114,7 +115,7 @@ export const GTA_MARKETING_POST = {
     'A Agência Mello pode ajudar a organizar as artes e o site que vão apresentar essa oferta.',
   ],
   cta: { label: 'Falar com a Mello sobre minha divulgação', href: '/#contato' },
-  editorialNote: 'Análise editorial da Agência Mello, com fontes oficiais consultadas em 13 de novembro de 2026. As lições são interpretações aplicadas a pequenos negócios, sem atribuir resultados comerciais à campanha. A pizzaria e suas peças são exemplos fictícios; as imagens da pizza foram geradas com IA para ilustrar a explicação. GTA VI e Rockstar Games são referências ao objeto da análise, sem vínculo com a Agência Mello.',
+  editorialNote: 'Análise editorial da Agência Mello, com fontes oficiais consultadas em 13 de novembro de 2026. As lições são interpretações aplicadas a pequenos negócios, sem atribuir resultados comerciais à campanha. A capa é uma recriação ilustrada com IA a partir de referência fornecida, sem caráter oficial. A pizzaria e suas peças são exemplos fictícios; as imagens da pizza foram geradas com IA para ilustrar a explicação. GTA VI e Rockstar Games são referências ao objeto da análise, sem vínculo com a Agência Mello.',
 };
 
 export const BLOG_POSTS = [GTA_MARKETING_POST];

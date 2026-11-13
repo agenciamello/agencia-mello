@@ -1,21 +1,26 @@
 # Assets do primeiro artigo — Issue #31
 
-Material próprio para “GTA VI e marketing: 5 lições de lançamento para aplicar no seu negócio”. Nenhuma screenshot, arte, personagem, fonte ou logotipo da Rockstar foi incorporado. A expressão GTA VI aparece em tipografia editorial da Mello para identificar o assunto analisado.
+Material visual para “GTA VI e marketing: 5 lições de lançamento para aplicar no seu negócio”. A primeira versão tinha capa tipográfica própria. Em revisão posterior, o usuário aprovou a recriação ilustrada da referência fornecida, com a mulher fotografando pelo celular e o homem posando junto ao carro, e pediu usá-la como capa. Ela é derivada dessa referência e não é apresentada como arte oficial da Rockstar.
 
 ## Arquivos finais
 
 Em `public/assets/blog/gta-vi/`:
 
-- `capa.webp`: 1600 × 900, composição editorial em preto, papel e magenta, com cinco etapas da divulgação. `capa.svg` preserva texto editável, fontes incorporadas e logo oficial da Mello.
+- `capa-foto.webp`: capa atual, 1600 × 900, cópia otimizada da recriação com celular aprovada pelo usuário. Fonte PNG preservada no workspace, sem alteração criativa nesta integração.
+- `capa.webp`: capa tipográfica anterior preservada, 1600 × 900, composição editorial em preto, papel e magenta, com cinco etapas da divulgação. `capa.svg` preserva texto editável, fontes incorporadas e logo oficial da Mello.
 - `pizza-close.webp`: 1536 × 1024, ilustração fotográfica fictícia gerada com IA.
 - `pizza-mesa.webp`: 1536 × 1024, cena fictícia gerada com IA usando a primeira imagem como referência de continuidade.
 - `card-lancamento.png`: 1080 × 1350, frase exata “Seu lançamento começa antes do ‘já disponível’.” (aspas tipográficas duplas no arquivo). Versão editável em `card-lancamento.svg`.
 - `card-missao.png`: 1080 × 1350, frase exata “Comprar de você precisa ser mais fácil que uma missão do GTA.”. Versão editável em `card-missao.svg`.
 - `font-license-space-grotesk.txt` e `font-license-inter.txt`: licenças SIL OFL 1.1 das fontes incorporadas nos SVGs.
 
-As fotos são exemplos de uma pizzaria fictícia. Não representam cliente Mello, produto real, campanha contratada ou evidência de resultados. As figuras do artigo precisam informar essa natureza ilustrativa. A capa e os cards são composições tipográficas autorais com o PNG oficial de `public/assets/agencia-mello-logo.png` incorporado sem redesenho. Fotos sem texto, marca ou logotipo.
+As fotos são exemplos de uma pizzaria fictícia. Não representam cliente Mello, produto real, campanha contratada ou evidência de resultados. As figuras do artigo precisam informar essa natureza ilustrativa. A capa tipográfica anterior e os cards são composições autorais com o PNG oficial de `public/assets/agencia-mello-logo.png` incorporado sem redesenho. A nova capa é uma recriação ilustrativa com IA a partir de referência fornecida; legenda e nota editorial deixam clara sua natureza não oficial.
 
 ## Origem e geração
+
+### Revisão da capa aprovada
+
+O PNG `gta-vi-foto-celular.png` aprovado pelo usuário tem 1672×941 e SHA-256 `d330b11b963549a12fdad8361c860389d3d720c8cb2c1ddb8389af970812d58f`. A integração exporta `capa-foto.webp` em 1600×900, qualidade 90, 252.506 bytes, sem texto ou alterações criativas. A diferença de proporção exige apenas 0,4785 px de corte vertical total na saída. SHA-256 do WebP: `83d9a5094e4784e29b91a65c397f43f8c92ccaf4af2560e84ec97d0bbcb90374`. O PNG aprovado e a versão tipográfica anterior permanecem preservados. Índice, artigo, HTML inicial e compartilhamento usam o novo caminho pela fonte de dados.
 
 Modo usado: ferramenta integrada `image_gen`, sem CLI/API de geração. Originais PNG preservados em `artifacts/blog-31/originals/` (pasta ignorada pelo Git) e no diretório original da ferramenta. A segunda geração utilizou a primeira como referência e manteve o produto/ingredientes.
 
@@ -47,5 +52,5 @@ node scripts/generate-blog-art.mjs
 - Dimensões verificadas por metadados após exportação; proporção 3:2 nas duas fotos e 4:5 nos cards.
 - Textos e acentos conferidos nas fontes SVG e na renderização, incluindo as duas frases completas.
 - Logo oficial incorporado como arquivo original, sem redesenho.
-- Arquivos WebP/PNG finais somam aproximadamente 691 KiB; os SVGs editáveis, com fontes incorporadas, não precisam ser carregados pela página.
+- Na primeira versão, WebP/PNG usados somavam aproximadamente 691 KiB. O arquivo da nova capa é otimizado separadamente; os SVGs editáveis da versão tipográfica, com fontes incorporadas, permanecem preservados e não precisam ser carregados pela página.
 - Relatório local completo em `artifacts/blog-31/assets-report.json`.
