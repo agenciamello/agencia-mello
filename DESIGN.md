@@ -55,6 +55,18 @@ Capturas e resultados em `artifacts` são locais e ignorados pelo Git. Inspecion
 
 ## Histórico
 
+### Blog editorial — Issue #31
+
+Blog e artigo usam a identidade da Mello: papel quente, preto, magenta, Space Grotesk/Inter e espaço de leitura. O índice começa com uma única matéria em destaque, sem simular volume de publicações ou categorias vazias. Home continua priorizando os serviços; Blog é um link de navegação e rodapé. O artigo tem uma coluna principal confortável, sumário lateral em telas amplas e detalhes acessíveis no mobile. Títulos, fontes, autoria/data e CTA legíveis sem depender de animação. Movimento discreto, sem scroll preso ou efeitos que atrasem a leitura; respeitar a preferência dinâmica por movimento reduzido. Nas rotas do Blog, usar os CTAs explícitos e ocultar o WhatsApp flutuante para que não cubra os controles de download/compartilhamento no celular; o comportamento das rotas anteriores permanece.
+
+Visuais próprios da matéria: capa editorial, duas fotos fictícias da mesma pizza e demonstrações em HTML/CSS para sequência de divulgação, identidade e caminho até o pedido. Sinalizar exemplos fictícios e imagens geradas com IA. Os cards autorais têm PNG 1080×1350 para download e fonte SVG editável, com assinatura oficial preservada. Compartilhar abre somente a interface nativa após clique; copiar link tem estado anunciado e alternativa manual quando a API não está disponível. Não copiar um destino de produção inexistente durante a revisão: preservar host e eventual token temporário da prévia apenas em memória de execução. Não enviar mensagens automaticamente.
+
+Na revisão da capa, o usuário escolheu a recriação aprovada da cena com celular. Usar a imagem integral e sem texto sobreposto no índice e no artigo, com proporção 16:9 e cópia WebP 1600×900. Atualizar compartilhamento e alt pela mesma fonte de dados; a legenda identifica recriação com IA e imagem não oficial. A capa tipográfica anterior fica preservada como alternativa editável, sem substituir a opção aprovada no fluxo atual.
+
+As duas fotos adicionais de GTA VI fornecidas pelo usuário entram entre parágrafos nas lições de identidade e próximo passo. Figuras com proporção integral, cantos de 12px, legendas breves e espaço antes/depois dão pausas visuais sem reescrever a copy. Carregamento tardio, dimensões reservadas e versões WebP; mesma posição no HTML inicial. Preservar os exemplos práticos da pizzaria e a capa aprovada.
+
+O trailer da revisão editorial entra na primeira lição com apresentação tipográfica nas cores Mello; não usar a capa com IA como miniatura oficial. A ação de assistir cria o player externo; fechar o remove e devolve o foco ao ativador. Sem reprodução ou conexão ao YouTube antes da ação, sem dependência de hover ou animação. Reservar espaço responsivo e manter player de pelo menos 200×200px, link externo e fonte acessíveis. O HTML inicial oferece o link de assistir sem JavaScript. A fonte do dado histórico aparece junto da abertura.
+
 ### Portfólio SulSign — 13/11/2026 — Issue #29
 
 A inclusão autorizada pelo usuário coloca SulSign como destaque do capítulo de identidade, mantendo Solace como estudo secundário compacto. Redes substitui a ilustração CSS da Mello por peças SulSign: Impacto Desde a Fachada em destaque e aplicação complementar no desktop. Preservar a proporção integral e os textos das peças, sem paralaxe que corte a arte, carrossel ou dependência de hover. No mobile, uma peça principal mantém a home enxuta; o link leva à página do projeto com o conjunto completo. A arte do estande fica nessa página. Reutilizar entradas editoriais e a versão estática de movimento reduzido. Verde e preto pertencem às peças do cliente; a interface mantém a identidade magenta da Mello.

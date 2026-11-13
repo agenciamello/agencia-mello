@@ -11,6 +11,8 @@ import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { TermsPage } from "./pages/TermsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { CaseStudyPage } from "./pages/CaseStudyPage";
+import { BlogIndexPage } from "./pages/BlogIndexPage";
+import { BlogArticlePage } from "./pages/BlogArticlePage";
 import { CriacaoSitesBelfordRoxoPage, CriacaoSitesDuqueDeCaxiasPage, CriacaoSitesNovaIguacuPage } from "./pages/CriacaoSitesNovaIguacuPage";
 
 function ScrollHandler() {
@@ -39,6 +41,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/site-essencial" element={<SiteEssencialPage />} />
+        <Route path="/blog" element={<BlogIndexPage />} />
+        <Route path="/blog/:slug" element={<BlogArticlePage />} />
         <Route path="/criacao-de-sites-nova-iguacu" element={<CriacaoSitesNovaIguacuPage />} />
         <Route path="/criacao-de-sites-belford-roxo" element={<CriacaoSitesBelfordRoxoPage />} />
         <Route path="/criacao-de-sites-duque-de-caxias" element={<CriacaoSitesDuqueDeCaxiasPage />} />

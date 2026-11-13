@@ -2,6 +2,22 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/gta-vi-marketing-licoes-lancamento",
+      "destination": "/blog/gta-vi-marketing-licoes-lancamento/index.html"
+    },
+    {
+      "source": "/blog/gta-vi-marketing-licoes-lancamento/",
+      "destination": "/blog/gta-vi-marketing-licoes-lancamento/index.html"
+    },
+    {
       "source": "/site-essencial",
       "destination": "/site-essencial/index.html"
     },

@@ -67,6 +67,18 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 4. Tratar proximidade, agilidade e ausência de burocracia como prática operacional, não como promessa vazia.
 5. Usar apenas provas reais e identificar explicitamente projetos conceituais.
 
+## Blog — sprint inicial — Issue #31
+
+O usuário autorizou uma seção Blog em `/blog` e a primeira matéria em `/blog/gta-vi-marketing-licoes-lancamento`, com o texto aprovado “GTA VI e marketing: 5 lições de lançamento para aplicar no seu negócio”. O objetivo é oferecer conteúdo útil sobre presença digital, design e divulgação, com caminhos coerentes para serviços e, futuramente, produtos próprios ou recomendações identificadas. Nesta entrega há uma matéria real; não inventar outros artigos, comentários, avaliações ou métricas. Designer Plus e links de afiliado aguardam dados e conteúdo próprios, sem ofertas fictícias nesta sprint.
+
+Conteúdo e datas têm fonte compartilhada em `src/data/blogPosts.js`; autoria institucional Agência Mello, fontes oficiais, cinco aplicações práticas e duas frases autorais disponíveis em cards. A pizzaria FORNO, seus materiais e as fotos são exemplos fictícios; imagens geradas com IA são identificadas. O artigo trata escolhas observáveis de apresentação como leitura editorial, sem atribuir vendas ou resultados à campanha de GTA VI. Lançamento anunciado de 19/11/2026 conferido em 13/11/2026; revisar o trecho temporal antes de eventual publicação posterior à data. Materiais oficiais Rockstar permanecem referenciados por links. Em revisão posterior, o usuário aprovou a recriação com celular e pediu usá-la como capa: a imagem derivada de referência fornecida é identificada como recriação ilustrativa com IA, sem caráter oficial. Essa solicitação substitui a capa tipográfica inicial, preservada nos arquivos.
+
+Na revisão seguinte, o usuário forneceu duas imagens de GTA VI e autorizou distribuí-las no corpo da matéria para aliviar os blocos de texto. Usar as cópias otimizadas com legendas e alt descritivos, sem atribuir autoria oficial, execução do jogo no celular ou resultados comerciais. As imagens fornecidas se distinguem dos exemplos fictícios e da capa com IA; origem e arquivos em `docs/blog-assets-31.md`.
+
+A revisão editorial autorizada após a comparação com a V4 traz GTA VI para a abertura, com o marco histórico do primeiro trailer (>90 milhões de visualizações/24h em dezembro de 2023), vinculado ao Guinness. Substituir trechos para variar exemplos de evento, loja e serviços e encerrar com o briefing (o que lançar, para quem e quando), sem aumentar a copy nem acrescentar promessas de resultado. Trailer 1 oficial da Rockstar disponível no YouTube por escolha do leitor; o player externo é carregado somente após clique, com acesso externo alternativo e link no HTML sem JavaScript. Sem download/republicação do vídeo ou rastreamento próprio.
+
+Escopo: índice, artigo, navegação, sumário, SEO/HTML inicial, imagens próprias e fornecidas, downloads/compartilhamento explícitos. Sem CMS, login, comentários, analytics/rastreadores ou publicação em produção. A autorização atual é implementar e fornecer a prévia de PR para revisão. Serviços, ofertas, clientes, estudos e rotas anteriores permanecem.
+
 ## Revisão da prévia — 13/11/2026 — Issue #29
 
 - O usuário aprovou a inclusão SulSign e pediu refinamentos na mesma entrega/PR #30.

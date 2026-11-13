@@ -7,6 +7,7 @@ import '../../experience.css';
 import { ContactIntent } from './ContactIntent';
 import { ChapterNavigation } from './ChapterNavigation';
 import { useStudioMotion } from './StudioMotion';
+import { blogHref } from '../../lib/blogLinks';
 export function usePageTitle(title: string) {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -46,6 +47,19 @@ export function usePageTitle(title: string) {
     upsertMeta('meta[property="og:image"]','property','og:image',seo.image);
     upsertMeta('meta[property="og:image:secure_url"]','property','og:image:secure_url',seo.image);
     upsertMeta('meta[property="og:image:alt"]','property','og:image:alt',seo.imageAlt);
+    upsertMeta('meta[property="og:image:type"]','property','og:image:type',seo.imageType);
+    upsertMeta('meta[property="og:image:width"]','property','og:image:width',String(seo.imageWidth));
+    upsertMeta('meta[property="og:image:height"]','property','og:image:height',String(seo.imageHeight));
+    const articleMeta = {
+      'article:published_time': seo.articlePublishedAt,
+      'article:modified_time': seo.articleModifiedAt,
+      'article:author': seo.articleAuthor,
+      'article:section': seo.articleSection,
+    };
+    Object.entries(articleMeta).forEach(([key,value]) => {
+      if (value) upsertMeta(`meta[property="${key}"]`,'property',key,value);
+      else document.head.querySelector(`meta[property="${key}"]`)?.remove();
+    });
     upsertMeta('meta[name="twitter:title"]','name','twitter:title',seo.title);
     upsertMeta('meta[name="twitter:description"]','name','twitter:description',seo.description);
     upsertMeta('meta[name="twitter:image"]','name','twitter:image',seo.image);
@@ -119,10 +133,10 @@ export function StudioShell({ children, contact = true }: {children: React.React
   return <div className="studio" ref={root}><a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
     <header className="studio-header"><div className="reading-progress" aria-hidden="true"/><div className="wrap header-inner"><Link to="/" aria-label="Agência Mello — início" className="studio-wordmark"><img src="/assets/agencia-mello-logo.png" alt="Agência Mello" width="803" height="289"/></Link>
     <button ref={toggle} type="button" className="menu-toggle" aria-expanded={open} aria-controls="studio-nav" onClick={()=>setOpen(!open)}>{open?'Fechar −':'Menu +'}</button>
-    <nav onClick={(event)=>{if((event.target as HTMLElement).closest('a'))setOpen(false);}} id="studio-nav" className={open?'studio-nav is-open':'studio-nav'} aria-label="Navegação principal"><Link to="/#projetos">Projetos</Link><Link to="/#servicos">O que fazemos</Link><Link to="/site-essencial">Site Essencial</Link><Link to="/#sobre">A Mello</Link><ContactLink messageKey="header" className="nav-contact">Falar sobre meu projeto <span aria-hidden="true">↗</span></ContactLink></nav></div></header>
+    <nav onClick={(event)=>{if((event.target as HTMLElement).closest('a'))setOpen(false);}} id="studio-nav" className={open?'studio-nav is-open':'studio-nav'} aria-label="Navegação principal"><Link to="/#projetos">Projetos</Link><Link to="/#servicos">O que fazemos</Link><Link to="/site-essencial">Site Essencial</Link><Link to="/#sobre">A Mello</Link><Link to={blogHref("/blog")} aria-current={location.pathname.startsWith("/blog") ? "page" : undefined}>Blog</Link><ContactLink messageKey="header" className="nav-contact">Falar sobre meu projeto <span aria-hidden="true">↗</span></ContactLink></nav></div></header>
     {location.pathname === '/' && <ChapterNavigation/>}<main id="conteudo" tabIndex={-1}>{children}</main>
     {contact && <section id="contato" className="studio-contact sales-contact" aria-label="Contato"><div className="wrap"><SectionLabel number="05">Vamos conversar</SectionLabel><div className="contact-composition"><h2 className="contact-title" aria-label="Site, identidade ou artes: vamos conversar."><b className="contact-line"><b>Site, identidade</b></b><b className="contact-line"><b>ou artes:</b></b><b className="contact-line"><b><em>vamos conversar.</em></b></b></h2><img className="contact-mark" src="/assets/agencia-mello-icone.png" alt="" width="292" height="289" loading="lazy" aria-hidden="true"/></div><p className="contact-invitation">Conte o que você precisa e consulte a próxima data disponível.</p><ContactIntent/><div className="contact-bottom"><p>Nosso número no WhatsApp</p><ContactLink messageKey="flutuante" className="text-link" label="Abrir conversa com Matheus Mello no WhatsApp">{SITE_INFO.whatsappFormatted}</ContactLink></div></div></section>}
-    <FloatingWhatsApp pathname={location.pathname}/>
-    <footer className="studio-footer wrap"><div className="footer-signature" aria-hidden="true"><img src="/assets/agencia-mello-logo.png" alt="" width="803" height="289" loading="lazy"/><span>Sua presença online<br/>à altura do seu trabalho.</span></div><div className="footer-summary"><strong>Sites, identidade e conteúdo<br/>para pequenos negócios.</strong><span>Rio de Janeiro, Brasil.<br/>Online pra todo o Brasil.</span></div><div className="footer-links"><a href={SITE_INFO.instagram.url} target="_blank" rel="noreferrer">Instagram ↗</a><a href={SITE_INFO.behance.url} target="_blank" rel="noopener noreferrer" aria-label="Behance (abre em nova aba)">Behance <span aria-hidden="true">↗</span></a><Link to="/site-essencial">Site Essencial</Link><Link to="/politica-de-privacidade">Privacidade</Link><Link to="/termos-de-uso">Termos de uso</Link></div><p>© {new Date().getFullYear()} Agência Mello</p></footer>
+    {location.pathname !== '/blog' && !location.pathname.startsWith('/blog/') && <FloatingWhatsApp pathname={location.pathname}/>}
+    <footer className="studio-footer wrap"><div className="footer-signature" aria-hidden="true"><img src="/assets/agencia-mello-logo.png" alt="" width="803" height="289" loading="lazy"/><span>Sua presença online<br/>à altura do seu trabalho.</span></div><div className="footer-summary"><strong>Sites, identidade e conteúdo<br/>para pequenos negócios.</strong><span>Rio de Janeiro, Brasil.<br/>Online pra todo o Brasil.</span></div><div className="footer-links"><a href={SITE_INFO.instagram.url} target="_blank" rel="noreferrer">Instagram ↗</a><a href={SITE_INFO.behance.url} target="_blank" rel="noopener noreferrer" aria-label="Behance (abre em nova aba)">Behance <span aria-hidden="true">↗</span></a><Link to="/site-essencial">Site Essencial</Link><Link to={blogHref("/blog")}>Blog</Link><Link to="/politica-de-privacidade">Privacidade</Link><Link to="/termos-de-uso">Termos de uso</Link></div><p>© {new Date().getFullYear()} Agência Mello</p></footer>
   </div>;
 }
