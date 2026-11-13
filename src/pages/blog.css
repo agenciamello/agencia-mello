@@ -96,6 +96,26 @@
 .blog-inline-source{font-size:11px;line-height:1.6;margin-top:21px!important}
 .blog-inline-source a{display:inline-flex;align-items:center;gap:8px;color:#85204f;border-bottom:1px solid #85204f45;padding-block:5px}
 .blog-inline-source a:hover{border-color:#85204f}
+.blog-trailer{margin:29px 0 31px;background:#171318;color:#eeeae4}
+.blog-trailer-stage{position:relative;isolation:isolate;aspect-ratio:16/9;min-height:220px;width:100%;background:#171318}
+.blog-trailer-stage>iframe{position:absolute;inset:0;display:block;width:100%;height:100%;min-height:200px;border:0}
+.blog-trailer-activate{position:absolute;inset:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:start;justify-content:space-between;gap:22px;padding:clamp(25px,4vw,44px);border:0;background:linear-gradient(125deg,#211725,#171318 64%);color:#eeeae4!important;text-align:left;cursor:pointer}
+.blog-trailer-activate:after{content:'';position:absolute;right:0;top:0;width:18%;height:100%;border-left:1px solid #ec489945;background:linear-gradient(135deg,transparent 45%,#ec489910);pointer-events:none}
+.blog-trailer-eyebrow{position:relative;z-index:1;font-size:10px;line-height:1.6;letter-spacing:.08em;text-transform:uppercase;color:#d2b6c7}
+.blog-trailer-title{position:relative;z-index:1;display:block;max-width:530px;font:500 clamp(28px,3.7vw,44px)/1.13 'Space Grotesk',Arial,sans-serif;letter-spacing:-.045em;text-wrap:balance}
+.blog-trailer-play{position:relative;z-index:1;display:flex;align-items:center;gap:15px;font-size:12px;line-height:1.6;color:#f4d5e5}
+.blog-trailer-play-icon{display:grid;place-items:center;width:49px;height:49px;flex:none;border:1px solid #ec4899;border-radius:50%;color:#ec4899;background:#ec48990b}
+.blog-trailer-play-icon>svg{margin-left:3px}
+.blog-trailer-activate:hover .blog-trailer-play-icon{background:#ec4899;color:#171318}
+.blog-surface .blog-trailer-activate:focus-visible{outline-color:#ffa5d0;outline-offset:-6px}
+.blog-trailer-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:9px 15px;border-bottom:1px solid #ffffff24;font-size:10px;line-height:1.6;color:#d2b6c7}
+.blog-trailer-close{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex:none;min-height:44px;padding:8px;border:0;background:transparent;color:#eeeae4!important;font-size:11px;line-height:1.6;cursor:pointer}
+.blog-trailer-close:hover{color:#ffa5d0!important}
+.blog-surface .blog-trailer-close:focus-visible{outline-color:#ffa5d0}
+.blog-trailer figcaption{background:#e5ded8;color:#695660;padding:15px 19px;font-size:11px;line-height:1.8}
+.blog-trailer-links{display:flex;align-items:center;flex-wrap:wrap;gap:0 24px;margin-top:6px}
+.blog-trailer-links>a{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:#85204f;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#a48594}
+.blog-trailer-links>a:hover{text-decoration-color:#85204f}
 .blog-example,.blog-photo-example{margin:31px 0 0;min-width:0}
 .blog-figure-label{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:9px;line-height:1.5;letter-spacing:.04em;text-transform:uppercase;padding:16px 19px;border-bottom:1px solid #ffffff24}
 .blog-figure-label>span:last-child{color:#cabdc5;flex-shrink:0}
@@ -237,6 +257,19 @@
   .studio .blog-lesson h2{font-size:30px;line-height:1.13}
   .blog-lesson-list{padding-left:20px}
   .blog-inline-source{font-size:10px}
+  .blog-trailer{margin:25px 0}
+  .blog-trailer-stage{min-height:235px}
+  .blog-trailer-activate{padding:24px 20px;gap:18px}
+  .blog-trailer-eyebrow{font-size:9px}
+  .blog-trailer-title{font-size:28px;max-width:310px}
+  .blog-trailer-play{gap:11px;font-size:11px}
+  .blog-trailer-play-icon{width:42px;height:42px}
+  .blog-trailer-play-icon>svg{width:21px;height:21px}
+  .blog-trailer-toolbar{align-items:start;padding:9px 12px;gap:8px}
+  .blog-trailer-toolbar>span{padding-top:10px;font-size:9px}
+  .blog-trailer-close{font-size:10px}
+  .blog-trailer figcaption{padding:13px;font-size:11px}
+  .blog-trailer-links{gap:0 17px}
   .blog-example,.blog-photo-example{margin-top:25px}
   .blog-figure-label{font-size:9px;gap:10px;padding:13px}
   .blog-figure-label>span:first-child{max-width:165px}

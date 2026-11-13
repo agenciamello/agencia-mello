@@ -210,6 +210,14 @@ function checkMetadata(html, expected) {
     assert.equal(meta(html, 'article:section', 'property'), post.category);
     assert.ok(!Number.isNaN(Date.parse(post.publishedAt)) && !Number.isNaN(Date.parse(post.modifiedAt)), 'Article dates are valid ISO date values');
     assert.equal(textOf(body.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)[1]), post.title);
+    assert.match(post.intro[0], /GTA VI/);
+    assert.match(post.intro[0], /2023/);
+    assert.ok(tags(body, 'a').some(item => item.href === post.introSource.url), 'Historical opening evidence has its primary source');
+    assert.ok(visibleText.indexOf(normalize(post.introSource.label)) < visibleText.indexOf(normalize(post.intro[1])), 'Evidence link follows the opening claim');
+    const trailerSection = sectionOf(body, post.trailer.sectionId);
+    assert.ok(tags(trailerSection, 'a').some(item => item.href === post.trailer.watchUrl), 'No-JS article exposes an actual trailer destination');
+    assert.ok(textOf(trailerSection).includes(normalize(post.trailer.caption)), 'Trailer context is present without JavaScript');
+    assert.equal(tags(body, 'iframe').length, 0, 'Initial article never loads the external video player');
     for (const paragraph of [...post.intro, post.context, ...post.closing, post.editorialNote]) {
       assert.ok(visibleText.includes(normalize(paragraph)), `Initial article body contains approved text: ${paragraph.slice(0, 70)}`);
     }

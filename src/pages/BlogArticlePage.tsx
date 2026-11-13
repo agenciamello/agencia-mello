@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { ArrowDownToLine, ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Clock3, Copy, Link2, Share2 } from 'lucide-react';
+import { ArrowDownToLine, ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Clock3, Copy, Link2, Play, Share2, X } from 'lucide-react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { StudioShell, usePageTitle } from '../components/studio/Studio';
 import { getBlogPost } from '../data/blogPosts.js';
@@ -107,6 +107,46 @@ function ShareActions({ post, quote }: { post: BlogPost; quote?: BlogQuote }) {
   </div>;
 }
 
+function OfficialTrailer({ trailer }: { trailer: BlogPost['trailer'] }) {
+  const [playing, setPlaying] = useState(false);
+  const activateButton = useRef<HTMLButtonElement>(null);
+  const player = useRef<HTMLIFrameElement>(null);
+  const restoreFocus = useRef(false);
+
+  useEffect(() => {
+    if (playing) player.current?.focus();
+    else if (restoreFocus.current) {
+      restoreFocus.current = false;
+      activateButton.current?.focus();
+    }
+  }, [playing]);
+
+  function closeTrailer() {
+    restoreFocus.current = true;
+    setPlaying(false);
+  }
+
+  return <figure className="blog-trailer">
+    {playing && <div className="blog-trailer-toolbar"><span>Trailer oficial · Rockstar Games</span><button type="button" className="blog-trailer-close" onClick={closeTrailer}><X size={16} aria-hidden="true"/>Fechar trailer</button></div>}
+    <div className="blog-trailer-stage">
+      {playing ? <iframe
+        ref={player}
+        src={`https://www.youtube-nocookie.com/embed/${encodeURIComponent(trailer.youtubeId)}?autoplay=1&playsinline=1&rel=0`}
+        title={trailer.title}
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        allowFullScreen
+        referrerPolicy="strict-origin-when-cross-origin"
+        tabIndex={0}
+      /> : <button ref={activateButton} type="button" className="blog-trailer-activate" aria-label={trailer.label} onClick={() => setPlaying(true)}>
+        <span className="blog-trailer-eyebrow">Vídeo oficial · Rockstar Games</span>
+        <span className="blog-trailer-title">{trailer.title}</span>
+        <span className="blog-trailer-play"><span className="blog-trailer-play-icon"><Play size={24} aria-hidden="true"/></span><span>{trailer.label}</span></span>
+      </button>}
+    </div>
+    <figcaption><p>{trailer.caption}</p><div className="blog-trailer-links"><a href={trailer.watchUrl} target="_blank" rel="noopener noreferrer">Abrir no YouTube<ArrowUpRight size={14} aria-hidden="true"/><span className="blog-sr-only"> (abre em nova aba)</span></a><a href={trailer.sourceUrl} target="_blank" rel="noopener noreferrer">Fonte: Rockstar Games<ArrowUpRight size={14} aria-hidden="true"/><span className="blog-sr-only"> (abre em nova aba)</span></a></div></figcaption>
+  </figure>;
+}
+
 function LessonVisual({ kind }: { kind: string }) {
   if (kind === 'timeline') return <figure className="blog-example blog-timeline">
     <div className="blog-figure-label"><span>Um lançamento em três momentos</span><span>Exemplo fictício</span></div>
@@ -182,13 +222,14 @@ function ArticleContent({ post }: { post: BlogPost }) {
         <aside className="blog-toc" aria-label="Sumário do artigo"><span>Nesta leitura</span><nav aria-label="Lições do artigo">{toc}</nav><Link to={blogHref('/blog')} className="blog-toc-back"><ArrowLeft size={14} aria-hidden="true"/>Blog da Mello</Link></aside>
         <div className="blog-article-body">
           <details className="blog-mobile-toc"><summary>Nesta leitura <ChevronDown size={17} aria-hidden="true"/></summary><nav aria-label="Sumário das lições">{toc}</nav></details>
-          <div className="blog-article-intro">{post.intro.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>
+          <div className="blog-article-intro">{post.intro.map((paragraph, index) => <Fragment key={index}><p>{paragraph}</p>{index === 0 && post.introSource && <p className="blog-inline-source"><a href={post.introSource.url} target="_blank" rel="noopener noreferrer">{post.introSource.label}<ArrowUpRight size={14} aria-hidden="true"/><span className="blog-sr-only"> (abre em nova aba)</span></a></p>}</Fragment>)}</div>
           <p className="blog-context-note">{post.context}</p>
 
           {post.sections.map((section, index) => <section className="blog-lesson" id={section.id} key={section.id} aria-labelledby={`${section.id}-title`}>
             <div className="blog-lesson-title"><span aria-hidden="true">0{index + 1}</span><h2 id={`${section.id}-title`}>{section.title}</h2></div>
             {section.paragraphs.map((paragraph, paragraphIndex) => <Fragment key={paragraphIndex}>
               <p>{paragraph}</p>
+              {post.trailer?.sectionId === section.id && post.trailer.afterParagraph === paragraphIndex && <OfficialTrailer trailer={post.trailer}/>}
               {section.list?.length > 0 && section.listAfterParagraph === paragraphIndex && <ul className="blog-lesson-list">{section.list.map(item => <li key={item}>{item}</li>)}</ul>}
               {post.inlineImages.filter(image => image.sectionId === section.id && image.afterParagraph === paragraphIndex).map(image => <figure className="blog-game-figure" key={image.src}>
                 <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async"/>

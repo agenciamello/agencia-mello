@@ -75,6 +75,8 @@ Conteúdo e datas têm fonte compartilhada em `src/data/blogPosts.js`; autoria i
 
 Na revisão seguinte, o usuário forneceu duas imagens de GTA VI e autorizou distribuí-las no corpo da matéria para aliviar os blocos de texto. Usar as cópias otimizadas com legendas e alt descritivos, sem atribuir autoria oficial, execução do jogo no celular ou resultados comerciais. As imagens fornecidas se distinguem dos exemplos fictícios e da capa com IA; origem e arquivos em `docs/blog-assets-31.md`.
 
+A revisão editorial autorizada após a comparação com a V4 traz GTA VI para a abertura, com o marco histórico do primeiro trailer (>90 milhões de visualizações/24h em dezembro de 2023), vinculado ao Guinness. Substituir trechos para variar exemplos de evento, loja e serviços e encerrar com o briefing (o que lançar, para quem e quando), sem aumentar a copy nem acrescentar promessas de resultado. Trailer 1 oficial da Rockstar disponível no YouTube por escolha do leitor; o player externo é carregado somente após clique, com acesso externo alternativo e link no HTML sem JavaScript. Sem download/republicação do vídeo ou rastreamento próprio.
+
 Escopo: índice, artigo, navegação, sumário, SEO/HTML inicial, imagens próprias e fornecidas, downloads/compartilhamento explícitos. Sem CMS, login, comentários, analytics/rastreadores ou publicação em produção. A autorização atual é implementar e fornecer a prévia de PR para revisão. Serviços, ofertas, clientes, estudos e rotas anteriores permanecem.
 
 ## Revisão da prévia — 13/11/2026 — Issue #29

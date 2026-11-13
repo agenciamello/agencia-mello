@@ -40,6 +40,8 @@ async function initShare(context, mode = 'success') {
       const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
       await initShare(context);
       const page = await context.newPage();
+      const mediaRequests = [];
+      page.on('request', request => { if (/youtube(?:-nocookie)?\.com|ytimg\.com|googlevideo\.com/.test(new URL(request.url()).hostname)) mediaRequests.push(request.url()); });
       page.on('pageerror', error => errors.push(error.message));
       page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
       const response = await page.goto(`${base}/blog`, { waitUntil: 'networkidle' });
@@ -102,6 +104,28 @@ async function initShare(context, mode = 'success') {
         await img.scrollIntoViewIfNeeded();
         await expect.poll(() => img.evaluate(e => e.complete && e.naturalWidth > 0), { timeout: 15000 }).toBe(true);
       }
+      assert.deepEqual(mediaRequests, [], 'No video service is contacted before a reader asks to watch');
+      await expect(page.locator('.blog-article-intro')).toContainText(post.intro[0]);
+      await expect(page.getByRole('link', { name: new RegExp(post.introSource.label) })).toHaveAttribute('href', post.introSource.url);
+      // Isolate our keyboard/focus/loading contract from third-party network and media state.
+      await page.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({ contentType: 'text/html', body: '<!doctype html><html lang="pt-BR"><title>Player simulado para teste</title><body><button>Reproduzir</button></body></html>' }));
+      const activate = page.getByRole('button', { name: post.trailer.label, exact: true });
+      await expect(page.locator('.blog-trailer iframe')).toHaveCount(0);
+      await activate.focus(); await activate.press('Enter');
+      const player = page.locator('.blog-trailer iframe');
+      await expect(player).toHaveAttribute('title', post.trailer.title);
+      await expect(player).toBeFocused();
+      const playerUrl = new URL(await player.getAttribute('src'));
+      assert.equal(playerUrl.origin, 'https://www.youtube-nocookie.com');
+      assert.equal(playerUrl.pathname, `/embed/${post.trailer.youtubeId}`);
+      assert.equal(playerUrl.searchParams.get('autoplay'), '1');
+      await expect(player).toHaveAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      assert.ok(await player.evaluate(element => { const rect = element.getBoundingClientRect(); return rect.width >= 200 && rect.height >= 200; }), 'Player meets minimum dimensions on every tested width');
+      await expect(page.getByRole('link', { name: /Abrir no YouTube/ })).toHaveAttribute('href', post.trailer.watchUrl);
+      const close = page.getByRole('button', { name: 'Fechar trailer', exact: true });
+      await close.focus(); await close.press('Enter');
+      await expect(player).toHaveCount(0);
+      await expect(activate).toBeFocused();
       const mobileToc = await page.locator('.blog-mobile-toc').isVisible();
       const toc = mobileToc ? page.locator('.blog-mobile-toc') : page.locator('.blog-toc');
       if (mobileToc) await toc.locator('summary').click();
@@ -200,6 +224,8 @@ async function initShare(context, mode = 'success') {
     else await staticPage.getByRole('link', { name: 'Ler artigo', exact: true }).click();
     await expect(staticPage.locator('main h1')).toHaveText(post.title);
     await expect(staticPage.getByRole('heading', { name: post.sections[0].title, exact: true })).toHaveCount(1);
+    await expect(staticPage.getByRole('link', { name: /Assistir ao trailer oficial no YouTube/ })).toHaveAttribute('href', post.trailer.watchUrl);
+    await expect(staticPage.locator('iframe')).toHaveCount(0);
     await noOverflow(staticPage, 'No-JS mobile article');
     await noJs.close();
     assert.deepEqual(errors, []);

@@ -68,6 +68,12 @@ node scripts/generate-blog-art.mjs
 
 ## Verificação
 
+### Trailer e evidência histórica — revisão editorial
+
+O primeiro trailer é incorporado pelo player externo do YouTube somente após clique, sem baixar ou republicar o vídeo. O identificador `QdBZY2fkU-0` foi confirmado no link do [blog oficial do YouTube, de 5/12/2023](https://blog.youtube/culture-and-trends/grand-theft-auto-breaks-record/), que leva ao [Trailer 1](https://www.youtube.com/watch?v=QdBZY2fkU-0). A [página da Rockstar](https://www.rockstargames.com/VI/trailer-1) confirma o título e dezembro de 2023. A apresentação anterior ao clique é tipográfica, sem thumbnail externa ou capa com IA atribuída ao vídeo.
+
+O marco de mais de 90 milhões de visualizações/24h é apresentado como dado histórico de dezembro de 2023, conforme [registro do Guinness](https://www.guinnessworldrecords.com/world-records/407081-most-viewed-videogame-reveal-on-youtube-in-24-hours). Não representa desempenho atual nem resultado de campanhas de clientes. Referência editorial V4 estudada para estrutura; a redação desta revisão é própria.
+
 - Conferência visual das duas fotos, capa e dois cards.
 - Dimensões verificadas por metadados após exportação; proporção 3:2 nas duas fotos e 4:5 nos cards.
 - Textos e acentos conferidos nas fontes SVG e na renderização, incluindo as duas frases completas.

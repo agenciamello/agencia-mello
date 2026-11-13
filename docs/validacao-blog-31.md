@@ -49,3 +49,15 @@ Lint, build, `git diff --check`, `tests/blog-seo.cjs` e `tests/blog.cjs` passara
 Inspeção visual de ambas as figuras em desktop 1440×1000 e mobile 390×844 confirmou imagens integrais e ritmo de leitura. Console sem erros. Revisão independente sem bloqueios. Evidências locais ignoradas: `artifacts/blog-31/inline-images-qa` e `artifacts/blog-31/inline-images-visual`. Bundle principal mantém o aviso acima de 500 kB (572,8 kB / 176,5 kB gzip). Suítes gerais da sprint inicial não repetidas para esta revisão restrita às imagens do artigo. Limites de emulação/compartilhamento nativo permanecem.
 
 O deployment correspondente e a conferência remota serão registrados no PR #32. Sem autorização de merge ou produção.
+
+## Revisão editorial — abertura, exemplos, fechamento e trailer
+
+GTA VI aparece na primeira linha, junto do marco histórico do trailer em dezembro de 2023 e fonte Guinness explícita. Introdução reduzida a três parágrafos; exemplos de loja, evento e serviço ganham presença, e o fechamento pede o que será lançado, para quem e quando. Corpo editorial (introdução, contexto, títulos/parágrafos/listas e fechamento) passou de 811 para 747 palavras. Título, cinco lições/IDs, ordem das listas, imagens e cards preservados. A leitura ampliada de dados/fontes/legendas permanece semelhante (1.061 → 1.057 palavras), antes de controles de interface.
+
+Trailer 1 oficial vinculado à fonte primária; player montado somente após clique, foco no iframe e retorno ao ativador ao fechar. YouTube sem cookies no endereço de incorporação, política de referrer limitada à origem, tamanho mínimo 200×200px, acesso externo persistente. Fechar ou desmontar a página remove o player. Sem requisição ao serviço antes da ação. HTML inicial preserva copy/fonte e link para assistir sem JavaScript; nenhuma dependência adicionada.
+
+Lint/build/diff e `tests/blog-seo.cjs` passaram. `tests/blog.cjs` passou em seis larguras, incluindo ausência de contato ao YouTube antes do clique, ativação por teclado, atributos/dimensões do iframe, fechamento/retorno de foco e link sem JavaScript. O iframe é simulado nesse teste para isolar o contrato da interface; demais fluxos do Blog, quatro escopos axe, movimento reduzido, imagens/PNGs e ausência de overflow/erros preservados.
+
+A reprodução real do vídeo foi observada no navegador em desktop 1440×1000 e mobile 390×844, com imagens em movimento e interface do YouTube. Fechamento removeu o iframe e devolveu o foco ao botão; console sem erros na inspeção. Abertura/fonte e bloco de vídeo inspecionados no mobile. Revisão independente sem bloqueios. Evidências locais ignoradas: `artifacts/blog-31/editorial-qa` e `artifacts/blog-31/editorial-visual`. Bundle principal mantém aviso acima de 500 kB (575,7 kB / 177,2 kB gzip). Sem aceite em aparelho físico/Safari.
+
+Prévia e resultado remoto registrados no PR #32. Suítes gerais da sprint inicial não repetidas para esta revisão restrita ao Blog. Sem merge ou produção.
