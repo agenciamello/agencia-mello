@@ -9,7 +9,13 @@ const viewports = [[1440,900],[1024,900],[768,900],[390,844],[360,844],[320,844]
 
 async function showEvents(page) {
   await page.locator('#eventos-galeria').scrollIntoViewIfNeeded();
-  await page.locator('.event-open img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
+  const pause = page.getByRole('button', {name:'Pausar carrossel',exact:true});
+  if (await pause.count()) await pause.click();
+  for (const image of await page.locator('.event-open img').all()) {
+    await image.scrollIntoViewIfNeeded();
+    await image.evaluate(image => image.decode());
+  }
+  await page.locator('.event-open').first().scrollIntoViewIfNeeded();
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(850);
 }
@@ -26,7 +32,7 @@ async function showEvents(page) {
     await page.goto(base);
     await showEvents(page);
     const section = page.locator('#eventos');
-    await expect(section.locator('.event-open')).toHaveCount(4);
+    await expect(section.locator('.event-open')).toHaveCount(6);
     const order = await page.evaluate(() => {
       const before = document.querySelector('.commercial-project-grid');
       const events = document.querySelector('#eventos');
@@ -35,7 +41,7 @@ async function showEvents(page) {
         Boolean(events.compareDocumentPosition(after) & Node.DOCUMENT_POSITION_FOLLOWING);
     });
     assert.ok(order, 'Events follow site previews/offer and precede the identity chapter');
-    assert.ok((await section.locator('.event-piece').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).transform))).every(value=>value==='none'), 'Complete gallery stays static and readable; spatial motion belongs to the tunnel');
+    assert.ok((await section.locator('.event-piece').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).transform))).every(value=>value==='none'), 'Cards remain straight and readable within the native horizontal carousel');
     const stage = await section.locator('.event-stage').boundingBox();
     await page.mouse.move(stage.x + stage.width / 2, Math.max(100, Math.min(750, stage.y + stage.height / 2)));
     const scrollBefore = await page.evaluate(() => scrollY);
@@ -50,7 +56,7 @@ async function showEvents(page) {
     assert.equal(await section.locator('.event-cta').getAttribute('rel'), 'noopener noreferrer');
 
     // Every piece opens via keyboard; the native modal traps focus and Escape restores it.
-    for (let index=0; index<4; index++) {
+    for (let index=0; index<6; index++) {
       const button = section.locator('.event-open').nth(index);
       await button.focus();
       await button.press('Enter');
@@ -84,7 +90,7 @@ async function showEvents(page) {
       assert.ok(images.every(image=>image.loaded && image.fit==='contain'), `Whole images at ${width}`);
       const buttons = await section.locator('.event-open').evaluateAll(elements=>elements.map(element=>element.getBoundingClientRect()));
       assert.ok(buttons.every(box=>box.width>=44 && box.height>=44));
-      if (width<=900) assert.ok((await section.locator('.event-piece').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).transform))).every(value=>value==='none'), 'Static narrow-screen gallery');
+      if (width<=900) assert.ok((await section.locator('.event-piece').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).transform))).every(value=>value==='none'), 'Cards remain straight in the narrow-screen carousel');
       const axe = await new AxeBuilder({page}).include('#eventos').analyze();
       assert.deepEqual(axe.violations.map(item=>item.id), [], `Events accessibility at ${width}`);
       const artifact = `events-${width}x${height}.png`;
@@ -93,7 +99,7 @@ async function showEvents(page) {
       await page.mouse.move(0,0);
       await page.waitForTimeout(850);
       await page.screenshot({path:`${output}/${artifact}`});
-      renders.push({viewport:`${width}x${height}`,artifact,observation:'Section entrance below the fixed header, complete uncropped artworks verified through scrolling, no overflow; complete static gallery follows the responsive tunnel.'});
+      renders.push({viewport:`${width}x${height}`,artifact,observation:'Section entrance below the fixed header, complete uncropped artworks verified through scrolling, no overflow; six-artwork carousel follows the unchanged responsive tunnel.'});
     }
 
     await page.setViewportSize({width:1440,height:900});
@@ -128,7 +134,7 @@ async function showEvents(page) {
     await failure.goto(base);
     await failure.locator('#eventos-galeria').scrollIntoViewIfNeeded();
     await expect(failure.locator('.event-open').first()).toContainText('Não foi possível carregar');
-    await expect(failure.locator('.event-open img')).toHaveCount(3);
+    await expect(failure.locator('.event-open img')).toHaveCount(5);
     await failure.locator('.event-open').first().click();
     await expect(failure.getByRole('button',{name:'Tentar novamente'})).toBeVisible();
     await failure.unroute('**/assets/eventos/sao-simao-folia.webp*');
@@ -138,19 +144,19 @@ async function showEvents(page) {
     await failure.close();
 
     fs.writeFileSync(`${output}/evidence.json`,JSON.stringify({
-      contract:'contract.json: four supplied artworks between commercial previews and studies; native scroll, accessible enlargement, WhatsApp event intent.',
+      contract:'contract.json: six supplied artworks between commercial previews and studies; native scroll, accessible enlargement, WhatsApp event intent.',
       targetViewports:renders.map(item=>item.viewport),renderedEvidence:renders,
       accessibility:{status:'pass',evidence:'Axe on gallery at six widths and on desktop modal; keyboard open, focus containment, Escape, focus return and mobile tap verified.'},
-      responsive:{status:'pass',evidence:'Six widths without horizontal overflow; object-fit contain and preserved proportions; static complete gallery below the animated mobile tunnel.'},
+      responsive:{status:'pass',evidence:'Six widths without horizontal overflow; object-fit contain and preserved proportions; complete horizontal carousel below the animated mobile tunnel.'},
       contentStates:{
         loading:{status:'pass',evidence:'Reserved aspect ratio and lazy-loaded images; images decode before evidence capture.'},
-        empty:{status:'not-applicable',reason:'Curated static collection of four versioned artworks; no optional remote collection.'},
+        empty:{status:'not-applicable',reason:'Curated static collection of six versioned artworks; no optional remote collection.'},
         error:{status:'pass',evidence:'Aborted image request displays failure text; expanded modal retry succeeds after network recovery.'},
-        partial:{status:'pass',evidence:'One aborted artwork leaves three images available and the failed piece can be retried.'},
-        success:{status:'pass',evidence:'Four artworks load, expand and close; event-specific WhatsApp link verified without sending.'},
+        partial:{status:'pass',evidence:'One aborted artwork leaves five images available and the failed piece can be retried.'},
+        success:{status:'pass',evidence:'Six artworks load, expand and close; event-specific WhatsApp link verified without sending.'},
         permission:{status:'not-applicable',reason:'Public static portfolio, with no authenticated or permission-restricted operation.'},
       },motion:'Responsive tunnel and live reduced-motion/viewport cleanup verified; native wheel continues the page; dedicated mobile suite covers touch gestures.',errors,
     },null,2));
-    console.log('Events: six viewports, static complete gallery, keyboard/touch enlargement, focus, motion preference cleanup, image retry, WhatsApp and axe passed.');
+    console.log('Events: six viewports, six-artwork gallery, keyboard/touch enlargement, focus, motion preference cleanup, image retry, WhatsApp and axe passed.');
   } finally { await browser.close(); }
 })().catch(error=>{console.error(error);process.exit(1);});

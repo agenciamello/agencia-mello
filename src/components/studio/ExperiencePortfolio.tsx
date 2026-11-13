@@ -24,8 +24,8 @@ export function ExperiencePortfolio() {
       <section id="servico-web" className="solution-chapter site-service-chapter" aria-labelledby="site-chapter-heading" data-service-index="0">
         <div className="solution-chapter-heading">
           <span className="micro">01 / Sites para negócios</span>
-          <TextReveal as="h3" id="site-chapter-heading" per="word" preset="fade-in-blur" speedReveal={1.2} speedSegment={.6}>{'Apresente seus serviços.\nFacilite o pedido de orçamento.'}</TextReveal>
-          <p data-editorial-reveal="copy">Seu negócio em um site próprio, com informações claras, versão para celular e WhatsApp em destaque.</p>
+          <TextReveal as="h3" id="site-chapter-heading" per="word" preset="fade-in-blur" speedReveal={1.2} speedSegment={.6}>{'Apresente seus serviços.\nFacilite o pedido de orçamento com um site próprio!'}</TextReveal>
+          <p data-editorial-reveal="copy">Seu negócio aparecendo nas pesquisas com um site próprio, informações claras, versão para celular e WhatsApp em destaque.</p>
         </div>
         <p className="commercial-preview-label micro">Prévias comerciais · Negócios da Baixada Fluminense</p>
       <div className="showcase-list showcase-commercial-list">
@@ -81,7 +81,7 @@ export function ExperiencePortfolio() {
       </section>
       <BrandServiceChapter/>
 
-      <p className="work-honesty">Sites apresentados como prévias comerciais. Solace é um estudo autoral.</p>
+      <p className="work-honesty">Sites apresentados como prévias comerciais. SulSign é um cliente Mello, com sistema visual e peças de divulgação. Solace é um estudo autoral.</p>
       <div className="copy-bridge">
         <span className="micro">Depois de ver os projetos</span>
         <h2 className="copy-bridge-reveal" aria-label="Vamos conversar sobre seu projeto."><span aria-hidden="true"><span className="copy-bridge-word">Vamos</span><span className="copy-bridge-word">conversar</span><span className="copy-bridge-word">sobre</span><span className="copy-bridge-word">seu</span><span className="copy-bridge-word">projeto.</span></span></h2>

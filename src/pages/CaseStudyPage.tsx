@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { CASES } from '../data/cases';
 import { COMMERCIAL_PROJECTS } from '../data/commercialProjects';
 import { StudioShell, SectionLabel, usePageTitle, ContactLink } from '../components/studio/Studio';
+import { SulSignPage } from './SulSignPage';
 
 export function CaseStudyPage(){
   const {slug}=useParams();
@@ -12,13 +13,17 @@ export function CaseStudyPage(){
   const project=commercial || concept;
   const isCommercial=Boolean(commercial);
 
-  const fallbackTitle = commercial
+  const fallbackTitle = slug === 'sulsign'
+    ? 'SulSign | Sistema visual e divulgação | Agência Mello'
+    : commercial
     ? `${commercial.name} | Prévia comercial de site | Agência Mello`
     : concept
       ? `${concept.name} | Estudo conceitual | Agência Mello`
       : 'Projeto não encontrado | Agência Mello';
 
   usePageTitle(fallbackTitle);
+
+  if(slug === 'sulsign')return <SulSignPage/>;
 
   if(!project)return <StudioShell><section className="wrap case-head"><h1>Esse projeto não está aqui.</h1><Link to="/#projetos" className="text-link">Voltar aos projetos ↗</Link></section></StudioShell>;
 

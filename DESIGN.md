@@ -55,6 +55,20 @@ Capturas e resultados em `artifacts` são locais e ignorados pelo Git. Inspecion
 
 ## Histórico
 
+### Portfólio SulSign — 13/11/2026 — Issue #29
+
+A inclusão autorizada pelo usuário coloca SulSign como destaque do capítulo de identidade, mantendo Solace como estudo secundário compacto. Redes substitui a ilustração CSS da Mello por peças SulSign: Impacto Desde a Fachada em destaque e aplicação complementar no desktop. Preservar a proporção integral e os textos das peças, sem paralaxe que corte a arte, carrossel ou dependência de hover. No mobile, uma peça principal mantém a home enxuta; o link leva à página do projeto com o conjunto completo. A arte do estande fica nessa página. Reutilizar entradas editoriais e a versão estática de movimento reduzido. Verde e preto pertencem às peças do cliente; a interface mantém a identidade magenta da Mello.
+
+A página própria descreve sistema visual e peças de divulgação a partir do logotipo existente. Mostrar trechos do manual em detalhes acessíveis e identificar o PDF original como proposta. Identificar as representações de fachada/estande como simulações, preservando o escopo do design e a transparência. Esta autorização substitui somente o destaque anterior de Solace e a ilustração de redes; hero, oferta, sites, túnel, contato e rotas existentes permanecem.
+
+### Refinamentos da prévia — copy, CTAs e galeria de eventos
+
+Na revisão seguinte, os seis flyers da galeria ganham cantos de 16px na moldura e 15px na arte, mantendo proporção integral, borda, foco externo e ampliação. O título “Tenha Uma marca que seu cliente reconhece.” usa TextReveal por palavra com preset blur, em ordem de leitura e entrada única na viewport. Reutilizar a acessibilidade, cleanup e preferência dinâmica do componente; não sobrepor outra timeline ao título. A referência circular anexada foi avaliada como inspiração, mantendo o carrossel nativo para preservar leitura das artes, rolagem da página, controles e leveza. Nenhuma dependência WebGL é adicionada.
+
+Na revisão da mesma entrega, o usuário alterou os títulos/apoios de sites, redes e identidade descritos em PRODUCT.md. Adaptar as quebras de linha sem abreviar a copy. Os CTAs “Quero minha prévia grátis” e “Pedir artes para minhas redes” usam preenchimento magenta e texto escuro, foco evidente e resposta curta ao toque, sem loop decorativo.
+
+O pedido substitui a grade estática padrão após o túnel por carrossel horizontal nativo e lento com seis peças completas. Rolagem automática de ida e volta, sem salto ou clones interativos; botões de anterior/próximo e pausar/reproduzir. Pausar com foco nas peças, hover de mouse, interação manual, diálogo aberto, fora da viewport e em aba oculta; respeitar a pausa escolhida pelo usuário. A âncora da galeria mantém os controles visíveis abaixo do cabeçalho, e o foco na própria região de destino não interrompe a passagem. Preservar gesto vertical, gesto horizontal e pinch-zoom. No mobile, deixar a próxima peça parcialmente visível. Movimento reduzido apresenta grade estática completa, inclusive quando a preferência muda durante a sessão. Manter ampliação, Escape, retorno de foco, tratamento de falha/retry, CTA e Behance. O túnel continua com as quatro peças originais e seu percurso aprovado. Esta revisão não estende autorização para publicação.
+
 Os passes de setembro (impacto, Motion V2 e Mobile V3) evoluíram com vídeo no hero, novas prévias comerciais, revisão de copy e motion das subpáginas. Esta especificação substitui as descrições antigas de hero em planos sem vídeo e de mobile sem parallax.
 
 ## Revelação editorial — revisão do usuário

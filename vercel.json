@@ -30,6 +30,10 @@
       "destination": "/projetos/solace/index.html"
     },
     {
+      "source": "/projetos/sulsign",
+      "destination": "/projetos/sulsign/index.html"
+    },
+    {
       "source": "/politica-de-privacidade",
       "destination": "/politica-de-privacidade/index.html"
     },

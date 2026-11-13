@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const base=process.env.SITE_URL||'http://127.0.0.1:4176';
 const output=process.env.TEXT_REVEAL_ARTIFACTS||'artifacts/text-reveal';
-const targets=[['.scroll-story-title','Negócios diferentes. Soluções diferentes.'],['#site-chapter-heading','Apresente seus serviços. Facilite o pedido de orçamento.'],['.animalis-name-reveal','Animalis Pet','.showcase-commercial .project-heading h4 a'],['.project-thesis','Serviços, localização e contato no mesmo lugar.'],['#arts-chapter-heading','Sua divulgação precisa chamar atenção e gerar interesse.']];
+const targets=[['.scroll-story-title','Negócios diferentes. Soluções diferentes.'],['#site-chapter-heading','Apresente seus serviços. Facilite o pedido de orçamento com um site próprio!'],['.animalis-name-reveal','Animalis Pet','.showcase-commercial .project-heading h4 a'],['.project-thesis','Serviços, localização e contato no mesmo lugar.'],['#arts-chapter-heading','Sua divulgação precisa chamar atenção e gerar interesse.'],['#brand-chapter-heading','Tenha Uma marca que seu cliente reconhece.']];
 
 async function words(locator){return locator.locator('[data-text-segment]').evaluateAll(items=>items.map(el=>({opacity:Number(getComputedStyle(el).opacity),filter:getComputedStyle(el).filter,transform:getComputedStyle(el).transform})));}
 async function position(locator){return locator.evaluate(el=>el.getBoundingClientRect().top+scrollY);}
@@ -32,6 +32,14 @@ async function position(locator){return locator.evaluate(el=>el.getBoundingClien
     await page.evaluate(y=>window.scrollTo({top:Math.max(0,y-innerHeight*.55),behavior:'instant'}),y);
     await expect(title).toHaveAttribute('data-reveal-state',/revealing|complete/);
     await expect.poll(async()=>{const state=await words(title);return state.some(item=>item.opacity>.15)&&state.some(item=>item.opacity<.85);},{intervals:[20,40,60]}).toBe(true);
+    if(selector==='#brand-chapter-heading'){
+     await expect(title.locator('[data-text-segment]')).toHaveText(['Tenha','Uma','marca','que','seu','cliente','reconhece.']);
+     await expect.poll(async()=>{
+      const state=await words(title);
+      const blur=value=>Number(value.match(/blur\(([\d.]+)px\)/)?.[1]||0);
+      return state[0].opacity>state[state.length-1].opacity+.1 && blur(state[0].filter)<blur(state[state.length-1].filter);
+     },{intervals:[20,40,60]}).toBe(true);
+    }
     await expect(title).toHaveAttribute('data-reveal-state','complete');
     const after=await words(title);
     assert.ok(after.every(item=>item.opacity>.99 && (item.filter==='none'||item.filter==='blur(0px)')),'Texto termina nítido e legível');
@@ -56,6 +64,6 @@ async function position(locator){return locator.evaluate(el=>el.getBoundingClien
   }
   assert.deepEqual(errors,[]);
   fs.writeFileSync(`${output}/verification.json`,JSON.stringify({base,results,errors},null,2));
-  console.log('Text reveal: cinco títulos animam na entrada, terminam legíveis e não repetem; contexto, nomes acessíveis, teclado e reduced motion dinâmico passaram em desktop/mobile.');
+  console.log(`Text reveal: ${targets.length} títulos animam na entrada, terminam legíveis e não repetem; blur da identidade segue de Tenha a reconhece; contexto, nomes acessíveis, teclado e reduced motion dinâmico passaram em desktop/mobile.`);
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1)});

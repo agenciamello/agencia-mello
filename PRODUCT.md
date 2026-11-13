@@ -50,11 +50,13 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 
 ## Evidence on Hand
 
+- SulSign foi confirmada pelo usuário como cliente em 12/11/2026. O material fornecido inclui manual de sistema visual e três peças de divulgação. Em 13/11/2026 o usuário autorizou sua inclusão no portfólio: destaque no capítulo de identidade e demonstração das peças na seção de redes, com página própria. O trabalho desenvolve linguagem gráfica, paleta, tipografia e aplicações a partir do logotipo existente; não atribuir autoria do logotipo à Mello. Fachadas e estande retratados são simulações usadas nas peças, sem relato de execução física. O manual original se identifica como proposta, inclusive quanto à aprovação das cores; não o apresentar como documento final aprovado. Não há métricas ou resultados comerciais confirmados.
+- Esta inclusão torna SulSign o destaque de identidade visual; Solace permanece como estudo autoral secundário, com sua rota preservada. Não altera o destaque Animalis no capítulo de sites nem as condições do Site Essencial.
 - Animalis Pet ocupa o destaque principal. Viana Planejados e Du-Rio aparecem como outras prévias comerciais; Solace é um estudo autoral secundário. Na revisão de 28/10/2026, o usuário retirou Bellavista da home; a rota própria continua disponível e identificada como estudo autoral. Esta decisão substitui sua presença secundária na home, mantendo o destaque de Animalis confirmado em 16/10/2026.
 - Animalis Pet e Du-Rio são prévias comerciais desenvolvidas para negócios reais; Viana Planejados é uma prévia comercial em negociação. Isso não comprova contratação, entrega definitiva ou resultados.
 - As páginas de projeto descrevem contexto e proposta. Não há depoimentos ou métricas de resultado confirmados; trabalhos futuros não devem inventá-los.
 - Os ativos institucionais disponíveis incluem o logo da Agência Mello, a fotografia de Matheus Mello e demonstrações visuais mantidas em `public/assets`.
-- Design para eventos apresenta quatro peças realizadas pela Mello, fornecidas e selecionadas com o usuário em 24/10/2026: São Simão Folia, Pagô Pra Ver (agenda), Bloco do Mello e Conexão dos Crias. O trabalho nas artes não implica contratação direta pelos artistas retratados nem comprova resultados comerciais. O CTA tem intenção própria de orçamento para evento; a prévia gratuita do Site Essencial não se estende automaticamente a flyers.
+- Design para eventos apresenta seis peças fornecidas pelo usuário: São Simão Folia, Pagô Pra Ver (agenda), Bloco do Mello e Conexão dos Crias, selecionadas em 24/10/2026; Uma Noite no Brega Funk e MC Poze do Rodo, adicionadas em 13/11/2026. As duas novas peças ampliam somente a galeria após o túnel, que conserva as quatro originais. O trabalho nas artes não implica contratação direta pelos artistas retratados nem comprova resultados comerciais. O CTA tem intenção própria de orçamento para evento; a prévia gratuita do Site Essencial não se estende automaticamente a flyers.
 - Behance oficial fornecido pelo usuário: `https://www.behance.net/agenciamello`. Link secundário abaixo da galeria de eventos e no rodapé, apresentado como mais trabalhos, sem prometer acervo completo, atualização em 2026 ou resultados. O usuário informou que o perfil reúne flyers de 2024/2025; o WhatsApp permanece a ação principal de orçamento.
 
 ## Product Principles
@@ -64,6 +66,14 @@ A agência combina design e tecnologia com atendimento direto de Matheus Mello, 
 3. Manter escopo, investimento e etapas compreensíveis antes da contratação.
 4. Tratar proximidade, agilidade e ausência de burocracia como prática operacional, não como promessa vazia.
 5. Usar apenas provas reais e identificar explicitamente projetos conceituais.
+
+## Revisão da prévia — 13/11/2026 — Issue #29
+
+- O usuário aprovou a inclusão SulSign e pediu refinamentos na mesma entrega/PR #30.
+- Título de sites: “Apresente seus serviços. Facilite o pedido de orçamento com um site próprio!”. Apoio: “Seu negócio aparecendo nas pesquisas com um site próprio, informações claras, versão para celular e WhatsApp em destaque.”. A presença nas pesquisas é finalidade do site e da configuração básica; não acrescentar garantia de ranking ou posição.
+- Chamada de redes: “Artes para o dia a dia da sua marca nas redes sociais”. Título de identidade: “Tenha Uma marca que seu cliente reconhece.”, com a capitalização solicitada.
+- CTAs de prévia Essencial e artes para redes ganham destaque visual; textos dos botões, mensagens de WhatsApp, preços e condições continuam iguais.
+- A galeria após o túnel passa a ser um carrossel lento com seis peças e navegação manual, preservando ampliação e preferência por movimento reduzido. Não implica publicação automática.
 
 
 ## Condições confirmadas em 30/09/2026

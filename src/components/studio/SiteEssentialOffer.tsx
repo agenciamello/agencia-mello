@@ -40,7 +40,7 @@ export function SiteEssentialOffer() {
         <div className="package-buy">
           <div className="package-price"><del className="previous-price">De {ESSENTIAL_PREVIOUS_PRICE}</del><span className="offer-label">Por somente</span><strong>{ESSENTIAL_PRICE}</strong><small>{ESSENTIAL_INSTALLMENTS}</small></div>
           <p className="package-payment">Prévia privada e gratuita. Pagamento após aprovação.</p>
-          <ContactLink messageKey="destaque" className="text-link package-cta">Quero minha prévia grátis <span aria-hidden="true">↗</span></ContactLink>
+          <ContactLink messageKey="destaque" className="solid-link conversion-cta package-cta">Quero minha prévia grátis <span aria-hidden="true">↗</span></ContactLink>
           <Link to="/site-essencial" className="package-details-link">Ver tudo que está incluído <span aria-hidden="true">↗</span></Link>
         </div>
       </article>

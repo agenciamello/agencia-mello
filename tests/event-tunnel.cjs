@@ -60,7 +60,7 @@ async function travel(page,progress){
     await expect(page.locator('#eventos-galeria')).toBeInViewport();
     await page.emulateMedia({reducedMotion:'reduce'});
     await expect(page.locator('.perspective-tunnel')).toHaveCount(0);
-    await expect(page.locator('.event-open')).toHaveCount(4);
+    await expect(page.locator('.event-open')).toHaveCount(6);
     await page.emulateMedia({reducedMotion:'no-preference'});
     await expect(page.locator('.perspective-tunnel')).toHaveCount(1);
     await page.setViewportSize({width:768,height:900});
