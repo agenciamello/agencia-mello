@@ -63,6 +63,8 @@ Visuais próprios da matéria: capa editorial, duas fotos fictícias da mesma pi
 
 Na revisão da capa, o usuário escolheu a recriação aprovada da cena com celular. Usar a imagem integral e sem texto sobreposto no índice e no artigo, com proporção 16:9 e cópia WebP 1600×900. Atualizar compartilhamento e alt pela mesma fonte de dados; a legenda identifica recriação com IA e imagem não oficial. A capa tipográfica anterior fica preservada como alternativa editável, sem substituir a opção aprovada no fluxo atual.
 
+As duas fotos adicionais de GTA VI fornecidas pelo usuário entram entre parágrafos nas lições de identidade e próximo passo. Figuras com proporção integral, cantos de 12px, legendas breves e espaço antes/depois dão pausas visuais sem reescrever a copy. Carregamento tardio, dimensões reservadas e versões WebP; mesma posição no HTML inicial. Preservar os exemplos práticos da pizzaria e a capa aprovada.
+
 ### Portfólio SulSign — 13/11/2026 — Issue #29
 
 A inclusão autorizada pelo usuário coloca SulSign como destaque do capítulo de identidade, mantendo Solace como estudo secundário compacto. Redes substitui a ilustração CSS da Mello por peças SulSign: Impacto Desde a Fachada em destaque e aplicação complementar no desktop. Preservar a proporção integral e os textos das peças, sem paralaxe que corte a arte, carrossel ou dependência de hover. No mobile, uma peça principal mantém a home enxuta; o link leva à página do projeto com o conjunto completo. A arte do estande fica nessa página. Reutilizar entradas editoriais e a versão estática de movimento reduzido. Verde e preto pertencem às peças do cliente; a interface mantém a identidade magenta da Mello.

@@ -57,6 +57,15 @@ async function initShare(context, mode = 'success') {
       await expect(page.locator('main h1')).toHaveText(post.title);
       await expect(page.locator('.blog-lesson')).toHaveCount(5);
       await expect(page.locator('.blog-quote-card')).toHaveCount(2);
+      await expect(page.locator('.blog-game-figure')).toHaveCount(2);
+      for (const image of post.inlineImages) {
+        const figure = page.locator(`#${image.sectionId} .blog-game-figure`);
+        await expect(figure.locator('img')).toHaveAttribute('src', image.src);
+        await expect(figure.locator('img')).toHaveAttribute('alt', image.alt);
+        await expect(figure.locator('figcaption')).toContainText(image.caption);
+        await expect(figure.locator('figcaption')).toContainText(image.credit);
+        assert.ok(await figure.evaluate((element, preceding) => element.previousElementSibling?.textContent === preceding, post.sections.find(section => section.id === image.sectionId).paragraphs[image.afterParagraph]), 'Photo interrupts the intended text block');
+      }
       await expect(page.locator('.whatsapp-float')).toHaveCount(0);
       for (const section of post.sections) {
         await expect(page.locator(`#${section.id} h2`)).toHaveText(section.title);

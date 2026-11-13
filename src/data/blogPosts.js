@@ -23,6 +23,28 @@ export const GTA_MARKETING_POST = {
     'GTA VI oferece uma oportunidade para observar esse processo. Com lançamento anunciado para 19 de novembro de 2026, o jogo já tem uma apresentação oficial que reúne vídeos, informações e acesso à pré-venda.',
   ],
   context: 'A comparação tem um limite: GTA chega com o público de uma franquia consolidada. Aqui, vamos observar cinco escolhas de divulgação e adaptá-las à realidade de um pequeno negócio.',
+  inlineImages: [
+    {
+      sectionId: 'mantenha-a-identidade',
+      afterParagraph: 0,
+      src: '/assets/blog/gta-vi/campanha-fachada.webp',
+      width: 1280,
+      height: 859,
+      alt: 'Fachada de vidro de um shopping coberta por uma peça de GTA VI, com os dois protagonistas e o logo do jogo; bicicletas aparecem na frente.',
+      caption: 'A identidade de GTA VI ganha escala na fachada de um shopping.',
+      credit: 'Imagem fornecida para este artigo.',
+    },
+    {
+      sectionId: 'facilite-o-pedido',
+      afterParagraph: 0,
+      src: '/assets/blog/gta-vi/game-celular.webp',
+      width: 1280,
+      height: 759,
+      alt: 'Mão segura um celular na horizontal, com uma cena urbana na tela, diante de um grande logo colorido de GTA VI.',
+      caption: 'Celular em primeiro plano diante do logo de GTA VI.',
+      credit: 'Imagem fornecida para este artigo.',
+    },
+  ],
   sections: [
     {
       id: 'prepare-a-divulgacao',
@@ -115,7 +137,7 @@ export const GTA_MARKETING_POST = {
     'A Agência Mello pode ajudar a organizar as artes e o site que vão apresentar essa oferta.',
   ],
   cta: { label: 'Falar com a Mello sobre minha divulgação', href: '/#contato' },
-  editorialNote: 'Análise editorial da Agência Mello, com fontes oficiais consultadas em 13 de novembro de 2026. As lições são interpretações aplicadas a pequenos negócios, sem atribuir resultados comerciais à campanha. A capa é uma recriação ilustrada com IA a partir de referência fornecida, sem caráter oficial. A pizzaria e suas peças são exemplos fictícios; as imagens da pizza foram geradas com IA para ilustrar a explicação. GTA VI e Rockstar Games são referências ao objeto da análise, sem vínculo com a Agência Mello.',
+  editorialNote: 'Análise editorial da Agência Mello, com fontes oficiais consultadas em 13 de novembro de 2026. As lições são interpretações aplicadas a pequenos negócios, sem atribuir resultados comerciais à campanha. A capa é uma recriação ilustrada com IA a partir de referência fornecida, sem caráter oficial. As duas imagens de GTA VI no corpo da matéria foram fornecidas para este artigo. A pizzaria e suas peças são exemplos fictícios; as imagens da pizza foram geradas com IA para ilustrar a explicação. GTA VI e Rockstar Games são referências ao objeto da análise, sem vínculo com a Agência Mello.',
 };
 
 export const BLOG_POSTS = [GTA_MARKETING_POST];

@@ -25,7 +25,10 @@ function renderBlogArticle(post) {
   const sections = post.sections.map(section => {
     const list = section.list?.length ? `<ul>${section.list.map(item => `<li>${escapeBlogHtml(item)}</li>`).join('')}</ul>` : '';
     const after = Number.isInteger(section.listAfterParagraph) ? section.listAfterParagraph : section.paragraphs.length - 1;
-    const text = section.paragraphs.map((item, index) => paragraph(item) + (index === after ? list : '')).join('');
+    const text = section.paragraphs.map((item, index) => {
+      const images = post.inlineImages.filter(image => image.sectionId === section.id && image.afterParagraph === index).map(image => `<figure><img src="${escapeBlogHtml(image.src)}" alt="${escapeBlogHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async" /><figcaption>${escapeBlogHtml(image.caption)} ${escapeBlogHtml(image.credit)}</figcaption></figure>`).join('');
+      return paragraph(item) + (index === after ? list : '') + images;
+    }).join('');
     return `<section id="${escapeBlogHtml(section.id)}"><h2>${escapeBlogHtml(section.title)}</h2>${text}${section.source ? `<p class="blog-static-caption">${anchor(section.source.url, section.source.label)}</p>` : ''}</section>`;
   }).join('');
   const quotes = post.quotes.map(quote => `<figure><blockquote>${escapeBlogHtml(quote.text)}</blockquote><a href="${escapeBlogHtml(quote.image)}" download="${escapeBlogHtml(quote.downloadName)}">Baixar card: ${escapeBlogHtml(quote.text)}</a></figure>`).join('');

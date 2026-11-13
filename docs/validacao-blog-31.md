@@ -39,3 +39,13 @@ O provedor pode consumir `_vercel_share` no redirecionamento inicial e autentica
 Por solicitação do usuário, `capa-foto.webp` substitui a capa tipográfica no índice, artigo, HTML inicial e OG/Twitter/BlogPosting. Imagem WebP de 1600×900 e aproximadamente 247 KiB, preservando o enquadramento aprovado; alt descreve a fotografia entre os personagens e legenda/nota editorial identificam recriação com IA e imagem não oficial. A versão anterior e o PNG original foram preservados.
 
 Validação local desta revisão: lint, build, diff, `tests/blog-seo.cjs` e `tests/blog.cjs` passaram. Conferência em seis larguras, downloads/compartilhamento e demais fluxos do Blog sem regressões; inspeção visual desktop/mobile e console sem erros. Uma revisão independente confirmou uso consistente da nova imagem e ausência de caminhos antigos ativos. O PR #32 reúne o deployment correspondente e o registro da conferência remota. Não há autorização de merge ou produção nesta revisão.
+
+## Revisão — imagens de GTA VI no corpo da matéria
+
+As duas imagens fornecidas pelo usuário entram após o primeiro parágrafo das lições 2 (fachada/identidade) e 5 (celular/próximo passo). Preservam enquadramento e dimensões originais em WebP, com cantos de 12px, legendas breves e crédito descritivo. Juntas somam 229.438 bytes, carregadas com `loading="lazy"`, dimensões reservadas e decodificação assíncrona. Não atribuem gameplay móvel, autoria oficial ou resultados. Capa aprovada, copy e exemplos existentes preservados; mesmas figuras e posições no HTML inicial.
+
+Lint, build, `git diff --check`, `tests/blog-seo.cjs` e `tests/blog.cjs` passaram nesta revisão. SEO verifica as duas figuras no HTML inicial, texto alternativo, posição entre parágrafos, dimensões e arquivos WebP válidos. Blog verifica seis larguras (1440/1024/768/390/360/320), as duas imagens e legendas, ordem do conteúdo e decodificação; também rotas, menu/teclado/sumário, downloads/compartilhamento, reduced motion, HTML sem JavaScript e quatro escopos axe, sem overflow/erros.
+
+Inspeção visual de ambas as figuras em desktop 1440×1000 e mobile 390×844 confirmou imagens integrais e ritmo de leitura. Console sem erros. Revisão independente sem bloqueios. Evidências locais ignoradas: `artifacts/blog-31/inline-images-qa` e `artifacts/blog-31/inline-images-visual`. Bundle principal mantém o aviso acima de 500 kB (572,8 kB / 176,5 kB gzip). Suítes gerais da sprint inicial não repetidas para esta revisão restrita às imagens do artigo. Limites de emulação/compartilhamento nativo permanecem.
+
+O deployment correspondente e a conferência remota serão registrados no PR #32. Sem autorização de merge ou produção.

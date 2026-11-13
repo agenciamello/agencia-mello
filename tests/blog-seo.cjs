@@ -231,6 +231,23 @@ function checkMetadata(html, expected) {
       }
       if (section.source) assert.ok(tags(sectionOf(body, section.id), 'a').some(item => item.href === section.source.url), `Source link is present: ${section.id}`);
     }
+    assert.equal(post.inlineImages.length, 2, 'The two supplied game photos are included');
+    assert.equal(new Set(post.inlineImages.map(image => image.sectionId)).size, 2, 'Game photos are distributed across different lessons');
+    for (const image of post.inlineImages) {
+      const section = post.sections.find(item => item.id === image.sectionId);
+      const sectionHtml = sectionOf(body, image.sectionId);
+      const imageTag = tags(sectionHtml, 'img').find(item => item.src === image.src);
+      assert.ok(imageTag, `Inline photo is present in initial article HTML: ${image.src}`);
+      assert.equal(imageTag.alt, image.alt);
+      assert.equal(imageTag.loading, 'lazy');
+      assert.equal(Number(imageTag.width), image.width);
+      assert.equal(Number(imageTag.height), image.height);
+      assert.deepEqual(localImage(image.src, base), { width: image.width, height: image.height, type: 'image/webp' });
+      const content = textOf(sectionHtml);
+      assert.ok(content.includes(normalize(image.credit)), 'Photo provenance is visible without JavaScript');
+      assert.ok(content.indexOf(normalize(section.paragraphs[image.afterParagraph])) < content.indexOf(normalize(image.caption)), 'Photo follows the intended paragraph');
+      assert.ok(content.indexOf(normalize(image.caption)) < content.indexOf(normalize(section.paragraphs[image.afterParagraph + 1])), 'Photo breaks the prose before the following paragraph');
+    }
     assert.ok(tags(body, 'a').some(item => item.href === post.cta.href), 'Article has its approved contact action');
     assert.ok(tags(indexBody, 'a').some(item => item.href === post.path), 'Index exposes a crawlable article link');
     for (const source of post.sources) assert.ok(tags(body, 'a').some(item => item.href === source.url), `Official source is linked: ${source.url}`);

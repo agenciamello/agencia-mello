@@ -7,6 +7,8 @@ Material visual para “GTA VI e marketing: 5 lições de lançamento para aplic
 Em `public/assets/blog/gta-vi/`:
 
 - `capa-foto.webp`: capa atual, 1600 × 900, cópia otimizada da recriação com celular aprovada pelo usuário. Fonte PNG preservada no workspace, sem alteração criativa nesta integração.
+- `game-celular.webp`: 1280 × 759, cópia WebP da imagem JPG fornecida pelo usuário que mostra um celular diante de uma imagem de GTA VI. Sem recorte ou ampliação.
+- `campanha-fachada.webp`: 1280 × 859, cópia WebP da fotografia de fachada fornecida pelo usuário. Sem recorte ou ampliação.
 - `capa.webp`: capa tipográfica anterior preservada, 1600 × 900, composição editorial em preto, papel e magenta, com cinco etapas da divulgação. `capa.svg` preserva texto editável, fontes incorporadas e logo oficial da Mello.
 - `pizza-close.webp`: 1536 × 1024, ilustração fotográfica fictícia gerada com IA.
 - `pizza-mesa.webp`: 1536 × 1024, cena fictícia gerada com IA usando a primeira imagem como referência de continuidade.
@@ -21,6 +23,24 @@ As fotos são exemplos de uma pizzaria fictícia. Não representam cliente Mello
 ### Revisão da capa aprovada
 
 O PNG `gta-vi-foto-celular.png` aprovado pelo usuário tem 1672×941 e SHA-256 `d330b11b963549a12fdad8361c860389d3d720c8cb2c1ddb8389af970812d58f`. A integração exporta `capa-foto.webp` em 1600×900, qualidade 90, 252.506 bytes, sem texto ou alterações criativas. A diferença de proporção exige apenas 0,4785 px de corte vertical total na saída. SHA-256 do WebP: `83d9a5094e4784e29b91a65c397f43f8c92ccaf4af2560e84ec97d0bbcb90374`. O PNG aprovado e a versão tipográfica anterior permanecem preservados. Índice, artigo, HTML inicial e compartilhamento usam o novo caminho pela fonte de dados.
+
+### Duas imagens JPG fornecidas pelo usuário
+
+Origem imediata: anexos `1-937573.jpg` e `2-937650.jpg`, em `.codex-remote-attachments/01a16c30-1814-73f2-bf5a-a788ebe5236e/3310945c-afa4-4b24-9a4d-fde8790c583f/` na raiz original do workspace SITE. O usuário forneceu esses arquivos para a revisão do artigo. Os JPGs originais permanecem intactos.
+
+| Fonte | Dimensões e bytes da fonte | Cópia WebP | Dimensões e bytes da cópia | Conversão |
+| --- | --- | --- | --- | --- |
+| `1-937573.jpg` | 1280 × 759; 67.990 bytes | `game-celular.webp` | 1280 × 759; 61.970 bytes | Sharp 0.34.5, qualidade 88, effort 6, smartSubsample; redução de 8,85% |
+| `2-937650.jpg` | 1280 × 859; 190.243 bytes | `campanha-fachada.webp` | 1280 × 859; 167.468 bytes | Sharp 0.34.5, qualidade 82, effort 6, smartSubsample; redução de 11,97% |
+
+SHA-256 para rastreabilidade:
+
+- `1-937573.jpg`: `d305c3e55222a6db55055f51c0bc1f4ab9bfe5dec71410c868feb4731371926a`.
+- `game-celular.webp`: `b831f9ce69b91d35b25e812ed5a082a674fd095ed27867354b888051702c8aec`.
+- `2-937650.jpg`: `1e8b044d7457968ba689bd31b9608f47f2fac75ec5acb09d6853a1bacdba7d0d`.
+- `campanha-fachada.webp`: `0ab106818fde95ce915256732c4db9b156f651fb4d6ecf7934fbe51e8d323fbe`.
+
+As conversões mantêm a composição e a proporção completas, sem resize, upscale, recorte, correção criativa, adição de texto ou nova geração de IA. A inspeção visual confirmou a conservação do enquadramento e dos elementos visíveis, respeitando a definição limitada dos JPGs. O nome `game-celular.webp` descreve o assunto visual e não comprova que o jogo esteja sendo executado em um celular. Autoria das fotografias, oficialidade do material e licença de publicação não foram verificadas; não atribuir esses estados ou uma plataforma de gameplay a partir das imagens.
 
 Modo usado: ferramenta integrada `image_gen`, sem CLI/API de geração. Originais PNG preservados em `artifacts/blog-31/originals/` (pasta ignorada pelo Git) e no diretório original da ferramenta. A segunda geração utilizou a primeira como referência e manteve o produto/ingredientes.
 

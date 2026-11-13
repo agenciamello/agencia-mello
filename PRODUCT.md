@@ -73,7 +73,9 @@ O usuário autorizou uma seção Blog em `/blog` e a primeira matéria em `/blog
 
 Conteúdo e datas têm fonte compartilhada em `src/data/blogPosts.js`; autoria institucional Agência Mello, fontes oficiais, cinco aplicações práticas e duas frases autorais disponíveis em cards. A pizzaria FORNO, seus materiais e as fotos são exemplos fictícios; imagens geradas com IA são identificadas. O artigo trata escolhas observáveis de apresentação como leitura editorial, sem atribuir vendas ou resultados à campanha de GTA VI. Lançamento anunciado de 19/11/2026 conferido em 13/11/2026; revisar o trecho temporal antes de eventual publicação posterior à data. Materiais oficiais Rockstar permanecem referenciados por links. Em revisão posterior, o usuário aprovou a recriação com celular e pediu usá-la como capa: a imagem derivada de referência fornecida é identificada como recriação ilustrativa com IA, sem caráter oficial. Essa solicitação substitui a capa tipográfica inicial, preservada nos arquivos.
 
-Escopo: índice, artigo, navegação, sumário, SEO/HTML inicial, imagens próprias e downloads/compartilhamento explícitos. Sem CMS, login, comentários, analytics/rastreadores ou publicação em produção. A autorização atual é implementar e fornecer a prévia de PR para revisão. Serviços, ofertas, clientes, estudos e rotas anteriores permanecem.
+Na revisão seguinte, o usuário forneceu duas imagens de GTA VI e autorizou distribuí-las no corpo da matéria para aliviar os blocos de texto. Usar as cópias otimizadas com legendas e alt descritivos, sem atribuir autoria oficial, execução do jogo no celular ou resultados comerciais. As imagens fornecidas se distinguem dos exemplos fictícios e da capa com IA; origem e arquivos em `docs/blog-assets-31.md`.
+
+Escopo: índice, artigo, navegação, sumário, SEO/HTML inicial, imagens próprias e fornecidas, downloads/compartilhamento explícitos. Sem CMS, login, comentários, analytics/rastreadores ou publicação em produção. A autorização atual é implementar e fornecer a prévia de PR para revisão. Serviços, ofertas, clientes, estudos e rotas anteriores permanecem.
 
 ## Revisão da prévia — 13/11/2026 — Issue #29
 

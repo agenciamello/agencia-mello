@@ -187,7 +187,14 @@ function ArticleContent({ post }: { post: BlogPost }) {
 
           {post.sections.map((section, index) => <section className="blog-lesson" id={section.id} key={section.id} aria-labelledby={`${section.id}-title`}>
             <div className="blog-lesson-title"><span aria-hidden="true">0{index + 1}</span><h2 id={`${section.id}-title`}>{section.title}</h2></div>
-            {section.paragraphs.map((paragraph, paragraphIndex) => <Fragment key={paragraphIndex}><p>{paragraph}</p>{section.list?.length > 0 && section.listAfterParagraph === paragraphIndex && <ul className="blog-lesson-list">{section.list.map(item => <li key={item}>{item}</li>)}</ul>}</Fragment>)}
+            {section.paragraphs.map((paragraph, paragraphIndex) => <Fragment key={paragraphIndex}>
+              <p>{paragraph}</p>
+              {section.list?.length > 0 && section.listAfterParagraph === paragraphIndex && <ul className="blog-lesson-list">{section.list.map(item => <li key={item}>{item}</li>)}</ul>}
+              {post.inlineImages.filter(image => image.sectionId === section.id && image.afterParagraph === paragraphIndex).map(image => <figure className="blog-game-figure" key={image.src}>
+                <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async"/>
+                <figcaption>{image.caption}<span>{image.credit}</span></figcaption>
+              </figure>)}
+            </Fragment>)}
             {section.list?.length > 0 && section.listAfterParagraph === undefined && <ul className="blog-lesson-list">{section.list.map(item => <li key={item}>{item}</li>)}</ul>}
             {section.source && <p className="blog-inline-source"><a href={section.source.url} target="_blank" rel="noopener noreferrer">{section.source.label}<ArrowUpRight size={14} aria-hidden="true"/><span className="blog-sr-only"> (abre em nova aba)</span></a></p>}
             <LessonVisual kind={section.visual}/>
