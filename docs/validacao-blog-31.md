@@ -61,3 +61,11 @@ Lint/build/diff e `tests/blog-seo.cjs` passaram. `tests/blog.cjs` passou em seis
 A reprodução real do vídeo foi observada no navegador em desktop 1440×1000 e mobile 390×844, com imagens em movimento e interface do YouTube. Fechamento removeu o iframe e devolveu o foco ao botão; console sem erros na inspeção. Abertura/fonte e bloco de vídeo inspecionados no mobile. Revisão independente sem bloqueios. Evidências locais ignoradas: `artifacts/blog-31/editorial-qa` e `artifacts/blog-31/editorial-visual`. Bundle principal mantém aviso acima de 500 kB (575,7 kB / 177,2 kB gzip). Sem aceite em aparelho físico/Safari.
 
 Prévia e resultado remoto registrados no PR #32. Suítes gerais da sprint inicial não repetidas para esta revisão restrita ao Blog. Sem merge ou produção.
+
+## Ajuste final e autorização de publicação
+
+O usuário pediu o título exato “Para salvar na memória” e autorizou colocar a versão online. Título, sumário e HTML inicial atualizados; âncora `#para-compartilhar`, cards, downloads e compartilhamento preservados. Esta autorização substitui o limite anterior de prévia para o Blog aprovado.
+
+Lint/build/diff e `tests/blog-seo.cjs` passaram. A primeira execução de `tests/blog.cjs` concluiu os fluxos mas registrou `net::ERR_NETWORK_CHANGED`; repetição sem alterações passou em seis larguras, quatro escopos axe e todos os fluxos do Blog. A conferência adicional de publicação passou em 1440/390/320: título exato, cards, teclado/foco/sumário, movimento reduzido, HTML inicial, navegação home→Blog e ausência de overflow/erros. Capturas reais do Chrome desktop/mobile inspecionadas em `artifacts/blog-31/publication-local`; o navegador integrado estava indisponível neste chat. Sem aparelho físico/Safari.
+
+Projeto Vercel e integração Git confirmados: `agenciamello`, repositório `agenciamello/agencia-mello`, `productionBranch: main`. O deploy atual anterior veio dessa branch; a publicação será acionada pela integração ao fazer merge do PR #32, sem deploy manual. Prévia final, checks do head, merge, deployment e conferência do domínio público registrados no PR/Issue.

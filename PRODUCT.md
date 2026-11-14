@@ -77,7 +77,7 @@ Na revisão seguinte, o usuário forneceu duas imagens de GTA VI e autorizou dis
 
 A revisão editorial autorizada após a comparação com a V4 traz GTA VI para a abertura, com o marco histórico do primeiro trailer (>90 milhões de visualizações/24h em dezembro de 2023), vinculado ao Guinness. Substituir trechos para variar exemplos de evento, loja e serviços e encerrar com o briefing (o que lançar, para quem e quando), sem aumentar a copy nem acrescentar promessas de resultado. Trailer 1 oficial da Rockstar disponível no YouTube por escolha do leitor; o player externo é carregado somente após clique, com acesso externo alternativo e link no HTML sem JavaScript. Sem download/republicação do vídeo ou rastreamento próprio.
 
-Escopo: índice, artigo, navegação, sumário, SEO/HTML inicial, imagens próprias e fornecidas, downloads/compartilhamento explícitos. Sem CMS, login, comentários, analytics/rastreadores ou publicação em produção. A autorização atual é implementar e fornecer a prévia de PR para revisão. Serviços, ofertas, clientes, estudos e rotas anteriores permanecem.
+Escopo: índice, artigo, navegação, sumário, SEO/HTML inicial, imagens próprias e fornecidas, downloads/compartilhamento explícitos. Sem CMS, login, comentários ou analytics/rastreadores. Após a aprovação da prévia, o usuário pediu o título “Para salvar na memória” e autorizou colocar o Blog online; esta instrução substitui o limite anterior de prévia nesta entrega. Publicar pelo PR #32 e integração Git da branch de produção confirmada, com validação do resultado. Serviços, ofertas, clientes, estudos e rotas anteriores permanecem.
 
 ## Revisão da prévia — 13/11/2026 — Issue #29
 

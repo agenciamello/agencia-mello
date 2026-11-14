@@ -201,7 +201,7 @@ function ArticleContent({ post }: { post: BlogPost }) {
     return () => observer.disconnect();
   }, [post]);
 
-  const toc = <ol>{post.sections.map((section, index) => <li key={section.id}><a href={`#${section.id}`} aria-current={activeSection === section.id ? 'location' : undefined}><span aria-hidden="true">0{index + 1}</span><span>{section.title}</span></a></li>)}<li><a href="#para-compartilhar"><span aria-hidden="true">↗</span><span>Para compartilhar</span></a></li></ol>;
+  const toc = <ol>{post.sections.map((section, index) => <li key={section.id}><a href={`#${section.id}`} aria-current={activeSection === section.id ? 'location' : undefined}><span aria-hidden="true">0{index + 1}</span><span>{section.title}</span></a></li>)}<li><a href="#para-compartilhar"><span aria-hidden="true">↗</span><span>Para salvar na memória</span></a></li></ol>;
 
   return <StudioShell contact={false}>
     <article className="blog-surface blog-article">
@@ -243,7 +243,7 @@ function ArticleContent({ post }: { post: BlogPost }) {
 
           <section id="para-compartilhar" className="blog-quote-section" aria-labelledby="blog-quote-heading">
             <span className="blog-eyebrow">Leve a ideia com você</span>
-            <h2 id="blog-quote-heading">Para salvar<br/>e compartilhar.</h2>
+            <h2 id="blog-quote-heading">Para salvar na memória</h2>
             <p>Duas frases deste artigo para lembrar na próxima campanha.</p>
             <div className="blog-quote-grid">{post.quotes.map((quote, index) => <figure className="blog-quote-card" key={quote.id} id={quote.id}>
               <img src={quote.image} alt={quote.text} width="1080" height="1350" loading="lazy"/>
