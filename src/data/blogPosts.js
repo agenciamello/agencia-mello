@@ -12,7 +12,7 @@ export const GTA_MARKETING_POST = {
   dateLabel: '13 de novembro de 2026',
   readingMinutes: 6,
   author: 'Agência Mello',
-  cover: '/assets/blog/gta-vi/capa-foto.webp',
+  cover: '/assets/blog/gta-vi/capa-foto-celular-corrigido.webp',
   coverAlt: 'Recriação ilustrada: mulher fotografa um homem posando junto a um carro vermelho, sob um pôr do sol com palmeiras.',
   coverCaption: 'Recriação ilustrada com IA para este artigo. Imagem não oficial.',
   intro: [

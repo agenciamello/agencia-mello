@@ -6,7 +6,8 @@ Material visual para “GTA VI e marketing: 5 lições de lançamento para aplic
 
 Em `public/assets/blog/gta-vi/`:
 
-- `capa-foto.webp`: capa atual, 1600 × 900, cópia otimizada da recriação com celular aprovada pelo usuário. Fonte PNG preservada no workspace, sem alteração criativa nesta integração.
+- `capa-foto.webp`: versão anterior da capa, 1600 × 900, preservada como original.
+- `capa-foto-celular-corrigido.webp`: capa da revisão #33, 1600 × 900. O retoque local ajusta a orientação do aparelho e torna visível o homem enquadrado na tela. A referência compartilhada pelo índice, artigo e metadados aponta para este arquivo.
 - `game-celular.webp`: 1280 × 759, cópia WebP da imagem JPG fornecida pelo usuário que mostra um celular diante de uma imagem de GTA VI. Sem recorte ou ampliação.
 - `campanha-fachada.webp`: 1280 × 859, cópia WebP da fotografia de fachada fornecida pelo usuário. Sem recorte ou ampliação.
 - `capa.webp`: capa tipográfica anterior preservada, 1600 × 900, composição editorial em preto, papel e magenta, com cinco etapas da divulgação. `capa.svg` preserva texto editável, fontes incorporadas e logo oficial da Mello.
