@@ -28,7 +28,10 @@ function renderBlogArticle(post) {
     const text = section.paragraphs.map((item, index) => {
       const images = post.inlineImages.filter(image => image.sectionId === section.id && image.afterParagraph === index).map(image => `<figure><img src="${escapeBlogHtml(image.src)}" alt="${escapeBlogHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async" /><figcaption>${escapeBlogHtml(image.caption)} ${escapeBlogHtml(image.credit)}</figcaption></figure>`).join('');
       const trailer = post.trailer.sectionId === section.id && post.trailer.afterParagraph === index ? `<figure class="blog-static-trailer"><p><strong>${escapeBlogHtml(post.trailer.title)}</strong></p><p><a href="${escapeBlogHtml(post.trailer.watchUrl)}" target="_blank" rel="noopener noreferrer">Assistir ao trailer oficial no YouTube (abre em nova aba)</a></p><figcaption>${escapeBlogHtml(post.trailer.caption)} ${anchor(post.trailer.sourceUrl, 'Fonte: Rockstar Games')}</figcaption></figure>` : '';
-      return paragraph(item) + (index === after ? list : '') + images + trailer;
+      const prose = section.emphasizeListIntro && index === after
+        ? `<p><strong>${escapeBlogHtml(item)}</strong></p>`
+        : paragraph(item);
+      return prose + (index === after ? list : '') + images + trailer;
     }).join('');
     return `<section id="${escapeBlogHtml(section.id)}"><h2>${escapeBlogHtml(section.title)}</h2>${text}${section.source ? `<p class="blog-static-caption">${anchor(section.source.url, section.source.label)}</p>` : ''}</section>`;
   }).join('');
