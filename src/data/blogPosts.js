@@ -63,7 +63,8 @@ export const GTA_MARKETING_POST = {
         'O catálogo oficial de GTA VI reúne vídeos divulgados em diferentes momentos, incluindo trailers e uma apresentação mais longa do jogo. São oportunidades de conhecer partes do lançamento antes da estreia.',
         'Na pizzaria do nosso exemplo, essa preparação poderia acontecer assim:',
         'Cada publicação acrescenta uma informação. Quando as vendas abrem, quem acompanhou já sabe do que se trata.',
-        'Planeje essa sequência junto com a preparação do produto. O calendário deve acompanhar sua capacidade de produzir, atender e entregar.',
+        'Na quinta, a pizzaria pode postar um Story com o preço, os horários de sexta e um link de WhatsApp com a chamada “Reserve seu pedido”. Se o foco for o salão, use “Reserve sua mesa” e confirme o número de pessoas e o horário.',
+        'No WhatsApp, confirme quantas pizzas o cliente quer e para qual horário. Na sexta de manhã, conte as pizzas reservadas e veja em quais horários os pedidos se concentram. Você já tem um ponto de partida para comprar ingredientes e organizar a cozinha.',
       ],
       list: [
         'Segunda-feira: apresentar o novo sabor e informar quando ele entra no cardápio.',
@@ -92,7 +93,7 @@ export const GTA_MARKETING_POST = {
       paragraphs: [
         'A Rockstar disponibiliza uma galeria de imagens para apresentar cenários do jogo. É uma prévia visual do produto anunciado.',
         'Na sua divulgação, procure oferecer uma demonstração concreta do que está vendendo.',
-        'Para a pizzaria, isso significa mostrar a pizza que será entregue, informar o tamanho e apresentar os ingredientes. Uma foto precisa ajudar a formar uma expectativa compatível com o pedido.',
+        'Se o recheio é o diferencial, corte uma fatia e grave de perto para mostrar o que vem dentro. Coloque o tamanho, os ingredientes e o preço na mesma peça para responder às primeiras dúvidas de quem quer pedir.',
         'Uma loja pode mostrar o caimento de uma roupa e informar as medidas. Quem presta serviços pode apresentar um trabalho real, explicar o escopo e mostrar o acabamento.',
         'Antes de publicar, identifique qual dúvida aquela imagem ou explicação ajuda a resolver. Isso dá uma função à sua divulgação.',
       ],
