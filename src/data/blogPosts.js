@@ -3,7 +3,7 @@
 export const GTA_MARKETING_POST = {
   slug: 'gta-vi-marketing-licoes-lancamento',
   path: '/blog/gta-vi-marketing-licoes-lancamento',
-  title: 'GTA VI e marketing: 5 lições de lançamento para aplicar no seu negócio',
+  title: 'GTA VI: 5 lições para fazer seu cliente perguntar “quando chega?”',
   description: 'Cinco lições de divulgação inspiradas na apresentação de GTA VI, com exemplos para pequenos negócios: planejamento, identidade visual e caminho até o pedido.',
   dek: 'Como preparar a divulgação, apresentar sua novidade e facilitar o caminho até o pedido.',
   category: 'Marketing na prática',
