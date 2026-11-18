@@ -8,7 +8,7 @@ export const GTA_MARKETING_POST = {
   dek: 'Como preparar a divulgação, apresentar sua novidade e facilitar o caminho até o pedido.',
   category: 'Marketing na prática',
   publishedAt: '2026-11-13',
-  modifiedAt: '2026-11-13',
+  modifiedAt: '2026-11-18',
   dateLabel: '13 de novembro de 2026',
   readingMinutes: 6,
   author: 'Agência Mello',
@@ -16,12 +16,13 @@ export const GTA_MARKETING_POST = {
   coverAlt: 'Recriação ilustrada: mulher fotografa um homem posando junto a um carro vermelho, sob um pôr do sol com palmeiras.',
   coverCaption: 'Recriação ilustrada com IA para este artigo. Imagem não oficial.',
   intro: [
-    'Em dezembro de 2023, o primeiro trailer de GTA VI passou de 90 milhões de visualizações no YouTube em 24 horas, segundo o Guinness World Records. O lançamento do jogo está anunciado para 19 de novembro de 2026.',
-    'Imagine uma pizzaria lançando um sabor. A receita foi testada, mas a divulgação vira uma foto com “Novidade! Já disponível.” Para o cliente, pode ser o primeiro contato com a oferta.',
-    'O cliente precisa entender o que chegou, por que experimentar e como pedir. A apresentação de GTA VI permite observar cinco escolhas para organizar sua divulgação.',
+    'O primeiro trailer de GTA VI passou de 90 milhões de visualizações no YouTube em 24 horas, segundo o Guinness World Records. Isso foi em dezembro de 2023, bem antes da estreia do jogo.',
+    'Agora, como você pode aplicar essa lógica ao seu negócio?',
+    'Imagine uma pizzaria prestes a lançar um novo sabor. Se ela só posta “Já disponível” e reza pelos resultados, o cliente descobre a novidade no mesmo momento em que recebe o convite para comprar.',
+    'Mas e se, antes mesmo de a pizza entrar no cardápio, os clientes já estivessem perguntando “quando chega?” É a partir desse exemplo que vamos tirar cinco lições da divulgação de GTA VI para o seu próximo lançamento.',
   ],
   introSource: { label: 'Fonte: Guinness World Records · dezembro de 2023', url: 'https://www.guinnessworldrecords.com/world-records/407081-most-viewed-videogame-reveal-on-youtube-in-24-hours' },
-  context: 'GTA tem o público de uma franquia consolidada. As lições abaixo são uma leitura editorial adaptada à realidade de pequenos negócios.',
+  context: 'A Rockstar marcou a estreia para 19 de novembro de 2026. GTA tem o público de uma franquia consolidada. As lições abaixo são uma leitura editorial adaptada à realidade de pequenos negócios.',
   trailer: {
     sectionId: 'prepare-a-divulgacao',
     afterParagraph: 0,
@@ -115,8 +116,9 @@ export const GTA_MARKETING_POST = {
       id: 'facilite-o-pedido',
       title: 'Deixe o próximo passo evidente',
       paragraphs: [
-        'Na página oficial de GTA VI, o visitante encontra a data anunciada, as plataformas e chamadas para a pré-venda.',
-        'Na sua campanha, a pessoa também precisa encontrar o que fazer depois de se interessar.',
+        'Na divulgação de GTA VI, a Rockstar reuniu em uma página a data de estreia, as plataformas e o caminho para a pré-venda.',
+        'Antes mesmo da estreia, a Sensor Tower estimou que GTA VI já tinha superado 11,2 milhões de cópias em pré-venda e US$ 1 bilhão em receita no PlayStation e no Xbox.',
+        'Voltando à pizzaria: quando alguém pergunta “quando chega?”, já existe interesse. Para transformar esse interesse em pedido, deixe a data, o preço e o link do cardápio fáceis de encontrar.',
         'Ao divulgar um evento, leve a pessoa à página do ingresso anunciado, com data, local e condições. Para um serviço, explique como pedir orçamento e quais informações enviar.',
         'Antes do lançamento, peça a alguém que não participou da divulgação para percorrer esse caminho pelo celular. Observe se essa pessoa consegue:',
         'Depois, acompanhe o que aconteceu: cliques, conversas e pedidos são etapas diferentes. Essa distinção ajuda a descobrir onde melhorar.',
@@ -126,7 +128,7 @@ export const GTA_MARKETING_POST = {
         'Entender preço, condições ou como pedir orçamento.',
         'Iniciar o pedido ou contato.',
       ],
-      listAfterParagraph: 3,
+      listAfterParagraph: 4,
       source: { label: 'Confira a página oficial de GTA VI', url: 'https://www.rockstargames.com/VI' },
       visual: 'purchase',
     },
@@ -137,6 +139,7 @@ export const GTA_MARKETING_POST = {
   ],
   sources: [
     { label: 'GTA VI — apresentação e data anunciada', url: 'https://www.rockstargames.com/VI' },
+    { label: 'Sensor Tower — estimativa de pré-venda de GTA VI no PlayStation e no Xbox', url: 'https://sensortower.com/report/gta-vi-impact-on-consumer-engagement' },
     { label: 'Guinness World Records — visualizações do primeiro trailer em 24 horas, dezembro de 2023', url: 'https://www.guinnessworldrecords.com/world-records/407081-most-viewed-videogame-reveal-on-youtube-in-24-hours' },
     { label: 'Trailer 1 — Rockstar Games, dezembro de 2023', url: 'https://www.rockstargames.com/VI/trailer-1' },
     { label: 'Vídeos oficiais de GTA VI', url: 'https://www.rockstargames.com/VI/launch-trailer' },
@@ -148,7 +151,7 @@ export const GTA_MARKETING_POST = {
     'Conte à Agência Mello sua próxima oferta. Vamos conversar sobre as artes e o site para apresentá-la.',
   ],
   cta: { label: 'Falar com a Mello sobre minha divulgação', href: '/#contato' },
-  editorialNote: 'Análise editorial da Agência Mello, com fontes oficiais consultadas em 13 de novembro de 2026. As lições são interpretações aplicadas a pequenos negócios, sem atribuir resultados comerciais à campanha. A capa é uma recriação ilustrada com IA a partir de referência fornecida, sem caráter oficial. As duas imagens de GTA VI no corpo da matéria foram fornecidas para este artigo. A pizzaria e suas peças são exemplos fictícios; as imagens da pizza foram geradas com IA para ilustrar a explicação. GTA VI e Rockstar Games são referências ao objeto da análise, sem vínculo com a Agência Mello.',
+  editorialNote: 'Análise editorial da Agência Mello com fontes consultadas em 13 e 18 de novembro de 2026. As lições são interpretações aplicadas a pequenos negócios. Os números de pré-venda são estimativas da Sensor Tower para PlayStation e Xbox. A capa é uma recriação ilustrada com IA a partir de referência fornecida, sem caráter oficial. As duas imagens de GTA VI no corpo da matéria foram fornecidas para este artigo. A pizzaria e suas peças são exemplos fictícios; as imagens da pizza foram geradas com IA para ilustrar a explicação. GTA VI e Rockstar Games são referências ao objeto da análise, sem vínculo com a Agência Mello.',
 };
 
 export const BLOG_POSTS = [GTA_MARKETING_POST];
