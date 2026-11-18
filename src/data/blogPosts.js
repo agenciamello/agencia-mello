@@ -130,6 +130,7 @@ export const GTA_MARKETING_POST = {
         'Iniciar o pedido ou contato.',
       ],
       listAfterParagraph: 4,
+      emphasizeListIntro: true,
       source: { label: 'Confira a página oficial de GTA VI', url: 'https://www.rockstargames.com/VI' },
       visual: 'purchase',
     },
