@@ -1,25 +1,23 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { chromium, expect } = require('@playwright/test');
+const { chromium, expect, request: playwrightRequest } = require('@playwright/test');
 
 // Run against a Vercel preview/production URL: Vite's dev server uses SPA fallback.
 assert.ok(process.env.SITE_URL, 'Set SITE_URL to the deployment being tested');
 const target = new URL(process.env.SITE_URL);
 const base = target.origin;
-function deploymentUrl(route) {
-  const url = new URL(route, base);
-  for (const [key, value] of target.searchParams) url.searchParams.set(key, value);
-  return url.href;
-}
 
 const headers = process.env.VERCEL_AUTOMATION_BYPASS_SECRET
   ? { 'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET }
   : {};
+let http;
 
 async function request(route, method = 'GET') {
-  const response = await fetch(deploymentUrl(route), { method, headers, signal: AbortSignal.timeout(30000) });
-  const html = await response.text();
+  const result = await http.fetch(`${base}${route}`, { method, timeout: 30000 });
+  const html = await result.text();
+  const response = { status: result.status(), headers: new Headers(result.headers()) };
+  await result.dispose();
   return { response, html };
 }
 
@@ -28,6 +26,9 @@ function attribute(html, pattern) {
 }
 
 (async () => {
+  // Share-link authentication sets cookies; retain them across HTTP requests.
+  http = await playwrightRequest.newContext({ extraHTTPHeaders: headers });
+  if (target.search) await http.get(target.href);
   const { SEO_ROUTES, SEO_SITE } = await import('../src/data/seoRoutes.js');
   const unknownRoutes = [
     '/pagina-inexistente-revisao-17',
@@ -74,10 +75,10 @@ function attribute(html, pattern) {
   const browser = await chromium.launch({ channel: 'chrome', headless: true });
   try {
     for (const width of [1440, 390]) {
-      const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: 'reduce', extraHTTPHeaders: headers });
+      const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: 'reduce', extraHTTPHeaders: headers, storageState: await http.storageState() });
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
-      const response = await page.goto(deploymentUrl(unknownRoutes[0]), { waitUntil: 'domcontentloaded' });
+      const response = await page.goto(`${base}${unknownRoutes[0]}`, { waitUntil: 'domcontentloaded' });
       assert.equal(response.status(), 404);
       await expect(page.getByRole('heading', { name: 'Página não encontrada', exact: true })).toBeVisible();
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow');
@@ -95,7 +96,9 @@ function attribute(html, pattern) {
   } finally {
     await browser.close();
   }
-})().catch(error => {
+})().finally(async () => {
+  await http?.dispose();
+}).catch(error => {
   console.error(error);
   process.exitCode = 1;
 });
