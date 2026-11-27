@@ -80,7 +80,7 @@ function attribute(html, pattern) {
       page.on('pageerror', error => errors.push(error.message));
       const response = await page.goto(`${base}${unknownRoutes[0]}`, { waitUntil: 'domcontentloaded' });
       assert.equal(response.status(), 404);
-      await expect(page.getByRole('heading', { name: 'Página não encontrada', exact: true })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'Essa página saiu pra tomar um café.', exact: true })).toBeVisible();
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow');
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'No horizontal overflow');
       await page.evaluate(() => { window.__httpRoutingMarker = true; });
