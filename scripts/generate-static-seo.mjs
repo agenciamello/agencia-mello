@@ -85,7 +85,11 @@ for (const pathname of Object.keys(SEO_ROUTES)) {
   await fs.writeFile(path.join(routeDir, 'index.html'), html, 'utf8');
 }
 
-const notFoundHtml = renderRoute('/pagina-inexistente', 'Página não encontrada | Agência Mello');
+// Vercel serves this shared document at any unknown URL with HTTP 404.
+// It must not advertise a made-up canonical URL or language alternatives.
+const notFoundHtml = renderRoute('/pagina-inexistente', 'Página não encontrada | Agência Mello')
+  .replace(/\s*<link rel="(?:canonical|alternate)"[^>]*>/g, '')
+  .replace(/\s*<meta property="og:url"[^>]*>/g, '');
 await fs.writeFile(path.join(distDir, '404.html'), notFoundHtml, 'utf8');
 
 // New blog routes and dates come from the article data rather than a copied date.
