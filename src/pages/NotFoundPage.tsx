@@ -29,7 +29,7 @@ export const NotFoundPage: React.FC = () => {
             Já que você chegou até aqui, que tal tirar seu próximo site ou design do papel?
           </p>
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-            <Button href={getWhatsAppUrl(projectMessage)}>
+            <Button href={getWhatsAppUrl(projectMessage)} className="!text-[#141217]">
               <MessageCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
               <span>Bora criar meu projeto</span>
             </Button>
