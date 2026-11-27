@@ -160,11 +160,11 @@ function checkMetadata(html, expected) {
   const { SEO_SITE, SEO_ROUTES } = await import(pathToFileURL(path.join(root, 'src/data/seoRoutes.js')).href);
   assert.ok(BLOG_POSTS.length > 0, 'The blog has an actual article');
   const deployConfig = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
+  assert.ok(!deployConfig.rewrites.some(item => item.source === '/(.*)'), 'Unknown URLs reach the native HTTP 404 instead of the home');
   for (const route of ['/blog', ...BLOG_POSTS.map(post => post.path)]) {
     for (const source of [route, `${route}/`]) {
       const rewrite = deployConfig.rewrites.find(item => item.source === source);
       assert.equal(rewrite?.destination, `${route}/index.html`, 'Direct blog URLs serve their actual generated article metadata and body');
-      assert.ok(deployConfig.rewrites.indexOf(rewrite) < deployConfig.rewrites.findIndex(item => item.source === '/(.*)'), 'Blog rewrites precede SPA fallback');
     }
   }
   const base = SEO_SITE.url;

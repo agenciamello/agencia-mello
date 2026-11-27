@@ -56,10 +56,6 @@
     {
       "source": "/termos-de-uso",
       "destination": "/termos-de-uso/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ],
   "headers": [
